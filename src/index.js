@@ -1,8 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import * as sentry from '@sentry/browser';
+
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+if (process.env.NODE_ENV === 'production') {
+  sentry.init({
+    dsn: process.env.REACT_APP_SENTRY_CONFIG_DSN,
+    environment: process.env.REACT_APP_CLIENT_ENVIRONMENT,
+  });
+}
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
