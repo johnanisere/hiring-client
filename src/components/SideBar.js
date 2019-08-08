@@ -2,6 +2,7 @@ import React from 'react';
 import { Box } from 'grommet';
 import MenuItems from './MenuItems';
 import CollapsibleMenu from './Collapsable';
+import menuItems from '../components/constants/menu-items';
 
 export default function SideBar(props) {
   return (
@@ -21,7 +22,7 @@ export default function SideBar(props) {
           ]}
         >
           <CollapsibleMenu />
-          {['Feedback', 'Notification', 'Settings'].map(name => (
+          {menuItems.map(name => (
             <MenuItems name={name} key={name} />
           ))}
         </Box>

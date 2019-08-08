@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { Box, Button, Collapsible, Grommet, Text } from 'grommet';
 import { grommet } from 'grommet/themes';
+import decadevSubmenu from '../components/constants/decadevs-submenu';
 
 const MenuButton = ({ label, open, submenu, ...rest }) => {
   return (
@@ -32,29 +33,25 @@ export default function CollapsibleMenu() {
     <Grommet theme={grommet}>
       <Box width="small">
         <MenuButton open={openMenu} label="Decadevs" onClick={toggleMenu} />
-        {['All Decadevs', 'Decadevs Interviewed', 'Decadevs Hired'].map(
-          item => {
-            return (
-              <Collapsible open={openMenu} key={item}>
-                {}
-                <Button
-                  hoverIndicator="background"
-                  onClick={() => alert('Submenu item 1 selected')}
+        {decadevSubmenu.map(item => {
+          return (
+            <Collapsible open={openMenu} key={item}>
+              <Button
+                hoverIndicator="background"
+                onClick={() => alert('Submenu item 1 selected')}
+              >
+                <Box
+                  background="dark-3"
+                  direction="row"
+                  align="center"
+                  pad={{ horizontal: 'medium', vertical: 'small' }}
                 >
-                  <Box
-                    background="dark-3"
-                    direction="row"
-                    align="center"
-                    pad={{ horizontal: 'medium', vertical: 'small' }}
-                  >
-                    <Text size="small">{item}</Text>
-                  </Box>
-                </Button>
-                {}
-              </Collapsible>
-            );
-          }
-        )}
+                  <Text size="small">{item}</Text>
+                </Box>
+              </Button>
+            </Collapsible>
+          );
+        })}
       </Box>
     </Grommet>
   );
