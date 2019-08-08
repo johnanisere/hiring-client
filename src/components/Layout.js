@@ -7,11 +7,9 @@ import SideBar from './SideBar';
 
 export default function Layout(props) {
   const [sidebar, setSidebar] = useState(true);
-  console.log(sidebar);
 
   function toggleSidebar() {
     setSidebar(!sidebar);
-    console.log(sidebar);
   }
 
   return (

@@ -2,8 +2,6 @@ import React from 'react';
 import { Box, Button, Text } from 'grommet';
 
 export default function Header(props) {
-  console.log(props);
-
   return (
     <Box
       gridArea="header"
