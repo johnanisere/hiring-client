@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Button, Text } from 'grommet';
+import { Box } from 'grommet';
+import MenuItems from './MenuItems';
 
 export default function SideBar(props) {
   return (
@@ -19,16 +20,7 @@ export default function SideBar(props) {
           ]}
         >
           {['Decadev', 'Feedback', 'Notification', 'Settings'].map(name => (
-            <Button key={name} href="#" hoverIndicator>
-              <Box
-                pad={{
-                  horizontal: 'medium',
-                  vertical: 'small'
-                }}
-              >
-                <Text>{name}</Text>
-              </Box>
-            </Button>
+            <MenuItems name={name} />
           ))}
         </Box>
       )}
