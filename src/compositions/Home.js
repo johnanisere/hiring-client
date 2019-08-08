@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Layout from '../components/Layout';
+// import NestedCollapsible from '../components/Collapsable';
 
 function App(props) {
   return (
@@ -8,6 +9,8 @@ function App(props) {
       <Layout>
         <p>Hey!</p>
       </Layout>
+
+      {/* <NestedCollapsible /> */}
     </div>
   );
 }
