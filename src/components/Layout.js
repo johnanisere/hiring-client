@@ -26,9 +26,7 @@ export default function Layout(props) {
       >
         <Header toggleSidebar={toggleSidebar} />
         <SideBar sidebar={sidebar} />
-        <Box gridArea="main" justify="center" align="center">
-          {props.children}
-        </Box>
+        <Box gridArea="main">{props.children}</Box>
       </Grid>
     </Grommet>
   );
