@@ -1,10 +1,9 @@
-import React from "react"
+import React from "react";
 import { Grommet, Box, Grid, ResponsiveContext } from "grommet";
 import { grommet } from "grommet/themes";
 import Photo from "./Photo";
 import Info from "./Info";
-import Skills from "./Skills"
-
+import Skills from "./Skills";
 
 const Background = () => {
   return (
