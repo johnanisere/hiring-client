@@ -1,12 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import Layout from "../components/Layout";
+import UpdatePassword from "../components/UpdatePassword";
 
 function App(props) {
   return (
     <div className="App">
-      <Layout />
+      {/* <Layout>
+        <Cards />
+      </Layout> */}
+
+      <UpdatePassword />
     </div>
   );
 }
