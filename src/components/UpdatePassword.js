@@ -40,7 +40,7 @@ export default function UpdatePassword() {
         <Box
           style={{
             borderRadius: '10px',
-            boxShadow: '0 0 20px rgba(0,0,0,0.8)'
+            boxShadow: '0px 0px 20px 5px rgba(0, 0, 0, 0.1)'
           }}
           width="medium"
           pad="medium"
@@ -114,7 +114,6 @@ export default function UpdatePassword() {
             >
               <Button
                 primary
-                margin="medium"
                 width="large"
                 color="dark-1"
                 label="Update Password"
