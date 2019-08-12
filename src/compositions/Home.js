@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 import Layout from "../components/Layout";
 import Cards from "../components/Cards";
-import UpdatePassword from "../components/UpdatePassword";
 
 function App(props) {
   return (
@@ -11,8 +10,6 @@ function App(props) {
       <Layout>
         <Cards />
       </Layout>
-
-      <UpdatePassword />
     </div>
   );
 }
