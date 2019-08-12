@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Box,  Select, Button, Heading,  } from "grommet";
+import { Box, Form, Select, Button, Heading, Grommet } from "grommet";
+import { grommet } from "grommet/themes";
 
 export default function InviteForm() {
   const [state, setState] = useState({
@@ -10,31 +11,27 @@ export default function InviteForm() {
   const { options, value } = state;
   return (
     <>
-      {/* <Heading level={3} style={{ marginLeft: "0x", textAlign: "center" }}>Send Invite</Heading> */}
-      <div className="container">
-        <Heading
-          level={3}
-          color="dark-1"
-          style={{ marginLeft: "0x", textAlign: "center" }}
-        >
-          Send Invite
-        </Heading>
+      <Grommet full theme={grommet}>
         <Box fill align="center" justify="start" pad="large">
-          <Select
-            id="select"
-            name="select"
-            placeholder="Select Squad"
-            value={value}
-            options={options}
-            onChange={option => setState({ ...state, value: option })}
-          />
+          <Form>
+            <Heading align="center">Send Invite</Heading>
+            <Select
+              id="select"
+              name="select"
+              placeholder="Select Squad"
+              value={value}
+              options={options}
+              onChange={option => setState({ ...state, value: option })}
+            />
+          </Form>
+
           <Box align="start" pad="small">
             <Box direction="row" align="start" gap="small" pad="xsmall">
               <Button label="Send Invite" onClick={() => {}} />
             </Box>
           </Box>
         </Box>
-      </div>
+      </Grommet>
     </>
   );
 }
