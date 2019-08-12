@@ -14,7 +14,7 @@ export default function InviteForm() {
       <Grommet full theme={grommet}>
         <Box fill align="center" justify="start" pad="large">
           <Form>
-            <Heading align="center">Send Invite</Heading>
+            <Heading align="center">Invite Devs</Heading>
             <Select
               id="select"
               name="select"
