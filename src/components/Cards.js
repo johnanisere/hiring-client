@@ -12,7 +12,7 @@ import fake from './constants/fake';
 
 export default function Cards() {
   return (
-    <Grommet>
+    <Grommet style={{ overflow: 'scroll' }}>
       <ResponsiveContext.Consumer>
         {size => (
           <Grid
