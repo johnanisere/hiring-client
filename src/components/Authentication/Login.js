@@ -3,28 +3,6 @@ import axios from 'axios';
 
 import { Box, Button, Form, Text, FormField } from 'grommet';
 
-function useDataFetcher(url, bodyDetails) {
-  const [data, setData] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    setIsLoading(true);
-    axios
-      .post(url, bodyDetails)
-      .then(function(response) {
-        setData(response);
-        setIsLoading(false);
-      })
-      .catch(function(error) {
-        setError(error);
-        console.log(error);
-      });
-  }, [url, bodyDetails]);
-
-  return { data, error, isLoading };
-}
-
 export default function Login() {
   const [values, setValues] = useState({
     email: '',
@@ -32,10 +10,9 @@ export default function Login() {
   });
   const [error, setError] = useState(false);
   const { email, password } = values;
-
-  useEffect(() => {
-    console.log(values);
-  });
+  const [formData, setFormData] = useState({});
+  const [serverResponse, setServerResponse] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -46,15 +23,36 @@ export default function Login() {
     e.preventDefault();
     const condition = !email || !password;
 
-    console.log({ condition });
-
     if (condition) {
       setError(true);
       return;
     }
-    console.log('VALUES', values);
+    setIsLoading(true);
+    setFormData(values);
   };
-  useDataFetcher('localhost:3005/api/v1/users/user-login', values);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    axios
+      .post('http://localhost:3005/api/v1/users/user-login', formData, {
+        signal
+      })
+      .then(function(response) {
+        setServerResponse(response);
+        setIsLoading(false);
+      })
+      .catch(function(error) {
+        setError(error);
+      });
+
+    return () => {
+      controller.abort();
+    };
+  }, [formData]);
+
+  console.log('DATA', serverResponse);
 
   return (
     <>
@@ -104,11 +102,11 @@ export default function Login() {
           required
           value={password}
           onChange={handleChange}
-          validate={{
-            regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-            message:
-              'Password must contain at least 8 characters, 1 letter, and 1 number'
-          }}
+          // validate={{
+          //   regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+          //   message:
+          //     'Password must contain at least 8 characters, 1 letter, and 1 number'
+          // }}
           color="dark-1"
           style={{
             marginBottom: '15px',
@@ -126,7 +124,7 @@ export default function Login() {
             primary
             width="large"
             color="dark-1"
-            label="Login"
+            label={isLoading ? 'Loading...' : 'Login'}
             type="submit"
             style={{ width: '100%', marginTop: 20 }}
           />
@@ -135,3 +133,22 @@ export default function Login() {
     </>
   );
 }
+
+// const mapStateToProps = state => {
+//   return {
+//     user: state.user,
+//
+//   };
+// };
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onGetCategory: () => dispatch(getCategory()),
+//     onGetInfo: (name, categoryId) => dispatch(getInfo(name, categoryId))
+//   };
+// };
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(Budget);
