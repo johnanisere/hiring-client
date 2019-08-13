@@ -4,10 +4,10 @@ import MenuItems from './MenuItems';
 import CollapsibleMenu from './Collapsable';
 import menuItems from '../components/constants/menu-items';
 
-export default function SideBar(props) {
+export default function SideBar({ sidebar }) {
   return (
     <>
-      {props.sidebar && (
+      {sidebar && (
         <Box
           gridArea="sidebar"
           background="dark-3"
