@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
+import React, { useState } from 'react';
+import request from '../../request';
+import { BeatLoader } from 'react-spinners';
 import { Box, Button, Form, Text, FormField } from 'grommet';
 
-export default function Login() {
+function Login(props) {
   const [values, setValues] = useState({
     email: '',
     password: ''
   });
-  const [error, setError] = useState(false);
   const { email, password } = values;
-  const [formData, setFormData] = useState({});
-  const [serverResponse, setServerResponse] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -21,38 +17,8 @@ export default function Login() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const condition = !email || !password;
-
-    if (condition) {
-      setError(true);
-      return;
-    }
-    setIsLoading(true);
-    setFormData(values);
+    props.login(values, request);
   };
-
-  useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    axios
-      .post('http://localhost:3005/api/v1/users/user-login', formData, {
-        signal
-      })
-      .then(function(response) {
-        setServerResponse(response);
-        setIsLoading(false);
-      })
-      .catch(function(error) {
-        setError(error);
-      });
-
-    return () => {
-      controller.abort();
-    };
-  }, [formData]);
-
-  console.log('DATA', serverResponse);
 
   return (
     <>
@@ -73,12 +39,14 @@ export default function Login() {
           Enter email and password
         </Text>
       </Box>
-      {error && (
+
+      {props.error && (
         <small className="error" style={{ color: 'red', textAlign: 'center' }}>
-          Make sure email and password are valid!
+          {props.error.response.data.error}
         </small>
       )}
-      <Form onSubmit={e => handleSubmit(e)}>
+
+      <Form>
         <FormField
           name="email"
           required
@@ -86,7 +54,7 @@ export default function Login() {
             regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
             message: 'Input must be valid email!'
           }}
-          value={password}
+          value={email}
           onChange={handleChange}
           placeholder="Email"
           type="email"
@@ -124,7 +92,10 @@ export default function Login() {
             primary
             width="large"
             color="dark-1"
-            label={isLoading ? 'Loading...' : 'Login'}
+            label={
+              props.loading ? <BeatLoader size={5} color="#fff" /> : 'Login'
+            }
+            onClick={handleSubmit}
             type="submit"
             style={{ width: '100%', marginTop: 20 }}
           />
@@ -134,21 +105,4 @@ export default function Login() {
   );
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     user: state.user,
-//
-//   };
-// };
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onGetCategory: () => dispatch(getCategory()),
-//     onGetInfo: (name, categoryId) => dispatch(getInfo(name, categoryId))
-//   };
-// };
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(Budget);
+export default Login;
