@@ -13,10 +13,9 @@ const App = () => (
         <Route exact path="/" component={Home} />
         <Route exact path="/profile" component={Background} />
         <Route exact path="/invitemail" component={InviteForm} />
-        <Route to="/" component={Authentication} />
+        <Route path="/" component={Authentication} />
       </Switch>
     </Suspense>
-  </BrowserRouter>
-);
-
+</BrowserRouter>
+)
 export default App;
