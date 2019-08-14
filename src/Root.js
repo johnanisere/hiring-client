@@ -4,7 +4,7 @@ import InviteForm from '../src/components/mailInvite/InviteForm';
 import Background from '../src/components/profile/Background';
 
 const Home = lazy(() => import('./compositions/Home'));
-const Authentication = lazy(() => import('./components/Authentication'));
+const Authentication = lazy(() => import('./compositions/Authentication'));
 
 const App = () => (
   <BrowserRouter>
