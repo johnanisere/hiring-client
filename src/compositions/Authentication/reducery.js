@@ -1,5 +1,4 @@
-import { USER_LOGIN } from '../../components/Authentication/login.action';
-// import {USER_LOGIN} from '../../components/passwordPage/changePass.action';
+import { USER_LOGIN } from '../../components/authentication/login.action';
 const initialState = {
   user: {}
 };
