@@ -1,16 +1,15 @@
 import React from 'react';
 
-import { Route, Switch } from 'react-router-dom';
-// import UpdatePassword from './UpdatePassword';
+import { Route } from 'react-router-dom';
 import Login from './Login';
 import ChangePassword from '../passwordPage/changePass'
 
-export default function({ match: { path } }) {
+export default function({ match: { path } ,...props}) {
+  console.log({props})
   return (
-    <Switch>
-      {/* <Route to={`${path}/update-password`} component={UpdatePassword} /> */}
-      <Route to={`${path}/login`} component={Login} />
-      <Route to={`${path}/change-password`} component={ChangePassword} />
-    </Switch>
+  <>
+    <Route exact to={`${path}/login`} component={Login} /> 
+    <Route  exact to={`${path}/change-password`} component={ChangePassword} />
+  </>
   );
 }
