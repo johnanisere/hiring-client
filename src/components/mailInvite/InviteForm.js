@@ -23,7 +23,7 @@ export default function InviteForm() {
     }
 
     axios
-      .post("http://localhost:3005/api/v1//invite/devs", value)
+      .post("http://localhost:3005/api/v1//invite/devs", { squadNo: value })
       .then(res => console.log(res))
       .catch(err => console.log(err));
     console.log("submitted", value);
