@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import InviteForm from "../src/components/mailInvite/InviteForm";
+import InviteForm from "./components/Settings/InviteForm";
 import Background from "../src/components/profile/Background";
 
 const Home = lazy(() => import("./compositions/Home"));
