@@ -1,30 +1,28 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import Authentication from '../../components/Authentication';
-import loginBoundActionCreator from './login.action';
+import { Box, Grommet } from 'grommet';
+import { grommet } from 'grommet/themes';
+import Authentication from '../../components/Authentication/';
 
 class App extends Component {
   render() {
     console.log(this.props);
     return (
-      <Authentication
-        login={this.props.login}
-        match={this.props.match}
-        error={this.props.error}
-        loading={this.props.loading}
-      />
+      <Grommet full theme={grommet}>
+        <Box fill align="center" justify="center">
+          <Box
+            style={{
+              borderRadius: '10px',
+              boxShadow: '0px 0px 20px 5px rgba(0, 0, 0, 0.1)'
+            }}
+            width="medium"
+            pad="medium"
+          >
+            <Authentication {...this.props} />
+          </Box>
+        </Box>
+      </Grommet>
     );
   }
 }
 
-const mapDispatchToProps = {
-  login: loginBoundActionCreator
-};
-const mapStateToProps = state => ({
-  loading: state.user.loading,
-  error: state.user.error
-});
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default App;

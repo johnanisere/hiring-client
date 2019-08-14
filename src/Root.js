@@ -8,14 +8,14 @@ const Authentication = lazy(() => import('./compositions/Authentication'));
 
 const App = () => (
   <BrowserRouter>
-    <Switch>
-      <Suspense fallback="loading..">
+    <Suspense fallback="loading..">
+      <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/profile" component={Background} />
-        <Route path="/invitemail" component={InviteForm} />
+        <Route exact path="/profile" component={Background} />
+        <Route exact path="/invitemail" component={InviteForm} />
         <Route to="/" component={Authentication} />
-      </Suspense>
-    </Switch>
+      </Switch>
+    </Suspense>
   </BrowserRouter>
 );
 

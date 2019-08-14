@@ -29,6 +29,7 @@ const loginBoundActionCreator = (data, request) => async dispatch => {
     dispatch(login(response.data));
     dispatch(setToken(response.data.token));
     dispatch(setLoading(false));
+    return response.data;
   } catch (err) {
     dispatch(setLoading(false));
     dispatch(onError(err));

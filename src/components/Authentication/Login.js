@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import request from '../../request';
 import { BeatLoader } from 'react-spinners';
 import { Box, Button, Form, Text, FormField } from 'grommet';
+import { useSelector, connect } from 'react-redux';
+import loginBoundActionCreator from './login.action';
 
 function Login(props) {
+  const { error, loading } = useSelector(({ user }) => user);
   const [values, setValues] = useState({
     email: '',
     password: ''
@@ -40,9 +43,9 @@ function Login(props) {
         </Text>
       </Box>
 
-      {props.error && (
+      {error && (
         <small className="error" style={{ color: 'red', textAlign: 'center' }}>
-          {props.error.response.data.error}
+          {error.response.data.error}
         </small>
       )}
 
@@ -92,9 +95,7 @@ function Login(props) {
             primary
             width="large"
             color="dark-1"
-            label={
-              props.loading ? <BeatLoader size={5} color="#fff" /> : 'Login'
-            }
+            label={loading ? <BeatLoader size={5} color="#fff" /> : 'Login'}
             onClick={handleSubmit}
             type="submit"
             style={{ width: '100%', marginTop: 20 }}
@@ -105,4 +106,10 @@ function Login(props) {
   );
 }
 
-export default Login;
+const mapDispatchToProps = {
+  login: loginBoundActionCreator
+};
+export default connect(
+  null,
+  mapDispatchToProps
+)(Login);
