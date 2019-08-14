@@ -46,7 +46,7 @@ export default function InviteForm() {
               border: "1px solid #f1f1f1",
               padding: "50px",
               borderRadius: "5px",
-              boxShadow: "1px 2px 2px #000",
+              boxShadow: "1px 2px 2px #f1f1f1",
               marginTop: "30px"
             }}
           >
