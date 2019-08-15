@@ -3,8 +3,6 @@ import user, { initialState } from '../user.reducer';
 describe('INITIAL_STATE', () => {
   test('is correct', () => {
     const action = { type: 'dummy_action' };
-    const initialState = { loading: false, error: '', data: {} };
-
     expect(user(undefined, action)).toEqual(initialState);
   });
 });
