@@ -1,38 +1,34 @@
-import loginBoundActionCreator from '../login.action';
+import loginBoundActionCreator from "../login.action";
 function setUp() {
-  const dispatch = val => val;
-
+  const dispatch = async val => val;
   const data = {
-    email: 'j@g.com',
-    password: 'thvsdbjhdsbchdjsj'
+    email: "j@gmail.com",
+    password: "weybudjcbdc"
   };
-  return { dispatch, data };
+  return { data, dispatch };
 }
-describe('loginBoundActionCreator', () => {
-  const request = {
-    post: () =>
-      Promise.resolve({
-        data: 'dummy data'
-      })
-  };
+describe("fetchCoinAction", () => {
+  it("should call api and update coins state", done => {
+    const request = {
+      post: () =>
+        Promise.resolve({
+          data: "dummy data"
+        })
+    };
+    const { data, dispatch } = setUp();
 
-  it('should call api and update state', done => {
-    const { dispatch, data } = setUp();
-
-    const getSpy = jest.spyOn(request, 'post');
+    const getSpy = jest.spyOn(request, "post");
 
     loginBoundActionCreator(data, request)(dispatch)
       .then(response => {
-        expect(Object.keys(response)).toEqual(
-          expect.arrayContaining(['type', 'payload'])
-        );
+        expect(response).toBe("dummy data");
         done();
       })
       .catch(() => {
-        // fail('should not catch');
+        fail("should not catch");
       });
 
-    // expect(getSpy).toBeCalledWith('/users/login');
-    // expect(getSpy).toBeCalledTimes(1);
-  }, 30000);
+    expect(getSpy).toBeCalledWith("/users/login", data);
+    expect(getSpy).toBeCalledTimes(1);
+  });
 });
