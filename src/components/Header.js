@@ -14,7 +14,8 @@ export default function Header(props) {
       <Button onClick={props.toggleSidebar}>
         <Text size="large">Title</Text>
       </Button>
-      <Text>my@email</Text>
+
+      <Text>email@example.com</Text>
     </Box>
   );
 }
