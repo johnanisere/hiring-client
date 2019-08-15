@@ -1,8 +1,10 @@
 import React from "react";
 import { shallow, configure } from "enzyme";
 import Input from "../index";
+import toJson from "enzyme-to-json";
 import Adapter from "enzyme-adapter-react-16";
 
+// React 16 Enzyme adapter
 configure({ adapter: new Adapter() });
 
 describe("<Input />", () => {
@@ -25,7 +27,7 @@ describe("<Input />", () => {
         />
       );
 
-      expect(wrapper).toMatchSnapshot();
+      expect(toJson(wrapper)).toMatchSnapshot();
     });
   });
 });
