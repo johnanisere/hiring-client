@@ -43,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "enzyme-to-json": "^3.4.0"
   }
 }
