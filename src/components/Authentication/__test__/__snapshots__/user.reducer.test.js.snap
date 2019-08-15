@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`INITIAL_STATE is correct 1`] = `
+Object {
+  "data": Object {},
+  "error": "",
+  "loading": false,
+}
+`;
+
+exports[`SELECT_AVATAR returns the correct state 1`] = `
+Object {
+  "data": Object {
+    "dummy": "user data",
+  },
+  "error": "",
+  "loading": false,
+}
+`;
+
+exports[`USER_LOGIN returns the correct state 1`] = `
+Object {
+  "data": Object {
+    "dummy": "user data",
+  },
+  "error": "",
+  "loading": false,
+}
+`;

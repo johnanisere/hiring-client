@@ -4,6 +4,7 @@ import { BeatLoader } from 'react-spinners';
 import { Box, Button, Form, Text, FormField } from 'grommet';
 import { useSelector, connect } from 'react-redux';
 import loginBoundActionCreator from './login.action';
+import { errorMessageExtrator } from '../../helpers/utils';
 
 function Login(props) {
   const { error, loading } = useSelector(({ user }) => user);
@@ -45,7 +46,7 @@ function Login(props) {
 
       {error && (
         <small className="error" style={{ color: 'red', textAlign: 'center' }}>
-          {error.response.data.error}
+          {errorMessageExtrator(error)}
         </small>
       )}
 

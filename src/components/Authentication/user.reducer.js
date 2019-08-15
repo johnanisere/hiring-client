@@ -1,5 +1,5 @@
 import { USER_LOGIN } from './login.action';
-const initialState = {
+export const initialState = {
   loading: false,
   error: '',
   data: {}
