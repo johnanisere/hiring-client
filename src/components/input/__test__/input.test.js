@@ -1,8 +1,10 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, configure } from "enzyme";
 import toJson from "enzyme-to-json";
 import Input from "../index";
+import Adapter from "enzyme-adapter-react-15";
 
+configure({ adapter: new Adapter() });
 describe("<Input />", () => {
   describe("render()", () => {
     test("renders the component", () => {
