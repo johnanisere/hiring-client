@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Input /> render() renders the component 1`] = `
+<FocusableComponent
+  name="dummyName"
+  onChange={[MockFunction]}
+  placeholder="dummyPlaceholder"
+  required={true}
+  style={
+    Object {
+      "borderRadius": "20px",
+      "marginBottom": "15px",
+    }
+  }
+  type="dummyType"
+  validate={
+    Object {
+      "message": "Password must contain at least 8 characters, 1 letter, and 1 number",
+      "regexp": /\\^\\(\\?=\\.\\*\\[A-Za-z\\]\\)\\(\\?=\\.\\*\\\\d\\)\\[A-Za-z\\\\d\\]\\{8,\\}\\$/,
+    }
+  }
+  value="dummyValue"
+  withFocusRef={null}
+/>
+`;

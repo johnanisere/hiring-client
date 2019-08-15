@@ -8,7 +8,7 @@ function setUp() {
   return { data, dispatch };
 }
 describe('loginBoundActionCreator', () => {
-  it('should call api and update coins state', done => {
+  it('should call api and update state', done => {
     const request = {
       post: () =>
         Promise.resolve({
