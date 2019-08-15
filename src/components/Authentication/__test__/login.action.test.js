@@ -25,6 +25,7 @@ describe('loginBoundActionCreator', () => {
         done();
       })
       .catch(() => {
+        // eslint-disable-next-line no-undef
         fail('should not catch');
       });
 
