@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Box, Form, Select, Button, Heading, Grommet } from "grommet";
 import { grommet } from "grommet/themes";
-import axios from "axios";
+import request from "../../request";
+import { connect } from "react-redux";
+import mailInviteBoundActionCreator from "./mailInvite.action";
 
-export default function InviteForm() {
+function InviteForm(props) {
   const [state, setState] = useState({
     options: ["Squad 1", "Squad 2", "Squad 3"],
     value: ""
@@ -12,21 +14,16 @@ export default function InviteForm() {
   const [error, setError] = useState(false);
 
   const { options, value } = state;
-  console.log(value);
 
   const handleSubmit = e => {
     e.preventDefault();
     if (!value) {
-      console.log("Invalid Request");
       setError(true);
       return;
     }
+    const data = { squadNo: value };
 
-    axios
-      .post("http://localhost:3005/api/v1//invite/devs", { squadNo: value })
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
-    console.log("submitted", value);
+    props.mailInvite(data, request);
   };
   return (
     <>
@@ -79,3 +76,12 @@ export default function InviteForm() {
     </>
   );
 }
+
+const mapDispatchToProps = {
+  mailInvite: mailInviteBoundActionCreator
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(InviteForm);
