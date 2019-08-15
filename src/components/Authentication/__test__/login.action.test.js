@@ -1,4 +1,5 @@
 import loginBoundActionCreator from '../login.action';
+
 function setUp() {
   const dispatch = async val => val;
   const data = {
