@@ -1,34 +1,36 @@
-import React, { useState } from 'react';
+import React,{useState} from 'react';
 import { Box, Button, Form, Text, FormField } from 'grommet';
-import {API} from '../config';
-import axios from 'axios';
+import {connect} from 'react-redux';
+import { BeatLoader } from 'react-spinners';
+import request from '../../request';
+import changePassBoundActionCreator from './changePass.action';
 
-const ChangePass = () =>  {
-
-  //checks for errors
-  const [error, setError] = useState(false);
-
-  //object to store values
-  const userObj = {};
+const ChangePass = ({ changePass }) =>  {
+  const {error,onError}=useState("");
+  const {loading,onLoading}=useState(false)
+  const {success,onSuccess}=useState("")
+  const {data,onChnageData}=useState({
+    email:"",
+    newPassword:"",
+    confirmPasword:""
+  })
 
   // collects the data from the fields
-  const handleChange = e => {
-    userObj[e.target.name] = e.target.value;
+  const handleChange = ({target:{name,value}})=> {
+    onChnageData({...data,[name]:value})
   };
-
+const activityIndicator=()=>{
+  onLoading(!loading)
+}
+const handleError=(error)=>{
+  onError(error)
+}
   //submit the data to the backend
   const handleSubmit = async(e) => {
     e.preventDefault();
 
-    console.log(userObj);
-    try {
-      const data = await axios.put(`${API}/api/v1/users/change-password`, userObj);      
-      console.log(data);
-    
-    } catch (error) {
-      setError(true);
-      console.log(error.response); 
-    }
+    changePass(data, request, activityIndicator,handleError,onSuccess);
+
   };
 
   // renders the layout
@@ -67,6 +69,7 @@ const ChangePass = () =>  {
           onChange={handleChange}
           placeholder="Email"
           type="email"
+          value={data.email}
           style={{
             marginBottom: '15px',
             borderRadius: '20px'
@@ -78,6 +81,7 @@ const ChangePass = () =>  {
           type="password"
           required
           onChange={handleChange}
+          value={data.newPassword}
           validate={{
             regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
             message:
@@ -101,6 +105,7 @@ const ChangePass = () =>  {
               'Password must contain at least 8 characters, 1 letter, and 1 number'
           }}
           color="dark-1"
+          value={data.confirmPassword}
           style={{
             marginBottom: '15px',
             borderRadius: '20px'
@@ -116,7 +121,7 @@ const ChangePass = () =>  {
             primary
             width="large"
             color="dark-1"
-            label={'submit'}
+            label={loading ? <BeatLoader size={5} color="#fff" /> : 'Submit'}
             type="submit"
             style={{ width: '100%', marginTop: 20 }}
           />
@@ -126,5 +131,9 @@ const ChangePass = () =>  {
   );
 }
 
-export default ChangePass;
+const mapDispatchToProps = {
+  changePass: changePassBoundActionCreator
+}
+
+export default connect(null, mapDispatchToProps)(ChangePass);
                                                       
