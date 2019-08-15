@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import request from '../../request';
 import { BeatLoader } from 'react-spinners';
-import { Box, Button, Form, Text, FormField } from 'grommet';
+import { Box, Button, Form, Text } from 'grommet';
+import Input from '../input';
 import { useSelector, connect } from 'react-redux';
 import loginBoundActionCreator from './login.action';
-import { errorMessageExtrator } from '../../helpers/utils';
+import FormError from '../formError';
 
 function Login(props) {
   const { error, loading } = useSelector(({ user }) => user);
@@ -37,23 +38,16 @@ function Login(props) {
             paddingBottom: '15px'
           }}
         >
-          Login Here
+          Login
         </Text>
         <Text size="small" alignSelf="center">
           Enter email and password
         </Text>
       </Box>
-
-      {error && (
-        <small className="error" style={{ color: 'red', textAlign: 'center' }}>
-          {errorMessageExtrator(error)}
-        </small>
-      )}
-
+      <FormError error={error} />
       <Form>
-        <FormField
+        <Input
           name="email"
-          required
           validate={{
             regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
             message: 'Input must be valid email!'
@@ -62,28 +56,21 @@ function Login(props) {
           onChange={handleChange}
           placeholder="Email"
           type="email"
-          style={{
-            marginBottom: '15px',
-            borderRadius: '20px'
-          }}
+          required
         />
-        <FormField
+        <Input
           placeholder="Password"
           name="password"
           type="password"
           required
           value={password}
           onChange={handleChange}
-          // validate={{
-          //   regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-          //   message:
-          //     'Password must contain at least 8 characters, 1 letter, and 1 number'
-          // }}
-          color="dark-1"
-          style={{
-            marginBottom: '15px',
-            borderRadius: '20px'
+          validate={{
+            regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+            message:
+              'Password must contain at least 8 characters, 1 letter, and 1 number'
           }}
+          color="dark-1"
         />
 
         <Box
@@ -113,4 +100,4 @@ const mapDispatchToProps = {
 export default connect(
   null,
   mapDispatchToProps
-)(Login);
+)(React.memo(Login));
