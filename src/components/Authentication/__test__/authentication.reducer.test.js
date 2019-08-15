@@ -17,18 +17,3 @@ describe('SET_TOKEN', () => {
     expect(authentication(undefined, action)).toEqual(expectedState);
   });
 });
-
-// describe('INITIAL_STATE', () => {
-//   test('is correct', () => {
-//     const action = { type: 'dummy_action' };
-//     expect(authentication(undefined, action)).toMatchSnapshot();
-//   });
-// });
-
-// describe('SELECT_AVATAR', () => {
-//   test('returns the correct state', () => {
-//     const action = { type: 'SET_TOKEN', payload: 'tokenstring' };
-
-//     expect(authentication(undefined, action)).toMatchSnapshot();
-//   });
-// });
