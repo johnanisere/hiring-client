@@ -25,7 +25,6 @@ function InviteForm(props) {
     const data = { squadNo: value };
 
     props.mailInvite(data, request);
-    console.log(data)
   };
   return (
     <>
