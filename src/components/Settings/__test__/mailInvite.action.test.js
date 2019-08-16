@@ -7,9 +7,8 @@ function setUp() {
   };
   return { data, dispatch };
 }
-
 describe("mailInviteBoundActionCreator", () => {
-  it("should call an api and update and state", done => {
+  it("should call api and update state", done => {
     const request = {
       post: () =>
         Promise.resolve({
@@ -27,10 +26,10 @@ describe("mailInviteBoundActionCreator", () => {
       })
       .catch(() => {
         // eslint-disable-next-line no-undef
-        // fail("should not catch");
+        fail("should not catch");
       });
 
-    // expect(getSpy).toBeCalledwith("/invite/devs", data);
+    expect(getSpy).toBeCalledWith("/invite/devs", data);
     expect(getSpy).toBeCalledTimes(1);
   });
 });
