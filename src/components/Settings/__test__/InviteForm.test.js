@@ -22,3 +22,5 @@ describe("InviteForm component", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });
+
+
