@@ -4,6 +4,7 @@ import { grommet } from "grommet/themes";
 import request from "../../request";
 import { connect } from "react-redux";
 import mailInviteBoundActionCreator from "./mailInvite.action";
+import PropTypes from "prop-types";
 
 function InviteForm(props) {
   const [state, setState] = useState({
@@ -24,19 +25,12 @@ function InviteForm(props) {
     const data = { squadNo: value };
 
     props.mailInvite(data, request);
+    console.log(data)
   };
   return (
     <>
       <Grommet full theme={grommet}>
         <Box fill align="center" justify="start" pad="large">
-          {error && (
-            <small
-              className="error"
-              style={{ color: "red", textAlign: "center" }}
-            >
-              Invalid Request. Please select a squad
-            </small>
-          )}
           <div
             className="container"
             style={{
@@ -48,7 +42,19 @@ function InviteForm(props) {
             }}
           >
             <Form onSubmit={handleSubmit}>
-              <Heading level={2} align="center" style={{ textAlign: "center" }}>
+              {error && (
+                <small
+                  className="error"
+                  style={{ color: "red", textAlign: "center" }}
+                >
+                  Invalid Request. Please select a squad
+                </small>
+              )}
+              <Heading
+                level={2}
+                align="center"
+                style={{ textAlign: "center" }}
+              >
                 Invite Devs
               </Heading>
               <Select
@@ -57,7 +63,9 @@ function InviteForm(props) {
                 placeholder="Select Squad"
                 value={value}
                 options={options}
-                onChange={({ option }) => setState({ ...state, value: option })}
+                onChange={({ option }) =>
+                  setState({ ...state, value: option })
+                }
               />
               <Box direction="row" align="start" gap="small" pad="xsmall">
                 <Button
@@ -76,6 +84,10 @@ function InviteForm(props) {
     </>
   );
 }
+
+InviteForm.propType = {
+  mailInvite: PropTypes.func
+};
 
 const mapDispatchToProps = {
   mailInvite: mailInviteBoundActionCreator
