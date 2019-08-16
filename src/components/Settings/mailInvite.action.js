@@ -21,6 +21,7 @@ const mailInviteBoundActionCreator = (data, request) => async dispatch => {
     const response = await request.post("/invite/devs", data);
     dispatch(mailInvite(response.data));
     dispatch(setLoading(false));
+    return response.data;
   } catch (error) {
     dispatch(setLoading(false));
     return dispatch(onError(error));
