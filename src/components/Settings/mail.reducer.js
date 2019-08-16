@@ -1,6 +1,6 @@
 import { DEVS_MAILINVITE } from "./mailInvite.action";
 
-const initialState = {
+export const initialState = {
   loading: false,
   error: "",
   data: {}
