@@ -2,7 +2,7 @@ import React from "react";
 import Proptypes from "prop-types";
 import { errorMessageExtrator } from "../../helpers/utils";
 
-const formError = ({ error }) =>
+const FormError = ({ error }) =>
   error && (
     <small
       className="error"
@@ -15,7 +15,7 @@ const formError = ({ error }) =>
     </small>
   );
 
-formError.propTypes = {
+FormError.propTypes = {
   error: Proptypes.object
 };
-export default formError;
+export default FormError;
