@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
-
+import { BeatLoader } from 'react-spinners';
 import { Box, Button, Form, Text, FormField } from 'grommet';
+
+import instance from '../../request';
+
+const BASE_URL = 'http:localhost:3005/api/v1/users/update-password';
 
 export default function UpdatePassword() {
   const [values, setValues] = useState({
@@ -8,6 +12,11 @@ export default function UpdatePassword() {
     confirmPassword: ''
   });
   const [error, setError] = useState(false);
+  const [diffPassword, setDiffPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [newPassword, setNewPassword] = useState({});
+  // const [serverResponse, setServerResponse] = useState('');
+
   const { password, confirmPassword } = values;
 
   useEffect(() => {
@@ -21,17 +30,29 @@ export default function UpdatePassword() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const condition =
-      !password || !confirmPassword || password !== confirmPassword;
 
-    console.log({ condition });
-
+    const condition = password !== confirmPassword;
     if (condition) {
-      setError(true);
+      setDiffPassword(true);
       return;
     }
     console.log('VALUES', values);
   };
+
+  useEffect(() => {
+    instance
+      .post(BASE_URL, newPassword)
+      .then(function(response) {
+        console.log(response);
+        // setServerResponse(response);
+        setLoading(false);
+      })
+      .catch(function(error) {
+        console.log(error);
+        setLoading(false);
+        setError(error.message);
+      });
+  }, [newPassword]);
 
   return (
     <>
@@ -45,7 +66,7 @@ export default function UpdatePassword() {
             fontSize: '25px'
           }}
         >
-          Update Your Password
+          Update Password
         </Text>
         <Text size="small" alignSelf="center">
           Kindly update your password here
@@ -54,6 +75,11 @@ export default function UpdatePassword() {
       {error && (
         <small className="error" style={{ color: 'red', textAlign: 'center' }}>
           Make sure passwords on both fields are the same!
+        </small>
+      )}
+      {error && (
+        <small className="error" style={{ color: 'red', textAlign: 'center' }}>
+          {error}
         </small>
       )}
       <Form onSubmit={e => handleSubmit(e)}>
@@ -103,7 +129,9 @@ export default function UpdatePassword() {
             primary
             width="large"
             color="dark-1"
-            label="Update Password"
+            label={
+              loading ? <BeatLoader size={5} color="#fff" /> : 'Update Password'
+            }
             type="submit"
             style={{ width: '100%', marginTop: 20 }}
           />
