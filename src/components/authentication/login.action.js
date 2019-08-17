@@ -9,11 +9,11 @@ const setToken = payload => ({
   payload
 });
 
-const setLoading = payload => ({
+export const setLoading = payload => ({
   type: 'LOADING',
   payload
 });
-const onError = payload => ({
+export const onError = payload => ({
   type: 'USER_LOGIN_ERROR',
   payload
 });

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import request from '../../request';
-import { Box, Form, Text, FormField } from 'grommet';
+import { Box, Form, Text } from 'grommet';
 import Input from '../input';
 import { useSelector, connect } from 'react-redux';
 import loginBoundActionCreator from './login.action';
 import FormError from '../formError';
 import Button from '../button/FormButton';
-
 function Login(props) {
   const { error, loading } = useSelector(({ user }) => user);
   const [values, setValues] = useState({
@@ -63,18 +62,18 @@ function Login(props) {
             borderRadius: '20px'
           }}
         />
-        <FormField
+        <Input
           placeholder="Password"
           name="password"
           type="password"
           required
           value={password}
           onChange={handleChange}
-          // validate={{
-          //   regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-          //   message:
-          //     'Password must contain at least 8 characters, 1 letter, and 1 number'
-          // }}
+          validate={{
+            regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+            message:
+              'Password must contain at least 8 characters, 1 letter, and 1 number'
+          }}
           color="dark-1"
           style={{
             marginBottom: '15px',
