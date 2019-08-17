@@ -1,14 +1,14 @@
-import React from 'react';
-import Proptypes from 'prop-types';
-import { errorMessageExtrator } from '../../helpers/utils';
+import React from "react";
+import Proptypes from "prop-types";
+import { errorMessageExtrator } from "../../helpers/utils";
 
 const formError = ({ error }) =>
   error && (
     <small
       className="error"
       style={{
-        color: 'red',
-        textAlign: 'center'
+        color: "red",
+        textAlign: "center"
       }}
     >
       {errorMessageExtrator(error)}
@@ -18,4 +18,5 @@ const formError = ({ error }) =>
 formError.propTypes = {
   error: Proptypes.object
 };
+
 export default formError;
