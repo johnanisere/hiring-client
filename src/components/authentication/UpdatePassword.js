@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { BeatLoader } from 'react-spinners';
 import { Box, Button, Form, Text, FormField } from 'grommet';
 
-import instance from '../../request';
+import axios from 'axios';
 
-const BASE_URL = 'http:localhost:3005/api/v1/users/update-password';
+const BASE_URL = 'http://localhost:3005/api/v1/users/update-password';
 
 export default function UpdatePassword() {
   const [values, setValues] = useState({
@@ -14,8 +14,8 @@ export default function UpdatePassword() {
   const [error, setError] = useState(false);
   const [diffPassword, setDiffPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [newPassword, setNewPassword] = useState({});
-  // const [serverResponse, setServerResponse] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [serverResponse, setServerResponse] = useState('');
 
   const { password, confirmPassword } = values;
 
@@ -40,19 +40,32 @@ export default function UpdatePassword() {
   };
 
   useEffect(() => {
-    instance
-      .post(BASE_URL, newPassword)
-      .then(function(response) {
-        console.log(response);
-        // setServerResponse(response);
-        setLoading(false);
-      })
-      .catch(function(error) {
-        console.log(error);
-        setLoading(false);
-        setError(error.message);
+    if (newPassword) {
+      axios.interceptors.request.use(config => {
+        console.log('CONFIG', config);
+        config.data = {
+          newPassword,
+          email: 'johndoe@example.com'
+        };
+        return config;
       });
-  }, [newPassword]);
+
+      axios
+        .post(BASE_URL, newPassword)
+        .then(function(response) {
+          console.log(response);
+          setServerResponse(response);
+          console.log('setServerResponse', serverResponse);
+
+          setLoading(false);
+        })
+        .catch(function(error) {
+          console.log(error);
+          setLoading(false);
+          setError(error.message);
+        });
+    }
+  }, [newPassword, serverResponse]);
 
   return (
     <>
