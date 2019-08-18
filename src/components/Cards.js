@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getAllDecadevs } from './decadevs-actions/decadevs.action';
 import {
   Grommet,
   Anchor,
@@ -8,9 +10,16 @@ import {
   Grid,
   ResponsiveContext
 } from 'grommet';
-import fake from './constants/fake';
 
-export default function Cards() {
+function Cards({ getAllDecadevs, decadevs }) {
+  useEffect(() => {
+    if (decadevs.length === 0) {
+      getAllDecadevs();
+    }
+
+    console.log('INSIDE USEEFFECT: ', decadevs);
+  }, [decadevs, getAllDecadevs]);
+  console.log('******', decadevs);
   return (
     <Grommet style={{ overflow: 'scroll' }}>
       <ResponsiveContext.Consumer>
@@ -28,10 +37,10 @@ export default function Cards() {
                 : ['1/6', '1/6', '1/6', '1/6', '1/6', '1/6']
             }
           >
-            {fake.map(dev => {
+            {decadevs.map(dev => {
               return (
                 <Box
-                  key={dev}
+                  key={dev._id}
                   pad="medium"
                   align="center"
                   background={{
@@ -49,9 +58,9 @@ export default function Cards() {
                       borderRadius: '12px'
                     }}
                     fit="cover"
-                    src="//v2.grommet.io/assets/Wilderpeople_Ricky.jpg"
+                    src={dev.profilePhoto}
                   />
-                  <Text>{dev}</Text>
+                  <Text>{dev.email}</Text>
                   <Anchor href="" label="More Info" />
                 </Box>
               );
@@ -62,3 +71,17 @@ export default function Cards() {
     </Grommet>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    decadevs: state.decadevs.decadevs
+  };
+};
+const mapDispatchToProps = {
+  getAllDecadevs
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(React.memo(Cards));
