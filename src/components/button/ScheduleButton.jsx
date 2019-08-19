@@ -1,8 +1,8 @@
-import React from "./node_modules/react";
-import { Add } from "./node_modules/grommet-icons";
+import React from "react";
+import { Add } from "grommet-icons";
 
-import { Box, Button, Grommet } from "./node_modules/grommet";
-import { grommet } from "./node_modules/grommet/themes";
+import { Box, Button, Grommet } from "grommet";
+import { grommet } from "grommet/themes";
 
 const IconLabel = ({ action }) => (
   <Grommet theme={grommet}>
