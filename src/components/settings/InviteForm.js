@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Form, Select, Button, Heading, Grommet } from "grommet";
 import { grommet } from "grommet/themes";
-import { BeatLoader } from "react-spinners";
+import BeatLoader from "react-spinners/BeatLoader";
 import request from "../../request";
 import { connect, useSelector } from "react-redux";
 import mailInviteBoundActionCreator from "./mailInvite.action";
