@@ -1,17 +1,22 @@
-
-const changePassBoundActionCreator = (data, request,activityIndicator,handleError,onSuccess) => async dispatch => {
+const changePassBoundActionCreator = (
+  data,
+  request,
+  activityIndicator,
+  handleError,
+  onSuccess
+) => async dispatch => {
   try {
-    activityIndicator()
+    activityIndicator();
     const response = await request({
-      method: 'PUT',
-      url: '/change-password',
+      method: "PUT",
+      url: "/change-password",
       data
     });
     onSuccess(response.data);
-    activityIndicator()
+    activityIndicator();
     return response.data;
   } catch (err) {
-    activityIndicator()
+    activityIndicator();
     handleError(err);
   }
 };
