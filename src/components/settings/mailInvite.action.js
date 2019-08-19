@@ -1,30 +1,22 @@
 export const DEVS_MAILINVITE = "DEVS_MAILINVITE";
 
-const mailInvite = payload => ({
-  type: DEVS_MAILINVITE,
-  payload
-});
-
-const setLoading = payload => ({
-  type: "LOADING",
-  payload
-});
-
-const onError = payload => ({
-  type: "MAIL_INVITE_ERROR",
-  payload
-});
-
-const mailInviteBoundActionCreator = (data, request) => async dispatch => {
+const mailInviteBoundActionCreator = (
+  data,
+  request,
+  setLoading,
+  setError,
+  onSuccess
+) => async dispatch => {
   try {
-    dispatch(setLoading(true));
+    setError({});
+    setLoading(true);
     const response = await request.post("/invite/devs", data);
-    dispatch(mailInvite(response.data));
-    dispatch(setLoading(false));
+    onSuccess(response.data);
+    setLoading(false);
     return response.data;
   } catch (error) {
-    dispatch(setLoading(false));
-    return dispatch(onError(error));
+    setLoading(false);
+    setError(error);
   }
 };
 
