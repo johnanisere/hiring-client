@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Box, Form, Select, Button, Heading, Grommet } from "grommet";
 import { grommet } from "grommet/themes";
+import { BeatLoader } from "react-spinners";
 import request from "../../request";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import mailInviteBoundActionCreator from "./mailInvite.action";
 import PropTypes from "prop-types";
 
 function InviteForm(props) {
+  const { loading } = useSelector(({ user }) => user);
   const [state, setState] = useState({
     options: ["Squad 1", "Squad 2", "Squad 3"],
     value: ""
@@ -49,11 +51,7 @@ function InviteForm(props) {
                   Invalid Request. Please select a squad
                 </small>
               )}
-              <Heading
-                level={2}
-                align="center"
-                style={{ textAlign: "center" }}
-              >
+              <Heading level={2} align="center" style={{ textAlign: "center" }}>
                 Invite Devs
               </Heading>
               <Select
@@ -62,16 +60,20 @@ function InviteForm(props) {
                 placeholder="Select Squad"
                 value={value}
                 options={options}
-                onChange={({ option }) =>
-                  setState({ ...state, value: option })
-                }
+                onChange={({ option }) => setState({ ...state, value: option })}
               />
               <Box direction="row" align="start" gap="small" pad="xsmall">
                 <Button
                   primary
                   width="large"
                   color="dark-1"
-                  label="Send Invite"
+                  label={
+                    loading ? (
+                      <BeatLoader size={5} color="#fff" />
+                    ) : (
+                      "Send Invite"
+                    )
+                  }
                   type="submit"
                   style={{ width: "100%", margin: "5px auto" }}
                 />
