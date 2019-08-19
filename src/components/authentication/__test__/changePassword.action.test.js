@@ -45,7 +45,7 @@ describe("changePassBoundActionCreator", () => {
         fail("should not catch");
       });
 
-    expect(getSpy).toBeCalledWith("/change-password", data, config);
+    expect(getSpy).toBeCalledWith("/users/change-password", data, config);
     expect(getSpy).toBeCalledTimes(1);
   });
 });
