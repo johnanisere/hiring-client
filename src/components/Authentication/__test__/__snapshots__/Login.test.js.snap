@@ -35,6 +35,6 @@ exports[`<Login /> render() renders the component 1`] = `
     }
   }
 >
-  <Connect(Component) />
+  <Connect(Login) />
 </ContextProvider>
 `;

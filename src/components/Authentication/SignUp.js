@@ -1,10 +1,10 @@
-import React, { useState } from './node_modules/react';
+import React, { useState } from 'react';
 import request from '../../request';
-import { BeatLoader } from './node_modules/react-spinners';
-import { Box, Button, Form, Text, FormField } from './node_modules/grommet';
-import { useSelector, connect } from './node_modules/react-redux';
-import signupBoundActionCreator from './__test__/signup.action';
-
+import { Box, Form, Text, FormField } from 'grommet';
+import { useSelector, connect } from 'react-redux';
+import signupBoundActionCreator from './signup.action';
+import FormError from '../formError';
+import Button from '../button/FormButton';
 function SignUp(props) {
   const { error, loading } = useSelector(({ user }) => user);
   const [values, setValues] = useState({
@@ -45,13 +45,8 @@ function SignUp(props) {
         </Text>
       </Box>
 
-      {error && (
-        <small className="error" style={{ color: 'red', textAlign: 'center' }}>
-          {error.response.data.error}
-        </small>
-      )}
-
-      <Form>
+      <FormError error={error} />
+      <Form onSubmit={handleSubmit}>
         <FormField
           name="name"
           value={name}
@@ -111,15 +106,7 @@ function SignUp(props) {
           align="center"
           margin={{ top: 'medium' }}
         >
-          <Button
-            primary
-            width="large"
-            color="dark-1"
-            label={loading ? <BeatLoader size={5} color="#fff" /> : 'Sign Up'}
-            onClick={handleSubmit}
-            type="submit"
-            style={{ width: '100%', marginTop: '20px' }}
-          />
+          <Button loading={loading} text="Sign Up" type="submit" />
         </Box>
       </Form>
     </>
