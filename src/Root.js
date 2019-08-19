@@ -1,7 +1,7 @@
-import React, { lazy, Suspense } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import InviteForm from './components/settings/InviteForm';
-import Background from '../src/components/profile/Background';
+import React, { lazy, Suspense } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import InviteForm from "./components/settings/InviteForm";
+import Background from "../src/components/profile/Background";
 
 const Home = lazy(() => import("./compositions/Home"));
 const Authentication = lazy(() => import("./compositions/authentication"));
@@ -16,6 +16,6 @@ const App = () => (
         <Route path="/" component={Authentication} />
       </Switch>
     </Suspense>
-</BrowserRouter>
-)
+  </BrowserRouter>
+);
 export default App;
