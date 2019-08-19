@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from "react";
 
-import { Box, Button, Form, Text, FormField } from 'grommet';
+import { Box, Button, Form, Text, FormField } from "grommet";
 
 export default function UpdatePassword() {
   const [values, setValues] = useState({
-    password: '',
-    confirmPassword: ''
+    password: "",
+    confirmPassword: ""
   });
   const [error, setError] = useState(false);
   const { password, confirmPassword } = values;
-
-  useEffect(() => {
-    console.log(values);
-  });
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -24,13 +20,10 @@ export default function UpdatePassword() {
     const condition =
       !password || !confirmPassword || password !== confirmPassword;
 
-    console.log({ condition });
-
     if (condition) {
       setError(true);
       return;
     }
-    console.log('VALUES', values);
   };
 
   return (
@@ -41,8 +34,8 @@ export default function UpdatePassword() {
           size="large"
           margin="small"
           style={{
-            fontWeight: 'bold',
-            fontSize: '25px'
+            fontWeight: "bold",
+            fontSize: "25px"
           }}
         >
           Update Your Password
@@ -52,7 +45,7 @@ export default function UpdatePassword() {
         </Text>
       </Box>
       {error && (
-        <small className="error" style={{ color: 'red', textAlign: 'center' }}>
+        <small className="error" style={{ color: "red", textAlign: "center" }}>
           Make sure passwords on both fields are the same!
         </small>
       )}
@@ -63,15 +56,15 @@ export default function UpdatePassword() {
           validate={{
             regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
             message:
-              'Password must contain at least 8 characters, 1 letter, and 1 number'
+              "Password must contain at least 8 characters, 1 letter, and 1 number"
           }}
           value={password}
           onChange={handleChange}
           placeholder="Password"
           type="password"
           style={{
-            marginBottom: '15px',
-            borderRadius: '20px'
+            marginBottom: "15px",
+            borderRadius: "20px"
           }}
         />
         <FormField
@@ -84,12 +77,12 @@ export default function UpdatePassword() {
           validate={{
             regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
             message:
-              'Password must contain at least 8 characters, 1 letter, and 1 number'
+              "Password must contain at least 8 characters, 1 letter, and 1 number"
           }}
           color="dark-1"
           style={{
-            marginBottom: '15px',
-            borderRadius: '20px'
+            marginBottom: "15px",
+            borderRadius: "20px"
           }}
         />
 
@@ -97,7 +90,7 @@ export default function UpdatePassword() {
           direction="row"
           justify="center"
           align="center"
-          margin={{ top: 'medium' }}
+          margin={{ top: "medium" }}
         >
           <Button
             primary
@@ -105,7 +98,7 @@ export default function UpdatePassword() {
             color="dark-1"
             label="Update Password"
             type="submit"
-            style={{ width: '100%', marginTop: 20 }}
+            style={{ width: "100%", marginTop: 20 }}
           />
         </Box>
       </Form>

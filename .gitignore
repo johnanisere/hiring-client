@@ -4,6 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
+<<<<<<< HEAD
+=======
+.env
+>>>>>>> fixes
 
 # testing
 /coverage
