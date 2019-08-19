@@ -1,5 +1,5 @@
-import axios from 'axios';
-import store from './store';
+import axios from "axios";
+import store from "./store";
 
 const instance = axios.create({
   baseURL: `${process.env.REACT_APP_BASE_URL}/api/v1`
@@ -7,7 +7,6 @@ const instance = axios.create({
 
 instance.interceptors.request.use(config => {
   const { token } = store.getState().authentication;
-  console.log({ config });
   if (token) {
     return {
       ...config,
