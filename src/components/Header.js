@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Button, Text } from "grommet";
-import { NavLink } from "react-router-dom";
 
 export default function Header(props) {
   return (
