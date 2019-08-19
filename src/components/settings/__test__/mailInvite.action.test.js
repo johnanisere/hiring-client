@@ -5,7 +5,10 @@ function setUp() {
   const data = {
     squadNo: "Squad 1"
   };
-  return { data, dispatch };
+  const setLoading = () => jest.fn();
+  const setError = () => jest.fn();
+  const onSuccess = () => jest.fn();
+  return { data, dispatch, setLoading, setError, onSuccess };
 }
 describe("mailInviteBoundActionCreator", () => {
   it("should call api and update state", done => {
@@ -15,11 +18,17 @@ describe("mailInviteBoundActionCreator", () => {
           data: "dummy data"
         })
     };
-    const { data, dispatch } = setUp();
+    const { data, dispatch, setLoading, setError, onSuccess } = setUp();
 
     const getSpy = jest.spyOn(request, "post");
 
-    mailInviteBoundActionCreator(data, request)(dispatch)
+    mailInviteBoundActionCreator(
+      data,
+      request,
+      setLoading,
+      setError,
+      onSuccess
+    )(dispatch)
       .then(response => {
         expect(response).toBe("dummy data");
         done();
