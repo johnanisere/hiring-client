@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import request from "../../request";
-import BeatLoader from "react-spinners/BeatLoader";
-import { Box, Button, Form, Text } from "grommet";
+import { Box, Form, Text } from "grommet";
 import Input from "../input";
 import { useSelector, connect } from "react-redux";
 import loginBoundActionCreator from "./login.action";
 import FormError from "../formError";
+import FormButton from "../Buttons/FormButton";
 
 function Login(props) {
   const { error, loading } = useSelector(({ user }) => user);
@@ -44,8 +44,9 @@ function Login(props) {
           Enter email and password
         </Text>
       </Box>
-      <FormError error={error} />
+
       <Form onSubmit={handleSubmit}>
+        <FormError error={error} />
         <Input
           name="email"
           validate={{
@@ -72,23 +73,7 @@ function Login(props) {
           }}
           color="dark-1"
         />
-
-        <Box
-          direction="row"
-          justify="center"
-          align="center"
-          margin={{ top: "medium" }}
-        >
-          <Button
-            primary
-            width="large"
-            color="dark-1"
-            label={loading ? <BeatLoader size={5} color="#fff" /> : "Login"}
-            onClick={handleSubmit}
-            type="submit"
-            style={{ width: "100%", marginTop: 20 }}
-          />
-        </Box>
+        <FormButton loading={loading} type="submit" text="Login" />
       </Form>
     </>
   );
