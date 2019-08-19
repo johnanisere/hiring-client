@@ -1,23 +1,32 @@
-import axios from 'axios';
 export const GET_ALL_DECADEVS = 'GET_ALL_DECADEVS';
 
-export const getAllDecadevs = () => dispatch => {
-  let response;
-  axios
-    .get('http://localhost:3005/api/v1/users/decadevs')
-    .then(res => {
-      dispatch({
-        type: GET_ALL_DECADEVS,
-        data: res.data.allDecadevs
-      });
-      return (response = res.data);
-    })
-    .catch(err => {
-      console.log('ACTION ERROR: ', err.message);
-      dispatch({
-        type: GET_ALL_DECADEVS,
-        data: []
-      });
-    });
-  return response;
+export const getDevs = payload => ({
+  type: GET_ALL_DECADEVS,
+  payload
+});
+export const setLoading = payload => ({
+  type: 'GET_ALL_DECADEVS_LOADING',
+  payload
+});
+
+export const onError = payload => ({
+  type: 'GET_ALL_DECADEVS_ERROR',
+  payload
+});
+
+export const getAllDecadevs = request => async dispatch => {
+  try {
+    dispatch(setLoading(true));
+    const response = await request.get(
+      'http://localhost:3005/api/v1/users/decadevs'
+    );
+    dispatch(getDevs(response.data.allDecadevs));
+    dispatch(setLoading(false));
+    return response.data;
+  } catch (err) {
+    dispatch(setLoading(false));
+    return dispatch(onError(err));
+  }
 };
+
+export default getAllDecadevs;
