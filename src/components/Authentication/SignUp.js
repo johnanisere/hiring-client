@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from './node_modules/react';
 import request from '../../request';
-import { BeatLoader } from 'react-spinners';
-import { Box, Button, Form, Text, FormField } from 'grommet';
-import { useSelector, connect } from 'react-redux';
-import signupBoundActionCreator from './signup.action';
+import { BeatLoader } from './node_modules/react-spinners';
+import { Box, Button, Form, Text, FormField } from './node_modules/grommet';
+import { useSelector, connect } from './node_modules/react-redux';
+import signupBoundActionCreator from './__test__/signup.action';
 
 function SignUp(props) {
   const { error, loading } = useSelector(({ user }) => user);
