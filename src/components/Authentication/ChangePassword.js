@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Form, Text } from "grommet";
+import Button from "../button/FormButton";
 import { connect } from "react-redux";
-import Button from "../buttons/FormButton";
 import request from "../../request";
 import FormError from "../formError";
 import Input from "../input";

@@ -5,8 +5,7 @@ import Input from "../input";
 import { useSelector, connect } from "react-redux";
 import loginBoundActionCreator from "./login.action";
 import FormError from "../formError";
-import FormButton from "../Buttons/FormButton";
-
+import Button from "../button/FormButton";
 function Login(props) {
   const { error, loading } = useSelector(({ user }) => user);
   const [values, setValues] = useState({
@@ -73,7 +72,7 @@ function Login(props) {
           }}
           color="dark-1"
         />
-        <FormButton loading={loading} type="submit" text="Login" />
+        <Button loading={loading} type="submit" text="Login" />
       </Form>
     </>
   );
