@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState } from "react";
 
 import {
   Box,
@@ -9,9 +9,9 @@ import {
   Calendar,
   MaskedInput,
   DropButton
-} from 'grommet';
-import { grommet } from 'grommet/themes';
-import { Schedule } from 'grommet-icons';
+} from "grommet";
+import { grommet } from "grommet/themes";
+import { Schedule } from "grommet-icons";
 
 const DropContent = props => {
   const { date: initialDate, time: initialTime, onClose } = props;
@@ -39,14 +39,14 @@ const DropContent = props => {
                 length: [1, 2],
                 options: Array.from({ length: 24 }, (_, i) => 0 + i * 1),
                 regexp: /^[1-2][0-2,0-9]$|^0?[1-9]$|^0$/,
-                placeholder: 'HH'
+                placeholder: "HH"
               },
-              { fixed: ' : ' },
+              { fixed: " : " },
               {
                 length: [1, 2],
-                options: ['0', ...Array.from({ length: 59 }, (v, k) => k + 1)],
+                options: ["0", ...Array.from({ length: 59 }, (v, k) => k + 1)],
                 regexp: /^[0-5][0-9]$|^[0-9]$/,
-                placeholder: 'MM'
+                placeholder: "MM"
               }
             ]}
             value={time || initialTime}
@@ -89,7 +89,7 @@ class DateTimeDropButton extends Component {
             }
           >
             <Box direction="row" gap="medium" align="center" pad="small">
-              <Text color={date ? undefined : 'dark-5'}>
+              <Text color={date ? undefined : "dark-5"}>
                 {date
                   ? `${new Date(date).toLocaleDateString()} ${time}`
                   : this.props.label}
