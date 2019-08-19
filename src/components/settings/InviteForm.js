@@ -3,30 +3,31 @@ import { Box, Form, Select, Button, Heading, Grommet } from "grommet";
 import { grommet } from "grommet/themes";
 import BeatLoader from "react-spinners/BeatLoader";
 import request from "../../request";
-import { connect, useSelector } from "react-redux";
+import FormError from "../formError";
+import { connect } from "react-redux";
 import mailInviteBoundActionCreator from "./mailInvite.action";
 import PropTypes from "prop-types";
 
 function InviteForm(props) {
-  const { loading } = useSelector(({ user }) => user);
   const [state, setState] = useState({
     options: ["Squad 1", "Squad 2", "Squad 3"],
     value: ""
   });
-
-  const [error, setError] = useState(false);
-
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState({});
+  const [success, onSuccess] = useState({});
   const { options, value } = state;
 
   const handleSubmit = e => {
     e.preventDefault();
     if (!value) {
-      setError(true);
+      const error = { message: "Invalid Request. Please select a squad" };
+      setError(error);
       return;
     }
     const data = { squadNo: value };
 
-    props.mailInvite(data, request);
+    props.mailInvite(data, request, setLoading, setError, onSuccess);
   };
   return (
     <>
@@ -43,14 +44,7 @@ function InviteForm(props) {
             }}
           >
             <Form onSubmit={handleSubmit}>
-              {error && (
-                <small
-                  className="error"
-                  style={{ color: "red", textAlign: "center" }}
-                >
-                  Invalid Request. Please select a squad
-                </small>
-              )}
+              <FormError error={error} />
               <Heading level={2} align="center" style={{ textAlign: "center" }}>
                 Invite Devs
               </Heading>
