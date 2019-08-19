@@ -45,7 +45,7 @@ function Login(props) {
         </Text>
       </Box>
       <FormError error={error} />
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Input
           name="email"
           validate={{

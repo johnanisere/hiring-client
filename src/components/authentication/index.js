@@ -2,14 +2,9 @@ import React, { lazy } from "react";
 
 import { Route, Switch } from "react-router-dom";
 
-<<<<<<< HEAD
 const Login = lazy(() => import("./Login"));
 const UpdatePassword = lazy(() => import("./UpdatePassword"));
-=======
-const Login = lazy(() => import('./Login'));
-const UpdatePassword = lazy(() => import('./UpdatePassword'));
-const ChangePassword = lazy(() => import('../passwordPage/changePass'))
->>>>>>> init
+const ChangePassword = lazy(() => import("../passwordPage/changePass"));
 
 export default function() {
   return (
