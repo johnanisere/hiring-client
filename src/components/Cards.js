@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import request from '../request';
-import { getAllDecadevs } from './decadevs-actions/decadevs.action';
+import { getAllDecadevs } from './dashboard/decadevs-actions/decadevs.action';
 import {
   Grommet,
   Anchor,

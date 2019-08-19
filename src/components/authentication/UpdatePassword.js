@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from './node_modules/react';
-import { BeatLoader } from './node_modules/react-spinners';
-import { Box, Button, Form, Text, FormField } from './node_modules/grommet';
+import React, { useState, useEffect } from 'react';
+import { BeatLoader } from 'react-spinners';
+import { Box, Button, Form, Text, FormField } from 'grommet';
 
-import axios from './node_modules/axios';
+import axios from 'axios';
 
 const BASE_URL = 'http://localhost:3005/api/v1/users/update-password';
 
