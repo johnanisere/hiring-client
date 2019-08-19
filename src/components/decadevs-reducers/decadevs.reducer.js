@@ -1,5 +1,5 @@
 import { GET_ALL_DECADEVS } from '../decadevs-actions/decadevs.action';
-const initialState = {
+export const initialState = {
   decadevs: []
 };
 
