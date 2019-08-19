@@ -1,14 +1,8 @@
 import { USER_LOGIN } from './login.action';
-<<<<<<< HEAD:src/components/authentication h/user.reducer.js
-
-import { USER_SIGNUP } from './signup.action';
-export const initialState = {
-=======
 import { USER_SIGNUP } from '../SignUp/signup.action';
 const initialState = {
->>>>>>> Modify sign up and setup tests.:src/components/authentication/user.reducer.js
   loading: false,
-  error: {},
+  error: '',
   data: {}
 };
 
