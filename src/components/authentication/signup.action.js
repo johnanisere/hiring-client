@@ -21,18 +21,14 @@ const onError = payload => ({
 const signupBoundActionCreator = (data, request) => async dispatch => {
   try {
     dispatch(setLoading(true));
-    const response = await request({
-      method: 'POST',
-      url: '/users/signup',
-      data
-    });
+    const response = await request.post('/users/signup', data);
     dispatch(signup(response.data));
     dispatch(setToken(response.data.token));
     dispatch(setLoading(false));
     return response.data;
   } catch (err) {
     dispatch(setLoading(false));
-    dispatch(onError(err));
+    return dispatch(onError(err));
   }
 };
 
