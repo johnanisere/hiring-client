@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import request from '../request';
 import { getAllDecadevs } from './decadevs-actions/decadevs.action';
 import {
   Grommet,
@@ -14,14 +15,11 @@ import {
 function Cards({ getAllDecadevs, decadevs }) {
   useEffect(() => {
     if (decadevs.length === 0) {
-      getAllDecadevs();
+      getAllDecadevs(request);
     }
-
-    console.log('INSIDE USEEFFECT: ', decadevs);
   }, [decadevs, getAllDecadevs]);
-  console.log('******', decadevs);
   return (
-    <Grommet style={{ overflow: 'scroll' }}>
+    <Grommet style={{ overflow: 'scroll', minHeight: '100%' }}>
       <ResponsiveContext.Consumer>
         {size => (
           <Grid
