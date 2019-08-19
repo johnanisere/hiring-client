@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, Button, Text } from 'grommet';
+import React from "react";
+import { Box, Button, Text } from "grommet";
 
 export default function Header(props) {
   return (
@@ -8,7 +8,7 @@ export default function Header(props) {
       direction="row"
       align="center"
       justify="between"
-      pad={{ horizontal: 'medium', vertical: 'small' }}
+      pad={{ horizontal: "medium", vertical: "small" }}
       background="dark-2"
     >
       <Button onClick={props.toggleSidebar}>
