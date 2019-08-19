@@ -11,7 +11,7 @@ const mailInviteBoundActionCreator = (
     setError({});
     setLoading(true);
     const response = await request.post("/invite/devs", data);
-    onSuccess(response.data);
+    onSuccess(response.data.message);
     setLoading(false);
     return response.data;
   } catch (error) {

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Box, Form, Select, Button, Heading, Grommet } from "grommet";
+import { Box, Form, Select, Heading, Grommet } from "grommet";
 import { grommet } from "grommet/themes";
-import BeatLoader from "react-spinners/BeatLoader";
 import request from "../../request";
 import FormError from "../formError";
 import { connect } from "react-redux";
 import mailInviteBoundActionCreator from "./mailInvite.action";
+import SuccessToaster from "../toasters/SuccessNotification";
 import PropTypes from "prop-types";
+import Button from "../button/FormButton";
 
 function InviteForm(props) {
   const [state, setState] = useState({
@@ -15,20 +16,23 @@ function InviteForm(props) {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({});
-  const [success, onSuccess] = useState({});
+  const [success, onSuccess] = useState("");
   const { options, value } = state;
+
+  const onCloseToaster = () => onSuccess("");
 
   const handleSubmit = e => {
     e.preventDefault();
+    onCloseToaster();
     if (!value) {
       const error = { message: "Invalid Request. Please select a squad" };
       setError(error);
       return;
     }
     const data = { squadNo: value };
-
     props.mailInvite(data, request, setLoading, setError, onSuccess);
   };
+
   return (
     <>
       <Grommet full theme={grommet}>
@@ -43,6 +47,9 @@ function InviteForm(props) {
               marginTop: "30px"
             }}
           >
+            {success && (
+              <SuccessToaster message={success} onClose={onCloseToaster} />
+            )}
             <Form onSubmit={handleSubmit}>
               <FormError error={error} />
               <Heading level={2} align="center" style={{ textAlign: "center" }}>
@@ -56,22 +63,7 @@ function InviteForm(props) {
                 options={options}
                 onChange={({ option }) => setState({ ...state, value: option })}
               />
-              <Box direction="row" align="start" gap="small" pad="xsmall">
-                <Button
-                  primary
-                  width="large"
-                  color="dark-1"
-                  label={
-                    loading ? (
-                      <BeatLoader size={5} color="#fff" />
-                    ) : (
-                      "Send Invite"
-                    )
-                  }
-                  type="submit"
-                  style={{ width: "100%", margin: "5px auto" }}
-                />
-              </Box>
+              <Button loading={loading} text="Send Invite" type="submit" />
             </Form>
           </div>
         </Box>
