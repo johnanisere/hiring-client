@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import request from '../../request';
-import { BeatLoader } from 'react-spinners';
-import { Box, Button, Form, Text } from 'grommet';
-import Input from '../input';
-import { useSelector, connect } from 'react-redux';
-import loginBoundActionCreator from './login.action';
-import FormError from '../formError';
+import React, { useState } from "react";
+import request from "../../request";
+import BeatLoader from "react-spinners/BeatLoader";
+import { Box, Button, Form, Text } from "grommet";
+import Input from "../input";
+import { useSelector, connect } from "react-redux";
+import loginBoundActionCreator from "./login.action";
+import FormError from "../formError";
 
 function Login(props) {
   const { error, loading } = useSelector(({ user }) => user);
   const [values, setValues] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: ""
   });
   const { email, password } = values;
 
@@ -33,9 +33,9 @@ function Login(props) {
           size="large"
           margin="auto"
           style={{
-            fontWeight: 'bold',
-            fontSize: '25px',
-            paddingBottom: '15px'
+            fontWeight: "bold",
+            fontSize: "25px",
+            paddingBottom: "15px"
           }}
         >
           Login
@@ -50,7 +50,7 @@ function Login(props) {
           name="email"
           validate={{
             regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-            message: 'Input must be valid email!'
+            message: "Input must be valid email!"
           }}
           value={email}
           onChange={handleChange}
@@ -68,7 +68,7 @@ function Login(props) {
           validate={{
             regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
             message:
-              'Password must contain at least 8 characters, 1 letter, and 1 number'
+              "Password must contain at least 8 characters, 1 letter, and 1 number"
           }}
           color="dark-1"
         />
@@ -77,16 +77,16 @@ function Login(props) {
           direction="row"
           justify="center"
           align="center"
-          margin={{ top: 'medium' }}
+          margin={{ top: "medium" }}
         >
           <Button
             primary
             width="large"
             color="dark-1"
-            label={loading ? <BeatLoader size={5} color="#fff" /> : 'Login'}
+            label={loading ? <BeatLoader size={5} color="#fff" /> : "Login"}
             onClick={handleSubmit}
             type="submit"
-            style={{ width: '100%', marginTop: 20 }}
+            style={{ width: "100%", marginTop: 20 }}
           />
         </Box>
       </Form>
