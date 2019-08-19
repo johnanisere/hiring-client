@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { BeatLoader } from "react-spinners";
+import BeatLoader from "react-spinners/BeatLoader";
 import { Box, Button } from "grommet";
 
 const FormButton = ({ loading, type, onClick, text }) => (
