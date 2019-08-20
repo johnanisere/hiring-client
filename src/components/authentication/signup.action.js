@@ -1,6 +1,6 @@
-export const USER_LOGIN = 'USER_LOGIN';
-const login = payload => ({
-  type: USER_LOGIN,
+export const USER_SIGNUP = 'USER_SIGNUP';
+const signup = payload => ({
+  type: USER_SIGNUP,
   payload
 });
 
@@ -14,15 +14,15 @@ const setLoading = payload => ({
   payload
 });
 const onError = payload => ({
-  type: 'USER_LOGIN_ERROR',
+  type: 'USER_SIGNUP_ERROR',
   payload
 });
 
-const loginBoundActionCreator = (data, request) => async dispatch => {
+const signupBoundActionCreator = (data, request) => async dispatch => {
   try {
     dispatch(setLoading(true));
-    const response = await request.post('/users/login', data);
-    dispatch(login(response.data));
+    const response = await request.post('/users/signup', data);
+    dispatch(signup(response.data));
     dispatch(setToken(response.data.token));
     dispatch(setLoading(false));
     return response.data;
@@ -32,4 +32,4 @@ const loginBoundActionCreator = (data, request) => async dispatch => {
   }
 };
 
-export default loginBoundActionCreator;
+export default signupBoundActionCreator;

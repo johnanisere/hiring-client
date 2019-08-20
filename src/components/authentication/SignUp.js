@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import request from '../../request';
 import { Box, Form, Text, FormField } from 'grommet';
-import Input from '../input';
 import { useSelector, connect } from 'react-redux';
-import loginBoundActionCreator from './login.action';
+import signupBoundActionCreator from './signup.action';
 import FormError from '../formError';
 import Button from '../button/FormButton';
-
-function Login(props) {
+function SignUp(props) {
   const { error, loading } = useSelector(({ user }) => user);
   const [values, setValues] = useState({
+    name: '',
     email: '',
-    password: ''
+    password: '',
+    confirmPassword: ''
   });
-  const { email, password } = values;
+  const { name, email, password, confirmPassword } = values;
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -22,12 +22,12 @@ function Login(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.login(values, request);
+    props.signup(values, request);
   };
 
   return (
     <>
-      <Box margin="small" pad="small">
+      <Box margin="small" pad="small" responsive>
         <Text
           width="auto"
           size="large"
@@ -38,16 +38,28 @@ function Login(props) {
             paddingBottom: '15px'
           }}
         >
-          Login Here
+          SignUp
         </Text>
         <Text size="small" alignSelf="center">
-          Enter email and password
+          Please fill in your details
         </Text>
       </Box>
 
+      <FormError error={error} />
       <Form onSubmit={handleSubmit}>
-        <FormError error={error} />
-        <Input
+        <FormField
+          name="name"
+          value={name}
+          onChange={handleChange}
+          placeholder="Name"
+          type="name"
+          style={{
+            marginBottom: '5px',
+            borderRadius: '20px'
+          }}
+          required
+        />
+        <FormField
           name="email"
           required
           validate={{
@@ -59,7 +71,7 @@ function Login(props) {
           placeholder="Email"
           type="email"
           style={{
-            marginBottom: '15px',
+            marginBottom: '5px',
             borderRadius: '20px'
           }}
         />
@@ -70,27 +82,41 @@ function Login(props) {
           required
           value={password}
           onChange={handleChange}
-          // validate={{
-          //   regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-          //   message:
-          //     'Password must contain at least 8 characters, 1 letter, and 1 number'
-          // }}
-          color="dark-1"
           style={{
-            marginBottom: '15px',
+            marginBottom: '5px',
             borderRadius: '20px'
           }}
         />
-        <Button loading={loading} type="submit" text="Login" />
+        <FormField
+          name="confirmPassword"
+          required
+          value={confirmPassword}
+          onChange={handleChange}
+          placeholder="Confirm Password"
+          type="password"
+          style={{
+            marginBottom: '5px',
+            borderRadius: '20px'
+          }}
+        />
+
+        <Box
+          direction="row"
+          justify="center"
+          align="center"
+          margin={{ top: 'medium' }}
+        >
+          <Button loading={loading} text="Sign Up" type="submit" />
+        </Box>
       </Form>
     </>
   );
 }
 
 const mapDispatchToProps = {
-  login: loginBoundActionCreator
+  signup: signupBoundActionCreator
 };
 export default connect(
   null,
   mapDispatchToProps
-)(Login);
+)(SignUp);
