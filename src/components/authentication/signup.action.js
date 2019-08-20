@@ -17,6 +17,13 @@ const onError = payload => ({
   type: 'USER_SIGNUP_ERROR',
   payload
 });
+const clearError = () => ({
+  type: 'CLEAR_SIGNUP_ERROR'
+});
+
+export const clearErrorBoundActionCreator = () => dispatch => {
+  dispatch(clearError());
+};
 
 const signupBoundActionCreator = (data, request) => async dispatch => {
   try {
