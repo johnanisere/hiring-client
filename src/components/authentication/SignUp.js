@@ -23,7 +23,6 @@ function SignUp(props) {
 
   const closeToaster = () => {
     props.clear();
-    console.log({ data });
   };
 
   const handleChange = e => {
