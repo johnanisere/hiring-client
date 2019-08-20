@@ -1,5 +1,4 @@
 export const errorMessageExtrator = error => {
-  console.log({ error });
   if (
     error &&
     error.response &&
@@ -8,6 +7,6 @@ export const errorMessageExtrator = error => {
   ) {
     return error.response.data.error;
   } else {
-    return error.messsage;
+    return error.message;
   }
 };

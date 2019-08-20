@@ -6,7 +6,8 @@ import signupBoundActionCreator from './signup.action';
 import FormError from '../formError';
 import Button from '../button/FormButton';
 function SignUp(props) {
-  const { error, loading } = useSelector(({ user }) => user);
+  let { error, loading } = useSelector(({ user }) => user);
+
   const [values, setValues] = useState({
     name: '',
     email: '',
@@ -18,16 +19,35 @@ function SignUp(props) {
   const handleChange = e => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
+    if (name === 'password') {
+      onvalidatePassword(value, values.confirmPassword);
+    } else if (name === 'confirmPassword') {
+      onvalidatePassword(values.password, value);
+    } else {
+      onvalidatePassword(values.password, values.confirmPassword);
+    }
+  };
+
+  const onvalidatePassword = (password, confirmPassword) => {
+    if (password !== confirmPassword) {
+      error.message = 'Passwords does not match';
+    } else {
+      error.message = undefined;
+    }
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.signup(values, request);
+    if (values.password !== values.confirmPassword) {
+      onvalidatePassword();
+    } else {
+      props.signup(values, request);
+    }
   };
 
   return (
     <>
-      <Box margin="small" pad="small" responsive>
+      <Box margin="small" pad="small" size="large" responsive>
         <Text
           width="auto"
           size="large"
@@ -45,7 +65,7 @@ function SignUp(props) {
         </Text>
       </Box>
 
-      <FormError error={error} />
+      {error && <FormError error={error} />}
       <Form onSubmit={handleSubmit}>
         <FormField
           name="name"
@@ -100,13 +120,16 @@ function SignUp(props) {
           }}
         />
 
-        <Box
-          direction="row"
-          justify="center"
-          align="center"
-          margin={{ top: 'medium' }}
-        >
-          <Button loading={loading} text="Sign Up" type="submit" />
+        <Box>
+          <Button
+            loading={loading}
+            text="Sign Up"
+            primary
+            width="large"
+            label="Sign Up"
+            type="submit"
+            style={{ width: '100%' }}
+          />
         </Box>
       </Form>
     </>
