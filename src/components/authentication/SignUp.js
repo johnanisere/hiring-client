@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import request from '../../request';
 import { Box, Form, Text, FormField } from 'grommet';
 import { useSelector, connect } from 'react-redux';
-import signupBoundActionCreator from './signup.action';
+import signupBoundActionCreator, {
+  clearErrorBoundActionCreator
+} from './signup.action';
 import FormError from '../formError';
 import Button from '../button/FormButton';
+import SuccessNotify from '../toasters/SuccessNotification';
+
 function SignUp(props) {
-  let { error, loading } = useSelector(({ user }) => user);
+  let { error, loading, data } = useSelector(({ user }) => user);
 
   const [values, setValues] = useState({
     name: '',
@@ -15,6 +19,11 @@ function SignUp(props) {
     confirmPassword: ''
   });
   const { name, email, password, confirmPassword } = values;
+
+  const closeToaster = () => {
+    props.clear();
+    console.log({ data });
+  };
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -32,7 +41,7 @@ function SignUp(props) {
     if (password !== confirmPassword) {
       error.message = 'Passwords does not match';
     } else {
-      error.message = undefined;
+      props.clear();
     }
   };
 
@@ -41,12 +50,16 @@ function SignUp(props) {
     if (values.password !== values.confirmPassword) {
       onvalidatePassword();
     } else {
+      props.clear();
       props.signup(values, request);
     }
   };
 
   return (
     <>
+      {data.message && (
+        <SuccessNotify message={data.message} onClose={closeToaster} />
+      )}
       <Box margin="small" pad="small" size="large" responsive>
         <Text
           width="auto"
@@ -137,7 +150,8 @@ function SignUp(props) {
 }
 
 const mapDispatchToProps = {
-  signup: signupBoundActionCreator
+  signup: signupBoundActionCreator,
+  clear: clearErrorBoundActionCreator
 };
 export default connect(
   null,
