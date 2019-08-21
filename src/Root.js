@@ -1,10 +1,10 @@
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import InviteForm from "../src/components/mailInvite/InviteForm";
-import Background from "../src/components/profile/Background";
 
 const Home = lazy(() => import("./compositions/Home"));
 const Authentication = lazy(() => import("./compositions/authentication"));
+const InviteForm = lazy(() => import("./components/settings/InviteForm"));
+const Background = lazy(() => import("../src/components/profile/Background"));
 
 const App = () => (
   <BrowserRouter>
@@ -13,10 +13,9 @@ const App = () => (
         <Route exact path="/" component={Home} />
         <Route exact path="/profile" component={Background} />
         <Route exact path="/invitemail" component={InviteForm} />
-        <Route to="/" component={Authentication} />
+        <Route path="/" component={Authentication} />
       </Switch>
     </Suspense>
   </BrowserRouter>
 );
-
 export default App;
