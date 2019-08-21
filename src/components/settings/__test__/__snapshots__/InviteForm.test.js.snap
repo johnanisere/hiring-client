@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Login /> render() renders the component 1`] = `
+exports[`InviteForm component renders 1`] = `
 <ContextProvider
   value={
     Object {
@@ -35,6 +35,6 @@ exports[`<Login /> render() renders the component 1`] = `
     }
   }
 >
-  <Connect(Login) />
+  <Connect(InviteForm) />
 </ContextProvider>
 `;
