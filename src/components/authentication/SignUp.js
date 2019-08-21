@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
-import request from '../../request';
-import { Box, Form, Text, FormField } from 'grommet';
-import { useSelector, connect } from 'react-redux';
-import signupBoundActionCreator from './signup.action';
-import FormError from '../formError';
-import Button from '../button/FormButton';
+import React, { useState } from "react";
+import request from "../../request";
+import { Box, Form, Text, FormField } from "grommet";
+import { useSelector, connect } from "react-redux";
+import signupBoundActionCreator from "./signup.action";
+import FormError from "../formError";
+import Button from "../button/FormButton";
 function SignUp(props) {
   const { error, loading } = useSelector(({ user }) => user);
   const [values, setValues] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
   });
+
+  
+
   const { name, email, password, confirmPassword } = values;
 
   const handleChange = e => {
@@ -33,9 +36,9 @@ function SignUp(props) {
           size="large"
           margin="auto"
           style={{
-            fontWeight: 'bold',
-            fontSize: '25px',
-            paddingBottom: '15px'
+            fontWeight: "bold",
+            fontSize: "25px",
+            paddingBottom: "15px"
           }}
         >
           SignUp
@@ -54,8 +57,8 @@ function SignUp(props) {
           placeholder="Name"
           type="name"
           style={{
-            marginBottom: '5px',
-            borderRadius: '20px'
+            marginBottom: "5px",
+            borderRadius: "20px"
           }}
           required
         />
@@ -64,15 +67,15 @@ function SignUp(props) {
           required
           validate={{
             regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-            message: 'Input must be valid email!'
+            message: "Input must be valid email!"
           }}
           value={email}
           onChange={handleChange}
           placeholder="Email"
           type="email"
           style={{
-            marginBottom: '5px',
-            borderRadius: '20px'
+            marginBottom: "5px",
+            borderRadius: "20px"
           }}
         />
         <FormField
@@ -83,8 +86,8 @@ function SignUp(props) {
           value={password}
           onChange={handleChange}
           style={{
-            marginBottom: '5px',
-            borderRadius: '20px'
+            marginBottom: "5px",
+            borderRadius: "20px"
           }}
         />
         <FormField
@@ -95,18 +98,26 @@ function SignUp(props) {
           placeholder="Confirm Password"
           type="password"
           style={{
-            marginBottom: '5px',
-            borderRadius: '20px'
+            marginBottom: "5px",
+            borderRadius: "20px"
           }}
         />
-
         <Box
           direction="row"
           justify="center"
           align="center"
-          margin={{ top: 'medium' }}
+          margin={{ top: "medium" }}
         >
-          <Button loading={loading} text="Sign Up" type="submit" />
+        </Box>
+
+        <Box>
+          <Button
+            loading={loading}
+            text="Sign Up"
+            type="submit"
+            width="large"
+            style={{ width: "100%" }}
+          />
         </Box>
       </Form>
     </>
