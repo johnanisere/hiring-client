@@ -1,10 +1,10 @@
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import InviteForm from "./components/settings/InviteForm";
-import Background from "../src/components/profile/Background";
 
 const Home = lazy(() => import("./compositions/Home"));
 const Authentication = lazy(() => import("./compositions/authentication"));
+const InviteForm = lazy(() => import("./components/settings/InviteForm"));
+const Background = lazy(() => import("../src/components/profile/Background"));
 
 const App = () => (
   <BrowserRouter>
