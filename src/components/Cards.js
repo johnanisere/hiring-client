@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import request from '../request';
 import { getAllDecadevs } from './dashboard/decadevs-actions/decadevs.action';
+import MoonLoader from 'react-spinners/MoonLoader';
+
 import {
   Grommet,
   Anchor,
@@ -13,6 +15,8 @@ import {
 } from 'grommet';
 
 function Cards({ getAllDecadevs, decadevs }) {
+  const { loading } = useSelector(({ decadevs }) => decadevs);
+
   useEffect(() => {
     if (decadevs.length === 0) {
       getAllDecadevs(request);
@@ -20,6 +24,11 @@ function Cards({ getAllDecadevs, decadevs }) {
   }, [decadevs, getAllDecadevs]);
   return (
     <Grommet style={{ overflow: 'scroll', minHeight: '100%' }}>
+      {loading && (
+        <Box fill width="medium" pad="medium" align="center" justify="center">
+          <MoonLoader />
+        </Box>
+      )}
       <ResponsiveContext.Consumer>
         {size => (
           <Grid
