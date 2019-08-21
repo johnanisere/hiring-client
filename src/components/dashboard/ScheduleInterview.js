@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import DateTimeDropButton from "../DateTime";
 import FormFieldSelect from "../FormFieldSelect";
-import { Box, Grommet, Form, FormField, TextArea, Text } from "grommet";
-import { grommet } from "grommet/themes";
+import { Box, Form, FormField, TextArea, Text } from "grommet";
 import { useSelector, connect } from "react-redux";
 import request from "../../request";
-import FormLayout from "../FormLayout";
 import FormError from "../formError";
 import FormButton from "../button/FormButton";
 import scheduleInterviewBoundActionCreator, {
