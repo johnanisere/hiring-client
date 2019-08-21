@@ -1,11 +1,11 @@
-import React, { lazy } from "react";
+import React, { lazy } from 'react';
 
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch } from 'react-router-dom';
 
-const Login = lazy(() => import("./Login"));
-const SignUp = lazy(() => import("./SignUp"));
-const UpdatePassword = lazy(() => import("./UpdatePassword"));
-const ChangePassword = lazy(() => import("./ChangePassword"));
+const Login = lazy(() => import('./Login'));
+const SignUp = lazy(() => import('./SignUp'));
+const UpdatePassword = lazy(() => import('./UpdatePassword'));
+const ChangePassword = lazy(() => import('./ChangePassword'));
 
 export default function() {
   return (

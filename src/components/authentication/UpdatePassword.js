@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { BeatLoader } from 'react-spinners';
 import { Box, Button, Form, Text, FormField } from 'grommet';
 
-import axios from 'axios';
+import request from '../../request';
+import updatePasswordBoundActionCreator from './updatePassword.action';
+import { connect } from 'react-redux';
 
-const BASE_URL = 'http://localhost:3005/api/v1/users/update-password';
-
-export default function UpdatePassword() {
+function UpdatePassword({ onUpdatePassword, match }) {
   const [values, setValues] = useState({
     password: '',
     confirmPassword: ''
@@ -14,9 +14,9 @@ export default function UpdatePassword() {
   const [error, setError] = useState(false);
   const [diffPassword, setDiffPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [newPassword, setNewPassword] = useState('');
-  const [serverResponse, setServerResponse] = useState('');
-
+  const {
+    params: { token }
+  } = match;
   const { password, confirmPassword } = values;
 
   useEffect(() => {
@@ -36,36 +36,12 @@ export default function UpdatePassword() {
       setDiffPassword(true);
       return;
     }
+<<<<<<< HEAD
+=======
+    onUpdatePassword({ newPassword: confirmPassword }, request, token);
+>>>>>>> adds action for update password
     console.log('VALUES', values);
   };
-
-  useEffect(() => {
-    if (newPassword) {
-      axios.interceptors.request.use(config => {
-        console.log('CONFIG', config);
-        config.data = {
-          newPassword,
-          email: 'johndoe@example.com'
-        };
-        return config;
-      });
-
-      axios
-        .post(BASE_URL, newPassword)
-        .then(function(response) {
-          console.log(response);
-          setServerResponse(response);
-          console.log('setServerResponse', serverResponse);
-
-          setLoading(false);
-        })
-        .catch(function(error) {
-          console.log(error);
-          setLoading(false);
-          setError(error.message);
-        });
-    }
-  }, [newPassword, serverResponse]);
 
   return (
     <>
@@ -85,7 +61,7 @@ export default function UpdatePassword() {
           Kindly update your password here
         </Text>
       </Box>
-      {error && (
+      {diffPassword && (
         <small className="error" style={{ color: 'red', textAlign: 'center' }}>
           Make sure passwords on both fields are the same!
         </small>
@@ -153,3 +129,11 @@ export default function UpdatePassword() {
     </>
   );
 }
+
+const mapDispatchToProps = {
+  onUpdatePassword: updatePasswordBoundActionCreator
+};
+export default connect(
+  null,
+  mapDispatchToProps
+)(UpdatePassword);
