@@ -11,9 +11,15 @@ function UpdatePassword({ onUpdatePassword, match }) {
     password: '',
     confirmPassword: ''
   });
-  const [error, setError] = useState(false);
+  const [
+    error
+    // setError
+  ] = useState(false);
   const [diffPassword, setDiffPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [
+    loading
+    // setLoading
+  ] = useState(false);
   const {
     params: { token }
   } = match;
