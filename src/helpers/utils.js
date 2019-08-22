@@ -1,5 +1,4 @@
 export const errorMessageExtrator = error => {
-  console.log({ error });
   if (
     error &&
     error.response &&
