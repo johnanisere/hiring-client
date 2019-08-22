@@ -18,12 +18,10 @@ const inviteHirerBoundActionCreator = (data, request) => async dispatch => {
     dispatch(setLoading(true));
     const response = await request.post('/users/hiring-partner/invite', data);
     dispatch(hirer(response.data));
-    console.log('RESPONSE: ', response);
     dispatch(setLoading(false));
 
     return response.data;
   } catch (err) {
-    console.log(err.message);
     dispatch(setLoading(false));
     return dispatch(onError(err));
   }
