@@ -19,10 +19,6 @@ function UpdatePassword({ onUpdatePassword, match }) {
   } = match;
   const { password, confirmPassword } = values;
 
-  useEffect(() => {
-    console.log(values);
-  });
-
   const handleChange = e => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
@@ -36,11 +32,7 @@ function UpdatePassword({ onUpdatePassword, match }) {
       setDiffPassword(true);
       return;
     }
-<<<<<<< HEAD
-=======
     onUpdatePassword({ newPassword: confirmPassword }, request, token);
->>>>>>> adds action for update password
-    console.log('VALUES', values);
   };
 
   return (
