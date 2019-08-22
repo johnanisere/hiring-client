@@ -47,7 +47,7 @@ export default function Info() {
               cursor: 'pointer'
             }}
           >
-            {<Chat size="small" />}
+            {<Chat size="small" style={{ marginRight: '5px' }} />}
             Send Message
           </Text>
 
@@ -67,7 +67,7 @@ export default function Info() {
               cursor: 'pointer'
             }}
           >
-            <Phone size="small" />
+            <Phone size="small" style={{ marginRight: '5px' }} />
             Contact
           </Text>
           <Text
@@ -87,7 +87,7 @@ export default function Info() {
               cursor: 'pointer'
             }}
           >
-            {<Calendar size="small" />}
+            {<Calendar size="small" style={{ marginRight: '5px' }} />}
             Schedule Interview
           </Text>
         </Box>
