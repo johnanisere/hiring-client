@@ -4,6 +4,8 @@ import { Box, Button, Form, Text, FormField } from 'grommet';
 
 import request from '../../request';
 import updatePasswordBoundActionCreator from './updatePassword.action';
+import SuccessNotification from '../toasters/SuccessNotification';
+import FormError from '../formError';
 import { connect } from 'react-redux';
 
 function UpdatePassword({ onUpdatePassword, match }) {
@@ -11,15 +13,11 @@ function UpdatePassword({ onUpdatePassword, match }) {
     password: '',
     confirmPassword: ''
   });
-  const [
-    error
-    // setError
-  ] = useState(false);
+  const [error, onError] = useState({});
+  const [loading, onLoading] = useState(false);
+  const [success, onSuccess] = useState('');
   const [diffPassword, setDiffPassword] = useState(false);
-  const [
-    loading
-    // setLoading
-  ] = useState(false);
+
   const {
     params: { token }
   } = match;
@@ -28,6 +26,15 @@ function UpdatePassword({ onUpdatePassword, match }) {
   const handleChange = e => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
+  };
+  const activityIndicator = value => {
+    onLoading(value);
+  };
+  const handleError = error => {
+    onError(error);
+  };
+  const handleSuccess = val => {
+    onSuccess(val);
   };
 
   const handleSubmit = e => {
@@ -38,11 +45,22 @@ function UpdatePassword({ onUpdatePassword, match }) {
       setDiffPassword(true);
       return;
     }
-    onUpdatePassword({ newPassword: confirmPassword }, request, token);
+    onUpdatePassword(
+      { newPassword: confirmPassword },
+      request,
+      token,
+      activityIndicator,
+      handleError,
+      handleSuccess
+    );
   };
+  const closeToaster = () => onSuccess('');
 
   return (
     <>
+      {success && (
+        <SuccessNotification message={success.message} onClose={closeToaster} />
+      )}
       <Box margin="small" pad="small">
         <Text
           width="auto"
@@ -64,11 +82,7 @@ function UpdatePassword({ onUpdatePassword, match }) {
           Make sure passwords on both fields are the same!
         </small>
       )}
-      {error && (
-        <small className="error" style={{ color: 'red', textAlign: 'center' }}>
-          {error}
-        </small>
-      )}
+      <FormError error={error} />
       <Form onSubmit={e => handleSubmit(e)}>
         <FormField
           name="password"
