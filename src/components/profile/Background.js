@@ -32,6 +32,7 @@ const Background = () => {
                 <Heading size="small">Decagon</Heading>
               </Box>
               <Box
+                responsive
                 style={{ marginLeft: 'auto' }}
                 direction="row-responsive"
                 gap="large"
