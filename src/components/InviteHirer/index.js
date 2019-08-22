@@ -20,9 +20,7 @@ function InviteHirer(props) {
     contactPerson: '',
     phone: '',
     companyURL: '',
-    address: '',
-    role: 'hiringPartner',
-    profilePhoto: 'photo photo'
+    address: ''
   });
 
   const {
