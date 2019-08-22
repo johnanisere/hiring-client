@@ -25,7 +25,6 @@ export const scheduleInterviewBoundActionCreator = (
       `${process.env.REACT_APP_CALENDAR_BASE_URL}/create-event`,
       data
     );
-    console.log('RESPONSE: ', response);
     const payload = {
       hiringPartner: data.email,
       decaDev: data.devemail,
