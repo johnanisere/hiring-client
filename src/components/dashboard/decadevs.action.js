@@ -17,9 +17,7 @@ export const onError = payload => ({
 export const getAllDecadevs = request => async dispatch => {
   try {
     dispatch(setLoading(true));
-    const response = await request.get(
-      'http://localhost:3005/api/v1/users/decadevs'
-    );
+    const response = await request.get('/users/decadevs');
     dispatch(getDevs(response.data.allDecadevs));
     dispatch(setLoading(false));
     return response.data;

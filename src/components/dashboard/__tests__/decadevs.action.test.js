@@ -1,4 +1,4 @@
-import { getAllDecadevs } from '../decadevs.action';
+import getAllDecadevs from '../decadevs.action';
 
 function setUp() {
   const dispatch = async val => {
@@ -29,9 +29,7 @@ describe('getAllDecadevs', () => {
         fail('should not catch');
       });
 
-    expect(getSpy).toBeCalledWith(
-      'http://localhost:3005/api/v1/users/decadevs'
-    );
+    expect(getSpy).toBeCalledWith('/users/decadevs');
     expect(getSpy).toBeCalledTimes(1);
   });
 });
