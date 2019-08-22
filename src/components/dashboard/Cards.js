@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect, useSelector } from 'react-redux';
 import request from '../../request';
-import { getAllDecadevs } from './decadevs-actions/decadevs.action';
+import { getAllDecadevs } from './decadevs.action';
 import MoonLoader from 'react-spinners/MoonLoader';
 
 import {

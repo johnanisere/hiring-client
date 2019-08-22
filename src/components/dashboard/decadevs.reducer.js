@@ -1,4 +1,4 @@
-import { GET_ALL_DECADEVS } from '../decadevs-actions/decadevs.action';
+import { GET_ALL_DECADEVS } from './decadevs.action';
 export const initialState = {
   loading: false,
   error: {},

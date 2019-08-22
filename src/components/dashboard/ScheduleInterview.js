@@ -10,7 +10,7 @@ import FormError from '../formError';
 import FormButton from '../button/FormButton';
 import scheduleInterviewBoundActionCreator, {
   authorizeBoundActionCreator
-} from './scheduleInterview/scheduleInterview.action';
+} from './scheduleInterview.action';
 import { toIso } from '../../helpers/utils';
 import moment from 'moment-timezone';
 import Modal from './Modal';
