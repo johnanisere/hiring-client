@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-import React from "react";
-import { Box, Button, Text } from "grommet";
-import { NavLink } from "react-router-dom";
-=======
 import React from 'react';
 import { Box, Button, Text } from 'grommet';
+import { NavLink } from 'react-router-dom';
 import { Menu } from 'grommet-icons';
->>>>>>> adds menu icon to header for sidebar toggle
 
 export default function Header(props) {
   return (
