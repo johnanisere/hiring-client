@@ -23,15 +23,13 @@ describe('For no Error', () => {
 
 describe('For Error', () => {
   it('should render where there is an error', () => {
-    // const errorMessageExtrator = jest.fn();
+    const error = { message: 'invalid shit' };
+
     const wrapper = mount(
       <Provider store={store}>
-        <FormError error="error" />
+        <FormError error={error} />
       </Provider>
     );
     expect(wrapper.find('small').exists()).toBeTruthy();
-    // expect(errorMessageExtrator).toHaveBeenCalled();
-    // expect(wrapper.props('error')).toEqual('error');
-    // expect(toJson(wrapper)).toMatchSnapshot();
   });
 });
