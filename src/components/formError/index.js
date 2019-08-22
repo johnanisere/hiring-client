@@ -4,7 +4,6 @@ import { errorMessageExtrator } from '../../helpers/utils';
 
 const FormError = ({ error }) => {
   if (error) {
-    console.log('FORM error: ', error);
     return (
       <small
         className="error"
