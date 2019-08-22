@@ -10,10 +10,10 @@ const ChangePassword = lazy(() => import('./ChangePassword'));
 export default function() {
   return (
     <Switch>
-      <Route exact path={`/login`} component={Login} />
-      <Route exact path={`/signup`} component={SignUp} />
-      <Route exact path={`/update-password`} component={UpdatePassword} />
-      <Route exact path={`/change-password`} component={ChangePassword} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/signup" component={SignUp} />
+      <Route exact path="/update-password/:token" component={UpdatePassword} />
+      <Route exact path="/change-password" component={ChangePassword} />
     </Switch>
   );
 }
