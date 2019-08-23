@@ -3,7 +3,7 @@ import Proptypes from "prop-types";
 import { errorMessageExtrator } from "../../helpers/utils";
 
 const FormError = ({ error }) =>
-  error && (
+  error ? (
     <small
       className="error"
       style={{
@@ -14,7 +14,7 @@ const FormError = ({ error }) =>
     >
       {errorMessageExtrator(error)}
     </small>
-  );
+  ) : null;
 
 FormError.propTypes = {
   error: Proptypes.object
