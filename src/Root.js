@@ -3,13 +3,13 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 const Dashboard = lazy(() => import("./compositions/dashboard"));
 const Authentication = lazy(() => import("./compositions/authentication"));
-const Profile = lazy(() => import("../src/components/profile/"));
 const ScheduleInterview = lazy(() =>
   import("./components/dashboard/ScheduleInterview")
 );
 const DecadevModal = lazy(() =>
   import("../src/components/decadevModal/DecadevModal")
 );
+const Profile = lazy(() => import("../src/components/profile/"));
 
 const App = () => (
   <BrowserRouter>
