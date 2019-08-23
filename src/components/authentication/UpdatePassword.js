@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { BeatLoader } from 'react-spinners';
-import { Box, Button, Form, Text, FormField } from 'grommet';
+import React, { useState } from "react";
+import { BeatLoader } from "react-spinners";
+import { Box, Button, Form, Text, FormField } from "grommet";
 
-import request from '../../request';
-import updatePasswordBoundActionCreator from './updatePassword.action';
-import SuccessNotification from '../toasters/SuccessNotification';
-import FormError from '../formError';
-import { connect } from 'react-redux';
+import request from "../../request";
+import updatePasswordBoundActionCreator from "./updatePassword.action";
+import SuccessNotification from "../toasters/SuccessNotification";
+import FormError from "../formError";
+import { connect } from "react-redux";
 
 function UpdatePassword({ onUpdatePassword, match }) {
   const [values, setValues] = useState({
-    password: '',
-    confirmPassword: ''
+    password: "",
+    confirmPassword: ""
   });
   const [error, onError] = useState({});
   const [loading, onLoading] = useState(false);
-  const [success, onSuccess] = useState('');
+  const [success, onSuccess] = useState("");
   const [diffPassword, setDiffPassword] = useState(false);
 
   const {
@@ -54,7 +54,7 @@ function UpdatePassword({ onUpdatePassword, match }) {
       handleSuccess
     );
   };
-  const closeToaster = () => onSuccess('');
+  const closeToaster = () => onSuccess("");
 
   return (
     <>
@@ -67,8 +67,8 @@ function UpdatePassword({ onUpdatePassword, match }) {
           size="large"
           margin="small"
           style={{
-            fontWeight: 'bold',
-            fontSize: '25px'
+            fontWeight: "bold",
+            fontSize: "25px"
           }}
         >
           Update Password
@@ -78,7 +78,7 @@ function UpdatePassword({ onUpdatePassword, match }) {
         </Text>
       </Box>
       {diffPassword && (
-        <small className="error" style={{ color: 'red', textAlign: 'center' }}>
+        <small className="error" style={{ color: "red", textAlign: "center" }}>
           Make sure passwords on both fields are the same!
         </small>
       )}
@@ -90,15 +90,15 @@ function UpdatePassword({ onUpdatePassword, match }) {
           validate={{
             regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
             message:
-              'Password must contain at least 8 characters, 1 letter, and 1 number'
+              "Password must contain at least 8 characters, 1 letter, and 1 number"
           }}
           value={password}
           onChange={handleChange}
           placeholder="Password"
           type="password"
           style={{
-            marginBottom: '15px',
-            borderRadius: '20px'
+            marginBottom: "15px",
+            borderRadius: "20px"
           }}
         />
         <FormField
@@ -111,12 +111,12 @@ function UpdatePassword({ onUpdatePassword, match }) {
           validate={{
             regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
             message:
-              'Password must contain at least 8 characters, 1 letter, and 1 number'
+              "Password must contain at least 8 characters, 1 letter, and 1 number"
           }}
           color="dark-1"
           style={{
-            marginBottom: '15px',
-            borderRadius: '20px'
+            marginBottom: "15px",
+            borderRadius: "20px"
           }}
         />
 
@@ -124,17 +124,17 @@ function UpdatePassword({ onUpdatePassword, match }) {
           direction="row"
           justify="center"
           align="center"
-          margin={{ top: 'medium' }}
+          margin={{ top: "medium" }}
         >
           <Button
             primary
             width="large"
             color="dark-1"
             label={
-              loading ? <BeatLoader size={5} color="#fff" /> : 'Update Password'
+              loading ? <BeatLoader size={5} color="#fff" /> : "Update Password"
             }
             type="submit"
-            style={{ width: '100%', marginTop: 20 }}
+            style={{ width: "100%", marginTop: 20 }}
           />
         </Box>
       </Form>

@@ -35,7 +35,12 @@ export default function user(state = initialState, action) {
         ...state,
         error: action.payload
       };
-
+    case 'CLEAR_SIGNUP_ERROR':
+      return {
+        ...state,
+        error: {},
+        data: {}
+      };
     default:
       return state;
   }
