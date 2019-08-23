@@ -1,23 +1,25 @@
-import React, { useState } from "react";
-import { Box, Form, Text } from "grommet";
-import Button from "../button/FormButton";
-import { connect } from "react-redux";
-import request from "../../request";
-import FormError from "../formError";
-import Input from "../input";
-import SuccessNotification from "../toasters/SuccessNotification";
+import React, { useState } from 'react';
+import { Box, Form, Text } from 'grommet';
+import Button from '../button/FormButton';
+import { connect } from 'react-redux';
+import request from '../../request';
+import FormError from '../formError';
+import Input from '../input';
+import SuccessNotification from '../toasters/SuccessNotification';
 
-import changePassBoundActionCreator from "./changePassword.action";
+import changePassBoundActionCreator from './changePassword.action';
 
-const ChangePass = ({ onChangePassword }) => {
+const ChangePass = ({ onChangePassword, match }) => {
   const [error, onError] = useState({});
   const [loading, onLoading] = useState(false);
-  const [success, onSuccess] = useState("");
+  const [success, onSuccess] = useState('');
   const [data, onChangeData] = useState({
-    newPassword: "",
-    confirmPassword: ""
+    newPassword: '',
+    confirmPassword: ''
   });
-
+  const {
+    params: { token }
+  } = match;
   // collects the data from the fields
   const handleChange = ({ target: { name, value } }) => {
     onChangeData({ ...data, [name]: value });
@@ -35,16 +37,17 @@ const ChangePass = ({ onChangePassword }) => {
   const handleSubmit = async e => {
     e.preventDefault();
     handleError({});
-    onSuccess("");
+    onSuccess('');
     onChangePassword(
       data,
       request,
       activityIndicator,
       handleError,
-      handleSuccess
+      handleSuccess,
+      token
     );
   };
-  const closeToaster = () => onSuccess("");
+  const closeToaster = () => onSuccess('');
   // renders the layout
   return (
     <>
@@ -57,9 +60,9 @@ const ChangePass = ({ onChangePassword }) => {
           size="large"
           margin="auto"
           style={{
-            fontWeight: "bold",
-            fontSize: "25px",
-            paddingBottom: "15px"
+            fontWeight: 'bold',
+            fontSize: '25px',
+            paddingBottom: '15px'
           }}
         >
           Change Password
@@ -79,7 +82,7 @@ const ChangePass = ({ onChangePassword }) => {
           validate={{
             regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
             message:
-              "Password must contain at least 8 characters, 1 letter, and 1 number"
+              'Password must contain at least 8 characters, 1 letter, and 1 number'
           }}
           color="dark-1"
         />
@@ -91,7 +94,7 @@ const ChangePass = ({ onChangePassword }) => {
           validate={{
             regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
             message:
-              "Password must contain at least 8 characters, 1 letter, and 1 number"
+              'Password must contain at least 8 characters, 1 letter, and 1 number'
           }}
           color="dark-1"
           value={data.confirmPassword}

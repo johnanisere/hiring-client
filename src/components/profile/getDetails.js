@@ -1,10 +1,10 @@
 export function getDetails() {
   return {
-    name: "John Doe",
-    resume: "myResume",
-    email: "johndoe@gmail.com",
-    phone: "+2348099999999",
-    github: "github.com/jdoe",
-    squad: "Sq 003"
+    name: 'Jeremy Rose',
+    resume: 'https://www.myoriginalresume.com',
+    email: 'jerrymrose@gmail.com',
+    phone: '+2348064758339',
+    github: 'https://www.github.com/jeremyrose',
+    squad: 'SQ 003'
   };
 }

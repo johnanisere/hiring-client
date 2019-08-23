@@ -1,6 +1,7 @@
-import React from "react";
-import { Box, Button, Text } from "grommet";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { Box, Button, Text } from 'grommet';
+import { NavLink } from 'react-router-dom';
+import { Menu } from 'grommet-icons';
 
 export default function Header(props) {
   return (
@@ -9,11 +10,11 @@ export default function Header(props) {
       direction="row"
       align="center"
       justify="between"
-      pad={{ horizontal: "medium", vertical: "small" }}
+      pad={{ horizontal: 'medium', vertical: 'small' }}
       background="dark-2"
     >
       <Button onClick={props.toggleSidebar}>
-        <Text size="large">Title</Text>
+        <Menu size="medium" />
       </Button>
 
       <Text>email@example.com</Text>

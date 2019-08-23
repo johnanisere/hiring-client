@@ -15,7 +15,6 @@ instance.interceptors.request.use(config => {
       }
     };
   }
-  console.log({ config });
 
   return config;
 });
