@@ -1,11 +1,13 @@
-import React, { lazy } from 'react';
+import React, { lazy } from "react";
 
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch } from "react-router-dom";
 
-const Login = lazy(() => import('./Login'));
-const SignUp = lazy(() => import('./SignUp'));
-const UpdatePassword = lazy(() => import('./UpdatePassword'));
-const ChangePassword = lazy(() => import('./ChangePassword'));
+const Login = lazy(() => import("./Login"));
+const SignUp = lazy(() => import("./SignUp"));
+const UpdatePassword = lazy(() => import("./UpdatePassword"));
+const ChangePassword = lazy(() => import("./ChangePassword"));
+const Schedule = lazy(() => import("../dashboard/ScheduleInterview"));
+const Invite = lazy(() => import("../InviteHirer"));
 
 export default function() {
   return (
@@ -14,6 +16,8 @@ export default function() {
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/update-password/:token" component={UpdatePassword} />
       <Route exact path="/change-password" component={ChangePassword} />
+      <Route exact path="/schedule" component={Schedule} />
+      <Route exact path="/invite" component={Invite} />
     </Switch>
   );
 }
