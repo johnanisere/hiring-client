@@ -1,15 +1,5 @@
 import React, { Component } from 'react';
-
-import { Add, Close } from 'grommet-icons';
-import {
-  Box,
-  Button,
-  FormField,
-  Grommet,
-  Heading,
-  Layer,
-  TextInput
-} from 'grommet';
+import { Box, Button, FormField, Grommet, Layer } from 'grommet';
 import { grommet } from 'grommet/themes';
 
 class Modal extends Component {
