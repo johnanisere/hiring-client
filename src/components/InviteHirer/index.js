@@ -12,7 +12,6 @@ import request from '../../request';
 
 function InviteHirer(props) {
   const { error, loading } = useSelector(({ hirer }) => hirer);
-  console.log('COMPONENT==>>', error);
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -60,7 +59,7 @@ function InviteHirer(props) {
           </Text>
           <Box width="large">
             <FormError error={error} />
-            <Form onReset={event => console.log(event)} onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
               <Input
                 label="Name"
                 name="name"
