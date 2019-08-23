@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, connect } from "react-redux";
-import { grommet } from "grommet/themes";
-import FormLayout from "../FormLayout";
-import { Box, Grommet, Button, Form, Text } from "grommet";
+import { Box, Button, Form, Text } from "grommet";
 import BeatLoader from "react-spinners/BeatLoader";
 import Input from "../input/index";
 
