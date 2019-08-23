@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import Layout from '../components/Layout';
-import Cards from '../components/dashboard/Cards';
-// import Dropdown from "../components/Dropdown";
-// import { grommet } from "grommet/themes";
-// import { deepMerge } from "grommet/utils";
-
+import Layout from "../components/Layout";
+import Cards from "../components/dashboard/Cards";
 
 export default function App(props) {
   return (
