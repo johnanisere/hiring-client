@@ -5,7 +5,7 @@ export const errorMessageExtrator = error => {
     error.response.data &&
     error.response.data.error
   ) {
-    return error.response.data.error;
+    return error.response.data.message || error.response.data.error;
   } else {
     return error.message;
   }
