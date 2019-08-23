@@ -50,8 +50,8 @@ export const scheduleInterviewBoundActionCreator = (
       window.open(response.data.authUrl, '_blank');
       onToggle();
     }
-    // dispatch(setLoading(false));
-    // return dispatch(onError(err));
+    dispatch(setLoading(false));
+    return dispatch(onError(err));
   }
 };
 
@@ -62,22 +62,16 @@ export const authorizeBoundActionCreator = (
   callback
 ) => async dispatch => {
   try {
-    dispatch(setLoading(true));
     const response = await request.post(
       `${process.env.REACT_APP_CALENDAR_BASE_URL}/authorize-user`,
       data
     );
     callback && callback(undefined, onToggle);
-    console.log(response);
-
-    // dispatch(scheduleInterview(response.data));
     dispatch(setLoading(false));
     return response.data;
   } catch (err) {
-    console.log({ err });
-
-    // dispatch(setLoading(false));
-    // return dispatch(onError(err));
+    dispatch(setLoading(false));
+    return dispatch(onError(err));
   }
 };
 
