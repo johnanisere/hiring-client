@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import DateTimeDropButton from '../DateTime';
 import FormFieldSelect from '../FormFieldSelect';
 import { Box, Grommet, Form, FormField, TextArea, Text } from 'grommet';
@@ -19,6 +19,7 @@ function ScheduleInterview(props) {
   const { error, loading } = useSelector(
     ({ interviewDetails }) => interviewDetails
   );
+
   const [values, setValues] = useState({
     title: '',
     location: '',
@@ -71,7 +72,6 @@ function ScheduleInterview(props) {
       devemail: 'sheyiogundijo@gmail.com'
     };
     props.scheduleInterview(payload, request, onToggle, cb);
-    console.log(values);
   };
   const submit = (cb, code) => {
     const data = {
@@ -81,9 +81,6 @@ function ScheduleInterview(props) {
 
     props.authorize(data, request, cb, handleSubmit);
   };
-  useEffect(() => {
-    console.log(values);
-  });
 
   return (
     <Grommet full theme={grommet}>
@@ -103,8 +100,8 @@ function ScheduleInterview(props) {
                 Schedule Interview
               </Text>
             </Box>
+            <FormError error={error} />
             <Form onSubmit={handleSubmit}>
-              <FormError error={error} />
               <FormField
                 label="Add Title"
                 name="title"
