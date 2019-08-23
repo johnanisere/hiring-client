@@ -20,7 +20,6 @@ const updatePasswordBoundActionCreator = (
   } catch (err) {
     handleError(err);
     activityIndicator(false);
-    console.log(err);
   }
 };
 
