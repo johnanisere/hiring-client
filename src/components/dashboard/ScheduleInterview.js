@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import DateTimeDropButton from '../DateTime';
-import FormFieldSelect from '../FormFieldSelect';
-import { Box, Grommet, Form, FormField, TextArea, Text } from 'grommet';
-import { grommet } from 'grommet/themes';
-import { useSelector, connect } from 'react-redux';
-import request from '../../request';
-import FormLayout from '../FormLayout';
-import FormError from '../formError';
-import FormButton from '../button/FormButton';
+import React, { useState } from "react";
+import DateTimeDropButton from "../DateTime";
+import FormFieldSelect from "../FormFieldSelect";
+import { Box, Grommet, Form, FormField, TextArea, Text } from "grommet";
+import { grommet } from "grommet/themes";
+import { useSelector, connect } from "react-redux";
+import request from "../../request";
+import FormLayout from "../FormLayout";
+import FormError from "../formError";
+import FormButton from "../button/FormButton";
 import scheduleInterviewBoundActionCreator, {
   authorizeBoundActionCreator
-} from './scheduleInterview.action';
-import { toIso } from '../../helpers/utils';
-import moment from 'moment-timezone';
-import Modal from './Modal';
+} from "./scheduleInterview.action";
+import { toIso } from "../../helpers/utils";
+import moment from "moment-timezone";
+import Modal from "./Modal";
 
 function ScheduleInterview(props) {
   const { error, loading } = useSelector(
@@ -21,15 +21,15 @@ function ScheduleInterview(props) {
   );
 
   const [values, setValues] = useState({
-    title: '',
-    location: '',
-    description: '',
+    title: "",
+    location: "",
+    description: "",
     startDate: undefined,
-    startTime: '',
+    startTime: "",
     endDate: undefined,
-    endTime: '',
-    decadev: '',
-    timezone: ''
+    endTime: "",
+    decadev: "",
+    timezone: ""
   });
   const [open, onOpen] = useState(false);
   const {
@@ -68,14 +68,14 @@ function ScheduleInterview(props) {
       startTime: start,
       endTime: end,
       timezone: moment.tz.guess(),
-      email: 'johnanisere@gmail.com',
-      devemail: 'sheyiogundijo@gmail.com'
+      email: "johnanisere@gmail.com",
+      devemail: "sheyiogundijo@gmail.com"
     };
     props.scheduleInterview(payload, request, onToggle, cb);
   };
   const submit = (cb, code) => {
     const data = {
-      email: 'sheyiogundijo@gmail.com',
+      email: "sheyiogundijo@gmail.com",
       code
     };
 
@@ -83,84 +83,76 @@ function ScheduleInterview(props) {
   };
 
   return (
-    <Grommet full theme={grommet}>
-      <FormLayout>
-        <Box fill align="center" justify="center">
-          <Box width="medium">
-            <Box margin="small" pad="small">
-              <Text
-                width="auto"
-                size="large"
-                margin="small"
-                style={{
-                  fontWeight: 'bold',
-                  fontSize: '25px'
-                }}
-              >
-                Schedule Interview
-              </Text>
-            </Box>
-            <FormError error={error} />
-            <Form onSubmit={handleSubmit}>
-              <FormField
-                label="Add Title"
-                name="title"
-                value={title}
-                onChange={handleChange}
-                required
-                validate={{ regexp: /^[a-z]/i }}
-              />
-              <FormField
-                label="Add Location"
-                name="location"
-                value={location}
-                onChange={handleChange}
-              />
-              <FormFieldSelect decadev={decadev} setDecadev={setDecadev} />
-              <FormField
-                label="Add Description"
-                name="description"
-                value={description}
-                onChange={handleChange}
-                component={TextArea}
-                required
-              />
-              <FormField>
-                <DateTimeDropButton
-                  label="Start time"
-                  name="start"
-                  setDateAndTime={setDateAndTime}
-                  date={startDate}
-                  time={startTime}
-                />
-              </FormField>
-              <FormField>
-                <DateTimeDropButton
-                  label="End time"
-                  name="end"
-                  setDateAndTime={setDateAndTime}
-                  date={endDate}
-                  time={endTime}
-                />
-              </FormField>
-              <Box
-                direction="row"
-                justify="center"
-                align="center"
-                margin={{ top: 'medium' }}
-              >
-                <FormButton
-                  loading={loading}
-                  type="submit"
-                  text="Save Interview"
-                />
-              </Box>
-              <Modal open={open} onToggle={onToggle} submit={submit} />
-            </Form>
-          </Box>
+    <>
+      <Box width="medium">
+        <Box margin="small" pad="small">
+          <Text
+            width="auto"
+            size="large"
+            margin="small"
+            style={{
+              fontWeight: "bold",
+              fontSize: "25px"
+            }}
+          >
+            Schedule Interview
+          </Text>
         </Box>
-      </FormLayout>
-    </Grommet>
+        <FormError error={error} />
+        <Form onSubmit={handleSubmit}>
+          <FormField
+            label="Add Title"
+            name="title"
+            value={title}
+            onChange={handleChange}
+            required
+            validate={{ regexp: /^[a-z]/i }}
+          />
+          <FormField
+            label="Add Location"
+            name="location"
+            value={location}
+            onChange={handleChange}
+          />
+          <FormFieldSelect decadev={decadev} setDecadev={setDecadev} />
+          <FormField
+            label="Add Description"
+            name="description"
+            value={description}
+            onChange={handleChange}
+            component={TextArea}
+            required
+          />
+          <FormField>
+            <DateTimeDropButton
+              label="Start time"
+              name="start"
+              setDateAndTime={setDateAndTime}
+              date={startDate}
+              time={startTime}
+            />
+          </FormField>
+          <FormField>
+            <DateTimeDropButton
+              label="End time"
+              name="end"
+              setDateAndTime={setDateAndTime}
+              date={endDate}
+              time={endTime}
+            />
+          </FormField>
+          <Box
+            direction="row"
+            justify="center"
+            align="center"
+            margin={{ top: "medium" }}
+          >
+            <FormButton loading={loading} type="submit" text="Save Interview" />
+          </Box>
+          <Modal open={open} onToggle={onToggle} submit={submit} />
+        </Form>
+      </Box>
+    </>
   );
 }
 const mapDispatchToProps = {
