@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import DateTimeDropButton from '../DateTime';
+import FormFieldSelect from '../FormFieldSelect';
 import { Box, Form, FormField, TextArea, Text } from 'grommet';
 import { useSelector, connect } from 'react-redux';
 import request from '../../request';
@@ -29,7 +30,7 @@ function ScheduleInterview(props) {
     startTime: '',
     endDate: undefined,
     endTime: '',
-    decadev: email,
+    decadev: '',
     timezone: ''
   });
   const [open, onOpen] = useState(false);
@@ -66,8 +67,8 @@ function ScheduleInterview(props) {
       startTime: start,
       endTime: end,
       timezone: moment.tz.guess(),
-      email: user.email,
-      devemail: decadev
+      email: 'johnanisere@gmail.com',
+      devemail: 'sheyiogundijo@gmail.com'
     };
     props.scheduleInterview(payload, request, onToggle, cb);
   };
