@@ -12,6 +12,7 @@ import scheduleInterviewBoundActionCreator, {
 import { toIso } from "../../helpers/utils";
 import moment from "moment-timezone";
 import Modal from "./Modal";
+import FormLayout from "../FormLayout";
 
 function ScheduleInterview(props) {
   const { error, loading } = useSelector(
@@ -81,7 +82,7 @@ function ScheduleInterview(props) {
   };
 
   return (
-    <>
+    <FormLayout>
       <Box width="medium">
         <Box margin="small" pad="small">
           <Text
@@ -150,7 +151,7 @@ function ScheduleInterview(props) {
           <Modal open={open} onToggle={onToggle} submit={submit} />
         </Form>
       </Box>
-    </>
+    </FormLayout>
   );
 }
 const mapDispatchToProps = {
