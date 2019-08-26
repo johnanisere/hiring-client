@@ -12,8 +12,13 @@ const Invite = lazy(() => import('../InviteHirer'));
 export default function() {
   return (
     <Switch>
-      <Route exact path={`/login`} component={Login} />
-      <Route exact path={`/update-password`} component={UpdatePassword} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/signup" component={SignUp} />
+      <Route exact path="/update-password/:token" component={UpdatePassword} />
+
+      <Route exact path="/schedule" component={Schedule} />
+      <Route exact path="/invite" component={Invite} />
+
       <Route
         exact
         path={`/change-password/:token`}
