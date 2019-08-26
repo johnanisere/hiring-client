@@ -1,10 +1,6 @@
 import React, { lazy } from 'react';
 
-<<<<<<< HEAD
-import { Route, Switch, Redirect } from 'react-router-dom';
-=======
 import { Route, Switch } from 'react-router-dom';
->>>>>>> init
 
 const Login = lazy(() => import('./Login'));
 const SignUp = lazy(() => import('./SignUp'));

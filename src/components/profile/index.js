@@ -16,45 +16,32 @@ import Photo from './Photo';
 import Info from './Info';
 import Skills from './Skills';
 
-class DecaDevProfile extends Component {
-  state = {
-    openNotification: false
-  };
-
-  render() {
-    const { openNotification } = this.state;
-    return (
-      <Grommet full theme={grommet}>
-        <Box fill>
+const Background = () => {
+  return (
+    <Grommet theme={grommet} full>
+      <ResponsiveContext.Consumer>
+        {size => (
           <Box
-            as="header"
-            direction="row"
-            align="center"
-            pad={{ vertical: 'small', horizontal: 'small' }}
-            justify="between"
-            background="#555555"
-            elevation="large"
-            style={{ zIndex: '1000', color: '#f8f8f8', height: '60px' }}
+            // responsive
+            fill
+            background="#ffffff"
+            round="small"
           >
-            <img
-              src={Decagon}
-              alt="Decagon-logo"
-              style={{ width: '50px', height: 'auto' }}
-            />
-            <Heading level={3} margin="none" color="white">
-              <strong>Welcome Decagon</strong>
-            </Heading>
-            <Button
-              onClick={() =>
-                this.setState({ openNotification: !openNotification })
-              }
-              icon={<User color="white" />}
-            />
-          </Box>
-          <Box flex direction="row">
-            <Box flex align="center" justify="center">
+            <Box
+              // responsive
+              direction="row-responsive"
+              align="center"
+              pad={{ left: "xlarge", right: "xlarge" }}
+              margin={{ bottom: "small" }}
+              style={{ boxShadow: "0px 1px 10px -8px" }}
+            >
+              <Box direction="row-responsive" gap="large" align="center">
+                <Cloudlinux color="plain" size="large" />
+                <Heading size="small">Decagon</Heading>
+              </Box>
               <Box
-                responsive
+                // responsive
+                style={{ marginLeft: "auto" }}
                 direction="row-responsive"
                 align="center"
                 pad={{ top: 'large', left: 'xlarge', right: 'xlarge' }}
@@ -83,6 +70,7 @@ class DecaDevProfile extends Component {
                 </Grid>
               </Box>
             </Box>
+<<<<<<< HEAD
             <Collapsible direction="horizontal" open={openNotification}>
               <Box
                 flex
@@ -92,6 +80,23 @@ class DecaDevProfile extends Component {
                 pad="small"
                 elevation="small"
                 style={{ cursor: 'pointer' }}
+=======
+            <Box
+              // responsive
+              direction="row-responsive"
+              align="center"
+              pad={{ top: "large", left: "xlarge", right: "xlarge" }}
+              margin={{ bottom: "small" }}
+            >
+              <Grid
+                areas={[
+                  { name: "nav", start: [0, 0], end: [0, 0] },
+                  { name: "main", start: [1, 0], end: [1, 0] }
+                ]}
+                columns={["medium", "flex"]}
+                rows={["flex"]}
+                gap="small"
+>>>>>>> init
               >
                 <Text size="medium">Account</Text>
                 <Text size="medium">Settings</Text>
