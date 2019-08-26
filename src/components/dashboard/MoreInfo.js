@@ -1,9 +1,11 @@
-import React, { useState } from "react";
-import { Box, Layer, Anchor } from "grommet";
-import Profil from "../profil";
+import React, { useState } from 'react';
+import { Box, Layer, Anchor } from 'grommet';
+import DecadevModal from '../decadevModal/index';
 
 export default function MoreInfo(props) {
   const [open, setOpen] = useState(false);
+
+  const { email, profilePhoto, phone, cv, bio, name } = props;
 
   function onOpen() {
     return setOpen(true);
@@ -12,34 +14,23 @@ export default function MoreInfo(props) {
     setOpen(undefined);
   }
   return (
-    <Box
-      align="center"
-      justify="center"
-      style={{
-        position: "absolute",
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0,
-        cursor: "pointer"
-      }}
-      onClick={onOpen}
-    >
-      <Anchor label="" />
+    <Box align="center" justify="center">
+      <Anchor label="More Info" onClick={onOpen} />
       {open && (
-        <Layer
-          pad="small"
-          modal
-          onClickOutside={onClose}
-          onEsc={onClose}
-          style={{ width: "100%", maxWidth: "1000px" }}
-        >
+        <Layer pad="small" modal onClickOutside={onClose} onEsc={onClose}>
           <Box
             pad="none"
             onSubmit={onClose}
-            style={{ backgroundColor: "transparent", overflowY: "scroll" }}
+            style={{ backgroundColor: 'transparent' }}
           >
-            <Profil dev={props.dev} selected={props.selected} />
+            <DecadevModal
+              email={email}
+              profilePhoto={profilePhoto}
+              phone={phone}
+              cv={cv}
+              bio={bio}
+              name={name}
+            />
           </Box>
         </Layer>
       )}
