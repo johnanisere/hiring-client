@@ -5,26 +5,29 @@ import { getAllDecadevs } from './decadevs.action';
 import MoonLoader from 'react-spinners/MoonLoader';
 import Dropdown from '../Dropdown';
 import Next from './Next';
+import MoreInfo from './MoreInfo';
 
-import {
-  Grommet,
-  Anchor,
-  Box,
-  Text,
-  Image,
-  Grid,
-  ResponsiveContext
-} from 'grommet';
+import { Grommet, Box, Text, Image, Grid, ResponsiveContext } from 'grommet';
 
 class Cards extends React.Component {
+  state = {
+    open: false,
+    gender: 'All'
+  };
   componentDidMount() {
     this.props.getAllDecadevs(request);
   }
   handleChange = gender => {
+    this.setState({ gender }, () => this.props.getAllDecadevs(request, gender));
+  };
+
+  handleNext = () => {
+    const { gender } = this.state;
     this.props.getAllDecadevs(request, gender);
   };
-  handleNext = () => {
-    this.props.getAllDecadevs(request);
+
+  onToggle = () => {
+    this.setState({ ...this.state, open: !this.state.open });
   };
 
   render() {
@@ -83,7 +86,16 @@ class Cards extends React.Component {
                         src={dev.profilePhoto}
                       />
                       <Text>{dev.email}</Text>
-                      <Anchor href="" label="More Info" />
+                      <MoreInfo
+                        email={dev.email}
+                        profilePhoto={dev.profilePhoto}
+                        phone={dev.phone}
+                        cv={dev.cv}
+                        bio={dev.bio}
+                        name={dev.name}
+                        open={this.state.open}
+                        onToggle={this.onToggle}
+                      />
                     </Box>
                   );
                 })}
