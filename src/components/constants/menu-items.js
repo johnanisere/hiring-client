@@ -1,2 +1,22 @@
-const menuItems = ['Feedback', 'Notification', 'Settings'];
-export default menuItems;
+export const hiringPartnerMenuItems = [
+  { Decadevs: ["All Decadevs", "Decadevs Interviewed", "Decadevs Hired"] },
+  "Feedback",
+  "Notification",
+  "Settings"
+];
+export const adminMenuItems = [
+  "Dashboard",
+  "Recent Activity",
+  {
+    Interviews: [
+      "Scheduled Interviews",
+      "Attended Interviews",
+      "Declined Interviews"
+    ]
+  },
+  "Settings",
+  "Announcements",
+  {
+    "User Management": ["Hiring Partners", "Admin"]
+  }
+];

@@ -1,10 +1,21 @@
-import React from 'react';
-import { Box } from 'grommet';
-import MenuItems from './MenuItems';
-import CollapsibleMenu from './Collapsable';
-import menuItems from '../components/constants/menu-items';
+import React, { useEffect } from "react";
+import { Box } from "grommet";
+import MenuItems from "./MenuItems";
+import CollapsibleMenu from "./Collapsable";
+import { useSelector } from "react-redux";
+import {
+  hiringPartnerMenuItems,
+  adminMenuItems
+} from "../components/constants/menu-items";
 
 export default function SideBar({ sidebar }) {
+  const { role } = useSelector(({ user }) => user.data);
+  const list =
+    role === "hiringpartner" ? hiringPartnerMenuItems : adminMenuItems;
+
+  useEffect(() => {
+    console.log({ list, role });
+  });
   return (
     <>
       {sidebar && (
@@ -13,18 +24,25 @@ export default function SideBar({ sidebar }) {
           background="dark-3"
           width="small"
           animation={[
-            { type: 'fadeIn', duration: 300 },
+            { type: "fadeIn", duration: 300 },
             {
-              type: 'slideRight',
-              size: 'xlarge',
+              type: "slideRight",
+              size: "xlarge",
               duration: 150
             }
           ]}
         >
-          <CollapsibleMenu />
-          {menuItems.map(name => (
-            <MenuItems name={name} key={name} />
-          ))}
+          {list.map(value =>
+            typeof value === "string" ? (
+              <MenuItems name={value} key={value} />
+            ) : (
+              <CollapsibleMenu
+                key={Object.keys(value)[0]}
+                list={Object.values(value)[0]}
+                label={Object.keys(value)[0]}
+              />
+            )
+          )}
         </Box>
       )}
     </>
