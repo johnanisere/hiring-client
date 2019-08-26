@@ -1,19 +1,25 @@
-import React from "react";
-import { connect } from "react-redux";
-import request from "../../request";
-import { getAllDecadevs } from "./decadevs.action";
-import MoonLoader from "react-spinners/MoonLoader";
-import Dropdown from "../Dropdown";
-import Next from "./Next";
+import React from 'react';
+import { connect } from 'react-redux';
+import request from '../../request';
+import { getAllDecadevs } from './decadevs.action';
+import MoonLoader from 'react-spinners/MoonLoader';
+import Dropdown from '../Dropdown';
+import Next from './Next';
 
-import Card from "./Card";
-
-import { Grommet, Box, Grid, ResponsiveContext } from "grommet";
+import {
+  Grommet,
+  Anchor,
+  Box,
+  Text,
+  Image,
+  Grid,
+  ResponsiveContext
+} from 'grommet';
 
 class Cards extends React.Component {
   state = {
     open: false,
-    gender: "All",
+    gender: 'All',
     fetching: false
   };
   componentDidMount() {
@@ -27,9 +33,8 @@ class Cards extends React.Component {
     const { gender } = this.state;
     this.props.getAllDecadevs(request, gender);
   };
-
-  onToggle = () => {
-    this.setState({ ...this.state, open: !this.state.open });
+  handleNext = () => {
+    this.props.getAllDecadevs(request);
   };
 
   render() {
@@ -38,7 +43,7 @@ class Cards extends React.Component {
     return (
       <>
         <Dropdown handleChange={this.handleChange} />
-        <Grommet style={{ overflow: "scroll", minHeight: "100%" }}>
+        <Grommet style={{ overflow: 'scroll', minHeight: '100%' }}>
           {loading && (
             <Box fill width="medium" align="center" justify="center">
               <MoonLoader size={30} />
@@ -49,35 +54,49 @@ class Cards extends React.Component {
             {size => (
               <Grid
                 columns={
-                  size === "small"
-                    ? ["1"]
-                    : size === "medium"
-                    ? ["1/4", "1/4", "1/4", "1/4"]
-                    : size === "large"
-                    ? ["1/4", "1/4", "1/4", "1/4"]
-                    : size === "xlarge"
-                    ? ["1/5", "1/5", "1/5", "1/5", "1/5"]
-                    : ["1/6", "1/6", "1/6", "1/6", "1/6", "1/6"]
+                  size === 'small'
+                    ? ['1']
+                    : size === 'medium'
+                    ? ['1/2', '1/2']
+                    : size === 'large'
+                    ? ['1/4', '1/4', '1/4', '1/4']
+                    : size === 'xlarge'
+                    ? ['1/5', '1/5', '1/5', '1/5', '1/5']
+                    : ['1/6', '1/6', '1/6', '1/6', '1/6', '1/6']
                 }
               >
-                {!loading &&
-                  decadevs.map((dev, key) => (
-                    <Card
-                      key={key}
-                      dev={dev}
-                      open={this.state.open}
-                      onToggle={this.onToggle}
-                    />
-                  ))}
+                {decadevs.map(dev => {
+                  return (
+                    <Box
+                      key={dev._id}
+                      pad="medium"
+                      align="center"
+                      background={{
+                        color: 'light-2',
+                        opacity: 'strong'
+                      }}
+                      round
+                      gap="small"
+                      margin="medium"
+                    >
+                      <Image
+                        style={{
+                          width: '100%',
+                          height: 'auto',
+                          borderRadius: '12px'
+                        }}
+                        fit="cover"
+                        src={dev.profilePhoto}
+                      />
+                      <Text>{dev.email}</Text>
+                      <Anchor href="" label="More Info" />
+                    </Box>
+                  );
+                })}
               </Grid>
             )}
           </ResponsiveContext.Consumer>
-          {!loading && (
-            <Next
-              handleNext={this.handleNext}
-              style={{ borderRadius: "5px" }}
-            />
-          )}
+          <Next handleNext={this.handleNext} />
         </Grommet>
       </>
     );

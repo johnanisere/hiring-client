@@ -6,10 +6,10 @@ import ProtectedRoute from '../components/ProtectedRoute';
 
 export default function App(props) {
   return (
-    <ProtectedRoute>
-      <Layout>
-        <Cards />
-      </Layout>
-    </ProtectedRoute>
+    // <ProtectedRoute>
+    <Layout>
+      <Cards />
+    </Layout>
+    // </ProtectedRoute>
   );
 }
