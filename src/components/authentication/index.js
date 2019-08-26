@@ -8,9 +8,6 @@ const UpdatePassword = lazy(() => import('./UpdatePassword'));
 const ChangePassword = lazy(() => import('./ChangePassword'));
 const Schedule = lazy(() => import('../dashboard/ScheduleInterview'));
 const Invite = lazy(() => import('../InviteHirer'));
-const HirerSignUp = lazy(() => import('../HirerSignUp'));
-const VerifyHirer = lazy(() => import('../HirerSignUp/VerifyHirer'));
-const HirerLogin = lazy(() => import('../HirerSignUp/hirerLogin/HirerLogin'));
 
 export default function() {
   return (
@@ -30,7 +27,6 @@ export default function() {
         path={`/change-password/:token`}
         component={ChangePassword}
       />
-      <Route exact path="/login/partner" component={HirerLogin} />
     </Switch>
   );
 }
