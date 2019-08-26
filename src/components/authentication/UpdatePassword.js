@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { BeatLoader } from "react-spinners";
 import { Box, Button, Form, Text, FormField } from "grommet";
-
 import request from "../../request";
 import updatePasswordBoundActionCreator from "./updatePassword.action";
 import SuccessNotification from "../toasters/SuccessNotification";

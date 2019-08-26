@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 const App = props => {
   const { token } = useSelector(({ authentication }) => authentication);
+
   return (
     <>
       {!!!token && <Redirect to="/login" />}
