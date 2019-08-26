@@ -2,7 +2,8 @@ import React from 'react';
 import { Box, Image } from 'grommet';
 import ModalWork from './ModalWork';
 
-export default function Photo() {
+export default function Photo(props) {
+  const { profilePhoto } = props;
   return (
     <Box align="start" responsive>
       <Box
@@ -11,7 +12,7 @@ export default function Photo() {
         border
         style={{ margin: 'auto', borderRadius: '5px' }}
       >
-        <Image src="//v2.grommet.io/assets/IMG_4245.jpg" fit="cover" />
+        <Image src={profilePhoto} fit="cover" />
       </Box>
       <ModalWork
         work="WORK"
