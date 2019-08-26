@@ -4,12 +4,10 @@ import { Link, withRouter } from 'react-router-dom';
 import { Heading, Text, Box } from 'grommet';
 import { Phone, Chat, Calendar } from 'grommet-icons';
 
-function Info(props) {
+export default function Info(props) {
   const { email, phone, cv, name } = props;
   const [values, setValues] = useState([]);
-  console.log(props.history);
-  const handleClick = () =>
-    props.history.push(`/schedule-interview?email=${email}`);
+  console.log('NAME: ', name);
 
   useEffect(() => {
     const obj = getDetails();
