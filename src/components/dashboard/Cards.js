@@ -23,7 +23,6 @@ class Cards extends React.Component {
   };
   render() {
     const { loading, decadevs } = this.props;
-    console.log({ loading, decadevs });
     return (
       <>
         <Dropdown handleChange={this.handleChange} />
