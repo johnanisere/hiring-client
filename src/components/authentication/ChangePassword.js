@@ -40,6 +40,7 @@ const ChangePass = ({ onChangePassword, match }) => {
     onChangePassword(
       data,
       request,
+      token,
       activityIndicator,
       handleError,
       handleSuccess,
