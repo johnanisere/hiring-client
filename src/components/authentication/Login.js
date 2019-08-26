@@ -21,7 +21,8 @@ function Login(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.login(values, request);
+    const navigateToDashboard = () => props.history.push("/dashboard");
+    props.login(values, request, navigateToDashboard);
   };
 
   return (
@@ -37,7 +38,7 @@ function Login(props) {
             paddingBottom: "15px"
           }}
         >
-          Login
+          Login Here
         </Text>
         <Text size="small" alignSelf="center">
           Enter email and password
@@ -48,6 +49,7 @@ function Login(props) {
         <FormError error={error} />
         <Input
           name="email"
+          required
           validate={{
             regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
             message: "Input must be valid email!"
@@ -56,7 +58,10 @@ function Login(props) {
           onChange={handleChange}
           placeholder="Email"
           type="email"
-          required
+          style={{
+            marginBottom: "15px",
+            borderRadius: "20px"
+          }}
         />
         <Input
           placeholder="Password"
@@ -65,12 +70,11 @@ function Login(props) {
           required
           value={password}
           onChange={handleChange}
-          validate={{
-            regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-            message:
-              "Password must contain at least 8 characters, 1 letter, and 1 number"
-          }}
           color="dark-1"
+          style={{
+            marginBottom: "15px",
+            borderRadius: "20px"
+          }}
         />
         <Button loading={loading} type="submit" text="Login" />
       </Form>
@@ -84,4 +88,4 @@ const mapDispatchToProps = {
 export default connect(
   null,
   mapDispatchToProps
-)(React.memo(Login));
+)(Login);

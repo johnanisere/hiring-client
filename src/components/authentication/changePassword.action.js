@@ -4,11 +4,12 @@ const changePassBoundActionCreator = (
   token,
   activityIndicator,
   handleError,
-  onSuccess
+  onSuccess,
+  token
 ) => async () => {
   try {
     activityIndicator(true);
-    const response = await request.put("/users/change-password", data, {
+    const response = await request.put('/users/change-password', data, {
       headers: {
         authorization: `Bearer ${token}`
       }

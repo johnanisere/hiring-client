@@ -1,22 +1,27 @@
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import InviteForm from "../src/components/mailInvite/InviteForm";
-import Background from "../src/components/profile/Background";
 
-const Home = lazy(() => import("./compositions/Home"));
+const Dashboard = lazy(() => import("./compositions/dashboard"));
 const Authentication = lazy(() => import("./compositions/authentication"));
+const DecadevModal = lazy(() =>
+  import("./components/decadevModal/DecadevModal")
+);
+const Profile = lazy(() => import("./components/profile/"));
+const ScheduleInterview = lazy(() =>
+  import("./components/dashboard/ScheduleInterview")
+);
 
 const App = () => (
   <BrowserRouter>
     <Suspense fallback="loading..">
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/profile" component={Background} />
-        <Route exact path="/invitemail" component={InviteForm} />
-        <Route to="/" component={Authentication} />
+        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/viewprofile" component={DecadevModal} />
+        <Route exact path="/schedule-interview" component={ScheduleInterview} />
+        <Route path="/" component={Authentication} />
       </Switch>
     </Suspense>
   </BrowserRouter>
 );
-
 export default App;

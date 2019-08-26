@@ -1,17 +1,15 @@
 import React from "react";
-import { connect } from "react-redux";
 
 import Layout from "../components/Layout";
-import Cards from "../components/Cards";
+import Cards from "../components/dashboard/Cards";
+import ProtectedRoute from "../components/ProtectedRoute";
 
-function App(props) {
+export default function App(props) {
   return (
-    <div className="App">
+    <ProtectedRoute>
       <Layout>
         <Cards />
       </Layout>
-    </div>
+    </ProtectedRoute>
   );
 }
-const mapStateToProps = state => ({ state });
-export default connect(mapStateToProps)(App);

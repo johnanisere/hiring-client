@@ -17,8 +17,9 @@ const ChangePass = ({ onChangePassword, match }) => {
     newPassword: "",
     confirmPassword: ""
   });
-  const { token } = match.params;
-
+  const {
+    params: { token }
+  } = match;
   // collects the data from the fields
   const handleChange = ({ target: { name, value } }) => {
     onChangeData({ ...data, [name]: value });
@@ -43,7 +44,8 @@ const ChangePass = ({ onChangePassword, match }) => {
       token,
       activityIndicator,
       handleError,
-      handleSuccess
+      handleSuccess,
+      token
     );
   };
   const closeToaster = () => onSuccess("");

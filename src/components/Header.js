@@ -1,7 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Box, Button, Text } from "grommet";
+import { NavLink } from "react-router-dom";
+import { Menu } from "grommet-icons";
 
 export default function Header(props) {
+  const { email } = useSelector(({ user }) => user.data);
   return (
     <Box
       gridArea="header"
@@ -12,10 +16,13 @@ export default function Header(props) {
       background="dark-2"
     >
       <Button onClick={props.toggleSidebar}>
-        <Text size="large">Title</Text>
+        <Menu size="medium" />
       </Button>
 
-      <Text>email@example.com</Text>
+      <Text>{email}</Text>
+      <NavLink className="link" to="/updatepassword">
+        <Text>Update Password</Text>
+      </NavLink>
     </Box>
   );
 }

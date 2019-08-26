@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
-
-import { Box, Button, Collapsible, Grommet, Text } from 'grommet';
-import decadevSubmenu from '../components/constants/decadevs-submenu';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { Box, Button, Collapsible, Grommet, Text } from "grommet";
 
 const MenuButton = ({ label, open, submenu, ...rest }) => {
   return (
     <Button hoverIndicator {...rest}>
       <Box
-        margin={submenu ? { left: 'small' } : undefined}
+        margin={submenu ? { left: "small" } : undefined}
         direction="row"
         align="center"
         pad={{
-          horizontal: 'medium',
-          vertical: 'small'
+          horizontal: "medium",
+          vertical: "small"
         }}
+        style={{ minWidth: "200px" }}
       >
-        <Text style={{ color: 'white' }}>{label}</Text>
+        <Text style={{ color: "white" }}>{label}</Text>
       </Box>
     </Button>
   );
 };
 
-export default function CollapsibleMenu() {
+export default function CollapsibleMenu({ list, label }) {
   const [openMenu, setOpenMenu] = useState(false);
   function toggleMenu() {
     setOpenMenu(!openMenu);
@@ -30,20 +30,20 @@ export default function CollapsibleMenu() {
   return (
     <Grommet>
       <Box width="small">
-        <MenuButton open={openMenu} label="Decadevs" onClick={toggleMenu} />
-        {decadevSubmenu.map(item => {
+        <MenuButton open={openMenu} label={label} onClick={toggleMenu} />
+        {list.map(item => {
           return (
             <Collapsible open={openMenu} key={item}>
               <Button
                 hoverIndicator
-                onClick={() => alert('Submenu item 1 selected')}
+                onClick={() => alert("Submenu item 1 selected")}
               >
                 <Box
                   direction="row"
                   align="center"
-                  pad={{ horizontal: 'medium', vertical: 'small' }}
+                  pad={{ horizontal: "medium", vertical: "small" }}
                 >
-                  <Text size="small" style={{ color: 'white' }}>
+                  <Text size="small" style={{ color: "white" }}>
                     {item}
                   </Text>
                 </Box>
@@ -55,3 +55,8 @@ export default function CollapsibleMenu() {
     </Grommet>
   );
 }
+
+CollapsibleMenu.propTypes = {
+  list: PropTypes.array,
+  label: PropTypes.string
+};

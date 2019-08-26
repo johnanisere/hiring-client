@@ -9,22 +9,27 @@ const setToken = payload => ({
   payload
 });
 
-const setLoading = payload => ({
+export const setLoading = payload => ({
   type: "LOADING",
   payload
 });
-const onError = payload => ({
+export const onError = payload => ({
   type: "USER_LOGIN_ERROR",
   payload
 });
 
-const loginBoundActionCreator = (data, request) => async dispatch => {
+const loginBoundActionCreator = (
+  data,
+  request,
+  navigateToDashboard
+) => async dispatch => {
   try {
     dispatch(setLoading(true));
     const response = await request.post("/users/login", data);
     dispatch(login(response.data));
     dispatch(setToken(response.data.token));
     dispatch(setLoading(false));
+    navigateToDashboard();
     return response.data;
   } catch (err) {
     dispatch(setLoading(false));
