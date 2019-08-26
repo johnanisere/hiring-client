@@ -1,6 +1,7 @@
 const changePassBoundActionCreator = (
   data,
   request,
+  token,
   activityIndicator,
   handleError,
   onSuccess,
