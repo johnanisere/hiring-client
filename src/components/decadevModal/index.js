@@ -5,45 +5,26 @@ import ModalPhoto from './ModalPhoto';
 import ModalInfo from './ModalInfo';
 import ModalSkills from './ModalSkills';
 
-const DecadevModal = props => {
-  const { email, profilePhoto, phone, cv, bio, name } = props;
+const DecadevModal = () => {
   return (
-    <Box
-      responsive
-      elevation="large"
-      direction="row-responsive"
-      round="small"
-      gap="small"
-      align="center"
-      pad="medium"
-      background="#fff"
-    >
-      <Box border background="">
-        <ModalPhoto
-          email={email}
-          profilePhoto={profilePhoto}
-          phone={phone}
-          cv={cv}
-          bio={bio}
-          name={name}
-        />
-        <ModalSkills
-          email={email}
-          profilePhoto={profilePhoto}
-          phone={phone}
-          cv={cv}
-          bio={bio}
-          name={name}
-        />
+    <Box responsive align="center" fill background="#2096f3">
+      <Box
+        responsive
+        elevation="large"
+        direction="row-responsive"
+        round="small"
+        gap="small"
+        margin="large"
+        align="center"
+        pad="medium"
+        background="#fff"
+      >
+        <Box border background="">
+          <ModalPhoto />
+          <ModalSkills />
+        </Box>
+        <ModalInfo />
       </Box>
-      <ModalInfo
-        email={email}
-        profilePhoto={profilePhoto}
-        phone={phone}
-        cv={cv}
-        bio={bio}
-        name={name}
-      />
     </Box>
   );
 };

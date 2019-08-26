@@ -4,8 +4,7 @@ const changePassBoundActionCreator = (
   token,
   activityIndicator,
   handleError,
-  onSuccess,
-  token
+  onSuccess
 ) => async () => {
   try {
     activityIndicator(true);

@@ -69,6 +69,7 @@ function DecaDevProfile() {
                 </Grid>
               </Box>
             </Box>
+
             <Collapsible direction="horizontal" open={openNotification}>
               <Box
                 flex
@@ -78,6 +79,7 @@ function DecaDevProfile() {
                 pad="small"
                 elevation="small"
                 style={{ cursor: 'pointer' }}
+
 
             <Box
               responsive
@@ -96,6 +98,26 @@ function DecaDevProfile() {
                 gap="small"
 
                 <Text> size="medium">Account</Text>
+
+            <Box
+              // responsive
+              direction="row-responsive"
+              align="center"
+              pad={{ top: "large", left: "xlarge", right: "xlarge" }}
+              margin={{ bottom: "small" }}
+            >
+              <Grid
+                areas={[
+                  { name: "nav", start: [0, 0], end: [0, 0] },
+                  { name: "main", start: [1, 0], end: [1, 0] }
+                ]}
+                columns={["medium", "flex"]}
+                rows={["flex"]}
+                gap="small"
+
+              >
+                <Text size="medium">Account</Text>
+
                 <Text size="medium">Settings</Text>
                 <Text size="medium">Logout</Text>
               </Box>

@@ -3,9 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 const Dashboard = lazy(() => import('./compositions/dashboard'));
 const Authentication = lazy(() => import('./compositions/authentication'));
-const DecadevModal = lazy(() =>
-  import('./components/decadevModal/DecadevModal')
-);
+
 const Profile = lazy(() => import('./components/profile/'));
 const ScheduleInterview = lazy(() =>
   import('./components/dashboard/ScheduleInterview')
