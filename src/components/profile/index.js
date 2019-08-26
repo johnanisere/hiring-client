@@ -69,7 +69,6 @@ function DecaDevProfile() {
                 </Grid>
               </Box>
             </Box>
-
             <Collapsible direction="horizontal" open={openNotification}>
               <Box
                 flex
