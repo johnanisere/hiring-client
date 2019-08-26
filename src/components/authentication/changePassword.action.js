@@ -1,10 +1,10 @@
 const changePassBoundActionCreator = (
   data,
   request,
-  token,
   activityIndicator,
   handleError,
-  onSuccess
+  onSuccess,
+  token
 ) => async () => {
   try {
     activityIndicator(true);
