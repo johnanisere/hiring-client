@@ -15,9 +15,9 @@ const App = () => (
   <BrowserRouter>
     <Suspense fallback="loading..">
       <Switch>
-        <Route exact path="/viewprofile" component={DecadevModal} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/viewprofile" component={DecadevModal} />
         <Route exact path="/schedule-interview" component={ScheduleInterview} />
         <Route path="/" component={Authentication} />
       </Switch>
