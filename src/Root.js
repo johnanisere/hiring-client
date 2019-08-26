@@ -3,17 +3,19 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 const Dashboard = lazy(() => import("./compositions/dashboard"));
 const Authentication = lazy(() => import("./compositions/authentication"));
-const InviteForm = lazy(() => import("./components/settings/InviteForm"));
 const Profile = lazy(() => import("../src/components/profile/"));
+const ScheduleInterview = lazy(() =>
+  import("./components/dashboard/ScheduleInterview")
+);
 
 const App = () => (
   <BrowserRouter>
     <Suspense fallback="loading..">
       <Switch>
+        <Route path="/" component={Authentication} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/invitemail" component={InviteForm} />
-        <Route path="/" component={Authentication} />
+        <Route exact path="/schedule-interview" component={ScheduleInterview} />
       </Switch>
     </Suspense>
   </BrowserRouter>
