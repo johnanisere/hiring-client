@@ -9,7 +9,7 @@ import SuccessNotification from "../toasters/SuccessNotification";
 
 import changePassBoundActionCreator from "./changePassword.action";
 
-const ChangePass = ({ onChangePassword }) => {
+const ChangePass = ({ onChangePassword, match }) => {
   const [error, onError] = useState({});
   const [loading, onLoading] = useState(false);
   const [success, onSuccess] = useState("");
@@ -17,6 +17,7 @@ const ChangePass = ({ onChangePassword }) => {
     newPassword: "",
     confirmPassword: ""
   });
+  const { token } = match.params;
 
   // collects the data from the fields
   const handleChange = ({ target: { name, value } }) => {
@@ -39,6 +40,7 @@ const ChangePass = ({ onChangePassword }) => {
     onChangePassword(
       data,
       request,
+      token,
       activityIndicator,
       handleError,
       handleSuccess

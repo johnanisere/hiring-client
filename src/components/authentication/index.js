@@ -11,7 +11,11 @@ export default function() {
     <Switch>
       <Route exact path={`/login`} component={Login} />
       <Route exact path={`/update-password`} component={UpdatePassword} />
-      <Route exact path={`/change-password`} component={ChangePassword} />
+      <Route
+        exact
+        path={`/change-password/:token`}
+        component={ChangePassword}
+      />
     </Switch>
   );
 }
