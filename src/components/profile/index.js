@@ -70,6 +70,20 @@ const Background = () => {
                 </Grid>
               </Box>
             </Box>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+            <Collapsible direction="horizontal" open={openNotification}>
+              <Box
+                flex
+                gap="medium"
+                width="small"
+                background="light-2"
+                pad="small"
+                elevation="small"
+                style={{ cursor: 'pointer' }}
+=======
+>>>>>>> init
             <Box
               // responsive
               direction="row-responsive"
@@ -85,6 +99,10 @@ const Background = () => {
                 columns={["medium", "flex"]}
                 rows={["flex"]}
                 gap="small"
+<<<<<<< HEAD
+=======
+>>>>>>> init
+>>>>>>> init
               >
                 <Text size="medium">Account</Text>
                 <Text size="medium">Settings</Text>

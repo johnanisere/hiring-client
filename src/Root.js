@@ -4,6 +4,7 @@ import Loading from './components/Loading';
 
 const Dashboard = lazy(() => import('./compositions/dashboard'));
 const Authentication = lazy(() => import('./compositions/authentication'));
+
 const Profile = lazy(() => import('./components/profile/'));
 const ScheduleInterview = lazy(() =>
   import('./components/dashboard/ScheduleInterview')
