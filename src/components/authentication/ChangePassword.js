@@ -40,10 +40,10 @@ const ChangePass = ({ onChangePassword, match }) => {
     onChangePassword(
       data,
       request,
-      token,
       activityIndicator,
       handleError,
-      handleSuccess
+      handleSuccess,
+      token
     );
   };
   const closeToaster = () => onSuccess('');
