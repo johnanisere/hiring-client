@@ -12,13 +12,7 @@ const Background = () => {
     <Grommet theme={grommet} full>
       <ResponsiveContext.Consumer>
         {size => (
-          <Box
-            responsive
-            fill
-            background="#ffffff"
-            elevation="large"
-            round="small"
-          >
+          <Box responsive fill background="#ffffff" round="small">
             <Box
               responsive
               direction="row-responsive"

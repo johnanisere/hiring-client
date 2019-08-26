@@ -7,15 +7,19 @@ const Profile = lazy(() => import("../src/components/profile/"));
 const ScheduleInterview = lazy(() =>
   import("./components/dashboard/ScheduleInterview")
 );
+const DecadevModal = lazy(() =>
+  import("../src/components/decadevModal/DecadevModal")
+);
 
 const App = () => (
   <BrowserRouter>
     <Suspense fallback="loading..">
       <Switch>
-        <Route path="/" component={Authentication} />
+        <Route exact path="/viewprofile" component={DecadevModal} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/schedule-interview" component={ScheduleInterview} />
+        <Route path="/" component={Authentication} />
       </Switch>
     </Suspense>
   </BrowserRouter>
