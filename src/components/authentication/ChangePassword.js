@@ -17,9 +17,8 @@ const ChangePass = ({ onChangePassword, match }) => {
     newPassword: '',
     confirmPassword: ''
   });
-  const {
-    params: { token }
-  } = match;
+  const { token } = match.params;
+
   // collects the data from the fields
   const handleChange = ({ target: { name, value } }) => {
     onChangeData({ ...data, [name]: value });
@@ -41,6 +40,7 @@ const ChangePass = ({ onChangePassword, match }) => {
     onChangePassword(
       data,
       request,
+      token,
       activityIndicator,
       handleError,
       handleSuccess,
