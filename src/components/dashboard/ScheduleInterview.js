@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import DateTimeDropButton from "../DateTime";
-import FormFieldSelect from "../FormFieldSelect";
-import { Box, Form, FormField, TextArea, Text } from "grommet";
-import { useSelector, connect } from "react-redux";
-import request from "../../request";
-import FormError from "../formError";
-import FormButton from "../button/FormButton";
+import React, { useState } from 'react';
+import DateTimeDropButton from '../DateTime';
+import FormFieldSelect from '../FormFieldSelect';
+import { Box, Form, FormField, TextArea, Text } from 'grommet';
+import { useSelector, connect } from 'react-redux';
+import request from '../../request';
+import FormError from '../formError';
+import FormButton from '../button/FormButton';
 import scheduleInterviewBoundActionCreator, {
   authorizeBoundActionCreator
-} from "./scheduleInterview.action";
-import { toIso } from "../../helpers/utils";
-import moment from "moment-timezone";
-import Modal from "./Modal";
-import FormLayout from "../FormLayout";
+} from './scheduleInterview.action';
+import { toIso } from '../../helpers/utils';
+import moment from 'moment-timezone';
+import Modal from './Modal';
+import FormLayout from '../FormLayout';
 
 function ScheduleInterview(props) {
   const { error, loading } = useSelector(
@@ -20,15 +20,15 @@ function ScheduleInterview(props) {
   );
 
   const [values, setValues] = useState({
-    title: "",
-    location: "",
-    description: "",
+    title: '',
+    location: '',
+    description: '',
     startDate: undefined,
-    startTime: "",
+    startTime: '',
     endDate: undefined,
-    endTime: "",
-    decadev: "",
-    timezone: ""
+    endTime: '',
+    decadev: '',
+    timezone: ''
   });
   const [open, onOpen] = useState(false);
   const {
@@ -67,14 +67,14 @@ function ScheduleInterview(props) {
       startTime: start,
       endTime: end,
       timezone: moment.tz.guess(),
-      email: "johnanisere@gmail.com",
-      devemail: "sheyiogundijo@gmail.com"
+      email: 'johnanisere@gmail.com',
+      devemail: 'sheyiogundijo@gmail.com'
     };
     props.scheduleInterview(payload, request, onToggle, cb);
   };
   const submit = (cb, code) => {
     const data = {
-      email: "sheyiogundijo@gmail.com",
+      email: 'sheyiogundijo@gmail.com',
       code
     };
 
@@ -90,8 +90,8 @@ function ScheduleInterview(props) {
             size="large"
             margin="small"
             style={{
-              fontWeight: "bold",
-              fontSize: "25px"
+              fontWeight: 'bold',
+              fontSize: '25px'
             }}
           >
             Schedule Interview
@@ -144,7 +144,7 @@ function ScheduleInterview(props) {
             direction="row"
             justify="center"
             align="center"
-            margin={{ top: "medium" }}
+            margin={{ top: 'medium' }}
           >
             <FormButton loading={loading} type="submit" text="Save Interview" />
           </Box>

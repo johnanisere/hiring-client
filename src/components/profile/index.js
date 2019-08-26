@@ -1,76 +1,108 @@
-import React from "react";
-import { Grommet, Box, Grid, ResponsiveContext, Heading, Text } from "grommet";
-import { grommet } from "grommet/themes";
-import { Cloudlinux, User } from "grommet-icons";
+import React, { Component } from 'react';
+import {
+  Box,
+  Button,
+  Grid,
+  Collapsible,
+  Heading,
+  Grommet,
+  Text
+} from 'grommet';
+import { grommet } from 'grommet/themes';
+import { User } from 'grommet-icons';
+import Decagon from './decagon-logo.png';
 
-import Photo from "./Photo";
-import Info from "./Info";
-import Skills from "./Skills";
+import Photo from './Photo';
+import Info from './Info';
+import Skills from './Skills';
 
-const Background = () => {
-  return (
-    <Grommet theme={grommet} full>
-      <ResponsiveContext.Consumer>
-        {size => (
-          <Box responsive fill background="#ffffff" round="small">
-            <Box
-              responsive
-              direction="row-responsive"
-              align="center"
-              pad={{ left: "xlarge", right: "xlarge" }}
-              margin={{ bottom: "small" }}
-              style={{ boxShadow: "0px 1px 10px -8px" }}
-            >
-              <Box direction="row-responsive" gap="large" align="center">
-                <Cloudlinux color="plain" size="large" />
-                <Heading size="small">Decagon</Heading>
-              </Box>
+class DecaDevProfile extends Component {
+  state = {
+    openNotification: false
+  };
+
+  render() {
+    const { openNotification } = this.state;
+    return (
+      <Grommet full theme={grommet}>
+        <Box fill>
+          <Box
+            as="header"
+            direction="row"
+            align="center"
+            pad={{ vertical: 'small', horizontal: 'small' }}
+            justify="between"
+            background="#555555"
+            elevation="large"
+            style={{ zIndex: '1000', color: '#f8f8f8', height: '60px' }}
+          >
+            <img
+              src={Decagon}
+              alt="Decagon-logo"
+              style={{ width: '50px', height: 'auto' }}
+            />
+            <Heading level={3} margin="none" color="white">
+              <strong>Welcome Decagon</strong>
+            </Heading>
+            <Button
+              onClick={() =>
+                this.setState({ openNotification: !openNotification })
+              }
+              icon={<User color="white" />}
+            />
+          </Box>
+          <Box flex direction="row">
+            <Box flex align="center" justify="center">
               <Box
                 responsive
-                style={{ marginLeft: "auto" }}
                 direction="row-responsive"
-                gap="large"
+                align="center"
+                pad={{ top: 'large', left: 'xlarge', right: 'xlarge' }}
+                margin={{ bottom: 'small' }}
               >
-                <Text size="large"> Find People </Text>
-                <Text size="large"> Messages </Text>
-                <Text size="large"> My Contacts </Text>
-                <User color="brand" />
+                <Grid
+                  areas={[
+                    { name: 'nav', start: [0, 0], end: [0, 0] },
+                    { name: 'main', start: [1, 0], end: [1, 0] }
+                  ]}
+                  columns={['medium', 'flex']}
+                  rows={['flex']}
+                  gap="small"
+                >
+                  <Box gridArea="nav" background="">
+                    <Photo />
+                    <Skills />
+                  </Box>
+                  <Box
+                    gridArea="main"
+                    background=""
+                    style={{ marginLeft: '50px' }}
+                  >
+                    <Info />
+                  </Box>
+                </Grid>
               </Box>
             </Box>
-            <Box
-              responsive
-              direction="row-responsive"
-              align="center"
-              pad={{ top: "large", left: "xlarge", right: "xlarge" }}
-              margin={{ bottom: "small" }}
-            >
-              <Grid
-                areas={[
-                  { name: "nav", start: [0, 0], end: [0, 0] },
-                  { name: "main", start: [1, 0], end: [1, 0] }
-                ]}
-                columns={["medium", "flex"]}
-                rows={["flex"]}
-                gap="small"
+            <Collapsible direction="horizontal" open={openNotification}>
+              <Box
+                flex
+                gap="medium"
+                width="small"
+                background="light-2"
+                pad="small"
+                elevation="small"
+                style={{ cursor: 'pointer' }}
               >
-                <Box gridArea="nav" background="">
-                  <Photo />
-                  <Skills />
-                </Box>
-                <Box
-                  gridArea="main"
-                  background=""
-                  style={{ marginLeft: "50px" }}
-                >
-                  <Info />
-                </Box>
-              </Grid>
-            </Box>
+                <Text size="medium">Account</Text>
+                <Text size="medium">Settings</Text>
+                <Text size="medium">Logout</Text>
+              </Box>
+            </Collapsible>
           </Box>
-        )}
-      </ResponsiveContext.Consumer>
-    </Grommet>
-  );
-};
+        </Box>
+      </Grommet>
+    );
+  }
+}
 
-export default Background;
+export default DecaDevProfile;
