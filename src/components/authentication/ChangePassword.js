@@ -44,8 +44,7 @@ const ChangePass = ({ onChangePassword, match }) => {
       token,
       activityIndicator,
       handleError,
-      handleSuccess,
-      token
+      handleSuccess
     );
   };
   const closeToaster = () => onSuccess("");

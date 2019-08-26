@@ -12,9 +12,14 @@ const Background = () => {
     <Grommet theme={grommet} full>
       <ResponsiveContext.Consumer>
         {size => (
-          <Box responsive fill background="#ffffff" round="small">
+          <Box
+            // responsive
+            fill
+            background="#ffffff"
+            round="small"
+          >
             <Box
-              responsive
+              // responsive
               direction="row-responsive"
               align="center"
               pad={{ left: "xlarge", right: "xlarge" }}
@@ -26,7 +31,7 @@ const Background = () => {
                 <Heading size="small">Decagon</Heading>
               </Box>
               <Box
-                responsive
+                // responsive
                 style={{ marginLeft: "auto" }}
                 direction="row-responsive"
                 gap="large"
@@ -38,7 +43,7 @@ const Background = () => {
               </Box>
             </Box>
             <Box
-              responsive
+              // responsive
               direction="row-responsive"
               align="center"
               pad={{ top: "large", left: "xlarge", right: "xlarge" }}

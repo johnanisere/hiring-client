@@ -1,6 +1,6 @@
-import React from 'react';
-import { FormField } from 'grommet';
-import PropTypes from 'prop-types';
+import React from "react";
+import { FormField } from "grommet";
+import PropTypes from "prop-types";
 const Input = ({
   validate,
   label,
@@ -22,8 +22,8 @@ const Input = ({
     type={type}
     color={color}
     style={{
-      marginBottom: '15px',
-      borderRadius: '20px'
+      marginBottom: "15px",
+      borderRadius: "20px"
     }}
   />
 );
