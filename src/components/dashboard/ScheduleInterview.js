@@ -15,8 +15,8 @@ import Modal from './Modal';
 import FormLayout from '../FormLayout';
 
 function ScheduleInterview(props) {
-  const email = new URLSearchParams(props.location.search).get('email');
-
+  const x = URLSearchParams.get(props.location.search);
+  console.log('X: ', x);
   const { error, loading } = useSelector(
     ({ interviewDetails }) => interviewDetails
   );
