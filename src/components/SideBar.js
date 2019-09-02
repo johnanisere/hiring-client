@@ -12,9 +12,8 @@ export default function SideBar({ sidebar }) {
   const { role } = useSelector(({ user }) => user.data);
   const list =
     role === "hiringpartner" ? hiringPartnerMenuItems : adminMenuItems;
-
   useEffect(() => {
-    console.log({ list, role });
+    console.log( list );
   });
   return (
     <>
