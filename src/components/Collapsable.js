@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { Box, Button, Collapsible, Grommet, Text } from 'grommet';
@@ -38,20 +38,9 @@ const CollapsibleMenu = ({ list, label, history }) => {
             typeof item === 'string'
               ? history.push('/')
               : history.push(Object.values(item)[0]);
-
-            if (item === 'All Decadevs') {
-              history.push('/dashboard');
-            } else if (item === 'Decadevs Interviewed') {
-              console.log('DECADEV INTERVIEWED');
-            } else {
-              console.log('DECADEV HIRED');
-            }
           };
-
-          const key =
-            typeof item === 'string' ? item : item[Object.keys(item)[0]];
           return (
-            <Collapsible open={openMenu} key={key}>
+            <Collapsible open={openMenu} key={item}>
               <Button hoverIndicator onClick={handleClick}>
                 <Box
                   direction="row"
