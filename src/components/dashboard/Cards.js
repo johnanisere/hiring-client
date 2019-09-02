@@ -73,6 +73,7 @@ class Cards extends React.Component {
                       round
                       gap="small"
                       margin="medium"
+                      animation={['fadeIn']}
                     >
                       <Image
                         style={{
