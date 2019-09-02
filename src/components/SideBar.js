@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box } from 'grommet';
 import MenuItems from './MenuItems';
 import CollapsibleMenu from './Collapsable';
