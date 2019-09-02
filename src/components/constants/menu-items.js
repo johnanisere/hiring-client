@@ -17,6 +17,10 @@ export const adminMenuItems = [
   "Settings",
   "Announcements",
   {
-    "User Management": ["Decadevs", "Hiring Partners", "Admin"]
+    "User Management": [
+      { Decadevs: "/dashboard/usermanagement/dev" },
+      { HiringPartners: "/dashboard/usermanagement/hiringpartner" },
+      { Admin: "/dashboard/usermanagement/admin" }
+    ]
   }
 ];
