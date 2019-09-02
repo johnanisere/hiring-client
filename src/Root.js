@@ -15,10 +15,12 @@ const App = () => (
   <BrowserRouter>
     <Suspense fallback={<Loading />}>
       <Switch>
-        <Route exact path="/profile" component={Profile} />
         <Route path="/dashboard" component={Dashboard} />
+        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/viewprofile" component={DecadevModal} />
-        <Route path="/schedule-interview" component={ScheduleInterview} />
+        <Route exact path="/schedule-interview" component={ScheduleInterview} />
+
         <Route path="/" component={Authentication} />
       </Switch>
     </Suspense>
