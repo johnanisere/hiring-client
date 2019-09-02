@@ -24,7 +24,6 @@ export default function ModalWork(props) {
         gap
         responsive
         style={{ marginTop: '-2rem' }}
-        direction
         background={{ color: '#f1f1f1', opacity: 'weak' }}
         align="center"
       >
