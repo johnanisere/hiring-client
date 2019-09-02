@@ -34,41 +34,44 @@ function InviteForm(props) {
   };
 
   return (
-    <>
-      <Grommet full theme={grommet}>
-        <Box fill align="center" justify="start" pad="large">
-          <div
-            className="container"
-            style={{
-              border: "1px solid #f1f1f1",
-              padding: "50px",
-              borderRadius: "5px",
-              boxShadow: "1px 2px 2px #f1f1f1",
-              marginTop: "30px"
-            }}
-          >
-            {success && (
-              <SuccessToaster message={success} onClose={onCloseToaster} />
-            )}
-            <Form onSubmit={handleSubmit}>
-              <FormError error={error} />
-              <Heading level={2} align="center" style={{ textAlign: "center" }}>
-                Invite Devs
-              </Heading>
-              <Select
-                id="select"
-                name="select"
-                placeholder="Select Squad"
-                value={value}
-                options={options}
-                onChange={({ option }) => setState({ ...state, value: option })}
-              />
-              <Button loading={loading} text="Send Invite" type="submit" />
-            </Form>
-          </div>
-        </Box>
-      </Grommet>
-    </>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row"
+      }}
+    >
+      <div
+        className="container"
+        style={{
+          border: "1px solid #f1f1f1",
+          padding: "50px",
+          borderRadius: "5px",
+          boxShadow: "1px 2px 2px #f1f1f1",
+          marginTop: "30px"
+        }}
+      >
+        {success && (
+          <SuccessToaster message={success} onClose={onCloseToaster} />
+        )}
+        <Form onSubmit={handleSubmit}>
+          <FormError error={error} />
+          <Heading level={2} align="center" style={{ textAlign: "center" }}>
+            Invite Devs
+          </Heading>
+          <Select
+            id="select"
+            name="select"
+            placeholder="Select Squad"
+            value={value}
+            options={options}
+            onChange={({ option }) => setState({ ...state, value: option })}
+          />
+          <Button loading={loading} text="Send Invite" type="submit" />
+        </Form>
+      </div>
+    </div>
   );
 }
 
