@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import DateTimeDropButton from '../DateTime';
-import FormFieldSelect from '../FormFieldSelect';
 import { Box, Form, FormField, TextArea, Text } from 'grommet';
 import { useSelector, connect } from 'react-redux';
 import request from '../../request';
@@ -15,8 +14,8 @@ import Modal from './Modal';
 import FormLayout from '../FormLayout';
 
 function ScheduleInterview(props) {
-  const x = URLSearchParams.get(props.location.search);
-  console.log('X: ', x);
+  const email = new URLSearchParams(props.location.search).get('email');
+
   const { error, loading } = useSelector(
     ({ interviewDetails }) => interviewDetails
   );
@@ -29,7 +28,7 @@ function ScheduleInterview(props) {
     startTime: '',
     endDate: undefined,
     endTime: '',
-    decadev: '',
+    decadev: email,
     timezone: ''
   });
   const [open, onOpen] = useState(false);
@@ -43,11 +42,8 @@ function ScheduleInterview(props) {
     endTime,
     decadev
   } = values;
-
+  console.log(values);
   const setDateAndTime = data => {
-    setValues({ ...values, ...data });
-  };
-  const setDecadev = data => {
     setValues({ ...values, ...data });
   };
   const handleChange = e => {
@@ -70,7 +66,7 @@ function ScheduleInterview(props) {
       endTime: end,
       timezone: moment.tz.guess(),
       email: 'johnanisere@gmail.com',
-      devemail: 'sheyiogundijo@gmail.com'
+      devemail: decadev
     };
     props.scheduleInterview(payload, request, onToggle, cb);
   };
@@ -115,7 +111,7 @@ function ScheduleInterview(props) {
             value={location}
             onChange={handleChange}
           />
-          <FormFieldSelect decadev={decadev} setDecadev={setDecadev} />
+          <FormField label="Decadev" name="decadev" value={decadev} disabled />
           <FormField
             label="Add Description"
             name="description"
