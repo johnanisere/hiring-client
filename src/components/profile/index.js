@@ -114,7 +114,6 @@ function DecaDevProfile() {
                 columns={["medium", "flex"]}
                 rows={["flex"]}
                 gap="small"
-
               >
                 <Text size="medium">Account</Text>
 
