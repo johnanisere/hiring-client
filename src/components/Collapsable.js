@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import { Box, Button, Collapsible, Grommet, Text } from "grommet";
 
 const MenuButton = ({ label, open, submenu, ...rest }) => {
@@ -21,7 +22,7 @@ const MenuButton = ({ label, open, submenu, ...rest }) => {
   );
 };
 
-export default function CollapsibleMenu({ list, label }) {
+const CollapsibleMenu = ({ list, label, history }) => {
   const [openMenu, setOpenMenu] = useState(false);
   function toggleMenu() {
     setOpenMenu(!openMenu);
@@ -32,19 +33,22 @@ export default function CollapsibleMenu({ list, label }) {
       <Box width="small">
         <MenuButton open={openMenu} label={label} onClick={toggleMenu} />
         {list.map(item => {
+          const text = typeof item === "string" ? item : Object.keys(item)[0];
+          const handleClick = () => {
+            typeof item === "string"
+              ? history.push("/")
+              : history.push(Object.values(item)[0]);
+          };
           return (
             <Collapsible open={openMenu} key={item}>
-              <Button
-                hoverIndicator
-                onClick={() => alert("Submenu item 1 selected")}
-              >
+              <Button hoverIndicator onClick={handleClick}>
                 <Box
                   direction="row"
                   align="center"
                   pad={{ horizontal: "medium", vertical: "small" }}
                 >
                   <Text size="small" style={{ color: "white" }}>
-                    {item}
+                    {text}
                   </Text>
                 </Box>
               </Button>
@@ -54,9 +58,11 @@ export default function CollapsibleMenu({ list, label }) {
       </Box>
     </Grommet>
   );
-}
+};
 
 CollapsibleMenu.propTypes = {
   list: PropTypes.array,
   label: PropTypes.string
 };
+
+export default withRouter(CollapsibleMenu);
