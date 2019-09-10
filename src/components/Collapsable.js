@@ -38,6 +38,15 @@ const CollapsibleMenu = ({ list, label, history }) => {
             typeof item === 'string'
               ? history.push('/')
               : history.push(Object.values(item)[0]);
+
+            if (item === 'All Decadevs') {
+              console.log('HALLELUJAH!!!!!');
+              history.push('/dashboard');
+            } else if (item === 'Decadevs Interviewed') {
+              console.log('DECADEV INTERVIEWED');
+            } else {
+              console.log('DECADEV HIRED');
+            }
           };
           return (
             <Collapsible open={openMenu} key={item}>

@@ -66,7 +66,7 @@ function ScheduleInterview(props) {
       startTime: start,
       endTime: end,
       timezone: moment.tz.guess(),
-      email: 'johnanisere@gmail.com',
+      email: user.email,
       devemail: decadev
     };
     props.scheduleInterview(payload, request, onToggle, cb);
