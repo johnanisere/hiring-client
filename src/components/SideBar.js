@@ -15,6 +15,10 @@ export default function SideBar({ sidebar }) {
   useEffect(() => {
     console.log(list);
   });
+  const handleClick = e => {
+    console.log({ e });
+  };
+
   return (
     <>
       {sidebar && (
@@ -36,6 +40,7 @@ export default function SideBar({ sidebar }) {
               <MenuItems name={value} key={value} />
             ) : (
               <CollapsibleMenu
+                onClick={handleClick}
                 key={Object.keys(value)[0]}
                 list={Object.values(value)[0]}
                 label={Object.keys(value)[0]}
