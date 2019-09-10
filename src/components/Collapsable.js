@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
-import { Box, Button, Collapsible, Grommet, Text } from "grommet";
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import { Box, Button, Collapsible, Grommet, Text } from 'grommet';
 
 const MenuButton = ({ label, open, submenu, ...rest }) => {
   return (
     <Button hoverIndicator {...rest}>
       <Box
-        margin={submenu ? { left: "small" } : undefined}
+        margin={submenu ? { left: 'small' } : undefined}
         direction="row"
         align="center"
         pad={{
-          horizontal: "medium",
-          vertical: "small"
+          horizontal: 'medium',
+          vertical: 'small'
         }}
-        style={{ minWidth: "200px" }}
+        style={{ minWidth: '200px' }}
       >
-        <Text style={{ color: "white" }}>{label}</Text>
+        <Text style={{ color: 'white' }}>{label}</Text>
       </Box>
     </Button>
   );
@@ -33,11 +33,20 @@ const CollapsibleMenu = ({ list, label, history }) => {
       <Box width="small">
         <MenuButton open={openMenu} label={label} onClick={toggleMenu} />
         {list.map(item => {
-          const text = typeof item === "string" ? item : Object.keys(item)[0];
+          const text = typeof item === 'string' ? item : Object.keys(item)[0];
           const handleClick = () => {
-            typeof item === "string"
-              ? history.push("/")
+            typeof item === 'string'
+              ? history.push('/')
               : history.push(Object.values(item)[0]);
+
+            if (item === 'All Decadevs') {
+              console.log('HALLELUJAH!!!!!');
+              history.push('/dashboard');
+            } else if (item === 'Decadevs Interviewed') {
+              console.log('DECADEV INTERVIEWED');
+            } else {
+              console.log('DECADEV HIRED');
+            }
           };
           return (
             <Collapsible open={openMenu} key={item}>
@@ -45,9 +54,9 @@ const CollapsibleMenu = ({ list, label, history }) => {
                 <Box
                   direction="row"
                   align="center"
-                  pad={{ horizontal: "medium", vertical: "small" }}
+                  pad={{ horizontal: 'medium', vertical: 'small' }}
                 >
-                  <Text size="small" style={{ color: "white" }}>
+                  <Text size="small" style={{ color: 'white' }}>
                     {text}
                   </Text>
                 </Box>

@@ -19,6 +19,7 @@ function ScheduleInterview(props) {
   const { error, loading } = useSelector(
     ({ interviewDetails }) => interviewDetails
   );
+  const user = useSelector(({ user }) => user.data);
 
   const [values, setValues] = useState({
     title: '',
@@ -65,7 +66,7 @@ function ScheduleInterview(props) {
       startTime: start,
       endTime: end,
       timezone: moment.tz.guess(),
-      email: 'johnanisere@gmail.com',
+      email: user.email,
       devemail: decadev
     };
     props.scheduleInterview(payload, request, onToggle, cb);
