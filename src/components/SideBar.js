@@ -15,6 +15,10 @@ export default function SideBar({ sidebar }) {
   useEffect(() => {
     console.log(list);
   });
+  const handleClick = e => {
+    console.log({ e });
+  };
+
   return (
     <>
       {sidebar && (
