@@ -6,6 +6,8 @@ import MoonLoader from 'react-spinners/MoonLoader';
 import Dropdown from '../Dropdown';
 import Next from './Next';
 import MoreInfo from './MoreInfo';
+import Finalize from '../selected/Finalize';
+import SelectCheck from '../selected/SelectCheck';
 
 import { Grommet, Box, Text, Image, Grid, ResponsiveContext } from 'grommet';
 
@@ -42,7 +44,7 @@ class Cards extends React.Component {
               <MoonLoader size={30} />
             </Box>
           )}
-          <Box align="start" justify="start"></Box>
+          <Finalize />
           <ResponsiveContext.Consumer>
             {size => (
               <Grid
@@ -82,6 +84,7 @@ class Cards extends React.Component {
                         fit="cover"
                         src={dev.profilePhoto}
                       />
+
                       <Text>{dev.email}</Text>
                       <MoreInfo
                         email={dev.email}
@@ -93,6 +96,7 @@ class Cards extends React.Component {
                         open={this.state.open}
                         onToggle={this.onToggle}
                       />
+                      <SelectCheck />
                     </Box>
                   );
                 })}
