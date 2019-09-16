@@ -1,29 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CheckBox } from 'grommet';
-import { connect } from 'react-redux';
-import selectedBoundActionCreator from './selected.action';
 
-function SelectCheck(props) {
-  const { selected } = props;
+export default function SelectCheck(props) {
+  const [checked, setChecked] = useState(!!props.checked);
+  const onChange = event => setChecked(event.target.checked);
 
-  const onChange = event => {
-    props.addToSelected(props.decadevObject, !selected);
-  };
-
-  return (
-    <CheckBox
-      {...props}
-      checked={selected}
-      onChange={event => onChange(event)}
-    />
-  );
+  return <CheckBox {...props} checked={checked} onChange={onChange} />;
 }
-
-const mapDispatchToProps = {
-  addToSelected: selectedBoundActionCreator
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(SelectCheck);
