@@ -96,7 +96,7 @@ class Cards extends React.Component {
                         open={this.state.open}
                         onToggle={this.onToggle}
                       />
-                      <SelectCheck />
+                      <SelectCheck decadevObject={dev} />
                     </Box>
                   );
                 })}
