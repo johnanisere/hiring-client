@@ -45,7 +45,7 @@ function Login(props) {
         </Text>
       </Box>
 
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} style={{ textAlign: 'center' }}>
         <FormError error={error} />
         <Input
           name="email"
