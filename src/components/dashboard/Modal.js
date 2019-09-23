@@ -36,8 +36,7 @@ class Modal extends Component {
                     value={this.state.code}
                     onChange={this.onChange}
                   />
-                  {/* <TextInput /> */}
-                  {/* </FormField> */}
+                  
                 </Box>
                 <Box flex={false} as="footer" align="center">
                   <Button

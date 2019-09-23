@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { getDetails } from '../profile/getDetails';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Heading, Text, Box } from 'grommet';
 import { Phone, Chat, Calendar } from 'grommet-icons';
 
-export default function Info() {
+function Info(props) {
+  const { email, phone, cv, name } = props;
   const [values, setValues] = useState([]);
+  console.log(props.history);
+  const handleClick = () =>
+    props.history.push(`/schedule-interview?email=${email}`);
 
   useEffect(() => {
     const obj = getDetails();
@@ -20,21 +24,18 @@ export default function Info() {
       border
       fill
       style={{
-        height: '-webkit-fill-available',
-        margin: '0',
-        marginTop: '-5rem',
-        marginBottom: '-5rem'
+        minHeight: '100%'
       }}
     >
       <Box responsive gap="large">
-        <Heading level={2}>{values.name}</Heading>
+        <Heading level={2}>{name}</Heading>
         <Text style={{ marginTop: '-2rem' }} size="medium" color="brand">
           Software Developer
         </Text>
         <Heading color="#a0a0a0" level={6}>
           RESUME:{' '}
           <Link to="/" className="nav-link" style={{ textDecoration: 'none' }}>
-            {values.resume}
+            {cv}
           </Link>
         </Heading>
         <Box
@@ -80,7 +81,7 @@ export default function Info() {
             }}
           >
             <Phone size="small" style={{ marginRight: '5px' }} />
-            Contact
+            {phone}
           </Text>
           <Text
             color="brand"
@@ -98,6 +99,7 @@ export default function Info() {
               padding: '8px',
               cursor: 'pointer'
             }}
+            onClick={handleClick}
           >
             {<Calendar size="small" style={{ marginRight: '5px' }} />}
             Schedule Interview
@@ -118,8 +120,8 @@ export default function Info() {
             }}
           />
         </Heading>
-        <Heading level={6}>Email: {values.email}</Heading>
-        <Heading level={6}>Phone: {values.phone}</Heading>
+        <Heading level={6}>Email: {email}</Heading>
+        <Heading level={6}>Phone: {phone}</Heading>
         <Heading level={6}>
           GitHub Profile:{' '}
           <Link to="/" className="nav-link" style={{ textDecoration: 'none' }}>
@@ -131,3 +133,5 @@ export default function Info() {
     </Box>
   );
 }
+
+export default withRouter(Info);
