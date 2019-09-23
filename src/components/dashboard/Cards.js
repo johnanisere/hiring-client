@@ -44,7 +44,9 @@ class Cards extends React.Component {
               <MoonLoader size={30} />
             </Box>
           )}
-          <Finalize />
+          <Box align="start" justify="start">
+            <Finalize />
+          </Box>
           <ResponsiveContext.Consumer>
             {size => (
               <Grid
