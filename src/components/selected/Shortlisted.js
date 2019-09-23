@@ -1,15 +1,50 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-function Selected() {
+import Card from '../dashboard/Card';
+
+import { Grommet, Grid, ResponsiveContext } from 'grommet';
+
+export default function Shortlisted() {
+  const { selectedDecadevs } = useSelector(({ shortlisted }) => shortlisted);
+  const shortlistedDevs = Object.values(selectedDecadevs);
+  const [state, setState] = useState({
+    open: false,
+    gender: 'All'
+  });
+
+  const onToggle = () => setState({ ...state, open: !state.open });
+
   return (
-    <div>
-      <h1>Selected</h1>
-    </div>
+    <>
+      <Grommet style={{ overflow: 'scroll', minHeight: '100%' }}>
+        <ResponsiveContext.Consumer>
+          {size => (
+            <Grid
+              columns={
+                size === 'small'
+                  ? ['1']
+                  : size === 'medium'
+                  ? ['1/2', '1/2']
+                  : size === 'large'
+                  ? ['1/4', '1/4', '1/4', '1/4']
+                  : size === 'xlarge'
+                  ? ['1/5', '1/5', '1/5', '1/5', '1/5']
+                  : ['1/6', '1/6', '1/6', '1/6', '1/6', '1/6']
+              }
+            >
+              {shortlistedDevs.map((dev, key) => (
+                <Card
+                  key={key}
+                  dev={dev}
+                  open={state.open}
+                  onToggle={onToggle}
+                />
+              ))}
+            </Grid>
+          )}
+        </ResponsiveContext.Consumer>
+      </Grommet>
+    </>
   );
 }
-
-export default connect(
-  null,
-  null
-)(Selected);
