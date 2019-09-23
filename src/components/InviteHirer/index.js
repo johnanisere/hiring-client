@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import { useSelector, connect } from "react-redux";
-import { Box, Button, Form, Text } from "grommet";
-import BeatLoader from "react-spinners/BeatLoader";
-import Input from "../input/index";
-import FormLayout from "../FormLayout";
-import FormError from "../formError";
-import inviteHirerBoundActionCreator from "../InviteHirer/inviteHirer.action";
-import request from "../../request";
+import React, { useState } from 'react';
+import { useSelector, connect } from 'react-redux';
+import { Box, Button, Form, Text } from 'grommet';
+import BeatLoader from 'react-spinners/BeatLoader';
+import Input from '../input/index';
+
+import FormError from '../formError';
+import inviteHirerBoundActionCreator from '../InviteHirer/inviteHirer.action';
+import request from '../../request';
 
 function InviteHirer(props) {
   const { error, loading } = useSelector(({ hirer }) => hirer);
   const [values, setValues] = useState({
-    email: "",
-    password: "",
-    name: "",
-    contactPerson: "",
-    phone: "",
-    companyURL: "",
-    address: ""
+    email: '',
+    password: '',
+    name: '',
+    contactPerson: '',
+    phone: '',
+    companyURL: '',
+    address: ''
   });
 
   const {
@@ -47,8 +47,8 @@ function InviteHirer(props) {
         size="large"
         margin="small"
         style={{
-          fontWeight: "bold",
-          fontSize: "25px"
+          fontWeight: 'bold',
+          fontSize: '25px'
         }}
       >
         Invite Hiring Partner
@@ -105,7 +105,7 @@ function InviteHirer(props) {
             validate={{
               regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
               message:
-                "Password must contain at least 8 characters, 1 letter, and 1 number"
+                'Password must contain at least 8 characters, 1 letter, and 1 number'
             }}
             onChange={handleChange}
           />
@@ -116,16 +116,16 @@ function InviteHirer(props) {
             value={address}
             onChange={handleChange}
           />
-          <Box direction="row" justify="between" margin={{ top: "medium" }}>
+          <Box direction="row" justify="between" margin={{ top: 'medium' }}>
             <Button
               primary
               width="large"
               color="dark-1"
               label={
-                loading ? <BeatLoader size={5} color="#fff" /> : "Send Invite"
+                loading ? <BeatLoader size={5} color="#fff" /> : 'Send Invite'
               }
               type="submit"
-              style={{ width: "100%", marginTop: 20 }}
+              style={{ width: '100%', marginTop: 20 }}
             />
           </Box>
         </Form>
