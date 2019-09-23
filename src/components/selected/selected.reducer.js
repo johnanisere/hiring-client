@@ -1,7 +1,7 @@
 import { ADD_TO_SELECTED } from './selected.action';
 
 const initialState = {
-  selectedDecadevs: [],
+  selectedDecadevs: {},
   total: 0
 };
 
