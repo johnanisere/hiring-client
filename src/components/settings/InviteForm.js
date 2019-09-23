@@ -1,31 +1,31 @@
-import React, { useState } from "react";
-import { Box, Form, Select, Heading, Grommet } from "grommet";
-import { grommet } from "grommet/themes";
-import request from "../../request";
-import FormError from "../formError";
-import { connect } from "react-redux";
-import mailInviteBoundActionCreator from "./mailInvite.action";
-import SuccessToaster from "../toasters/SuccessNotification";
-import PropTypes from "prop-types";
-import Button from "../button/FormButton";
+import React, { useState } from 'react';
+import { Form, Select, Heading } from 'grommet';
+
+import request from '../../request';
+import FormError from '../formError';
+import { connect } from 'react-redux';
+import mailInviteBoundActionCreator from './mailInvite.action';
+import SuccessToaster from '../toasters/SuccessNotification';
+import PropTypes from 'prop-types';
+import Button from '../button/FormButton';
 
 function InviteForm(props) {
   const [state, setState] = useState({
-    options: ["Squad 1", "Squad 2", "Squad 3"],
-    value: ""
+    options: ['Squad 1', 'Squad 2', 'Squad 3'],
+    value: ''
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({});
-  const [success, onSuccess] = useState("");
+  const [success, onSuccess] = useState('');
   const { options, value } = state;
 
-  const onCloseToaster = () => onSuccess("");
+  const onCloseToaster = () => onSuccess('');
 
   const handleSubmit = e => {
     e.preventDefault();
     onCloseToaster();
     if (!value) {
-      const error = { message: "Invalid Request. Please select a squad" };
+      const error = { message: 'Invalid Request. Please select a squad' };
       setError(error);
       return;
     }
@@ -36,20 +36,20 @@ function InviteForm(props) {
   return (
     <div
       style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "row"
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row'
       }}
     >
       <div
         className="container"
         style={{
-          border: "1px solid #f1f1f1",
-          padding: "50px",
-          borderRadius: "5px",
-          boxShadow: "1px 2px 2px #f1f1f1",
-          marginTop: "30px"
+          border: '1px solid #f1f1f1',
+          padding: '50px',
+          borderRadius: '5px',
+          boxShadow: '1px 2px 2px #f1f1f1',
+          marginTop: '30px'
         }}
       >
         {success && (
@@ -57,7 +57,7 @@ function InviteForm(props) {
         )}
         <Form onSubmit={handleSubmit}>
           <FormError error={error} />
-          <Heading level={2} align="center" style={{ textAlign: "center" }}>
+          <Heading level={2} align="center" style={{ textAlign: 'center' }}>
             Invite Devs
           </Heading>
           <Select
