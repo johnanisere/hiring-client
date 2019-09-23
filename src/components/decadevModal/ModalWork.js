@@ -2,11 +2,14 @@ import React from 'react';
 import { Box, Heading, Text } from 'grommet';
 
 export default function ModalWork(props) {
+  const { work, heading, stage, address, zip } = props;
+  console.log('WORK: ', work);
+
   return (
     <Box responsive direction="column">
       <Box responsive direction="column">
         <Heading color="#a0a0a0" level={4}>
-          {props.work}
+          {work}
           <hr
             style={{
               border: '0',
@@ -21,11 +24,10 @@ export default function ModalWork(props) {
         gap
         responsive
         style={{ marginTop: '-2rem' }}
-        direction
         background={{ color: '#f1f1f1', opacity: 'weak' }}
         align="center"
       >
-        <Heading level={4}>{props.heading}</Heading>
+        <Heading level={4}>{heading}</Heading>
         <Text
           color="brand"
           size="small"
@@ -41,14 +43,14 @@ export default function ModalWork(props) {
             padding: '5px'
           }}
         >
-          {props.stage}
+          {stage}
         </Text>
       </Box>
       <Text color="#123456" size="small">
-        {props.address}
+        {address}
       </Text>
       <Text color="#654321" size="small">
-        {props.zip}
+        {zip}
       </Text>
     </Box>
   );
