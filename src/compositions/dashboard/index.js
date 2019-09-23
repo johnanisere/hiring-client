@@ -1,4 +1,4 @@
-import React, { lazy, useEffect } from 'react';
+import React, { lazy } from 'react';
 
 import { Route, Switch } from 'react-router-dom';
 import Layout from '../../components/Layout';
@@ -12,9 +12,6 @@ const InviteHirer = lazy(() => import('../../components/InviteHirer'));
 const Shortlisted = lazy(() => import('../../components/selected/Shortlisted'));
 
 export default function App({ match }) {
-  useEffect(() => {
-    console.log({ match });
-  }, [match]);
   const { role } = useSelector(({ user }) => user.data);
   return (
     <ProtectedRoute>
