@@ -4,13 +4,13 @@ import authentication from './components/authentication/authentication.reducer';
 import decadevs from './components/dashboard/decadevs.reducer';
 import interviewDetails from './components/dashboard/scheduleInterview.reducer';
 import hirer from './components/InviteHirer/inviteHirer.reducer';
-import selectedReducer from './components/selected/selected.reducer';
+import shortlisted from './components/selected/selected.reducer';
 
 export default combineReducers({
-  authentication,
   user,
-  decadevs,
-  interviewDetails,
   hirer,
-  selectedReducer
+  decadevs,
+  shortlisted,
+  authentication,
+  interviewDetails
 });
