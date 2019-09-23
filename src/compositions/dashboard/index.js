@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import React, { lazy, useEffect } from 'react';
 
 import { Route, Switch } from 'react-router-dom';
 import Layout from '../../components/Layout';
@@ -9,8 +9,12 @@ import { useSelector } from 'react-redux';
 const Cards = lazy(() => import('../../components/dashboard/Cards'));
 const InviteForm = lazy(() => import('../../components/settings/InviteForm'));
 const InviteHirer = lazy(() => import('../../components/InviteHirer'));
+const Shortlisted = lazy(() => import('../../components/selected/Shortlisted'));
 
 export default function App({ match }) {
+  useEffect(() => {
+    console.log({ match });
+  }, [match]);
   const { role } = useSelector(({ user }) => user.data);
   return (
     <ProtectedRoute>
@@ -29,6 +33,11 @@ export default function App({ match }) {
               exact
               path={`${match.path}/usermanagement/hiringpartner`}
               component={InviteHirer}
+            />
+            <Route
+              exact
+              path={`${match.path}/shortlisted`}
+              component={Shortlisted}
             />
           </Switch>
         </Layout>
