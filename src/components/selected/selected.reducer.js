@@ -11,7 +11,9 @@ export default function selectedReducer(state = initialState, action) {
     case ADD_TO_SELECTED:
       return {
         ...state,
-        selectedDecadevs: [...state.selectedDecadevs, addedDecadev],
+        selectedDecadevs: {
+          ...state.selectedDecadevs,
+          ...state.selectedDecadevs,
         total: state.total++
       };
     default:
