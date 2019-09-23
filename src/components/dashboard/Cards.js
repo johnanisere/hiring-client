@@ -33,6 +33,7 @@ class Cards extends React.Component {
 
   render() {
     const { loading, decadevs } = this.props;
+
     return (
       <>
         <Dropdown handleChange={this.handleChange} />
@@ -48,7 +49,9 @@ class Cards extends React.Component {
               <MoonLoader />
             </Box>
           )}
-          <Finalize />
+          <Box align="start" justify="start">
+            <Finalize />
+          </Box>
           <ResponsiveContext.Consumer>
             {size => (
               <Grid
