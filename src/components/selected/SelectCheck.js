@@ -1,21 +1,29 @@
-import React from 'react';
-import { CheckBox } from 'grommet';
-import { connect } from 'react-redux';
-import selectedBoundActionCreator from './selected.action';
-
+import React from "react";
+import { connect } from "react-redux";
+import { Star } from "grommet-icons";
+import { Box, Text } from "grommet";
+import selectedBoundActionCreator from "./selected.action";
 function SelectCheck(props) {
   const { selected } = props;
 
-  const onChange = event => {
+  const onChange = () => {
     props.addToSelected(props.decadevObject, !selected);
   };
 
   return (
-    <CheckBox
-      {...props}
-      checked={selected}
-      onChange={event => onChange(event)}
-    />
+    <Box
+      style={{
+        position: "absolute",
+        cursor: "pointer",
+        zIndex: 5,
+        bottom: "100px",
+        left: "20px"
+      }}
+    >
+      <Text color="white" style={{ display: "flex", alignItems: "center" }}>
+        <Star onClick={onChange} color={selected ? "red" : "white"} />
+      </Text>
+    </Box>
   );
 }
 

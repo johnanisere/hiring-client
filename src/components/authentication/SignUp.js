@@ -71,7 +71,7 @@ function SignUp(props) {
             paddingBottom: "15px"
           }}
         >
-          SignUp
+          Register
         </Text>
         <Text size="small" alignSelf="center">
           Please fill in your details
@@ -87,8 +87,7 @@ function SignUp(props) {
           placeholder="Name"
           type="name"
           style={{
-            marginBottom: "5px",
-            borderRadius: "20px"
+            marginBottom: "5px"
           }}
           required
         />
@@ -104,8 +103,7 @@ function SignUp(props) {
           placeholder="Email"
           type="email"
           style={{
-            marginBottom: "5px",
-            borderRadius: "20px"
+            marginBottom: "5px"
           }}
         />
         <FormField
@@ -116,8 +114,7 @@ function SignUp(props) {
           value={password}
           onChange={handleChange}
           style={{
-            marginBottom: "5px",
-            borderRadius: "20px"
+            marginBottom: "5px"
           }}
         />
         <FormField
@@ -128,8 +125,7 @@ function SignUp(props) {
           placeholder="Confirm Password"
           type="password"
           style={{
-            marginBottom: "5px",
-            borderRadius: "20px"
+            marginBottom: "5px"
           }}
         />
 

@@ -23,7 +23,7 @@ const Input = ({
     color={color}
     style={{
       marginBottom: "15px",
-      borderRadius: "20px"
+      borderRadius: "0px"
     }}
   />
 );

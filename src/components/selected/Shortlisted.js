@@ -1,36 +1,36 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
-import Card from '../dashboard/Card';
+import Card from "../dashboard/Card";
 
-import { Grommet, Grid, ResponsiveContext } from 'grommet';
+import { Grommet, Grid, ResponsiveContext } from "grommet";
 
 export default function Shortlisted() {
   const { selectedDecadevs } = useSelector(({ shortlisted }) => shortlisted);
   const shortlistedDevs = Object.values(selectedDecadevs);
   const [state, setState] = useState({
     open: false,
-    gender: 'All'
+    gender: "All"
   });
 
   const onToggle = () => setState({ ...state, open: !state.open });
 
   return (
     <>
-      <Grommet style={{ overflow: 'scroll', minHeight: '100%' }}>
+      <Grommet style={{ overflow: "scroll", minHeight: "100%" }}>
         <ResponsiveContext.Consumer>
           {size => (
             <Grid
               columns={
-                size === 'small'
-                  ? ['1']
-                  : size === 'medium'
-                  ? ['1/2', '1/2']
-                  : size === 'large'
-                  ? ['1/4', '1/4', '1/4', '1/4']
-                  : size === 'xlarge'
-                  ? ['1/5', '1/5', '1/5', '1/5', '1/5']
-                  : ['1/6', '1/6', '1/6', '1/6', '1/6', '1/6']
+                size === "small"
+                  ? ["1"]
+                  : size === "medium"
+                  ? ["1/4", "1/4", "1/4", "1/4"]
+                  : size === "large"
+                  ? ["1/4", "1/4", "1/4", "1/4"]
+                  : size === "xlarge"
+                  ? ["1/5", "1/5", "1/5", "1/5", "1/5"]
+                  : ["1/6", "1/6", "1/6", "1/6", "1/6", "1/6"]
               }
             >
               {shortlistedDevs.map((dev, key) => (

@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import MoreInfo from './MoreInfo';
-import SelectCheck from '../selected/SelectCheck';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import MoreInfo from "./MoreInfo";
+import SelectCheck from "../selected/SelectCheck";
+import { useSelector } from "react-redux";
 
-import { Box, Text, Image } from 'grommet';
+import { Box, Text, Image } from "grommet";
 
 const App = props => {
   const { dev, onToggle, open } = props;
@@ -16,29 +16,41 @@ const App = props => {
   return (
     <>
       <Box
+        className="dev"
         key={dev._id}
-        pad="medium"
         align="center"
         background={{
-          color: 'light-2',
-          opacity: 'strong'
+          color: "light-2",
+          opacity: "strong",
+          borderRadius: "0"
         }}
-        round
         gap="small"
         margin="medium"
-        animation={['fadeIn']}
+        animation={["fadeIn"]}
+        style={{
+          position: "relative",
+          minHeight: "561px"
+        }}
       >
         <Image
           style={{
-            width: '100%',
-            height: 'auto',
-            borderRadius: '12px'
+            width: "100%",
+            height: "auto",
+            borderRadius: "0"
           }}
           fit="cover"
           src={dev.profilePhoto}
         />
 
-        <Text>{dev.email}</Text>
+        <Text>
+          {
+            // dev.name
+          }
+          Jimmy Carter
+        </Text>
+        <Text size="small" style={{ color: "rgb(169, 169, 169)" }}>
+          Javascript Developer
+        </Text>
         <MoreInfo
           email={dev.email}
           profilePhoto={dev.profilePhoto}

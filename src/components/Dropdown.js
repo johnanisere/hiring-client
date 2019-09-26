@@ -3,12 +3,12 @@ import { Grommet, Select } from "grommet";
 import { grommet } from "grommet/themes";
 import PropTypes from "prop-types";
 import { deepMerge } from "grommet/utils";
-
+import Finalize from "./selected/Finalize";
 const theme = deepMerge(grommet, {
   global: {
     control: {
       border: {
-        radius: "24px"
+        radius: "2px"
       }
     },
     input: {
@@ -53,10 +53,11 @@ function Dropdown(props) {
       <div
         style={{
           display: "flex",
-          justifyContent: "flex-end",
-          margin: "10px 8px"
+          justifyContent: "space-between",
+          margin: "10px 20px"
         }}
       >
+        <Finalize />
         <Select
           id="select"
           name="select"
