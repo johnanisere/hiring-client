@@ -15,6 +15,7 @@ const HirerLogin = lazy(() => import('../HirerSignUp/hirerLogin/HirerLogin'));
 export default function() {
   return (
     <Switch>
+      <Redirect exact from="/" to="/login" />
       <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/update-password/:token" component={UpdatePassword} />
