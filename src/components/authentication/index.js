@@ -21,7 +21,6 @@ export default function() {
 
       <Route exact path="/schedule" component={Schedule} />
       <Route exact path="/invite" component={Invite} />
-
       <Route
         exact
         path={`/change-password/:token`}

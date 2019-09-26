@@ -9,7 +9,6 @@ const ScheduleInterview = lazy(() =>
   import('./components/dashboard/ScheduleInterview')
 );
 const DecadevModal = lazy(() => import('./components/decadevModal/index'));
-const Shortlisted = lazy(() => import('./components/selected/Shortlisted'));
 
 const App = () => (
   <BrowserRouter>
@@ -19,8 +18,6 @@ const App = () => (
         <Route path="/dashboard" component={Dashboard} />
         <Route exact path="/viewprofile" component={DecadevModal} />
         <Route exact path="/schedule-interview" component={ScheduleInterview} />
-        <Route exact path="/shortlisted" component={Shortlisted} />
-
         <Route path="/" component={Authentication} />
       </Switch>
     </Suspense>
