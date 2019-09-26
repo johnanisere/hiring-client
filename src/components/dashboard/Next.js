@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import { grommet, Box, Button, Grommet } from 'grommet';
+import { grommet, Box, Button, Grommet } from "grommet";
 
 export default function Next(props) {
   return (
     <Grommet theme={grommet}>
-      <Box align="center" pad="medium" margin="large">
+      <Box align="center" margin="large">
         <Button
           primary
           label="Next"

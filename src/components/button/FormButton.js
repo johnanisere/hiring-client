@@ -17,7 +17,7 @@ const FormButton = ({ loading, type, onClick, text }) => (
       label={loading ? <BeatLoader size={5} color="#fff" /> : `${text}`}
       type={type}
       onClick={onClick}
-      style={{ width: "100%", marginTop: 20 }}
+      style={{ width: "100%", marginTop: 20, borderRadius: "5px" }}
     />
   </Box>
 );

@@ -1,9 +1,9 @@
-import React, { lazy } from 'react';
+import React, { lazy } from "react";
 
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch } from "react-router-dom";
 
-const Cards = lazy(() => import('../../components/dashboard/Cards'));
-const InviteForm = lazy(() => import('../../components/settings/InviteForm'));
+const Cards = lazy(() => import("../../components/dashboard/Cards"));
+const InviteForm = lazy(() => import("../../components/settings/InviteForm"));
 
 export default function App({ match }) {
   return (
