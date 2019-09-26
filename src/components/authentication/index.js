@@ -1,6 +1,6 @@
 import React, { lazy } from "react";
 
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 const Login = lazy(() => import("./Login"));
 const SignUp = lazy(() => import("./SignUp"));
@@ -12,6 +12,7 @@ const Invite = lazy(() => import("../InviteHirer"));
 export default function() {
   return (
     <Switch>
+      <Redirect exact from="/" to="/login" />
       <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/update-password/:token" component={UpdatePassword} />
