@@ -9,6 +9,7 @@ exports[`<Input /> render() renders the component 1`] = `
   style={
     Object {
       "borderRadius": "0px",
+      "fontSize": "16px",
       "marginBottom": "15px",
     }
   }
