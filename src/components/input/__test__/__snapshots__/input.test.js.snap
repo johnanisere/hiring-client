@@ -8,7 +8,7 @@ exports[`<Input /> render() renders the component 1`] = `
   required={true}
   style={
     Object {
-      "borderRadius": "20px",
+      "borderRadius": "0px",
       "marginBottom": "15px",
     }
   }
