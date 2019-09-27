@@ -18,10 +18,13 @@ export default function() {
       <Redirect exact from="/" to="/login" />
       <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={SignUp} />
+      <Route exact path="/signup/partner" component={HirerSignUp} />
       <Route exact path="/update-password/:token" component={UpdatePassword} />
 
       <Route exact path="/schedule" component={Schedule} />
       <Route exact path="/invite" component={Invite} />
+      <Route exact path="/verify-hirer/:token/:email" component={VerifyHirer} />
+
       <Route
         exact
         path={`/change-password/:token`}
