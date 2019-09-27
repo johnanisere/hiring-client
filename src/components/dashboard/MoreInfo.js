@@ -39,7 +39,7 @@ export default function MoreInfo(props) {
             onSubmit={onClose}
             style={{ backgroundColor: "transparent", overflowY: "scroll" }}
           >
-            <Profil />
+            <Profil dev={props.dev} selected={props.selected} />
           </Box>
         </Layer>
       )}

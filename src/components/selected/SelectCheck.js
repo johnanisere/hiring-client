@@ -17,7 +17,8 @@ function SelectCheck(props) {
         cursor: "pointer",
         zIndex: 5,
         bottom: "100px",
-        left: "20px"
+        left: "20px",
+        ...props.style
       }}
     >
       <Text color="white" style={{ display: "flex", alignItems: "center" }}>
@@ -26,7 +27,9 @@ function SelectCheck(props) {
     </Box>
   );
 }
-
+SelectCheck.defaultProps = {
+  style: {}
+};
 const mapDispatchToProps = {
   addToSelected: selectedBoundActionCreator
 };

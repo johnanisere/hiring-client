@@ -60,6 +60,8 @@ const App = props => {
           name={dev.name}
           open={open}
           onToggle={onToggle}
+          dev={dev}
+          selected={selected}
         />
         <SelectCheck decadevObject={dev} selected={selected} />
       </Box>
