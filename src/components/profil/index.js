@@ -7,7 +7,13 @@ import Action from './Action';
 
 const App = props => (
   <>
-    <Summary dev={props.dev} />
+    <Summary
+      profilePhoto={props.dev.profilePhoto}
+      name={props.dev.name}
+      currentRole={props.dev.currentRole}
+      description={props.dev.description}
+      stack={props.dev.stack}
+    />
     <Action dev={props.dev} selected={props.selected} />
     <Portfolio
       portfolio={props.dev.portfolio}
