@@ -2,34 +2,38 @@ import React from 'react';
 import Profile from './blocks';
 import PropTypes from 'prop-types';
 
-const App = ({ skills }) => (
-  <>
-    <Profile bottom style={{ width: '100%' }}>
-      <Profile.Text bold grey size3 defined spacingsonLG>
-        SKILLS
-      </Profile.Text>
-      <Profile fill noPad>
-        <Profile.List nobullet nomargin>
-          {skills.map(({ type, description }, key) => (
-            <li key={key}>
-              <Profile.Text bold blue size3>
-                {type}
-              </Profile.Text>
-              <Profile.Text small grey size6 mtb1 l20>
-                {description}
-              </Profile.Text>
-            </li>
-          ))}
-        </Profile.List>
+function App({ dev }) {
+  const { skills } = dev;
+  return (
+    <>
+      <Profile bottom style={{ width: '100%' }}>
+        <Profile.Text bold grey size3 defined spacingsonLG>
+          SKILLS
+        </Profile.Text>
+        <Profile fill noPad>
+          <Profile.List nobullet nomargin>
+            {skills.map(({ type, description }, key) => (
+              <li key={key}>
+                <Profile.Text bold blue size3>
+                  {type}
+                </Profile.Text>
+                <Profile.Text small grey size6 mtb1 l20>
+                  {description}
+                </Profile.Text>
+              </li>
+            ))}
+          </Profile.List>
+        </Profile>
       </Profile>
-    </Profile>
-  </>
-);
+    </>
+  );
+}
 
 App.propTypes = {
   skills: PropTypes.array.isRequired
 };
 
+<<<<<<< HEAD
 App.defaultProps = {
   skills: [
     {
@@ -65,3 +69,6 @@ App.defaultProps = {
 };
 
 export default App;
+=======
+export default React.memo(App);
+>>>>>>> integrated backend for the new user profile

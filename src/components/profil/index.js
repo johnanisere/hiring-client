@@ -7,11 +7,11 @@ import Action from './Action';
 
 const App = props => (
   <>
-    <Summary />
+    <Summary dev={props.dev} />
     <Action dev={props.dev} selected={props.selected} />
-    <Portfolio />
-    <Employment />
-    <Skills />
+    <Portfolio dev={props.dev} />
+    <Employment dev={props.dev} />
+    <Skills dev={props.dev} />
   </>
 );
 
