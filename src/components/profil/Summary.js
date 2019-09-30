@@ -2,9 +2,7 @@ import React from 'react';
 import Profile from './blocks';
 import PropTypes from 'prop-types';
 
-function App({ dev }) {
-  const { profilePhoto, name, currentRole, description, stack } = dev;
-  console.log({ profilePhoto });
+function App({ profilePhoto, name, currentRole, description, stack }) {
   return (
     <>
       <Profile bottom>
@@ -33,11 +31,11 @@ function App({ dev }) {
 }
 
 App.propTypes = {
-  dev: PropTypes.object.isRequired
-  // profilePhoto: PropTypes.string.isRequired,
-  // name: PropTypes.string.isRequired,
-  // currentRole: PropTypes.string.isRequired,
-  // description: PropTypes.string.isRequired
+  profilePhoto: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  currentRole: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  stack: PropTypes.array.isRequired
 };
 
 export default React.memo(App);
