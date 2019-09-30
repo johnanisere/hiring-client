@@ -40,7 +40,6 @@ const CollapsibleMenu = ({ list, label, history }) => {
               : history.push(Object.values(item)[0]);
 
             if (item === 'All Decadevs') {
-              console.log('HALLELUJAH!!!!!');
               history.push('/dashboard');
             } else if (item === 'Decadevs Interviewed') {
               console.log('DECADEV INTERVIEWED');

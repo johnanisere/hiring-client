@@ -2,8 +2,7 @@ import React from 'react';
 import Profile from './blocks';
 import PropTypes from 'prop-types';
 
-function App({ dev }) {
-  const { portfolio, experience, skills } = dev;
+function App({ portfolio, experience, skills }) {
   return (
     <>
       <Profile grid>
@@ -61,7 +60,9 @@ function App({ dev }) {
 }
 
 App.propTypes = {
-  portfolio: PropTypes.array.isRequired
+  portfolio: PropTypes.array.isRequired,
+  skills: PropTypes.array.isRequired,
+  experience: PropTypes.array.isRequired
 };
 
 export default React.memo(App);

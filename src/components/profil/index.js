@@ -9,9 +9,13 @@ const App = props => (
   <>
     <Summary dev={props.dev} />
     <Action dev={props.dev} selected={props.selected} />
-    <Portfolio dev={props.dev} />
-    <Employment dev={props.dev} />
-    <Skills dev={props.dev} />
+    <Portfolio
+      portfolio={props.dev.portfolio}
+      skills={props.dev.skills}
+      experience={props.dev.experience}
+    />
+    <Employment employments={props.dev.employments} />
+    <Skills skills={props.dev.skills} />
   </>
 );
 

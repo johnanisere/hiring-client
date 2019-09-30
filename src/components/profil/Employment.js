@@ -2,8 +2,8 @@ import React from 'react';
 import Profile from './blocks';
 import PropTypes from 'prop-types';
 
-function App({ dev }) {
-  const { employments } = dev;
+function App({ employments }) {
+  // const { employments } = dev;
   return (
     <>
       <Profile bottom>

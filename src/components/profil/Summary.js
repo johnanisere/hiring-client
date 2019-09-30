@@ -33,10 +33,11 @@ function App({ dev }) {
 }
 
 App.propTypes = {
-  profilePhoto: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  currentRole: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired
+  dev: PropTypes.object.isRequired
+  // profilePhoto: PropTypes.string.isRequired,
+  // name: PropTypes.string.isRequired,
+  // currentRole: PropTypes.string.isRequired,
+  // description: PropTypes.string.isRequired
 };
 
 export default React.memo(App);

@@ -2,8 +2,7 @@ import React from 'react';
 import Profile from './blocks';
 import PropTypes from 'prop-types';
 
-function App({ dev }) {
-  const { skills } = dev;
+function App({ skills }) {
   return (
     <>
       <Profile bottom style={{ width: '100%' }}>
