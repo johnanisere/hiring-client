@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Box } from 'grommet';
 import MenuItems from './MenuItems';
 import CollapsibleMenu from './Collapsable';
@@ -12,9 +12,7 @@ export default function SideBar({ sidebar }) {
   const { role } = useSelector(({ user }) => user.data);
   const list =
     role === 'hiringpartner' ? hiringPartnerMenuItems : adminMenuItems;
-  useEffect(() => {
-    console.log(list);
-  });
+
   const handleClick = e => {
     console.log({ e });
   };
