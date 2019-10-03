@@ -23,7 +23,7 @@ function App({ portfolio, experience, skills }) {
             ))}
           </Profile.List>
         </Profile>
-        <Profile fill bottom left right>
+        <Profile fill="true" bottom left right>
           <Profile.Text bold grey size3>
             EXPERIENCE
           </Profile.Text>
@@ -37,7 +37,7 @@ function App({ portfolio, experience, skills }) {
             ))}
           </Profile.List>
         </Profile>
-        <Profile fill bottom>
+        <Profile fill="true" bottom>
           <Profile.Text bold grey size3>
             SKILLS
           </Profile.Text>

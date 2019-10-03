@@ -10,9 +10,9 @@ function App({ employments }) {
         <Profile.Text bold grey size3 defined spacingsonLG>
           EMPLOYMENT
         </Profile.Text>
-        <Profile fill noPad>
+        <Profile fill="true" noPad>
           {employments.map((employment, key) => (
-            <Profile fill noPad key={key}>
+            <Profile fill="true" noPad key={key}>
               <Profile noPad spacebetween>
                 <Profile.Text medium blue size2>
                   {employment.title}
