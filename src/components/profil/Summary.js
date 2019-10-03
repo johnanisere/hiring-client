@@ -7,7 +7,7 @@ function App({ profilePhoto, name, currentRole, description, stack }) {
     <>
       <Profile bottom>
         <Profile.Image src={profilePhoto} alt={`${name}'s picture`} />
-        <Profile fill noPad>
+        <Profile fill="true" noPad>
           <Profile.Text size1 medium blue>
             {name}
           </Profile.Text>

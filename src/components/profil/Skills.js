@@ -9,7 +9,7 @@ function App({ skills }) {
         <Profile.Text bold grey size3 defined spacingsonLG>
           SKILLS
         </Profile.Text>
-        <Profile fill noPad>
+        <Profile fill="true" noPad>
           <Profile.List nobullet nomargin>
             {skills.map(({ type, description }, key) => (
               <li key={key}>
