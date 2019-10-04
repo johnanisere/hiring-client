@@ -33,7 +33,7 @@ export default function SideBar({ sidebar }) {
             }
           ]}
         >
-          {list.map(value =>
+          {list.map((value, index) =>
             typeof value === 'string' ? (
               <MenuItems name={value} key={value} />
             ) : (

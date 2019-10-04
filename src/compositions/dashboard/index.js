@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 const Cards = lazy(() => import('../../components/dashboard/Cards'));
 const InviteForm = lazy(() => import('../../components/settings/InviteForm'));
-const InviteHirer = lazy(() => import('../../components/InviteHirer'));
+const ActivateHirer = lazy(() => import('../../components/activateHirer'));
 const Shortlisted = lazy(() => import('../../components/selected/Shortlisted'));
 
 export default function App({ match }) {
@@ -29,7 +29,7 @@ export default function App({ match }) {
             <Route
               exact
               path={`${match.path}/usermanagement/hiringpartner`}
-              component={InviteHirer}
+              component={ActivateHirer}
             />
             <Route
               exact
