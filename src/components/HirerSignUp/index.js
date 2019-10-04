@@ -15,7 +15,6 @@ function HirerSignUp(props) {
     email: '',
     password: '',
     name: '',
-    contactPerson: '',
     phone: '',
     companyURL: '',
     address: '',

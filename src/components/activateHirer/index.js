@@ -1,0 +1,95 @@
+import React, { useEffect, useState } from 'react';
+import {
+  Accordion,
+  AccordionPanel,
+  Box,
+  Grommet,
+  Text,
+  Button,
+  Heading
+} from 'grommet';
+import request from '../../request';
+import { connect, useSelector } from 'react-redux';
+import { grommet } from 'grommet/themes';
+import getAllInactive from './activateHirer.action';
+
+const ActivateHirer = props => {
+  const { hirer } = useSelector(({ inactiveHirer }) => inactiveHirer);
+  // eslint-disable-next-line
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    props.inactiveHirer(request);
+  }, [props]);
+
+  const { animate, multiple, inactiveHirer, ...rest } = props;
+  function handleClick(event, item) {
+    event.persist();
+    request
+      .put('http://localhost:3005/api/v1/hirer/activatehirer', { ...item })
+      .then(res => {
+        setMessage(res);
+      });
+  }
+  return (
+    <Grommet theme={grommet}>
+      <Box border="small" justify="center" align="center">
+        <Heading size={3}>Unactivated Potential Hiring Partners</Heading>
+      </Box>
+      {hirer ? (
+        hirer.map(item => (
+          <Box {...rest} key={item._id}>
+            <Accordion animate={animate} multiple={multiple}>
+              <AccordionPanel label={item.nameOfOrg}>
+                <Box background="light-2" height="medium">
+                  <Box height="large" flex={false} pad="small">
+                    <Text>Contact Peron: {item.name}</Text>
+                    <Text>Email: {item.email}</Text>
+                    <Text>phone: {item.phone}</Text>
+                    <Text>Organisation: {item.nameOfOrg}</Text>
+                    <Text>Designation: {item.designation}</Text>
+                    <Text>
+                      Number of Talents: {item.numberOfTalentsRequired}
+                    </Text>
+                    <Text>Timeframe: {item.deadline}</Text>
+                    <Text>Joined: {item.createdAt}</Text>
+                    <Text>
+                      Verified: {item.verified === true ? 'Yes' : 'No'}
+                    </Text>
+                    <span>
+                      <Box pad="small">
+                        <Button
+                          style={{
+                            margin: ' 0 auto'
+                          }}
+                          primary
+                          color="#111111"
+                          label="Activate"
+                          onClick={event => handleClick(event, item)}
+                          {...props}
+                        />
+                      </Box>
+                    </span>
+                  </Box>
+                </Box>
+              </AccordionPanel>
+            </Accordion>
+          </Box>
+        ))
+      ) : (
+        <p style={{ textAlign: 'center' }}>
+          <em>No unactivated Hirer</em>
+        </p>
+      )}
+    </Grommet>
+  );
+};
+
+const mapDispatchToProps = {
+  inactiveHirer: getAllInactive
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(React.memo(ActivateHirer));
