@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import request from '../../request';
+import { Box } from 'grommet';
 
 export default function VerifyHirer({ match }) {
   const {
@@ -12,11 +13,17 @@ export default function VerifyHirer({ match }) {
 
   useEffect(() => {
     request
-      .put('http://localhost:3005/api/v1/hirer/verifyhirer', { ...state })
+      .put(`${process.env.REACT_APP_BASE_URL}/api/v1/hirer/verifyhirer`, {
+        ...state
+      })
       .then(res => {
         setMessage(res.data.message);
       });
   }, [state, message]);
 
-  return <h1>{message}</h1>;
+  return (
+    <Box pad="large" justify="center" align="center">
+      <p>{message}</p>
+    </Box>
+  );
 }
