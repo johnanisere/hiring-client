@@ -31,7 +31,8 @@ function HirerSignUp(props) {
     companyURL,
     designation,
     numberOfTalentsRequired,
-    deadline
+    deadline,
+    password
   } = values;
   const handleChange = e => {
     const { name, value } = e.target;
@@ -103,6 +104,14 @@ function HirerSignUp(props) {
             name="phone"
             type="phone"
             value={phone}
+            required
+            onChange={handleChange}
+          />
+          <Input
+            label="Password"
+            name="password"
+            type="password"
+            value={password}
             required
             onChange={handleChange}
           />
