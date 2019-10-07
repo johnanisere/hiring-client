@@ -9,8 +9,15 @@ import {
 } from '../components/constants/menu-items';
 
 export default function SideBar({ sidebar }) {
+  const { role } = useSelector(({ user }) => user.data);
   const { hirer } = useSelector(({ hirer }) => hirer);
-  const list = hirer ? hiringPartnerMenuItems : adminMenuItems;
+
+  let list;
+  if (Object.keys(hirer).length !== 0) {
+    list = hiringPartnerMenuItems;
+  } else if (role === 'admin') {
+    list = adminMenuItems;
+  }
 
   const handleClick = e => {
     console.log({ e });
@@ -32,7 +39,7 @@ export default function SideBar({ sidebar }) {
             }
           ]}
         >
-          {list.map((value, index) =>
+          {list.map(value =>
             typeof value === 'string' ? (
               <MenuItems name={value} key={value} />
             ) : (
