@@ -40,7 +40,6 @@ const CollapsibleMenu = ({ list, label, history }) => {
               : history.push(Object.values(item)[0]);
 
             if (item === 'All Decadevs') {
-              console.log('HALLELUJAH!!!!!');
               history.push('/dashboard');
             } else if (item === 'Decadevs Interviewed') {
               console.log('DECADEV INTERVIEWED');
@@ -48,8 +47,11 @@ const CollapsibleMenu = ({ list, label, history }) => {
               console.log('DECADEV HIRED');
             }
           };
+
+          const key =
+            typeof item === 'string' ? item : item[Object.keys(item)[0]];
           return (
-            <Collapsible open={openMenu} key={item}>
+            <Collapsible open={openMenu} key={key}>
               <Button hoverIndicator onClick={handleClick}>
                 <Box
                   direction="row"

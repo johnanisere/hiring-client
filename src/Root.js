@@ -1,14 +1,14 @@
-import React, { lazy, Suspense } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Loading from "./components/Loading";
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Loading from './components/Loading';
 
-const Dashboard = lazy(() => import("./compositions/dashboard"));
-const Authentication = lazy(() => import("./compositions/authentication"));
-const Profile = lazy(() => import("./components/profile/"));
+const Dashboard = lazy(() => import('./compositions/dashboard'));
+const Authentication = lazy(() => import('./compositions/authentication'));
+const Profile = lazy(() => import('./components/profile/'));
 const ScheduleInterview = lazy(() =>
-  import("./components/dashboard/ScheduleInterview")
+  import('./components/dashboard/ScheduleInterview')
 );
-const DecadevModal = lazy(() => import("./components/decadevModal/index"));
+const DecadevModal = lazy(() => import('./components/decadevModal/index'));
 
 const App = () => (
   <BrowserRouter>

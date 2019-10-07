@@ -1,8 +1,8 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Star } from "grommet-icons";
-import { Box, Text } from "grommet";
-import selectedBoundActionCreator from "./selected.action";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Star } from 'grommet-icons';
+import { Box, Text } from 'grommet';
+import selectedBoundActionCreator from './selected.action';
 function SelectCheck(props) {
   const { selected } = props;
 
@@ -12,17 +12,19 @@ function SelectCheck(props) {
 
   return (
     <Box
+      as="span"
       style={{
-        position: "absolute",
-        cursor: "pointer",
+        display: 'block',
+        position: 'absolute',
+        cursor: 'pointer',
         zIndex: 5,
-        bottom: "100px",
-        left: "20px",
+        bottom: '100px',
+        left: '20px',
         ...props.style
       }}
     >
-      <Text color="white" style={{ display: "flex", alignItems: "center" }}>
-        <Star onClick={onChange} color={selected ? "red" : "white"} />
+      <Text color="white" style={{ display: 'flex', alignItems: 'center' }}>
+        <Star onClick={onChange} color={selected ? 'red' : 'white'} />
       </Text>
     </Box>
   );
