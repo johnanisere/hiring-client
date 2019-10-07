@@ -9,7 +9,6 @@ import {
 } from '../components/constants/menu-items';
 
 export default function SideBar({ sidebar }) {
-  // const { role } = useSelector(({ user }) => user.data);
   const { hirer } = useSelector(({ hirer }) => hirer);
   const list = hirer ? hiringPartnerMenuItems : adminMenuItems;
 
