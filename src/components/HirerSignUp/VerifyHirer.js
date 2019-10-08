@@ -13,7 +13,7 @@ export default function VerifyHirer({ match }) {
 
   useEffect(() => {
     request
-      .put(`${process.env.REACT_APP_BASE_URL}/api/v1/hirer/verifyhirer`, {
+      .put('/hirer/verifyhirer', {
         ...state
       })
       .then(res => {
