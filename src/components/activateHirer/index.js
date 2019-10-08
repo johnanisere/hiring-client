@@ -26,7 +26,7 @@ const ActivateHirer = props => {
   function handleClick(event, item) {
     event.persist();
     request
-      .put(`${process.env.REACT_APP_BASE_URL}/api/v1/hirer/activatehirer`, {
+      .put('/hirer/activatehirer', {
         ...item
       })
       .then(res => {
