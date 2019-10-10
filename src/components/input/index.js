@@ -10,23 +10,27 @@ const Input = ({
   name,
   type,
   color
-}) => (
-  <FormField
-    label={label}
-    name={name}
-    required
-    validate={validate}
-    value={value}
-    onChange={onChange}
-    placeholder={placeholder}
-    type={type}
-    color={color}
-    style={{
-      marginBottom: '15px',
-      borderRadius: '20px'
-    }}
-  />
-);
+}) => {
+  console.log(value, 'inputfield');
+  return (
+    <FormField
+      label={label}
+      name={name}
+      required
+      validate={validate}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      type={type}
+      color={color}
+      style={{
+        marginBottom: '15px',
+        borderRadius: '0px',
+        fontSize: '16px'
+      }}
+    />
+  );
+};
 Input.propTypes = {
   label: PropTypes.string,
   color: PropTypes.string,

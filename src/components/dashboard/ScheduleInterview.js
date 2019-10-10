@@ -43,7 +43,7 @@ function ScheduleInterview(props) {
     endTime,
     decadev
   } = values;
-  console.log(values);
+
   const setDateAndTime = data => {
     setValues({ ...values, ...data });
   };
