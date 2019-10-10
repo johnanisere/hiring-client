@@ -38,8 +38,12 @@ const ActivateHirer = props => {
   }
   return (
     <Grommet theme={grommet}>
-      <Box border="small" justify="center" align="center">
-        <Heading size={3}>Unactivated Potential Hiring Partners</Heading>
+      <Box
+        style={{ borderBottom: '1px solid black' }}
+        justify="center"
+        align="center"
+      >
+        <Heading level={2}>Unactivated Potential Hiring Partners</Heading>
       </Box>
       {hirer ? (
         hirer.map(item => (
