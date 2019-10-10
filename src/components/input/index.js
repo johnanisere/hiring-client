@@ -11,7 +11,6 @@ const Input = ({
   type,
   color
 }) => {
-  console.log(value, 'inputfield');
   return (
     <FormField
       label={label}

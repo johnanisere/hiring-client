@@ -7,7 +7,7 @@ import hirerLoginBoundActionCreator from './hirerLogin.action';
 import FormError from '../../formError';
 import Button from '../../button/FormButton';
 function HirerLogin(props) {
-  const { error, loading } = useSelector(({ user }) => user);
+  const { error, loading } = useSelector(({ hirer }) => hirer);
   const [values, setValues] = useState({
     email: '',
     password: ''

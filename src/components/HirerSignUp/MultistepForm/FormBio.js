@@ -1,10 +1,8 @@
 import React from 'react';
 import { Box, Button, Form, Text } from 'grommet';
 import Input from '../../input/index';
-import { useSelector } from 'react-redux';
 
 function FormBio(props) {
-  const {} = useSelector;
   const { values, handleChange } = props;
   const continueToNext = e => {
     e.preventDefault();
