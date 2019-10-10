@@ -100,19 +100,18 @@ function DecaDevProfile() {
                 <Text> size="medium">Account</Text>
 
             <Box
-              // responsive
               direction="row-responsive"
               align="center"
-              pad={{ top: "large", left: "xlarge", right: "xlarge" }}
-              margin={{ bottom: "small" }}
+              pad={{ top: 'large', left: 'xlarge', right: 'xlarge' }}
+              margin={{ bottom: 'small' }}
             >
               <Grid
                 areas={[
-                  { name: "nav", start: [0, 0], end: [0, 0] },
-                  { name: "main", start: [1, 0], end: [1, 0] }
+                  { name: 'nav', start: [0, 0], end: [0, 0] },
+                  { name: 'main', start: [1, 0], end: [1, 0] }
                 ]}
-                columns={["medium", "flex"]}
-                rows={["flex"]}
+                columns={['medium', 'flex']}
+                rows={['flex']}
                 gap="small"
               >
                 <Text size="medium">Account</Text>
