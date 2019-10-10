@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, connect } from 'react-redux';
 import { Box, Button, Text } from 'grommet';
 import BeatLoader from 'react-spinners/BeatLoader';
@@ -39,7 +39,9 @@ function Confirm(props) {
     );
     props.nextStep();
   };
-
+  useEffect(() => {
+    console.log({ loading });
+  }, [loading]);
   const back = e => {
     e.preventDefault();
     props.prevStep();
