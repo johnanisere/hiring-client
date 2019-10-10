@@ -1,6 +1,6 @@
-import React from "react";
-import { FormField } from "grommet";
-import PropTypes from "prop-types";
+import React from 'react';
+import { FormField } from 'grommet';
+import PropTypes from 'prop-types';
 const Input = ({
   validate,
   label,
@@ -10,24 +10,27 @@ const Input = ({
   name,
   type,
   color
-}) => (
-  <FormField
-    label={label}
-    name={name}
-    required
-    validate={validate}
-    value={value}
-    onChange={onChange}
-    placeholder={placeholder}
-    type={type}
-    color={color}
-    style={{
-      marginBottom: "15px",
-      borderRadius: "0px",
-      fontSize: "16px"
-    }}
-  />
-);
+}) => {
+  console.log(value, 'inputfield');
+  return (
+    <FormField
+      label={label}
+      name={name}
+      required
+      validate={validate}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      type={type}
+      color={color}
+      style={{
+        marginBottom: '15px',
+        borderRadius: '0px',
+        fontSize: '16px'
+      }}
+    />
+  );
+};
 Input.propTypes = {
   label: PropTypes.string,
   color: PropTypes.string,
