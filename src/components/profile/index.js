@@ -100,6 +100,7 @@ function DecaDevProfile() {
                 <Text> size="medium">Account</Text>
 
             <Box
+              responsive
               direction="row-responsive"
               align="center"
               pad={{ top: 'large', left: 'xlarge', right: 'xlarge' }}
