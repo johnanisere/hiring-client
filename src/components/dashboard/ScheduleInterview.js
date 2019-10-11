@@ -5,21 +5,16 @@ import { useSelector, connect } from 'react-redux';
 import request from '../../request';
 import FormError from '../formError';
 import FormButton from '../button/FormButton';
-import scheduleInterviewBoundActionCreator, {
-  authorizeBoundActionCreator
-} from './scheduleInterview.action';
-import { toIso } from '../../helpers/utils';
-import moment from 'moment-timezone';
-import Modal from './Modal';
+import scheduleInterviewBoundActionCreator from './scheduleInterview.action';
+
 import FormLayout from '../FormLayout';
 
 function ScheduleInterview(props) {
-  const email = new URLSearchParams(props.location.search).get('email');
-
+  const { email } = props.match.params;
   const { error, loading } = useSelector(
     ({ interviewDetails }) => interviewDetails
   );
-  const user = useSelector(({ user }) => user.data);
+  const { hirer } = useSelector(({ hirer }) => hirer);
 
   const [values, setValues] = useState({
     title: '',
@@ -29,10 +24,12 @@ function ScheduleInterview(props) {
     startTime: '',
     endDate: undefined,
     endTime: '',
-    decadev: email,
-    timezone: ''
+    decaDev: email,
+    timezone: '',
+    hiringPartner: hirer.email,
+    nameOfOrg: hirer.nameOfOrg
   });
-  const [open, onOpen] = useState(false);
+
   const {
     title,
     location,
@@ -41,43 +38,35 @@ function ScheduleInterview(props) {
     startTime,
     endDate,
     endTime,
-    decadev
+    decaDev,
+    hiringPartner,
+    nameOfOrg
   } = values;
 
   const setDateAndTime = data => {
     setValues({ ...values, ...data });
   };
+
   const handleChange = e => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
-  const onToggle = () => {
-    onOpen(!open);
-  };
-  const handleSubmit = (e, cb) => {
+
+  const handleSubmit = e => {
     e && e.preventDefault();
     if (!startDate || !startTime || !endDate || !endTime) return;
-    let start = toIso(startDate, startTime);
-    let end = toIso(endDate, endTime);
+    // let start = toIso(startDate, startTime);
+    // let end = toIso(endDate, endTime);
     let payload = {
-      title,
       location,
       description,
-      startTime: start,
-      endTime: end,
-      timezone: moment.tz.guess(),
-      email: user.email,
-      devemail: decadev
+      startTime: `${startDate} ${startTime}`,
+      endTime: `${endDate} ${endTime}`,
+      hiringPartner,
+      nameOfOrg,
+      decaDev
     };
-    props.scheduleInterview(payload, request, onToggle, cb);
-  };
-  const submit = (cb, code) => {
-    const data = {
-      email: 'sheyiogundijo@gmail.com',
-      code
-    };
-
-    props.authorize(data, request, cb, handleSubmit);
+    props.scheduleInterview(payload, request);
   };
 
   return (
@@ -112,7 +101,7 @@ function ScheduleInterview(props) {
             value={location}
             onChange={handleChange}
           />
-          <FormField label="Decadev" name="decadev" value={decadev} disabled />
+          <FormField label="Decadev" name="decadev" value={decaDev} disabled />
           <FormField
             label="Add Description"
             name="description"
@@ -147,15 +136,13 @@ function ScheduleInterview(props) {
           >
             <FormButton loading={loading} type="submit" text="Save Interview" />
           </Box>
-          <Modal open={open} onToggle={onToggle} submit={submit} />
         </Form>
       </Box>
     </FormLayout>
   );
 }
 const mapDispatchToProps = {
-  scheduleInterview: scheduleInterviewBoundActionCreator,
-  authorize: authorizeBoundActionCreator
+  scheduleInterview: scheduleInterviewBoundActionCreator
 };
 export default connect(
   null,

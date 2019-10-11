@@ -1,13 +1,28 @@
-import React from 'react';
-import { Grommet, Box, Grid, ResponsiveContext, Heading, Text } from 'grommet';
+import React, { useState } from 'react';
+import {
+  Box,
+  Button,
+  Grid,
+  Collapsible,
+  Heading,
+  Grommet,
+  Text
+} from 'grommet';
 import { grommet } from 'grommet/themes';
-import { Cloudlinux, User } from 'grommet-icons';
+import { User } from 'grommet-icons';
+import Decagon from './decagon-logo.png';
+import { useSelector } from 'react-redux';
 
 import Photo from './Photo';
 import Info from './Info';
 import Skills from './Skills';
+import Work from './Work';
 
-const Background = () => {
+function DecaDevProfile() {
+  const [openNotification, setOpenNotification] = useState(false);
+
+  const { data } = useSelector(({ user }) => user);
+
   return (
     <Grommet theme={grommet} full>
       <ResponsiveContext.Consumer>
@@ -66,6 +81,7 @@ const Background = () => {
                 style={{ cursor: 'pointer' }}
 
             <Box
+              responsive
               direction="row-responsive"
               align="center"
               pad={{ top: 'large', left: 'xlarge', right: 'xlarge' }}
@@ -86,10 +102,25 @@ const Background = () => {
               </Box>
             </Collapsible>
           </Box>
+          <Collapsible direction="horizontal" open={openNotification}>
+            <Box
+              flex
+              gap="medium"
+              width="small"
+              background="light-2"
+              pad="small"
+              elevation="small"
+              style={{ cursor: 'pointer' }}
+            >
+              <Text size="medium">Account</Text>
+              <Text size="medium">Settings</Text>
+              <Text size="medium">Logout</Text>
+            </Box>
+          </Collapsible>
         </Box>
-      </Grommet>
-    );
-  }
+      </Box>
+    </Grommet>
+  );
 }
 
 export default DecaDevProfile;
