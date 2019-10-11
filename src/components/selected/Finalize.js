@@ -12,10 +12,12 @@ export default function Finalize(props) {
   }
 
   return (
-    <Grommet theme={grommet}>
-      <Box align="center" pad="medium" margin="large">
-        <Button primary label="Finalize" onClick={handleClick} color="dark-1" />
-      </Box>
-    </Grommet>
+    <Button
+      primary
+      label="Finalize"
+      onClick={handleClick}
+      color="dark-1"
+      style={{ borderRadius: '5px' }}
+    />
   );
 }

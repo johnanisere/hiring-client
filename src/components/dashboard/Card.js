@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import MoreInfo from './MoreInfo';
 import SelectCheck from '../selected/SelectCheck';
 import { useSelector } from 'react-redux';
