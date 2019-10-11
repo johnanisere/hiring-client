@@ -1,17 +1,8 @@
 import React from 'react';
-import { Heading, Box } from 'grommet';
+import { Heading, Box, Text } from 'grommet';
 
-const skills = [
-  'UI/UX',
-  'SQL',
-  'Java',
-  'JavaScript',
-  'TypeScript',
-  'React',
-  'MongoDB'
-];
-
-export default function Skills() {
+export default function Skills(props) {
+  const { skills } = props.decadev;
   return (
     <Box responsive direction="column">
       <Heading color="#a0a0a0" level={4}>
@@ -26,9 +17,12 @@ export default function Skills() {
         />
       </Heading>
       {skills.map((value, i) => (
-        <Heading level={4} key={i} style={{ marginTop: '-1rem' }}>
-          {value}
-        </Heading>
+        <>
+          <Heading level={4} key={i} style={{ marginTop: '-1rem' }}>
+            {value.type}
+          </Heading>
+          <Text>{value.description}</Text>
+        </>
       ))}
     </Box>
   );

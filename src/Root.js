@@ -17,9 +17,10 @@ const App = () => (
         <Route exact path="/profile" component={Profile} />
         <Route path="/dashboard" component={Dashboard} />
         <Route exact path="/viewprofile" component={DecadevModal} />
-        <Route exact path="/schedule-interview" component={ScheduleInterview} />
-        <Route exact path="/shortlisted" component={Shortlisted} />
-
+        <Route
+          path="/schedule-interview/:email"
+          component={ScheduleInterview}
+        />
         <Route path="/" component={Authentication} />
       </Switch>
     </Suspense>

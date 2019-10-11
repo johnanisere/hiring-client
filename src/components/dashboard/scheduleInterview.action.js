@@ -16,59 +16,14 @@ export const onError = payload => ({
 
 export const scheduleInterviewBoundActionCreator = (
   data,
-  request,
-  onToggle
+  request
 ) => async dispatch => {
   try {
     dispatch(setLoading(true));
-    const response = await request.post(
-      `${process.env.REACT_APP_CALENDAR_BASE_URL}/create-event`,
-      data
-    );
-    const payload = {
-      hiringPartner: data.email,
-      decaDev: data.devemail,
-      location: data.location,
-      startTime: data.startTime,
-      endTime: data.endTime,
-      description: data.description,
-      eventId: response.data.id
-    };
-    const res = await request.post('/interview/invite', payload);
-
-    dispatch(setLoading(false));
-
+    const res = await request.post('/interview/invite', data);
     dispatch(scheduleInterview(res.data));
-
+    dispatch(setLoading(false));
     return res.data;
-  } catch (err) {
-    if (err.response && err.response.status >= 400) {
-      const response = await request.post(
-        `${process.env.REACT_APP_CALENDAR_BASE_URL}/authenticate-user`,
-        { email: data.email }
-      );
-      window.open(response.data.authUrl, '_blank');
-      onToggle();
-    }
-    dispatch(setLoading(false));
-    return dispatch(onError(err));
-  }
-};
-
-export const authorizeBoundActionCreator = (
-  data,
-  request,
-  onToggle,
-  callback
-) => async dispatch => {
-  try {
-    const response = await request.post(
-      `${process.env.REACT_APP_CALENDAR_BASE_URL}/authorize-user`,
-      data
-    );
-    callback && callback(undefined, onToggle);
-    dispatch(setLoading(false));
-    return response.data;
   } catch (err) {
     dispatch(setLoading(false));
     return dispatch(onError(err));
