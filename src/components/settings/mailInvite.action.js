@@ -1,4 +1,4 @@
-export const DEVS_MAILINVITE = "DEVS_MAILINVITE";
+export const DEVS_MAILINVITE = 'DEVS_MAILINVITE';
 
 const mailInviteBoundActionCreator = (
   data,
@@ -10,7 +10,7 @@ const mailInviteBoundActionCreator = (
   try {
     setError({});
     setLoading(true);
-    const response = await request.post("/invite/devs", data);
+    const response = await request.post('/invite/devs', data);
     onSuccess(response.data.message);
     setLoading(false);
     return response.data;

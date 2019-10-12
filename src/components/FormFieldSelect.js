@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { grommet, Box, FormField, Select, Grommet } from "grommet";
+import { grommet, Box, FormField, Select, Grommet } from 'grommet';
 
 const allOptions = Array(100)
   .fill()

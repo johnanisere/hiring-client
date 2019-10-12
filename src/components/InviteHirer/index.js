@@ -3,6 +3,7 @@ import { useSelector, connect } from 'react-redux';
 import { Box, Button, Form, Text } from 'grommet';
 import BeatLoader from 'react-spinners/BeatLoader';
 import Input from '../input/index';
+
 import FormError from '../formError';
 import inviteHirerBoundActionCreator from '../InviteHirer/inviteHirer.action';
 import request from '../../request';

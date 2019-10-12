@@ -93,7 +93,6 @@ function ScheduleInterview(props) {
             value={title}
             onChange={handleChange}
             required
-            validate={{ regexp: /^[a-z]/i }}
           />
           <FormField
             label="Add Location"

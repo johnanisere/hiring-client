@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components";
-import { border } from "./mixins";
-import theme from "./Theme";
+import styled, { css } from 'styled-components';
+import { border } from './mixins';
+import theme from './Theme';
 
 const Container = styled.div`
   padding: ${theme.spacing.padding.p1};
@@ -42,7 +42,7 @@ const Container = styled.div`
 ${({ tags }) =>
   tags &&
   css`
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     padding: ${theme.spacing.padding.p0};
     padding-top: ${theme.spacing.padding.p1};
     display: flex;

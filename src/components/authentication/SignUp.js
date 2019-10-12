@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import request from "../../request";
-import { Box, Form, Text, FormField } from "grommet";
-import { useSelector, connect } from "react-redux";
+import React, { useState } from 'react';
+import request from '../../request';
+import { Box, Form, Text, FormField } from 'grommet';
+import { useSelector, connect } from 'react-redux';
 import signupBoundActionCreator, {
   clearErrorBoundActionCreator
-} from "./signup.action";
-import FormError from "../formError";
-import Button from "../button/FormButton";
-import SuccessNotify from "../toasters/SuccessNotification";
+} from './signup.action';
+import FormError from '../formError';
+import Button from '../button/FormButton';
+import SuccessNotify from '../toasters/SuccessNotification';
 
 function SignUp(props) {
   let { error, loading, data } = useSelector(({ user }) => user);
 
   const [values, setValues] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
   });
 
   const { name, email, password, confirmPassword } = values;
@@ -28,9 +28,9 @@ function SignUp(props) {
   const handleChange = e => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
-    if (name === "password") {
+    if (name === 'password') {
       onvalidatePassword(value, values.confirmPassword);
-    } else if (name === "confirmPassword") {
+    } else if (name === 'confirmPassword') {
       onvalidatePassword(values.password, value);
     } else {
       onvalidatePassword(values.password, values.confirmPassword);
@@ -39,7 +39,7 @@ function SignUp(props) {
 
   const onvalidatePassword = (password, confirmPassword) => {
     if (password !== confirmPassword) {
-      error.message = "Passwords does not match";
+      error.message = 'Passwords does not match';
     } else {
       props.clear();
     }
@@ -66,9 +66,9 @@ function SignUp(props) {
           size="large"
           margin="auto"
           style={{
-            fontWeight: "bold",
-            fontSize: "25px",
-            paddingBottom: "15px"
+            fontWeight: 'bold',
+            fontSize: '25px',
+            paddingBottom: '15px'
           }}
         >
           Register
@@ -87,7 +87,7 @@ function SignUp(props) {
           placeholder="Name"
           type="name"
           style={{
-            marginBottom: "5px"
+            marginBottom: '5px'
           }}
           required
         />
@@ -96,14 +96,14 @@ function SignUp(props) {
           required
           validate={{
             regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-            message: "Input must be valid email!"
+            message: 'Input must be valid email!'
           }}
           value={email}
           onChange={handleChange}
           placeholder="Email"
           type="email"
           style={{
-            marginBottom: "5px"
+            marginBottom: '5px'
           }}
         />
         <FormField
@@ -114,7 +114,7 @@ function SignUp(props) {
           value={password}
           onChange={handleChange}
           style={{
-            marginBottom: "5px"
+            marginBottom: '5px'
           }}
         />
         <FormField
@@ -125,7 +125,7 @@ function SignUp(props) {
           placeholder="Confirm Password"
           type="password"
           style={{
-            marginBottom: "5px"
+            marginBottom: '5px'
           }}
         />
 
@@ -137,7 +137,7 @@ function SignUp(props) {
             width="large"
             label="Sign Up"
             type="submit"
-            style={{ width: "100%" }}
+            style={{ width: '100%' }}
           />
         </Box>
       </Form>

@@ -5,7 +5,7 @@ import { getAllDecadevs } from './decadevs.action';
 import MoonLoader from 'react-spinners/MoonLoader';
 import Dropdown from '../Dropdown';
 import Next from './Next';
-import Finalize from '../selected/Finalize';
+
 import Card from './Card';
 
 import { Grommet, Box, Grid, ResponsiveContext } from 'grommet';
@@ -44,9 +44,7 @@ class Cards extends React.Component {
               <MoonLoader size={30} />
             </Box>
           )}
-          <Box align="start" justify="start">
-            <Finalize />
-          </Box>
+          <Box align="start" justify="start"></Box>
           <ResponsiveContext.Consumer>
             {size => (
               <Grid
@@ -62,14 +60,15 @@ class Cards extends React.Component {
                     : ['1/6', '1/6', '1/6', '1/6', '1/6', '1/6']
                 }
               >
-                {decadevs.map((dev, key) => (
-                  <Card
-                    key={key}
-                    dev={dev}
-                    open={this.state.open}
-                    onToggle={this.onToggle}
-                  />
-                ))}
+                {!loading &&
+                  decadevs.map((dev, key) => (
+                    <Card
+                      key={key}
+                      dev={dev}
+                      open={this.state.open}
+                      onToggle={this.onToggle}
+                    />
+                  ))}
               </Grid>
             )}
           </ResponsiveContext.Consumer>

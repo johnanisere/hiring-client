@@ -24,103 +24,63 @@ function DecaDevProfile() {
   const { data } = useSelector(({ user }) => user);
 
   return (
-    <Grommet theme={grommet} full>
-      <ResponsiveContext.Consumer>
-        {size => (
-          <Box fill background="#ffffff" round="small">
+    <Grommet full theme={grommet}>
+      <Box fill>
+        <Box
+          as="header"
+          direction="row"
+          align="center"
+          pad={{ vertical: 'small', horizontal: 'small' }}
+          justify="between"
+          background="#555555"
+          elevation="large"
+          style={{ zIndex: '1000', color: '#f8f8f8', height: '60px' }}
+        >
+          <img
+            src={Decagon}
+            alt="Decagon-logo"
+            style={{ width: '50px', height: 'auto' }}
+          />
+          <Heading level={3} margin="none" color="white">
+            <strong>Welcome Decagon</strong>
+          </Heading>
+          <Button
+            onClick={() => setOpenNotification(!openNotification)}
+            icon={<User color="white" />}
+          />
+        </Box>
+        <Box flex direction="row">
+          <Box flex align="center" justify="center">
             <Box
+              responsive
               direction="row-responsive"
               align="center"
-              pad={{ left: 'xlarge', right: 'xlarge' }}
+              pad={{ top: 'large', left: 'xlarge', right: 'xlarge' }}
               margin={{ bottom: 'small' }}
-              style={{ boxShadow: '0px 1px 10px -8px' }}
             >
-              <Box direction="row-responsive" gap="large" align="center">
-                <Cloudlinux color="plain" size="large" />
-                <Heading size="small">Decagon</Heading>
-              </Box>
-              <Box
-                style={{ marginLeft: 'auto' }}
-                direction="row-responsive"
-                align="center"
-                pad={{ top: 'large', left: 'xlarge', right: 'xlarge' }}
-                margin={{ bottom: 'small' }}
+              <Grid
+                areas={[
+                  { name: 'nav', start: [0, 0], end: [0, 0] },
+                  { name: 'main', start: [1, 0], end: [1, 0] }
+                ]}
+                columns={['medium', 'flex']}
+                rows={['flex']}
+                gap="small"
               >
-                <Grid
-                  areas={[
-                    { name: 'nav', start: [0, 0], end: [0, 0] },
-                    { name: 'main', start: [1, 0], end: [1, 0] }
-                  ]}
-                  columns={['medium', 'flex']}
-                  rows={['flex']}
-                  gap="small"
+                <Box gridArea="nav" background="">
+                  <Photo profilePhoto={data.profilePhoto} />
+                  <Work decadev={data} />
+                  <Skills decadev={data} />
+                </Box>
+                <Box
+                  gridArea="main"
+                  background=""
+                  style={{ marginLeft: '50px' }}
                 >
-                  <Box gridArea="nav" background="">
-                    <Photo />
-                    <Skills />
-                  </Box>
-                  <Box
-                    gridArea="main"
-                    background=""
-                    style={{ marginLeft: '50px' }}
-                  >
-                    <Info />
-                  </Box>
-                </Grid>
-              </Box>
+                  <Info />
+                </Box>
+              </Grid>
             </Box>
-
-            <Collapsible direction="horizontal" open={openNotification}>
-              <Box
-                flex
-                gap="medium"
-                width="small"
-                background="light-2"
-                pad="small"
-                elevation="small"
-                style={{ cursor: 'pointer' }}
-
-
-            <Box
-              responsive
-              direction="row-responsive"
-              align="center"
-              pad={{ top: 'large', left: 'xlarge', right: 'xlarge' }}
-              margin={{ bottom: 'small' }}
-            >
-              <Grid
-                areas={[
-                  { name: 'nav', start: [0, 0], end: [0, 0] },
-                  { name: 'main', start: [1, 0], end: [1, 0] }
-                ]}
-                columns={['medium', 'flex']}
-                rows={['flex']}
-                gap="small"
-
-                <Text> size="medium">Account</Text>
-
-            <Box
-              responsive
-              direction="row-responsive"
-              align="center"
-              pad={{ top: 'large', left: 'xlarge', right: 'xlarge' }}
-              margin={{ bottom: 'small' }}
-            >
-              <Grid
-                areas={[
-                  { name: 'nav', start: [0, 0], end: [0, 0] },
-                  { name: 'main', start: [1, 0], end: [1, 0] }
-                ]}
-                columns={['medium', 'flex']}
-                rows={['flex']}
-                gap="small"
-              >
-                <Text size="medium">Account</Text>
-
-                <Text size="medium">Settings</Text>
-                <Text size="medium">Logout</Text>
-              </Box>
-            </Collapsible>
           </Box>
           <Collapsible direction="horizontal" open={openNotification}>
             <Box

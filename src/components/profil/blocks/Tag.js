@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import theme from "./Theme";
+import styled from 'styled-components';
+import theme from './Theme';
 
 const Tag = styled.div`
   border-radius: 2px;

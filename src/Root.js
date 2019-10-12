@@ -21,9 +21,6 @@ const App = () => (
           path="/schedule-interview/:email"
           component={ScheduleInterview}
         />
-
-        <Route exact path="/shortlisted" component={Shortlisted} />
-
         <Route path="/" component={Authentication} />
       </Switch>
     </Suspense>

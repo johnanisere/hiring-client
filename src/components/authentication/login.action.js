@@ -1,20 +1,20 @@
-export const USER_LOGIN = "USER_LOGIN";
+export const USER_LOGIN = 'USER_LOGIN';
 const login = payload => ({
   type: USER_LOGIN,
   payload
 });
 
 const setToken = payload => ({
-  type: "SET_TOKEN",
+  type: 'SET_TOKEN',
   payload
 });
 
 export const setLoading = payload => ({
-  type: "LOADING",
+  type: 'LOADING',
   payload
 });
 export const onError = payload => ({
-  type: "USER_LOGIN_ERROR",
+  type: 'USER_LOGIN_ERROR',
   payload
 });
 
@@ -25,7 +25,7 @@ const loginBoundActionCreator = (
 ) => async dispatch => {
   try {
     dispatch(setLoading(true));
-    const response = await request.post("/users/login", data);
+    const response = await request.post('/users/login', data);
     dispatch(login(response.data));
     dispatch(setToken(response.data.token));
     dispatch(setLoading(false));

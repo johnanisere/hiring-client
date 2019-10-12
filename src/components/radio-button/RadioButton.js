@@ -20,7 +20,6 @@ export default function MultipleChoices({ random, ...rest }) {
               label={choice}
               name={rest.name}
               value={choice}
-              required
               checked={choice === random}
               onChange={rest.changed}
               {...rest}

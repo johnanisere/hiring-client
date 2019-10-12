@@ -6,7 +6,6 @@ import { useSelector, connect } from 'react-redux';
 import loginBoundActionCreator from './login.action';
 import FormError from '../formError';
 import Button from '../button/FormButton';
-
 function Login(props) {
   const { error, loading } = useSelector(({ user }) => user);
   const [values, setValues] = useState({
