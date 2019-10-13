@@ -1,61 +1,61 @@
 import React from 'react';
-import { Box, Heading, Text } from 'grommet';
+import { Box, Text } from 'grommet';
 
 export default function Work(props) {
-  const { decadev } = props;
-  console.log({ decadev });
-  return (
-    <Box responsive direction="column">
-      <Heading color="#a0a0a0" level={4}>
-        WORK EXPERIENCE
-        <hr
-          style={{
-            border: '0',
-            height: ' 0',
-            borderTop: '2px solid rgba(0, 0, 0, 0.1)',
-            borderBottom: '3px solid rgba(255, 255, 255, 0.3)'
-          }}
-        />
-      </Heading>
-      {decadev.employments.map(item => (
-        <Box pad="small">
-          <Box
-            responsive
-            style={{ marginTop: '-2rem' }}
-            direction
-            background={{ color: '#f1f1f1', opacity: 'weak' }}
-            align="center"
-          >
-            <Heading level={4}>{item.title}</Heading>
-            <Text
-              color="brand"
-              size="small"
-              style={{
-                marginLeft: 'auto',
-                textAlign: 'center',
-                background: '#e3f2fc',
-                borderRadius: '5px',
-                lineHeight: '30px',
-                width: '100px',
-                height: '30px',
-                fontWeight: 'bold',
-                padding: '5px'
-              }}
-            >
-              {item.duration}
-            </Text>
-          </Box>
-          <Text color="#123456" size="small">
-            {item.location}
-          </Text>
+  const { employments } = props;
 
-          {item.achievements.map(achievement => (
-            <Text color="#654321" size="small">
-              {achievement}
-            </Text>
-          ))}
-        </Box>
-      ))}
-    </Box>
+  return (
+    <section
+      style={{
+        width: '60%',
+        margin: 'auto'
+      }}
+    >
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div>Experience</div>
+        <div>Edit</div>
+      </div>
+      <Box style={{ border: '0.5px solid #d9dadc' }}>
+        {employments.map((employment, index) => (
+          <div key={`a${index}`} style={{ padding: '20px' }}>
+            <div style={{ display: 'flex' }}>
+              <div style={{ flex: '1 1 10%', marginRight: '40px' }}>
+                <div
+                  style={{
+                    height: '115px',
+                    width: '100%',
+                    backgroundColor: 'black'
+                  }}
+                ></div>
+              </div>
+              <div
+                style={{
+                  flex: '1 1 90%',
+                  paddingLeft: '10px',
+                  color: '#666'
+                }}
+              >
+                <div style={{ fontSize: '15px', fontWeight: 'bold' }}>
+                  {employment.location}
+                </div>
+                <div style={{ fontSize: '20px' }}>
+                  <Text style={{ fontWeight: 'bold' }}>{employment.title}</Text>
+                  <Text style={{ marginLeft: '4px', fontWeight: 'lighter' }}>
+                    {employment.duration}
+                  </Text>
+                </div>
+                <div>
+                  <ul style={{ fontSize: '14px ' }}>
+                    {employment.achievements.map((item, index) => (
+                      <li key={`b${index}`}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </Box>
+    </section>
   );
 }

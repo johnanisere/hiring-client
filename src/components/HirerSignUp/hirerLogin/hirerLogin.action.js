@@ -33,7 +33,8 @@ const hirerLoginBoundActionCreator = (
     return response.data;
   } catch (err) {
     dispatch(setLoading(false));
-    return dispatch(onError(err));
+    dispatch(onError(err));
+    return;
   }
 };
 

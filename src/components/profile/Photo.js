@@ -1,20 +1,37 @@
 import React from 'react';
-import { Grommet, Box, Image } from 'grommet';
-import { grommet } from 'grommet/themes';
+import { Heading } from 'grommet';
 
 export default function Photo(props) {
+  const { data } = props;
   return (
-    <Grommet theme={grommet}>
-      <Box responsive align="start" gap="medium">
-        <Box
-          height="250px"
-          width="80%"
-          border
-          style={{ marginTop: '5px', marginLeft: '5px', borderRadius: '5px' }}
-        >
-          <Image src={props.profilePhoto} fit="cover" />
-        </Box>
-      </Box>
-    </Grommet>
+    <section
+      style={{
+        position: 'relative',
+        top: '-51px',
+        width: '60%',
+        margin: 'auto',
+        display: 'flex',
+        alignItems: 'center'
+      }}
+    >
+      <div style={{ flex: '1 1 20%', marginRight: '40px', height: '230px' }}>
+        <img
+          alt="decadev"
+          src={data.profilePhoto}
+          style={{
+            maxWidth: '100%',
+            maxHeight: '100%',
+            border: '20px solid #fff'
+          }}
+        />
+      </div>
+      <div style={{ flex: '1 1 80%', paddingLeft: '10px' }}>
+        <Heading level={2}>{data.name}</Heading>
+        <div style={{ fontSize: '15px' }}>{data.bio}</div>
+        <div style={{ display: 'flex', fontSize: '15px' }}>
+          <div style={{ marginRight: '20px' }}>{data.currentRole}</div>
+        </div>
+      </div>
+    </section>
   );
 }

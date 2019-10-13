@@ -37,7 +37,6 @@ const Container = styled.div`
 
 @media(max-width:668px){
     flex-direction:column;
-   
 }
 ${({ tags }) =>
   tags &&
