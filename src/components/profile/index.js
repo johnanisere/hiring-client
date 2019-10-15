@@ -4,15 +4,17 @@ import { Notification } from 'grommet-icons';
 import { grommet } from 'grommet/themes';
 import Decagon from './decagon-logo.png';
 import { useSelector } from 'react-redux';
+import PhotoForm from './Photo/PhotoForm';
 
-import Photo from './Photo';
+import Photo from './Photo/Photo';
 // import Info from './Info';
-// import Skills from './Skills';
-import Work from './Work';
+import Skills from './Skills/Skills';
+import Work from './Work/Work';
+import Projects from './Projects';
 
 const DecaDevProfile = () => {
   const { data } = useSelector(({ user }) => user);
-  console.log(data);
+  const [isEditing, setIsEditing] = React.useState(false);
 
   const [openNotification, setOpenNotification] = React.useState();
 
@@ -24,7 +26,7 @@ const DecaDevProfile = () => {
         align="center"
         pad={{ vertical: 'small', horizontal: 'medium' }}
         justify="between"
-        background="neutral-3"
+        background="dark-3"
         elevation="large"
         style={{
           zIndex: '1000',
@@ -48,9 +50,14 @@ const DecaDevProfile = () => {
         />
       </Box>
       <Box as="main" style={{ marginTop: '82px', maxWidth: '100%' }}>
-        <section style={{ background: '#e9eaec', height: '130px' }}></section>
-        <Photo data={data} />
+        {isEditing ? (
+          <PhotoForm decadevName={data.name} setIsEditing={setIsEditing} />
+        ) : (
+          <Photo data={data} setIsEditing={setIsEditing} />
+        )}
         <Work employments={data.employments} />
+        <Skills skills={data.skills} />
+        <Projects projects={data.portfolio} />
       </Box>
     </Grommet>
   );
