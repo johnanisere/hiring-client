@@ -28,3 +28,7 @@ code {
   border-radius: 50%;
   margin-right: 20px;
 }
+
+div.action:hover {
+  cursor: pointer;
+}
