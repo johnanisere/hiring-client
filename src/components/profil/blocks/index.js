@@ -1,8 +1,8 @@
-import Tag from "./Tag";
-import List from "./List";
-import Text from "./Text";
-import Image from "./Image";
-import Container from "./Container";
+import Tag from './Tag';
+import List from './List';
+import Text from './Text';
+import Image from './Image';
+import Container from './Container';
 
 const Profile = Container;
 Profile.Image = Image;

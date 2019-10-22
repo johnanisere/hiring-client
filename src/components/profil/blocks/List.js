@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import theme from "./Theme";
+import styled, { css } from 'styled-components';
+import theme from './Theme';
 
 const List = styled.ul`
   padding: ${theme.spacing.padding.p0};

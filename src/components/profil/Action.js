@@ -1,6 +1,7 @@
 import React from 'react';
 import Profile from './blocks';
 import SelectCheck from '../selected/SelectCheck';
+import { Link } from 'react-router-dom';
 
 const App = ({ selected, dev }) => (
   <>
@@ -13,14 +14,8 @@ const App = ({ selected, dev }) => (
         backgroundColor: 'rgba(0, 0, 0, .09)'
       }}
     >
-      <Profile.Text
-        style={{ marginRight: '10px' }}
-        blue
-        medium
-        as="a"
-        href={`/schedule-interview/${dev.email}`}
-      >
-        Schedule interview
+      <Profile.Text style={{ marginRight: '10px' }} blue medium>
+        <Link to={`/schedule-interview/${dev.email}`}>Schedule interview</Link>
       </Profile.Text>
       <Profile.Text style={{ marginRight: '10px' }} bold size2>
         OR

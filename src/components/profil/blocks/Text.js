@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components";
-import { size, color, thickness, lineHeight, spacing } from "./mixins";
-import theme from "./Theme";
+import styled, { css } from 'styled-components';
+import { size, color, thickness, lineHeight, spacing } from './mixins';
+import theme from './Theme';
 const Text = styled.p`
   margin: ${theme.spacing.margin.m0};
   ${size};

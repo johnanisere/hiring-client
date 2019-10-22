@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import BeatLoader from 'react-spinners/BeatLoader';
 import {
   Accordion,
   AccordionPanel,
@@ -17,26 +18,32 @@ const ActivateHirer = props => {
   const { hirer } = useSelector(({ inactiveHirer }) => inactiveHirer);
   // eslint-disable-next-line
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     props.inactiveHirer(request);
   }, [props]);
 
   const { animate, multiple, inactiveHirer, ...rest } = props;
-  function handleClick(event, item) {
+  async function handleClick(event, item) {
     event.persist();
-    request
-      .put('/hirer/activatehirer', {
-        ...item
-      })
-      .then(res => {
-        setMessage(res);
-      });
+    setLoading(!loading);
+    let res = await request.put('/hirer/activatehirer', {
+      ...item
+    });
+    setMessage(res);
+    setLoading(false);
+
+    await props.inactiveHirer(request);
   }
   return (
     <Grommet theme={grommet}>
-      <Box border="small" justify="center" align="center">
-        <Heading size={3}>Unactivated Potential Hiring Partners</Heading>
+      <Box
+        style={{ borderBottom: '1px solid black' }}
+        justify="center"
+        align="center"
+      >
+        <Heading level={2}>Unactivated Potential Hiring Partners</Heading>
       </Box>
       {hirer ? (
         hirer.map(item => (
@@ -66,7 +73,13 @@ const ActivateHirer = props => {
                           }}
                           primary
                           color="#111111"
-                          label="Activate"
+                          label={
+                            loading ? (
+                              <BeatLoader size={5} color="#fff" />
+                            ) : (
+                              'Activate'
+                            )
+                          }
                           onClick={event => handleClick(event, item)}
                           {...props}
                         />

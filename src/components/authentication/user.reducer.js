@@ -1,6 +1,7 @@
 import { USER_LOGIN } from './login.action';
 
 import { USER_SIGNUP } from './signup.action';
+import { UPDATE_DEV } from '../profile/actions/updateDetails.action';
 
 export const initialState = {
   loading: false,
@@ -11,9 +12,10 @@ export const initialState = {
 export default function user(state = initialState, action) {
   switch (action.type) {
     case USER_LOGIN:
+    case UPDATE_DEV:
       return {
         ...state,
-        data: action.payload
+        data: { ...state.data, ...action.payload }
       };
     case USER_SIGNUP:
       return {

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 
-import { Button } from "grommet";
+import { Button } from 'grommet';
 
 export default function Finalize(props) {
   const [state, setState] = useState(false);
@@ -17,7 +17,7 @@ export default function Finalize(props) {
       label="Finalize"
       onClick={handleClick}
       color="dark-1"
-      style={{ borderRadius: "5px" }}
+      style={{ borderRadius: '5px' }}
     />
   );
 }

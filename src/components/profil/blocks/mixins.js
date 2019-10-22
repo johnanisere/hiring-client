@@ -1,4 +1,4 @@
-import theme from "./Theme";
+import theme from './Theme';
 
 export const size = ({ size1, size2, size3, size4, size5, size6 }) => `
 font-size:${
@@ -37,16 +37,16 @@ font-weight:${
 `;
 
 export const border = ({ top, bottom, left, right }) => `
-border-top:${top ? `2px solid ${theme.color.lightgrey};` : "0px"}
-border-bottom:${bottom ? `2px solid ${theme.color.lightgrey};` : "0px"}
-border-left:${left ? `2px solid ${theme.color.lightgrey};` : "0px"}
-border-right:${right ? `2px solid ${theme.color.lightgrey};` : "0px"}
+border-top:${top ? `2px solid ${theme.color.lightgrey};` : '0px'}
+border-bottom:${bottom ? `2px solid ${theme.color.lightgrey};` : '0px'}
+border-left:${left ? `2px solid ${theme.color.lightgrey};` : '0px'}
+border-right:${right ? `2px solid ${theme.color.lightgrey};` : '0px'}
 `;
 
 export const lineHeight = ({ l20 }) => `
-line-height:${l20 ? "20px" : "initial"}
+line-height:${l20 ? '20px' : 'initial'}
 `;
 export const spacing = ({ mtb1, mt5 }) => `
-margin-top:${mtb1 || mt5 ? theme.spacing.margin.m1 : "0px"};
-margin-bottom:${mtb1 ? theme.spacing.margin.m1 : "0px"};
+margin-top:${mtb1 || mt5 ? theme.spacing.margin.m1 : '0px'};
+margin-bottom:${mtb1 ? theme.spacing.margin.m1 : '0px'};
 `;

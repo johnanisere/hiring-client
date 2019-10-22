@@ -8,7 +8,7 @@ const updatePasswordBoundActionCreator = (
 ) => async () => {
   try {
     activityIndicator(true);
-    const response = await request.put("/users/update-password", data, {
+    const response = await request.put('/users/update-password', data, {
       headers: {
         authorization: `Bearer ${token}`
       }

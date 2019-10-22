@@ -11,6 +11,12 @@ const Invite = lazy(() => import('../InviteHirer'));
 const HirerSignUp = lazy(() => import('../HirerSignUp'));
 const VerifyHirer = lazy(() => import('../HirerSignUp/VerifyHirer'));
 const HirerLogin = lazy(() => import('../HirerSignUp/hirerLogin/HirerLogin'));
+const InterviewResponse = lazy(() =>
+  import('../interviewActivities/InterviewResponse')
+);
+// const AllInterviewsTable = lazy(() =>
+//   import('../interviewActivities/AllInterviews')
+// );
 
 export default function() {
   return (
@@ -24,12 +30,18 @@ export default function() {
       <Route exact path="/schedule" component={Schedule} />
       <Route exact path="/invite" component={Invite} />
       <Route exact path="/verify-hirer/:token/:email" component={VerifyHirer} />
+      <Route
+        exact
+        path="/interview-response/:intent/:email/:interviewId"
+        component={InterviewResponse}
+      />
 
       <Route
         exact
-        path={`/change-password/:token`}
+        path={'/change-password/:token'}
         component={ChangePassword}
       />
+
       <Route exact path="/login/partner" component={HirerLogin} />
     </Switch>
   );

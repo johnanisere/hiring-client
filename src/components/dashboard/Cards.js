@@ -1,19 +1,19 @@
-import React from "react";
-import { connect } from "react-redux";
-import request from "../../request";
-import { getAllDecadevs } from "./decadevs.action";
-import MoonLoader from "react-spinners/MoonLoader";
-import Dropdown from "../Dropdown";
-import Next from "./Next";
+import React from 'react';
+import { connect } from 'react-redux';
+import request from '../../request';
+import { getAllDecadevs } from './decadevs.action';
+import MoonLoader from 'react-spinners/MoonLoader';
+import Dropdown from '../Dropdown';
+import Next from './Next';
 
-import Card from "./Card";
+import Card from './Card';
 
-import { Grommet, Box, Grid, ResponsiveContext } from "grommet";
+import { Grommet, Box, Grid, ResponsiveContext } from 'grommet';
 
 class Cards extends React.Component {
   state = {
     open: false,
-    gender: "All",
+    gender: 'All',
     fetching: false
   };
   componentDidMount() {
@@ -38,7 +38,7 @@ class Cards extends React.Component {
     return (
       <>
         <Dropdown handleChange={this.handleChange} />
-        <Grommet style={{ overflow: "scroll", minHeight: "100%" }}>
+        <Grommet style={{ overflow: 'scroll', minHeight: '100%' }}>
           {loading && (
             <Box fill width="medium" align="center" justify="center">
               <MoonLoader size={30} />
@@ -49,15 +49,15 @@ class Cards extends React.Component {
             {size => (
               <Grid
                 columns={
-                  size === "small"
-                    ? ["1"]
-                    : size === "medium"
-                    ? ["1/4", "1/4", "1/4", "1/4"]
-                    : size === "large"
-                    ? ["1/4", "1/4", "1/4", "1/4"]
-                    : size === "xlarge"
-                    ? ["1/5", "1/5", "1/5", "1/5", "1/5"]
-                    : ["1/6", "1/6", "1/6", "1/6", "1/6", "1/6"]
+                  size === 'small'
+                    ? ['1']
+                    : size === 'medium'
+                    ? ['1/4', '1/4', '1/4', '1/4']
+                    : size === 'large'
+                    ? ['1/4', '1/4', '1/4', '1/4']
+                    : size === 'xlarge'
+                    ? ['1/5', '1/5', '1/5', '1/5', '1/5']
+                    : ['1/6', '1/6', '1/6', '1/6', '1/6', '1/6']
                 }
               >
                 {!loading &&
@@ -75,7 +75,7 @@ class Cards extends React.Component {
           {!loading && (
             <Next
               handleNext={this.handleNext}
-              style={{ borderRadius: "5px" }}
+              style={{ borderRadius: '5px' }}
             />
           )}
         </Grommet>

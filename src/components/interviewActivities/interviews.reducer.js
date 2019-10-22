@@ -1,26 +1,26 @@
-import { SCHEDULE_INTERVIEW } from './scheduleInterview.action';
+import { GET_ALL_INTERVIEWS } from './interviews.action';
 export const initialState = {
   loading: false,
   error: {},
-  interviewDetails: {}
+  data: []
 };
 
-export default function interviewDetails(state = initialState, action) {
+export default function interviews(state = initialState, action) {
   switch (action.type) {
-    case 'SCHEDULE_INTERVIEW_LOADING':
+    case 'GET_ALL_INTERVIEWS_LOADING':
       return {
         ...state,
         loading: action.payload
       };
-    case 'SCHEDULE_INTERVIEW_ERROR':
+    case 'GET_ALL_INTERVIEWS_ERROR':
       return {
         ...state,
         error: action.payload
       };
-    case SCHEDULE_INTERVIEW:
+    case GET_ALL_INTERVIEWS:
       return {
         ...state,
-        interviewDetails: action.payload
+        data: action.payload
       };
     default:
       return state;
