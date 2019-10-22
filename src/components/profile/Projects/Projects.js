@@ -5,7 +5,7 @@ import ProjectDetails from './ProjectDetails';
 import AddNewProject from './AddNewProject';
 
 export default function Projects(props) {
-  const { projects } = props;
+  const { data } = props;
   const [hidden, setHidden] = useState(true);
   function handleVisibilityOfEdit() {
     setHidden(!hidden);
@@ -42,13 +42,14 @@ export default function Projects(props) {
             justifyContent: 'space-between'
           }}
         >
-          <AddNewProject />
+          <AddNewProject decadev={data} />
         </div>
-        {projects.map((project, index) => (
+        {data.portfolio.map((project, index) => (
           <ProjectDetails
             project={project}
             index={index}
             hidden={hidden}
+            decadev={data}
             key={`project${index}`}
           />
         ))}

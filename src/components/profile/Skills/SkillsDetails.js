@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Text } from 'grommet';
+import { Brush } from 'grommet-icons';
 
 import SkillsEdit from './SkillsEdit';
 
 function SkillsDetails(props) {
   const [editing, setEditing] = useState(false);
-  const { skill, index, hidden } = props;
+  const { skill, index, hidden, decadev } = props;
+
   function handleEdit() {
     setEditing(true);
   }
@@ -16,13 +18,20 @@ function SkillsDetails(props) {
           <div
             style={{
               height: 'auto',
-              width: '100%',
-              backgroundColor: 'black'
+              width: '100%'
             }}
-          ></div>
+          >
+            <Brush
+              size="large"
+              color="#d0d2d3"
+              style={{
+                margin: '0 auto'
+              }}
+            />
+          </div>
         </div>
         {editing && !hidden ? (
-          <SkillsEdit setEditing={setEditing} />
+          <SkillsEdit setEditing={setEditing} skill={skill} decadev={decadev} />
         ) : (
           <>
             <div

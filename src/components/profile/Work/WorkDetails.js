@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Text } from 'grommet';
+import { Briefcase } from 'grommet-icons/icons/Briefcase';
 import WorkEdit from './WorkEdit';
 
 function WorkDetails(props) {
   const [editing, setEditing] = useState(false);
-  const { index, location, title, duration, achievements, hidden } = props;
+  const { index, hidden, employment, employments } = props;
+  const { location, title, duration, achievements } = employment;
 
   function handleEdit() {
     setEditing(true);
@@ -30,15 +32,28 @@ function WorkDetails(props) {
           <div style={{ flex: '1 1 10%', marginRight: '40px' }}>
             <div
               style={{
-                height: '115px',
+                height: 'auto',
                 width: '100%',
-                backgroundColor: 'black'
+                padding: '5px'
               }}
-            ></div>
+            >
+              <Briefcase
+                color="#d0d2d3"
+                size="large"
+                style={{
+                  margin: '0 auto'
+                }}
+              />
+            </div>
           </div>
 
           {editing && !hidden ? (
-            <WorkEdit setEditing={setEditing} />
+            <WorkEdit
+              setEditing={setEditing}
+              employment={employment}
+              employments={employments}
+              decadev={props.decadev}
+            />
           ) : (
             <>
               <div

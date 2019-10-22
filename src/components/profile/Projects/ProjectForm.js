@@ -2,13 +2,16 @@ import React from 'react';
 import { Form } from 'grommet/components/Form';
 import { TextInput } from 'grommet/components/TextInput';
 
-function WorkForm(props) {
-  const { values, handleChange } = props;
+import FormError from '../../formError';
+
+function ProjectForm(props) {
+  const { values, handleChange, error } = props;
 
   const { title, languages, link } = values;
 
   return (
     <Form>
+      <FormError error={error} />
       <div style={{ margin: '10px' }}>
         <label
           htmlFor="title"
@@ -79,4 +82,4 @@ function WorkForm(props) {
   );
 }
 
-export default React.memo(WorkForm);
+export default React.memo(ProjectForm);

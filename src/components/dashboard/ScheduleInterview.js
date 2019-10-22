@@ -6,6 +6,7 @@ import request from '../../request';
 import FormError from '../formError';
 import FormButton from '../button/FormButton';
 import scheduleInterviewBoundActionCreator from './scheduleInterview.action';
+import { toNormalDate } from '../../helpers/utils';
 
 import FormLayout from '../FormLayout';
 
@@ -55,13 +56,14 @@ function ScheduleInterview(props) {
   const handleSubmit = e => {
     e && e.preventDefault();
     if (!startDate || !startTime || !endDate || !endTime) return;
-    // let start = toIso(startDate, startTime);
-    // let end = toIso(endDate, endTime);
+
     let payload = {
       location,
       description,
-      startTime: `${startDate} ${startTime}`,
-      endTime: `${endDate} ${endTime}`,
+      startTime,
+      endTime,
+      startDate: toNormalDate(startDate),
+      endDate: toNormalDate(endDate),
       hiringPartner,
       nameOfOrg,
       decaDev

@@ -3,13 +3,16 @@ import { Form } from 'grommet/components/Form';
 import { TextInput } from 'grommet/components/TextInput';
 import { TextArea } from 'grommet/components/TextArea';
 
+import FormError from '../../formError';
+
 function WorkForm(props) {
-  const { values, handleChange } = props;
+  const { values, handleChange, error } = props;
 
   const { location, title, to, from, achievements } = values;
 
   return (
     <Form>
+      <FormError error={error} />
       <div style={{ margin: '10px' }}>
         <label
           htmlFor="location"

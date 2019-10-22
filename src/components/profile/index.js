@@ -10,7 +10,7 @@ import Photo from './Photo/Photo';
 // import Info from './Info';
 import Skills from './Skills/Skills';
 import Work from './Work/Work';
-import Projects from './Projects';
+import Projects from './Projects/Projects';
 
 const DecaDevProfile = () => {
   const { data } = useSelector(({ user }) => user);
@@ -51,13 +51,13 @@ const DecaDevProfile = () => {
       </Box>
       <Box as="main" style={{ marginTop: '82px', maxWidth: '100%' }}>
         {isEditing ? (
-          <PhotoForm decadevName={data.name} setIsEditing={setIsEditing} />
+          <PhotoForm decadev={data} setIsEditing={setIsEditing} />
         ) : (
           <Photo data={data} setIsEditing={setIsEditing} />
         )}
-        <Work employments={data.employments} />
-        <Skills skills={data.skills} />
-        <Projects projects={data.portfolio} />
+        <Work decadev={data} />
+        <Skills decadev={data} />
+        <Projects data={data} />
       </Box>
     </Grommet>
   );

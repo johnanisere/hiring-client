@@ -2,13 +2,16 @@ import React from 'react';
 import { Form } from 'grommet/components/Form';
 import { TextInput } from 'grommet/components/TextInput';
 
+import FormError from '../../formError';
+
 function SkillsForm(props) {
-  const { values, handleChange } = props;
+  const { values, handleChange, error } = props;
 
   const { type, description } = values;
 
   return (
     <Form>
+      <FormError error={error} />
       <div style={{ margin: '10px' }}>
         <label
           htmlFor="type"

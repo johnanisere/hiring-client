@@ -2,10 +2,19 @@ import React, { useState } from 'react';
 import { Add } from 'grommet-icons/icons/Add';
 import { Anchor } from 'grommet/components/Anchor';
 import { Heading } from 'grommet/components/Heading';
+import { connect, useSelector } from 'react-redux';
+import { BeatLoader } from 'react-spinners';
+
+import updateUserDetailBoundActionCreator from '../actions/updateDetails.action';
+import request from '../../../request';
 
 import ProjectForm from './ProjectForm';
 
 function AddNewProject(props) {
+  const { error, loading } = useSelector(({ user }) => user);
+  const { decadev } = props;
+  const { token, email } = decadev;
+
   const [adding, setAdding] = useState(false);
   const [values, setValues] = useState({
     title: '',
@@ -25,6 +34,18 @@ function AddNewProject(props) {
   }
   function handleSave() {
     setAdding(false);
+  }
+
+  const paper = {
+    title: values.title,
+    languages: values.languages,
+    link: values.link
+  };
+  const type = 'new-project';
+  async function handleSubmit(e) {
+    e.preventDefault();
+    props.onUpdateDetails(paper, email, request, token, type);
+    handleSave();
   }
 
   return (
@@ -53,14 +74,18 @@ function AddNewProject(props) {
                 Cancel
               </div>
               <div
-                onClick={handleSave}
+                onClick={handleSubmit}
                 style={{ marginLeft: '10px', cursor: 'pointer' }}
               >
-                Save
+                {loading ? <BeatLoader size={5} color="black" /> : 'Save'}
               </div>
             </div>
           </div>
-          <ProjectForm values={values} handleChange={handleChange} />
+          <ProjectForm
+            values={values}
+            handleChange={handleChange}
+            error={error}
+          />
         </div>
       ) : (
         <Anchor
@@ -74,4 +99,10 @@ function AddNewProject(props) {
   );
 }
 
-export default React.memo(AddNewProject);
+const mapDispatchToProps = {
+  onUpdateDetails: updateUserDetailBoundActionCreator
+};
+export default connect(
+  null,
+  mapDispatchToProps
+)(AddNewProject);

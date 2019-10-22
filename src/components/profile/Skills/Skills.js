@@ -4,7 +4,7 @@ import SkillsDetails from './SkillsDetails';
 import AddNewSkill from './AddNewSkill';
 
 export default function Skills(props) {
-  const { skills } = props;
+  const { decadev } = props;
   const [hidden, setHidden] = useState(true);
   function handleVisibilityOfEdit() {
     setHidden(!hidden);
@@ -40,10 +40,16 @@ export default function Skills(props) {
             justifyContent: 'space-between'
           }}
         >
-          <AddNewSkill />
+          <AddNewSkill decadev={decadev} />
         </div>
-        {skills.map((skill, index) => (
-          <SkillsDetails skill={skill} index={index} hidden={hidden} />
+        {decadev.skills.map((skill, index) => (
+          <SkillsDetails
+            skill={skill}
+            decadev={decadev}
+            index={index}
+            hidden={hidden}
+            key={`skill${index}`}
+          />
         ))}
       </Box>
     </section>

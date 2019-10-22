@@ -6,6 +6,7 @@ import interviewDetails from './components/dashboard/scheduleInterview.reducer';
 import hirer from './components/HirerSignUp/hirerSignup.reducer';
 import shortlisted from './components/selected/selected.reducer';
 import inactiveHirer from './components/activateHirer/activateHirer.reducer';
+import interviews from './components/interviewActivities/interviews.reducer';
 
 export default combineReducers({
   user,
@@ -14,5 +15,6 @@ export default combineReducers({
   shortlisted,
   authentication,
   interviewDetails,
-  inactiveHirer
+  inactiveHirer,
+  interviews
 });

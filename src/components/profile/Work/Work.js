@@ -5,7 +5,7 @@ import WorkDetails from './WorkDetails';
 import AddNewWork from './AddNewWork';
 
 function Work(props) {
-  const { employments } = props;
+  const { employments } = props.decadev;
   const [hidden, setHidden] = useState(true);
   function handleVisibilityOfEdit() {
     setHidden(!hidden);
@@ -45,18 +45,17 @@ function Work(props) {
             justifyContent: 'space-between'
           }}
         >
-          <AddNewWork />
+          <AddNewWork decadev={props.decadev} employments={employments} />
         </div>
 
-        {employments.map((employment, index) => (
+        {employments.map((employment, index, array) => (
           <WorkDetails
             key={`work${index}`}
             index={index}
-            location={employment.location}
-            title={employment.title}
-            duration={employment.duration}
-            achievements={employment.achievements}
+            employment={employment}
+            decadev={props.decadev}
             hidden={hidden}
+            employments={array}
           />
         ))}
       </Box>

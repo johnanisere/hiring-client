@@ -21,6 +21,7 @@ const App = () => (
           path="/schedule-interview/:email"
           component={ScheduleInterview}
         />
+
         <Route path="/" component={Authentication} />
       </Switch>
     </Suspense>

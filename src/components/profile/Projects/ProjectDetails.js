@@ -6,7 +6,7 @@ import ProjectEdit from './ProjectEdit';
 
 function ProjectDetails(props) {
   const [editing, setEditing] = useState(false);
-  const { index, project, hidden } = props;
+  const { index, project, hidden, decadev } = props;
 
   function handleEdit() {
     setEditing(true);
@@ -15,7 +15,11 @@ function ProjectDetails(props) {
   return (
     <>
       {editing && !hidden ? (
-        <ProjectEdit setEditing={setEditing} project={project} />
+        <ProjectEdit
+          setEditing={setEditing}
+          project={project}
+          decadev={decadev}
+        />
       ) : (
         <>
           <div key={`a${index}`} style={{ padding: '20px' }}>
@@ -52,7 +56,9 @@ function ProjectDetails(props) {
                     {project.languages}
                   </Text>
                 </div>
-                <div style={{ fontSize: '14px ' }}>{project.link}</div>
+                <a href={project.link} style={{}}>
+                  <div style={{ fontSize: '14px ' }}>Project Link</div>
+                </a>
               </div>
               <div
                 style={{
