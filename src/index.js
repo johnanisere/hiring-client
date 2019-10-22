@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as sentry from '@sentry/browser';
-
+import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 if (process.env.NODE_ENV === 'production') {
   sentry.init({
     dsn: process.env.REACT_APP_SENTRY_CONFIG_DSN,
-    environment: process.env.REACT_APP_CLIENT_ENVIRONMENT,
+    environment: process.env.REACT_APP_CLIENT_ENVIRONMENT
   });
 }
 

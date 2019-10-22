@@ -1,26 +1,26 @@
-import { SCHEDULE_INTERVIEW } from './scheduleInterview.action';
+import { GET_ALL_INACTIVE_HIRER } from './activateHirer.action';
 export const initialState = {
   loading: false,
   error: {},
-  interviewDetails: {}
+  hirer: []
 };
 
-export default function interviewDetails(state = initialState, action) {
+export default function inactivehirer(state = initialState, action) {
   switch (action.type) {
-    case 'SCHEDULE_INTERVIEW_LOADING':
+    case 'GET_ALL_INACTIVE_HIRER_LOADING':
       return {
         ...state,
         loading: action.payload
       };
-    case 'SCHEDULE_INTERVIEW_ERROR':
+    case 'GET_ALL_INACTIVE_HIRER_ERROR':
       return {
         ...state,
         error: action.payload
       };
-    case SCHEDULE_INTERVIEW:
+    case GET_ALL_INACTIVE_HIRER:
       return {
         ...state,
-        interviewDetails: action.payload
+        hirer: action.payload
       };
     default:
       return state;

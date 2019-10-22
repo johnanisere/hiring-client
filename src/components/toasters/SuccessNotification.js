@@ -1,13 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Layer, Box, Button, Text } from "grommet";
-import { FormClose, StatusGood } from "grommet-icons";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Layer, Box, Button, Text } from 'grommet';
+import { FormClose, StatusGood } from 'grommet-icons';
 
 const App = ({ message, onClose }) => (
   <Layer
     position="top"
     modal={false}
-    margin={{ vertical: "medium", horizontal: "small" }}
+    margin={{ vertical: 'medium', horizontal: 'small' }}
     onEsc={onClose}
     responsive={false}
     plain
@@ -19,7 +19,7 @@ const App = ({ message, onClose }) => (
       justify="between"
       round="medium"
       elevation="medium"
-      pad={{ vertical: "xsmall", horizontal: "small" }}
+      pad={{ vertical: 'xsmall', horizontal: 'small' }}
       background="status-ok"
     >
       <Box align="center" direction="row" gap="xsmall">

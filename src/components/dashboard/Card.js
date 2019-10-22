@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import MoreInfo from './MoreInfo';
 import SelectCheck from '../selected/SelectCheck';
 import { useSelector } from 'react-redux';
@@ -9,36 +9,39 @@ const App = props => {
   const { dev, onToggle, open } = props;
   const { selectedDecadevs } = useSelector(({ shortlisted }) => shortlisted);
   const selected = !!selectedDecadevs[dev.email];
-
-  useEffect(() => {
-    console.log({ selected });
-  }, [selected]);
   return (
     <>
       <Box
+        className="dev"
         key={dev._id}
-        pad="medium"
         align="center"
         background={{
           color: 'light-2',
-          opacity: 'strong'
+          opacity: 'strong',
+          borderRadius: '0'
         }}
-        round
         gap="small"
         margin="medium"
         animation={['fadeIn']}
+        style={{
+          position: 'relative',
+          minHeight: '561px'
+        }}
       >
         <Image
           style={{
             width: '100%',
             height: 'auto',
-            borderRadius: '12px'
+            borderRadius: '0'
           }}
           fit="cover"
           src={dev.profilePhoto}
         />
 
-        <Text>{dev.email}</Text>
+        <Text>{dev.name}</Text>
+        <Text size="small" style={{ color: 'rgb(169, 169, 169)' }}>
+          {dev.currentRole}
+        </Text>
         <MoreInfo
           email={dev.email}
           profilePhoto={dev.profilePhoto}
@@ -48,6 +51,8 @@ const App = props => {
           name={dev.name}
           open={open}
           onToggle={onToggle}
+          dev={dev}
+          selected={selected}
         />
         <SelectCheck decadevObject={dev} selected={selected} />
       </Box>

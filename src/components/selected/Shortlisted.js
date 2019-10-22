@@ -25,7 +25,7 @@ export default function Shortlisted() {
                 size === 'small'
                   ? ['1']
                   : size === 'medium'
-                  ? ['1/2', '1/2']
+                  ? ['1/4', '1/4', '1/4', '1/4']
                   : size === 'large'
                   ? ['1/4', '1/4', '1/4', '1/4']
                   : size === 'xlarge'

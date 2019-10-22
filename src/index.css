@@ -6,8 +6,29 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+#root {
+  height: 100%;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.dev {
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.19);
+  transition: all 300ms ease-in-out;
+}
+.dev:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.19);
+}
+.profile--photo {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+div.action:hover {
+  cursor: pointer;
 }

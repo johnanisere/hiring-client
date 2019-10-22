@@ -8,10 +8,12 @@ const FormLayout = props => (
       <Box
         style={{
           borderRadius: '10px',
-          boxShadow: '0px 0px 20px 5px rgba(0, 0, 0, 0.1)'
+          boxShadow: '0px 0px 20px 5px rgba(0, 0, 0, 0.1)',
+          overflow: 'scroll'
         }}
         width="medium"
         pad="medium"
+        margin="medium"
       >
         {props.children}
       </Box>

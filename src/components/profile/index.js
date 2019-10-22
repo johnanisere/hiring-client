@@ -1,81 +1,65 @@
-import React from "react";
-import { Grommet, Box, Grid, ResponsiveContext, Heading, Text } from "grommet";
-import { grommet } from "grommet/themes";
-import { Cloudlinux, User } from "grommet-icons";
+import React from 'react';
+import { Box, Button, Heading, Grommet, Image } from 'grommet';
+import { Notification } from 'grommet-icons';
+import { grommet } from 'grommet/themes';
+import Decagon from './decagon-logo.png';
+import { useSelector } from 'react-redux';
+import PhotoForm from './Photo/PhotoForm';
 
-import Photo from "./Photo";
-import Info from "./Info";
-import Skills from "./Skills";
+import Photo from './Photo/Photo';
+// import Info from './Info';
+import Skills from './Skills/Skills';
+import Work from './Work/Work';
+import Projects from './Projects/Projects';
 
-const Background = () => {
+const DecaDevProfile = () => {
+  const { data } = useSelector(({ user }) => user);
+  const [isEditing, setIsEditing] = React.useState(false);
+
+  const [openNotification, setOpenNotification] = React.useState();
+
   return (
-    <Grommet theme={grommet} full>
-      <ResponsiveContext.Consumer>
-        {size => (
-          <Box
-            // responsive
-            fill
-            background="#ffffff"
-            round="small"
-          >
-            <Box
-              // responsive
-              direction="row-responsive"
-              align="center"
-              pad={{ left: "xlarge", right: "xlarge" }}
-              margin={{ bottom: "small" }}
-              style={{ boxShadow: "0px 1px 10px -8px" }}
-            >
-              <Box direction="row-responsive" gap="large" align="center">
-                <Cloudlinux color="plain" size="large" />
-                <Heading size="small">Decagon</Heading>
-              </Box>
-              <Box
-                // responsive
-                style={{ marginLeft: "auto" }}
-                direction="row-responsive"
-                gap="large"
-              >
-                <Text size="large"> Find People </Text>
-                <Text size="large"> Messages </Text>
-                <Text size="large"> My Contacts </Text>
-                <User color="brand" />
-              </Box>
-            </Box>
-            <Box
-              // responsive
-              direction="row-responsive"
-              align="center"
-              pad={{ top: "large", left: "xlarge", right: "xlarge" }}
-              margin={{ bottom: "small" }}
-            >
-              <Grid
-                areas={[
-                  { name: "nav", start: [0, 0], end: [0, 0] },
-                  { name: "main", start: [1, 0], end: [1, 0] }
-                ]}
-                columns={["medium", "flex"]}
-                rows={["flex"]}
-                gap="small"
-              >
-                <Box gridArea="nav" background="">
-                  <Photo />
-                  <Skills />
-                </Box>
-                <Box
-                  gridArea="main"
-                  background=""
-                  style={{ marginLeft: "50px" }}
-                >
-                  <Info />
-                </Box>
-              </Grid>
-            </Box>
-          </Box>
+    <Grommet theme={grommet}>
+      <Box
+        as="header"
+        direction="row"
+        align="center"
+        pad={{ vertical: 'small', horizontal: 'medium' }}
+        justify="between"
+        background="dark-3"
+        elevation="large"
+        style={{
+          zIndex: '1000',
+          position: 'fixed',
+          top: 0,
+          width: '100%',
+          overflow: 'hidden'
+        }}
+      >
+        <Heading level={3} margin="none" color="white">
+          <Image
+            src="https://res.cloudinary.com/deepockets/image/upload/v1570959913/hiring%20client/decagon-logo_i5cbks.png"
+            fit="contain"
+            fallback={Decagon}
+            style={{ width: '50px', height: 'auto' }}
+          />
+        </Heading>
+        <Button
+          onClick={() => setOpenNotification(!openNotification)}
+          icon={<Notification color="white" />}
+        />
+      </Box>
+      <Box as="main" style={{ marginTop: '82px', maxWidth: '100%' }}>
+        {isEditing ? (
+          <PhotoForm decadev={data} setIsEditing={setIsEditing} />
+        ) : (
+          <Photo data={data} setIsEditing={setIsEditing} />
         )}
-      </ResponsiveContext.Consumer>
+        <Work decadev={data} />
+        <Skills decadev={data} />
+        <Projects data={data} />
+      </Box>
     </Grommet>
   );
 };
-
-export default Background;
+export default DecaDevProfile;

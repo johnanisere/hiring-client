@@ -26,7 +26,7 @@ export default function Layout(props) {
       >
         <Header toggleSidebar={toggleSidebar} />
         <SideBar sidebar={sidebar} />
-        <Box gridArea="main" style={{ overflowY: 'scroll' }}>
+        <Box gridArea="main" style={{ overflowY: 'hidden' }}>
           {props.children}
         </Box>
       </Grid>

@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import BeatLoader from "react-spinners/BeatLoader";
-import { Box, Button } from "grommet";
+import React from 'react';
+import PropTypes from 'prop-types';
+import BeatLoader from 'react-spinners/BeatLoader';
+import { Box, Button } from 'grommet';
 
 const FormButton = ({ loading, type, onClick, text }) => (
   <Box
     direction="row"
     justify="center"
     align="center"
-    margin={{ top: "medium" }}
+    margin={{ top: 'medium' }}
   >
     <Button
       primary
@@ -17,7 +17,7 @@ const FormButton = ({ loading, type, onClick, text }) => (
       label={loading ? <BeatLoader size={5} color="#fff" /> : `${text}`}
       type={type}
       onClick={onClick}
-      style={{ width: "100%", marginTop: 20 }}
+      style={{ width: '100%', marginTop: 20, borderRadius: '5px' }}
     />
   </Box>
 );
