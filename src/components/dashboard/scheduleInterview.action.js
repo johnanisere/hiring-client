@@ -16,14 +16,17 @@ export const onError = payload => ({
 
 export const scheduleInterviewBoundActionCreator = (
   data,
-  request
+  request,
+  onSuccess
 ) => async dispatch => {
   try {
     dispatch(setLoading(true));
     const res = await request.post('/interview/invite', data);
-    dispatch(scheduleInterview(res.data));
+    onSuccess(res.data.message);
+    dispatch(scheduleInterview(res.data.interviewData));
     dispatch(setLoading(false));
-    return res.data;
+    window.location.href = '/dashboard';
+    return res.data.interviewData;
   } catch (err) {
     dispatch(setLoading(false));
     return dispatch(onError(err));

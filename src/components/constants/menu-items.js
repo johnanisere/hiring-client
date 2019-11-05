@@ -10,7 +10,7 @@ export const adminMenuItems = [
   'Recent Activity',
   {
     Interviews: [
-      { 'Scheduled Interviews': 'dashboard/interviews/scheduledinterviews' },
+      { 'Scheduled Interviews': '/dashboard/interviews/scheduledinterviews' },
       'Attended Interviews',
       'Declined Interviews'
     ]
