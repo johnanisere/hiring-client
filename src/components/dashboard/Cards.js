@@ -13,19 +13,19 @@ import { Grommet, Box, Grid, ResponsiveContext } from 'grommet';
 class Cards extends React.Component {
   state = {
     open: false,
-    gender: 'All',
+    pod: 'All',
     fetching: false
   };
   componentDidMount() {
     this.props.getAllDecadevs(request);
   }
-  handleChange = gender => {
-    this.setState({ gender }, () => this.props.getAllDecadevs(request, gender));
+  handleChange = pod => {
+    this.setState({ pod }, () => this.props.getAllDecadevs(request, pod));
   };
 
   handleNext = () => {
-    const { gender } = this.state;
-    this.props.getAllDecadevs(request, gender);
+    const { pod } = this.state;
+    this.props.getAllDecadevs(request, pod);
   };
 
   onToggle = () => {

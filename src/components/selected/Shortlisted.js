@@ -10,7 +10,7 @@ export default function Shortlisted() {
   const shortlistedDevs = Object.values(selectedDecadevs);
   const [state, setState] = useState({
     open: false,
-    gender: 'All'
+    pod: 'All'
   });
 
   const onToggle = () => setState({ ...state, open: !state.open });

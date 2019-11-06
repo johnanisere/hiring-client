@@ -1,24 +1,24 @@
-export const GET_ALL_DECADEVS = "GET_ALL_DECADEVS";
+export const GET_ALL_DECADEVS = 'GET_ALL_DECADEVS';
 
 export const getDevs = payload => ({
   type: GET_ALL_DECADEVS,
   payload
 });
 export const setLoading = payload => ({
-  type: "GET_ALL_DECADEVS_LOADING",
+  type: 'GET_ALL_DECADEVS_LOADING',
   payload
 });
 
 export const onError = payload => ({
-  type: "GET_ALL_DECADEVS_ERROR",
+  type: 'GET_ALL_DECADEVS_ERROR',
   payload
 });
 
-export const getAllDecadevs = (request, gender) => async dispatch => {
+export const getAllDecadevs = (request, pod) => async dispatch => {
   try {
     dispatch(setLoading(true));
     const response = await request.get(
-      `/users/decadevs${gender ? "?gender=" + gender : ""}`
+      `/users/decadevs/${pod ? '?pod=' + pod : ''}`
     );
     dispatch(getDevs(response.data.allDecadevs));
     dispatch(setLoading(false));
