@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { Box, Button, Form } from 'grommet';
+import { BeatLoader } from 'react-spinners';
 import Input from '../input/index';
 import Formlayout from '../FormLayout';
 import request from '../../request';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import whyDecline from './decline.action';
 import SuccessNotification from '../toasters/SuccessNotification';
+import FormError from '../formError/';
 
 function WhyDecline(props) {
+  const { error, loading } = useSelector(({ interviews }) => interviews);
   const [values, setValues] = useState({
     declineReason: '',
     interviewId: props.interviewId
@@ -24,7 +27,6 @@ function WhyDecline(props) {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(declineReason);
     props.whyDecline(request, values, handleSuccess);
   };
   const closeToaster = () => onSuccess('');
@@ -37,6 +39,7 @@ function WhyDecline(props) {
       <Formlayout>
         <Box fill align="center" justify="center" width="100%">
           <Box width="large">
+            <FormError error={error} />
             <Form onSubmit={handleSubmit}>
               <Input
                 label="Please Provide a reason"
@@ -54,7 +57,9 @@ function WhyDecline(props) {
                   color="dark-1"
                   label={'Submit'}
                   style={{ width: '100%', margin: '20px 0' }}
-                  type="submit"
+                  type={
+                    loading ? <BeatLoader color="#fff" size={5} /> : 'submit'
+                  }
                 />
               </Box>
             </Form>

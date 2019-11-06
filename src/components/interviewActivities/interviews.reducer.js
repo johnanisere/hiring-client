@@ -1,8 +1,10 @@
 import { GET_ALL_INTERVIEWS } from './interviews.action';
+import { SIGN_OUT } from '../authentication/signout.action';
 export const initialState = {
   loading: false,
   error: {},
-  data: []
+  data: [],
+  declineDetails: {}
 };
 
 export default function interviews(state = initialState, action) {
@@ -23,8 +25,13 @@ export default function interviews(state = initialState, action) {
         error: {},
         data: action.payload
       };
+
+    case 'WHY_DECLINE':
       return {
+        ...state,
         error: {},
+        declineDetails: action.payload
+      };
     case SIGN_OUT:
       return {
         ...initialState
