@@ -10,13 +10,12 @@ import {
 
 export default function SideBar({ sidebar }) {
   const { role } = useSelector(({ user }) => user.data);
-  const { hirer } = useSelector(({ hirer }) => hirer);
 
   let list;
-  if (Object.keys(hirer).length !== 0) {
-    list = hiringPartnerMenuItems;
-  } else if (role === 'admin') {
+  if (role === 'admin') {
     list = adminMenuItems;
+  } else {
+    list = hiringPartnerMenuItems;
   }
 
   const handleClick = e => {

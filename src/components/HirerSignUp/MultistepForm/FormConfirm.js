@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, connect } from 'react-redux';
 import { Box, Button, Text } from 'grommet';
 import BeatLoader from 'react-spinners/BeatLoader';
@@ -8,7 +8,8 @@ import request from '../../../request';
 import Formlayout from '../../FormLayout';
 
 function Confirm(props) {
-  const { error, loading } = useSelector(({ hirer }) => hirer);
+  const { error, loading } = useSelector(({ user }) => user);
+
   const {
     values: {
       email,
@@ -40,9 +41,7 @@ function Confirm(props) {
     );
     props.nextStep();
   };
-  useEffect(() => {
-    console.log({ loading });
-  }, [loading]);
+
   const back = e => {
     e.preventDefault();
     props.prevStep();
@@ -81,7 +80,7 @@ function Confirm(props) {
               )
             }
             style={{ width: '100%', margin: '20px 5px' }}
-            onClick={continueToNext}
+            onClick={loading ? null : continueToNext}
           />
         </Box>
       </Box>
