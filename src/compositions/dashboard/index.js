@@ -1,5 +1,4 @@
 import React, { lazy } from 'react';
-
 import { Route, Switch } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import ProtectedRoute from '../../components/ProtectedRoute';
