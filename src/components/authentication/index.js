@@ -1,7 +1,7 @@
 import React, { lazy } from 'react';
 
 import { Route, Switch, Redirect } from 'react-router-dom';
-
+import ProtectedRoute from '../ProtectedRoute';
 const Login = lazy(() => import('./Login'));
 const SignUp = lazy(() => import('./SignUp'));
 const UpdatePassword = lazy(() => import('./UpdatePassword'));
@@ -11,12 +11,10 @@ const Invite = lazy(() => import('../InviteHirer'));
 const HirerSignUp = lazy(() => import('../HirerSignUp'));
 const VerifyHirer = lazy(() => import('../HirerSignUp/VerifyHirer'));
 const HirerLogin = lazy(() => import('../HirerSignUp/hirerLogin/HirerLogin'));
+const ScheduleInterview = lazy(() => import('../dashboard/ScheduleInterview'));
 const InterviewResponse = lazy(() =>
   import('../interviewActivities/InterviewResponse')
 );
-// const AllInterviewsTable = lazy(() =>
-//   import('../interviewActivities/AllInterviews')
-// );
 
 export default function() {
   return (
@@ -25,24 +23,37 @@ export default function() {
       <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/signup/partner" component={HirerSignUp} />
-      <Route exact path="/update-password/:token" component={UpdatePassword} />
-
-      <Route exact path="/schedule" component={Schedule} />
-      <Route exact path="/invite" component={Invite} />
-      <Route exact path="/verify-hirer/:token/:email" component={VerifyHirer} />
+      <Route exact path="/login/partner" component={HirerLogin} />
       <Route
         exact
         path="/interview-response/:intent/:email/:interviewId"
         component={InterviewResponse}
       />
+      <ProtectedRoute>
+        <Route
+          exact
+          path="/update-password/:token"
+          component={UpdatePassword}
+        />
+        <Route
+          path="/schedule-interview/:email"
+          component={ScheduleInterview}
+        />
 
-      <Route
-        exact
-        path={'/change-password/:token'}
-        component={ChangePassword}
-      />
+        <Route exact path="/schedule" component={Schedule} />
+        <Route exact path="/invite" component={Invite} />
+        <Route
+          exact
+          path="/verify-hirer/:token/:email"
+          component={VerifyHirer}
+        />
 
-      <Route exact path="/login/partner" component={HirerLogin} />
+        <Route
+          exact
+          path={'/change-password/:token'}
+          component={ChangePassword}
+        />
+      </ProtectedRoute>
     </Switch>
   );
 }
