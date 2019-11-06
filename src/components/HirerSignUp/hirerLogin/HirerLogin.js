@@ -11,7 +11,7 @@ import { BeatLoader } from 'react-spinners';
 import Formlayout from '../../FormLayout';
 
 function HirerLogin(props) {
-  const { error, loading } = useSelector(({ hirer }) => hirer);
+  const { error, loading } = useSelector(({ user }) => user);
 
   const [values, setValues] = useState({
     email: '',

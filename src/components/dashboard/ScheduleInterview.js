@@ -22,7 +22,7 @@ function ScheduleInterview(props) {
     onSuccess(val);
   };
 
-  const { hirer } = useSelector(({ hirer }) => hirer);
+  const { data } = useSelector(({ user }) => user);
 
   const [values, setValues] = useState({
     title: '',
@@ -34,8 +34,8 @@ function ScheduleInterview(props) {
     endTime: '',
     decaDev: email,
     timezone: '',
-    hiringPartner: hirer.email,
-    nameOfOrg: hirer.nameOfOrg
+    hiringPartner: data.email,
+    nameOfOrg: data.nameOfOrg
   });
 
   const {
@@ -76,9 +76,8 @@ function ScheduleInterview(props) {
       decaDev
     };
     props.scheduleInterview(payload, request, handleSuccess);
-    if (error === {}) props.history.push('/dashboard');
   };
-  console.log(success, 'SUCCESS');
+
   const closeToaster = () => onSuccess('');
   return (
     <>
