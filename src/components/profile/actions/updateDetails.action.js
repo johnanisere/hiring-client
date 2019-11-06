@@ -32,7 +32,6 @@ const updateUserDetailBoundActionCreator = (
         }
       }
     );
-    console.log({ response });
 
     dispatch(updateDev(response.data.user));
     dispatch(setLoading(false));

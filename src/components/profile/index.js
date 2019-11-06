@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 import PhotoForm from './Photo/PhotoForm';
 
 import Photo from './Photo/Photo';
-// import Info from './Info';
 import Skills from './Skills/Skills';
 import Work from './Work/Work';
 import Projects from './Projects/Projects';
