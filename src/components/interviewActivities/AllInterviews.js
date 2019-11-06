@@ -11,18 +11,17 @@ import {
 
 import { grommet } from 'grommet/themes';
 
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import request from '../../request';
 import { getAllInterviews } from './interviews.action';
 
 function AllInterviewsTable(props) {
-  const { loading, error } = useSelector(({ interviews }) => interviews);
   const { interviews, getAllInterviews } = props;
 
   // eslint-disable-next-line
   useEffect(() => {
     getAllInterviews(request);
-  }, [getAllInterviews, props]);
+  }, [getAllInterviews]);
 
   return (
     <Grommet theme={grommet}>
