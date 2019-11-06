@@ -20,7 +20,14 @@ export default function interviews(state = initialState, action) {
     case GET_ALL_INTERVIEWS:
       return {
         ...state,
+        error: {},
         data: action.payload
+      };
+      return {
+        error: {},
+    case SIGN_OUT:
+      return {
+        ...initialState
       };
     default:
       return state;

@@ -1,4 +1,5 @@
 import { SCHEDULE_INTERVIEW } from './scheduleInterview.action';
+import { SIGN_OUT } from '../authentication/signout.action';
 export const initialState = {
   loading: false,
   error: {},
@@ -21,6 +22,10 @@ export default function interviewDetails(state = initialState, action) {
       return {
         ...state,
         interviewDetails: action.payload
+      };
+    case SIGN_OUT:
+      return {
+        ...initialState
       };
     default:
       return state;

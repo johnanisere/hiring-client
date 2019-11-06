@@ -1,4 +1,5 @@
 import { INVITE_HIRER } from './inviteHirer.action';
+import { SIGN_OUT } from '../authentication/signout.action';
 
 export const initialState = {
   hirer: {}
@@ -20,6 +21,10 @@ export default function hirer(state = initialState, action) {
       return {
         ...state,
         error: action.payload
+      };
+    case SIGN_OUT:
+      return {
+        ...initialState
       };
     default:
       return state;

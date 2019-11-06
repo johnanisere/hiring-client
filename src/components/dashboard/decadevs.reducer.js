@@ -1,4 +1,5 @@
 import { GET_ALL_DECADEVS } from './decadevs.action';
+import { SIGN_OUT } from '../authentication/signout.action';
 export const initialState = {
   loading: false,
   error: {},
@@ -21,6 +22,10 @@ export default function decadevs(state = initialState, action) {
       return {
         ...state,
         decadevs: action.payload
+      };
+    case SIGN_OUT:
+      return {
+        ...initialState
       };
     default:
       return state;

@@ -1,31 +1,37 @@
-import React from "react";
-// import { useSelector } from "react-redux";
-import { Box, Button } from "grommet";
-import { Menu } from "grommet-icons";
-import { Down } from "grommet-icons";
+import React from 'react';
+import { Box, Button, Menu } from 'grommet';
 
-export default function Header(props) {
-  // const { email } = useSelector(({ user }) => user.data);
+import { Menu as MenuIcon, Down } from 'grommet-icons';
+import signOut from '../components/authentication/signout.action';
+import { connect } from 'react-redux';
+
+const Header = props => {
+  const handleSignout = e => {
+    e.preventDefault();
+    props.signOut();
+    console.log('LOGGED OUT NOW!');
+  };
+
   return (
     <Box
       gridArea="header"
       direction="row"
       align="center"
       justify="between"
-      pad={{ horizontal: "medium", vertical: "small" }}
+      pad={{ horizontal: 'medium', vertical: 'small' }}
       background="dark-2"
     >
       <Button onClick={props.toggleSidebar}>
-        <Menu size="medium" />
+        <MenuIcon size="medium" />
       </Button>
 
       <Box
         style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          cursor: "pointer"
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          cursor: 'pointer'
         }}
       >
         <img
@@ -33,8 +39,19 @@ export default function Header(props) {
           alt="profile"
           className="profile--photo"
         />
-        <Down color="#fff" size="small" />
+        <Menu
+          dropProps={{ align: { top: 'bottom', left: 'left' } }}
+          items={[{ label: 'sign-out', onClick: handleSignout }]}
+          icon={<Down color="#fff" size="small" />}
+        />
       </Box>
     </Box>
   );
-}
+};
+const mapDispatchToProps = {
+  signOut: signOut
+};
+export default connect(
+  null,
+  mapDispatchToProps
+)(Header);
