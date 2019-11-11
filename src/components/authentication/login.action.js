@@ -1,5 +1,3 @@
-import localforage from 'localforage';
-
 export const USER_LOGIN = 'USER_LOGIN';
 const login = payload => ({
   type: USER_LOGIN,
@@ -29,7 +27,7 @@ const loginBoundActionCreator = (
     dispatch(setLoading(true));
     const response = await request.post('/users/login', data);
     dispatch(login(response.data));
-    await localforage.setItem('token', response.data.token);
+
     dispatch(setToken(response.data.token));
     dispatch(setLoading(false));
     navigateToDashboard();
