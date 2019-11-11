@@ -1,21 +1,24 @@
 import React from 'react';
 import { Box, Button, Heading, Grommet, Image } from 'grommet';
-import { Notification } from 'grommet-icons';
+import { Logout } from 'grommet-icons/icons/Logout';
 import { grommet } from 'grommet/themes';
 import Decagon from './decagon-logo.png';
-import { useSelector } from 'react-redux';
+import { useSelector, connect } from 'react-redux';
 import PhotoForm from './Photo/PhotoForm';
 
 import Photo from './Photo/Photo';
 import Skills from './Skills/Skills';
 import Work from './Work/Work';
 import Projects from './Projects/Projects';
+import signOut from '../authentication/signout.action';
 
-const DecaDevProfile = () => {
+const DecaDevProfile = props => {
+  const handleSignout = e => {
+    e.preventDefault();
+    props.signOut();
+  };
   const { data } = useSelector(({ user }) => user);
   const [isEditing, setIsEditing] = React.useState(false);
-
-  const [openNotification, setOpenNotification] = React.useState();
 
   return (
     <Grommet theme={grommet}>
@@ -43,10 +46,7 @@ const DecaDevProfile = () => {
             style={{ width: '50px', height: 'auto' }}
           />
         </Heading>
-        <Button
-          onClick={() => setOpenNotification(!openNotification)}
-          icon={<Notification color="white" />}
-        />
+        <Button onClick={handleSignout} icon={<Logout color="white" />} />
       </Box>
       <Box as="main" style={{ marginTop: '82px', maxWidth: '100%' }}>
         {isEditing ? (
@@ -61,4 +61,11 @@ const DecaDevProfile = () => {
     </Grommet>
   );
 };
-export default DecaDevProfile;
+
+const mapDispatchToProps = {
+  signOut: signOut
+};
+export default connect(
+  null,
+  mapDispatchToProps
+)(DecaDevProfile);
