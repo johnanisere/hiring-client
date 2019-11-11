@@ -15,9 +15,8 @@ function ScheduleInterview(props) {
   const { email } = props.match.params;
   const [success, onSuccess] = useState('');
 
-  const { error, loading } = useSelector(
-    ({ interviewDetails }) => interviewDetails
-  );
+  const { loading } = useSelector(({ interviewDetails }) => interviewDetails);
+  const { error } = useSelector(({ error }) => error);
   const handleSuccess = val => {
     onSuccess(val);
   };

@@ -17,11 +17,7 @@ export default function hirer(state = initialState, action) {
         ...state,
         loading: action.payload
       };
-    case 'INVITE_HIRER_ERROR':
-      return {
-        ...state,
-        error: action.payload
-      };
+
     case SIGN_OUT:
       return {
         ...initialState

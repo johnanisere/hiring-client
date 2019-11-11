@@ -4,14 +4,15 @@ import { Box, Form, Text, Button } from 'grommet';
 import Input from '../../input';
 import { useSelector, connect } from 'react-redux';
 import hirerLoginBoundActionCreator from './hirerLogin.action';
+import { clearErrorBoundActionCreator } from '../../authentication/signup.action';
 import FormError from '../../formError';
 import { BeatLoader } from 'react-spinners';
-// import Button from '../../button/FormButton';
 
 import Formlayout from '../../FormLayout';
 
 function HirerLogin(props) {
-  const { error, loading } = useSelector(({ user }) => user);
+  const { loading } = useSelector(({ user }) => user);
+  const { error } = useSelector(({ error }) => error);
 
   const [values, setValues] = useState({
     email: '',
@@ -28,6 +29,7 @@ function HirerLogin(props) {
     e.preventDefault();
     const navigateToDashboard = () => props.history.push('/dashboard');
     props.hirer(values, request, navigateToDashboard);
+    props.clear();
   };
 
   return (
@@ -102,7 +104,8 @@ function HirerLogin(props) {
 }
 
 const mapDispatchToProps = {
-  hirer: hirerLoginBoundActionCreator
+  hirer: hirerLoginBoundActionCreator,
+  clear: clearErrorBoundActionCreator
 };
 export default connect(
   null,

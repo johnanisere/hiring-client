@@ -10,7 +10,8 @@ import request from '../../../request';
 import WorkForm from './WorkForm';
 
 function WorkEdit(props) {
-  const { error, loading } = useSelector(({ user }) => user);
+  const { loading } = useSelector(({ user }) => user);
+  const { error } = useSelector(({ error }) => error);
   const { setEditing, employment, decadev } = props;
   const { token, email } = decadev;
   const [values, setValues] = useState({

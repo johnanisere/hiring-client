@@ -8,7 +8,8 @@ import request from '../../../request';
 import Formlayout from '../../FormLayout';
 
 function Confirm(props) {
-  const { error, loading } = useSelector(({ user }) => user);
+  const { loading } = useSelector(({ user }) => user);
+  const { error } = useSelector(({ error }) => error);
 
   const {
     values: {

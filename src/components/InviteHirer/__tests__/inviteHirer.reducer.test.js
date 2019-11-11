@@ -40,18 +40,3 @@ describe('LOADING', () => {
     expect(user(initialState, action)).toEqual(expectedState);
   });
 });
-
-describe('INVITE_HIRER_ERROR', () => {
-  test('returns the correct state', () => {
-    const action = {
-      type: 'INVITE_HIRER_ERROR',
-      payload: 'error message'
-    };
-    const expectedState = {
-      ...initialState,
-      error: 'error message'
-    };
-
-    expect(user(initialState, action)).toEqual(expectedState);
-  });
-});

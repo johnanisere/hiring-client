@@ -10,7 +10,7 @@ export const setLoading = payload => ({
 });
 
 export const onError = payload => ({
-  type: 'SCHEDULE_INTERVIEW_ERROR',
+  type: 'SET_ERROR',
   payload
 });
 

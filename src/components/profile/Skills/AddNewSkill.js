@@ -10,7 +10,8 @@ import updateUserDetailBoundActionCreator from '../actions/updateDetails.action'
 import request from '../../../request';
 
 function AddNewSkill(props) {
-  const { error, loading } = useSelector(({ user }) => user);
+  const { loading } = useSelector(({ user }) => user);
+  const { error } = useSelector(({ error }) => error);
   const { decadev } = props;
   const { token, email } = decadev;
   const [adding, setAdding] = useState(false);

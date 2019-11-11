@@ -4,11 +4,14 @@ import { Box, Form, Text } from 'grommet';
 import Input from '../input';
 import { useSelector, connect } from 'react-redux';
 import loginBoundActionCreator from './login.action';
+import { clearErrorBoundActionCreator } from './signup.action';
 import FormError from '../formError';
 import Button from '../button/FormButton';
 import Formlayout from '../FormLayout';
+
 function Login(props) {
-  const { error, loading } = useSelector(({ user }) => user);
+  const { loading } = useSelector(({ user }) => user);
+  const { error } = useSelector(({ error }) => error);
   const [values, setValues] = useState({
     email: '',
     password: ''
@@ -24,6 +27,7 @@ function Login(props) {
     e.preventDefault();
     const navigateToDashboard = () => props.history.push('/dashboard');
     props.login(values, request, navigateToDashboard);
+    props.clear();
   };
 
   return (
@@ -86,7 +90,8 @@ function Login(props) {
 }
 
 const mapDispatchToProps = {
-  login: loginBoundActionCreator
+  login: loginBoundActionCreator,
+  clear: clearErrorBoundActionCreator
 };
 export default connect(
   null,

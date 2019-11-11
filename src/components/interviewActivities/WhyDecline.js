@@ -10,7 +10,8 @@ import SuccessNotification from '../toasters/SuccessNotification';
 import FormError from '../formError/';
 
 function WhyDecline(props) {
-  const { error, loading } = useSelector(({ interviews }) => interviews);
+  const { loading } = useSelector(({ interviews }) => interviews);
+  const { error } = useSelector(({ error }) => error);
   const [values, setValues] = useState({
     declineReason: '',
     interviewId: props.interviewId

@@ -10,7 +10,7 @@ export const setLoading = payload => ({
 });
 
 export const onError = payload => ({
-  type: 'GET_ALL_INACTIVE_HIRER_ERROR',
+  type: 'SET_ERROR',
   payload
 });
 

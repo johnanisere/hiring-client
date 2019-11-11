@@ -9,7 +9,7 @@ export const setLoading = payload => ({
   payload
 });
 export const onError = payload => ({
-  type: 'REGISTER_HIRER_ERROR',
+  type: 'SET_ERROR',
   payload
 });
 

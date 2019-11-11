@@ -14,7 +14,7 @@ const setLoading = payload => ({
   payload
 });
 const onError = payload => ({
-  type: 'USER_SIGNUP_ERROR',
+  type: 'SET_ERROR',
   payload
 });
 const clearError = () => ({

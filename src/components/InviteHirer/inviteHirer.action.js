@@ -9,7 +9,7 @@ export const setLoading = payload => ({
   payload
 });
 export const onError = payload => ({
-  type: 'INVITE_HIRER_ERROR',
+  type: 'SET_ERROR',
   payload
 });
 

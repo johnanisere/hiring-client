@@ -29,7 +29,7 @@ describe('getAllDecadevs', () => {
         fail('should not catch');
       });
 
-    expect(getSpy).toBeCalledWith('/users/decadevs');
+    expect(getSpy).toBeCalledWith('/users/decadevs/');
     expect(getSpy).toBeCalledTimes(1);
   });
 });
