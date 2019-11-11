@@ -9,7 +9,6 @@ const Header = props => {
   const handleSignout = e => {
     e.preventDefault();
     props.signOut();
-    console.log('LOGGED OUT NOW!');
   };
 
   return (
@@ -41,7 +40,7 @@ const Header = props => {
         />
         <Menu
           dropProps={{ align: { top: 'bottom', left: 'left' } }}
-          items={[{ label: 'sign-out', onClick: handleSignout }]}
+          items={[{ label: 'Sign-Out', onClick: handleSignout }]}
           icon={<Down color="#fff" size="small" />}
         />
       </Box>
