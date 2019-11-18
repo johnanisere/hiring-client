@@ -1,6 +1,6 @@
 import { SIGN_OUT } from './signout.action';
 export const initialState = {
-  error: ''
+  error: {}
 };
 
 export default function error(state = initialState, action) {
