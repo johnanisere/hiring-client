@@ -4,6 +4,7 @@ import rootReducer from './reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { loadState, saveState } from './helpers/localStorage';
 import throttle from 'lodash.throttle';
+
 const middleware = applyMiddleware(thunk);
 const enhancer = composeWithDevTools(middleware);
 const persistedState = loadState();
@@ -12,7 +13,8 @@ store.subscribe(
   throttle(() => {
     saveState({
       user: store.getState().user,
-      authentication: store.getState().authentication
+      authentication: store.getState().authentication,
+      interviews: store.getState().interviews
     });
   }, 1000)
 );
