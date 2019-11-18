@@ -1,6 +1,6 @@
 import React, { lazy } from 'react';
 
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import ProtectedRoute from '../ProtectedRoute';
 const Login = lazy(() => import('./Login'));
 const SignUp = lazy(() => import('./SignUp'));
@@ -15,11 +15,11 @@ const ScheduleInterview = lazy(() => import('../dashboard/ScheduleInterview'));
 const InterviewResponse = lazy(() =>
   import('../interviewActivities/InterviewResponse')
 );
-
+const LandingPage = lazy(() => import('../landingPage/'));
 export default function() {
   return (
     <Switch>
-      <Redirect exact from="/" to="/login" />
+      <Route exact path="/" component={LandingPage} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/signup/partner" component={HirerSignUp} />
@@ -29,12 +29,12 @@ export default function() {
         path="/interview-response/:intent/:email/:interviewId"
         component={InterviewResponse}
       />
+      <Route
+        exact
+        path="/update-password/:token/:email"
+        component={UpdatePassword}
+      />
       <ProtectedRoute>
-        <Route
-          exact
-          path="/update-password/:token"
-          component={UpdatePassword}
-        />
         <Route
           path="/schedule-interview/:email"
           component={ScheduleInterview}

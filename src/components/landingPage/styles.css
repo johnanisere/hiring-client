@@ -1,0 +1,171 @@
+body {
+  background: #fafbf9;
+}
+.body {
+  background: #fafbf9;
+  padding-top: 20px;
+}
+
+.images {
+  display: flex;
+}
+.img {
+  position: absolute;
+  top: 0;
+  right: -80px;
+}
+
+.giant-top-text {
+  color: #2d2f48;
+  font-family: GoogleSans;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: left;
+  margin-bottom: 10%;
+}
+
+.button-box {
+  display: flex;
+  align-self: flex-start;
+  flex-direction: row;
+}
+
+.each-btn {
+  padding: 20px;
+  background-color: #2f8044;
+  background-image: -webkit-gradient(
+    linear,
+    right bottom,
+    right top,
+    from(#2f8044),
+    to(#66e386)
+  );
+
+  border-radius: 4.5px;
+  margin-left: 30px;
+  height: 27.5px;
+}
+
+.btn-text {
+  font-family: GoogleSans;
+  font-size: 15.5px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.2;
+  letter-spacing: normal;
+  text-align: left;
+  color: #fff;
+}
+.mid-box {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  justify-content: space-around;
+  margin: 20% auto;
+}
+.mid-box-item {
+  height: 200.5px;
+  width: 248px;
+  background: #2f8044;
+}
+
+@media only screen and (max-width: 400px) {
+  .img {
+    position: fixed;
+    top: -256px;
+    right: -27px;
+  }
+  .logo {
+    padding: 35px 1px;
+  }
+  .body {
+    padding: 10px;
+  }
+  .giant-top-text {
+    font-size: 21.5px;
+    line-height: 1.21;
+    width: 163.5px;
+    height: 47.5px;
+  }
+  .logo-image {
+    height: 87px;
+    width: 100px;
+  }
+  .main {
+    padding: 0px;
+  }
+}
+@media only screen and (min-width: 501px) and (max-width: 800px) {
+  .img {
+    position: fixed;
+    top: -104px;
+    right: -80px;
+  }
+  .logo {
+    padding: 40px 10px;
+  }
+  .giant-top-text {
+    /* Done */
+    font-size: 30.5px;
+    line-height: 1.21;
+    height: 47.5px;
+    padding-left: 10px;
+    margin-top: 31px;
+  }
+
+  .body {
+    padding-top: 10px;
+    padding-left: 30.5px;
+  }
+}
+@media only screen and (min-width: 801px) {
+  .img {
+    position: absolute;
+    top: 0px;
+    right: -80px;
+  }
+  .logo {
+    padding: 30px 13px;
+  }
+  .giant-top-text {
+    font-size: 46.5px;
+    line-height: 1.21;
+
+    height: 47.5px;
+    padding-left: 10px;
+    margin-top: 82px;
+  }
+  .main {
+    padding: 0 60px;
+  }
+}
+
+@media only screen and (min-width: 401px) and (max-width: 500px) {
+  .img {
+    position: fixed;
+    top: -223px;
+    right: -80px;
+  }
+  .logo {
+    padding: 35px 5px;
+  }
+  .body {
+    padding: 10px;
+  }
+  .giant-top-text {
+    font-size: 21.5px;
+    line-height: 1.21;
+    width: 163.5px;
+    height: 47.5px;
+  }
+  .main {
+    padding: 0px;
+  }
+}
+
+.logo {
+  align-self: flex-start;
+}
