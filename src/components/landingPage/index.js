@@ -1,16 +1,17 @@
-import React from 'react';
-import { Box, Button } from 'grommet';
-import { Compliance } from 'grommet-icons';
+import React from "react";
+import { Box } from "grommet";
+import { withRouter, Link } from "react-router-dom";
+import { Compliance } from "grommet-icons";
 
-import './styles.css';
+import "./styles.css";
 function LandingPage() {
   const checks = [
-    'Over 15000 hours of coding experience',
-    'Cross-team collaboration skills',
-    'Over five programming languages',
-    'No hiring fees'
+    "Over 15000 hours of coding experience",
+    "Cross-team collaboration skills",
+    "Over five programming languages",
+    "No hiring fees"
   ];
-  console.log({ width: window.screen.width, height: window.screen.width });
+ 
   return (
     <Box className="body">
       <Box className="main">
@@ -23,8 +24,12 @@ function LandingPage() {
             />
           </Box>
           <Box className="action-box">
-            <span className="action-text">Get Started</span>
-            <span className="action-text">Login</span>
+            <Link to="/signup/partner" style={{ textDecoration: "none" }}>
+              <span className="action-text">Get Started</span>
+            </Link>
+            <Link to="/login/partner" style={{ textDecoration: "none" }}>
+              <span className="action-text">Login</span>
+            </Link>
           </Box>
         </Box>
         <Box className="giant-top-text">
@@ -39,9 +44,11 @@ function LandingPage() {
             </Box>
           ))}
         </Box>
-        <Box className="btn">
-          <Button className="btn-text">Hire a Decadev Today!</Button>
-        </Box>
+        <Link to="/signup/partner" style={{ textDecoration: "none" }}>
+          <Box className="btn">
+            <div className="btn-text">Hire a Decadev Today!</div>
+          </Box>
+        </Link>
 
         <Box className="mid-box">
           <Box className="mid-box-item"></Box>
@@ -53,4 +60,4 @@ function LandingPage() {
   );
 }
 
-export default React.memo(LandingPage);
+export default React.memo(withRouter(LandingPage));
