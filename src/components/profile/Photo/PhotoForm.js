@@ -39,7 +39,6 @@ function PhotoForm(props) {
   const {
     name,
     location,
-    profilePhoto,
     bio,
     github,
     linkedIn,
@@ -50,6 +49,11 @@ function PhotoForm(props) {
   const handleChange = e => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
+  };
+
+  const handleImageChange = e => {
+    const { name, files } = e.target;
+    setValues({ ...values, [name]: URL.createObjectURL(files[0]) });
   };
 
   async function handleSubmit(e) {
@@ -164,15 +168,19 @@ function PhotoForm(props) {
                   >
                     Photo URL
                   </label>
-
-                  <TextInput
+                  <input
+                    type="file"
+                    onChange={handleImageChange}
+                    name="profilePhoto"
+                  />
+                  {/* <TextInput
                     style={{ flex: '1 1 80%' }}
                     size="small"
                     name="photoURL"
                     placeholder="type here"
                     value={profilePhoto}
                     onChange={handleChange}
-                  />
+                  /> */}
                 </div>
 
                 <div

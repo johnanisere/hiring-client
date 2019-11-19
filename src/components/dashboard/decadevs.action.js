@@ -17,9 +17,11 @@ export const onError = payload => ({
 export const getAllDecadevs = (request, pod) => async dispatch => {
   try {
     dispatch(setLoading(true));
+    console.log(pod);
     const response = await request.get(
       `/users/decadevs/${pod ? '?pod=' + pod : ''}`
     );
+    console.log(response);
     dispatch(getDevs(response.data.allDecadevs));
     dispatch(setLoading(false));
     return response.data;

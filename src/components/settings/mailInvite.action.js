@@ -1,7 +1,7 @@
 export const DEVS_MAILINVITE = 'DEVS_MAILINVITE';
 
 const mailInviteBoundActionCreator = (
-  data,
+  emails,
   request,
   setLoading,
   setError,
@@ -10,7 +10,7 @@ const mailInviteBoundActionCreator = (
   try {
     setError({});
     setLoading(true);
-    const response = await request.post('/invite/devs', data);
+    const response = await request.post('/invites/invite/devs', emails);
     onSuccess(response.data.message);
     setLoading(false);
     return response.data;

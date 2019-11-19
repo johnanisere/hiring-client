@@ -93,7 +93,4 @@ const mapDispatchToProps = {
   login: loginBoundActionCreator,
   clear: clearErrorBoundActionCreator
 };
-export default connect(
-  null,
-  mapDispatchToProps
-)(Login);
+export default connect(null, mapDispatchToProps)(Login);

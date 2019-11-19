@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Box, Button, Menu } from 'grommet';
 
-import { Menu as MenuIcon, Down } from 'grommet-icons/icons/Menu';
+import { Menu as MenuIcon, Down } from 'grommet-icons';
 import signOut from '../components/authentication/signout.action';
 import { connect } from 'react-redux';
 
