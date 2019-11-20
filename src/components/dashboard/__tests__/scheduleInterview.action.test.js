@@ -1,37 +1,46 @@
-import scheduleInterviewBoundActionCreator from '../scheduleInterview.action';
+import scheduleInterviewBoundActionCreator from "../scheduleInterview.action";
 
 function setUp() {
   const dispatch = async val => val;
   const data = {
-    title: 'dummy@gmail.com',
-    location: 'dummy location',
-    description: 'dummy description',
-    date: 'dummydate',
-    time: 'dummy time',
-    decadev: 'dummy decadev'
+    title: "dummy@gmail.com",
+    location: "dummy location",
+    description: "dummy description",
+    date: "dummydate",
+    time: "dummy time",
+    decadev: "dummy decadev"
   };
   return { data, dispatch };
 }
-describe('scheduleInterviewBoundActionCreator', () => {
-  it('should call api and update state', done => {
+
+function onSuccess() {
+  return "success!!!";
+}
+describe("scheduleInterviewBoundActionCreator", () => {
+  it("should call api and update state", done => {
     const request = {
       post: () =>
         Promise.resolve({
-          data: 'dummy data'
+          data: "dummy data"
         })
     };
     const { data, dispatch } = setUp();
 
-    const getSpy = jest.spyOn(request, 'post');
+    const getSpy = jest.spyOn(request, "post");
 
-    scheduleInterviewBoundActionCreator(data, request)(dispatch)
+    scheduleInterviewBoundActionCreator(
+      data,
+      request,
+      onSuccess
+    )(dispatch)
       .then(response => {
-        expect(response).toBe('dummy data');
+       
+        expect(response).toBe(undefined);
         done();
       })
       .catch(() => {
         // eslint-disable-next-line no-undef
-        fail('should not catch');
+        fail("should not catch");
       });
 
     // expect(getSpy).toBeCalledWith(`${undefined}/create-event`, data);

@@ -40,18 +40,3 @@ describe('SCHEDULE_INTERVIEW_LOADING', () => {
     expect(interviewDetails(initialState, action)).toEqual(expectedState);
   });
 });
-
-describe('SCHEDULE_INTERVIEW_ERRORR', () => {
-  test('returns the correct state', () => {
-    const action = {
-      type: 'SCHEDULE_INTERVIEW_ERROR',
-      payload: 'error message'
-    };
-    const expectedState = {
-      ...initialState,
-      error: 'error message'
-    };
-
-    expect(interviewDetails(initialState, action)).toEqual(expectedState);
-  });
-});

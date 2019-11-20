@@ -9,7 +9,8 @@ import request from '../../../request';
 import ProjectForm from './ProjectForm';
 
 function ProjectEdit(props) {
-  const { error, loading } = useSelector(({ user }) => user);
+  const { loading } = useSelector(({ user }) => user);
+  const { error } = useSelector(({ error }) => error);
   const { setEditing, project, decadev } = props;
   const { token, email } = decadev;
   const { title, languages, link } = project;

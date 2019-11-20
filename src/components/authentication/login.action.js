@@ -14,7 +14,7 @@ export const setLoading = payload => ({
   payload
 });
 export const onError = payload => ({
-  type: 'USER_LOGIN_ERROR',
+  type: 'SET_ERROR',
   payload
 });
 
@@ -27,6 +27,7 @@ const loginBoundActionCreator = (
     dispatch(setLoading(true));
     const response = await request.post('/users/login', data);
     dispatch(login(response.data));
+
     dispatch(setToken(response.data.token));
     dispatch(setLoading(false));
     navigateToDashboard();

@@ -11,7 +11,8 @@ import request from '../../../request';
 import ProjectForm from './ProjectForm';
 
 function AddNewProject(props) {
-  const { error, loading } = useSelector(({ user }) => user);
+  const { loading } = useSelector(({ user }) => user);
+  const { error } = useSelector(({ error }) => error);
   const { decadev } = props;
   const { token, email } = decadev;
 

@@ -10,7 +10,7 @@ export const setLoading = payload => ({
   payload
 });
 export const onError = payload => ({
-  type: 'USER_LOGIN_ERROR',
+  type: 'SET_ERROR',
   payload
 });
 
@@ -32,7 +32,6 @@ const updateUserDetailBoundActionCreator = (
         }
       }
     );
-    console.log({ response });
 
     dispatch(updateDev(response.data.user));
     dispatch(setLoading(false));

@@ -37,7 +37,7 @@ const theme = deepMerge(grommet, {
 
 function Dropdown(props) {
   const [values, setValues] = useState({
-    options: ['All', 'Male', 'Female'],
+    options: ['All', 'Java', 'C#', 'Android', 'NodeJS', 'Python'],
     value: ''
   });
 
@@ -61,7 +61,7 @@ function Dropdown(props) {
         <Select
           id="select"
           name="select"
-          placeholder="Select Gender"
+          placeholder="Select Stack"
           value={value}
           options={options}
           onChange={handleChange}

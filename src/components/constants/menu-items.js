@@ -10,9 +10,15 @@ export const adminMenuItems = [
   'Recent Activity',
   {
     Interviews: [
-      { 'Scheduled Interviews': 'dashboard/interviews/scheduledinterviews' },
-      'Attended Interviews',
-      'Declined Interviews'
+      {
+        'Scheduled Interviews': '/dashboard/interviews/scheduledinterviews'
+      },
+      {
+        'Attended Interviews': '/dashboard/interviews/acceptedinterviews'
+      },
+      {
+        'Declined Interviews': '/dashboard/interviews/declinedinterviews'
+      }
     ]
   },
   'Settings',

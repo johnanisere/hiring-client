@@ -1,14 +1,14 @@
 import { SIGN_OUT } from './signout.action';
-const initialState = {
-  token: ''
+export const initialState = {
+  error: {}
 };
 
-export default function authentication(state = initialState, action) {
+export default function error(state = initialState, action) {
   switch (action.type) {
-    case 'SET_TOKEN':
+    case 'SET_ERROR':
       return {
         ...state,
-        token: action.payload
+        error: action.payload
       };
     case SIGN_OUT:
       return {

@@ -14,7 +14,7 @@ export const setLoading = payload => ({
   payload
 });
 export const onError = payload => ({
-  type: 'HIRER_LOGIN_ERROR',
+  type: 'SET_ERROR',
   payload
 });
 

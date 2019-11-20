@@ -3,6 +3,7 @@ import Root from './Root';
 import { Provider } from 'react-redux';
 import ErrorBoundary from './ErrorBoundary';
 import store from './store';
+
 import './App.css';
 const App = () => (
   <ErrorBoundary>

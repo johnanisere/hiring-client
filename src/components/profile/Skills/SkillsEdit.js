@@ -8,7 +8,8 @@ import updateUserDetailBoundActionCreator from '../actions/updateDetails.action'
 import request from '../../../request';
 
 function SkillsEdit(props) {
-  const { error, loading } = useSelector(({ user }) => user);
+  const { loading } = useSelector(({ user }) => user);
+  const { error } = useSelector(({ error }) => error);
   const { setEditing, skill, decadev } = props;
   const { token, email } = decadev;
   const { type, description } = skill;

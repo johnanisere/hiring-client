@@ -40,18 +40,3 @@ describe('LOADING', () => {
     expect(user(initialState, action)).toEqual(expectedState);
   });
 });
-
-describe('USER_LOGIN_ERROR', () => {
-  test('returns the correct state', () => {
-    const action = {
-      type: 'USER_LOGIN_ERROR',
-      payload: 'error message'
-    };
-    const expectedState = {
-      ...initialState,
-      error: 'error message'
-    };
-
-    expect(user(initialState, action)).toEqual(expectedState);
-  });
-});

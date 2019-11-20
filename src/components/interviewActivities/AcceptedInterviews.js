@@ -11,11 +11,14 @@ import {
 } from 'grommet';
 
 import { grommet } from 'grommet/themes';
+import { useSelector } from 'react-redux';
 
-import { connect } from 'react-redux';
+function AcceptedInterviewsTable() {
+  const { data } = useSelector(({ interviews }) => interviews);
+  const interviews = data.filter(interview => {
+    return interview.accepted === true;
+  });
 
-function AllInterviewsTable(props) {
-  const { interviews } = props;
   return (
     <Grommet theme={grommet}>
       <Box
@@ -23,7 +26,7 @@ function AllInterviewsTable(props) {
         justify="center"
         align="center"
       >
-        <Heading level={3}>Scheduled Interviews</Heading>
+        <Heading level={3}>Accepted Interviews</Heading>
       </Box>
       {interviews.length !== 0 ? (
         <Box pad="medium">
@@ -80,20 +83,11 @@ function AllInterviewsTable(props) {
         </Box>
       ) : (
         <p style={{ textAlign: 'center' }}>
-          <em>No Scheduled Interviews</em>
+          <em>No Accepted interviews</em>
         </p>
       )}
     </Grommet>
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    interviews: state.interviews.data
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  null
-)(React.memo(AllInterviewsTable));
+export default React.memo(AcceptedInterviewsTable);

@@ -1,5 +1,4 @@
 import React, { lazy } from 'react';
-
 import { Route, Switch } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import ProtectedRoute from '../../components/ProtectedRoute';
@@ -12,6 +11,12 @@ const ActivateHirer = lazy(() => import('../../components/activateHirer'));
 const Shortlisted = lazy(() => import('../../components/selected/Shortlisted'));
 const AllInterviews = lazy(() =>
   import('../../components/interviewActivities/AllInterviews')
+);
+const DeclinedInterviewsTable = lazy(() =>
+  import('../../components/interviewActivities/DeclinedInterviews')
+);
+const AcceptedInterviewsTable = lazy(() =>
+  import('../../components/interviewActivities/AcceptedInterviews')
 );
 
 export default function App({ match }) {
@@ -43,6 +48,16 @@ export default function App({ match }) {
               exact
               path={`${match.path}/interviews/scheduledinterviews`}
               component={AllInterviews}
+            />
+            <Route
+              exact
+              path={`${match.path}/interviews/declinedinterviews`}
+              component={DeclinedInterviewsTable}
+            />
+            <Route
+              exact
+              path={`${match.path}/interviews/acceptedinterviews`}
+              component={AcceptedInterviewsTable}
             />
           </Switch>
         </Layout>
