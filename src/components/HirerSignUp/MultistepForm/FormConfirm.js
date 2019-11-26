@@ -21,7 +21,8 @@ function Confirm(props) {
       designation,
       numberOfTalentsRequired,
       deadline,
-      password
+      password,
+      industry
     }
   } = props;
   const continueToNext = e => {
@@ -36,7 +37,8 @@ function Confirm(props) {
         designation,
         numberOfTalentsRequired,
         deadline,
-        password
+        password,
+        industry
       },
       request
     );

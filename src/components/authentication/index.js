@@ -1,22 +1,24 @@
-import React, { lazy } from 'react';
+import React, { lazy } from "react";
 
-import { Route, Switch } from 'react-router-dom';
-import ProtectedRoute from '../ProtectedRoute';
-const Login = lazy(() => import('./Login'));
-const SignUp = lazy(() => import('./SignUp'));
-const UpdatePassword = lazy(() => import('./UpdatePassword'));
-const ChangePassword = lazy(() => import('./ChangePassword'));
-const Schedule = lazy(() => import('../dashboard/ScheduleInterview'));
-const Invite = lazy(() => import('../InviteHirer'));
-const HirerSignUp = lazy(() => import('../HirerSignUp'));
-const VerifyHirer = lazy(() => import('../HirerSignUp/VerifyHirer'));
-const HirerLogin = lazy(() => import('../HirerSignUp/hirerLogin/HirerLogin'));
-const ScheduleInterview = lazy(() => import('../dashboard/ScheduleInterview'));
+import { Route, Switch } from "react-router-dom";
+import ProtectedRoute from "../ProtectedRoute";
+const Login = lazy(() => import("./Login"));
+const SignUp = lazy(() => import("./SignUp"));
+const UpdatePassword = lazy(() => import("./UpdatePassword"));
+const ChangePassword = lazy(() => import("./ChangePassword"));
+const Schedule = lazy(() => import("../dashboard/ScheduleInterview"));
+const Invite = lazy(() => import("../InviteHirer"));
+const HirerSignUp = lazy(() => import("../HirerSignUp"));
+const VerifyHirer = lazy(() => import("../HirerSignUp/VerifyHirer"));
+const HirerLogin = lazy(() => import("../HirerSignUp/hirerLogin/HirerLogin"));
+const ScheduleInterview = lazy(() => import("../dashboard/ScheduleInterview"));
 const InterviewResponse = lazy(() =>
-  import('../interviewActivities/InterviewResponse')
+  import("../interviewActivities/InterviewResponse")
 );
-const LandingPage = lazy(() => import('../landingPage/'));
-export default function() {
+const ScheduleTest = lazy(() => import("../schedule-test/ScheduleTest"));
+const LandingPage = lazy(() => import("../landingPage/"));
+export default function(props) {
+ 
   return (
     <Switch>
       <Route exact path="/" component={LandingPage} />
@@ -38,7 +40,9 @@ export default function() {
         <Route
           path="/schedule-interview/:email"
           component={ScheduleInterview}
+          
         />
+        <Route path="/schedule-test/:email" component={ScheduleTest} />
 
         <Route exact path="/schedule" component={Schedule} />
         <Route exact path="/invite" component={Invite} />
@@ -50,7 +54,7 @@ export default function() {
 
         <Route
           exact
-          path={'/change-password/:token'}
+          path={"/change-password/:token"}
           component={ChangePassword}
         />
       </ProtectedRoute>

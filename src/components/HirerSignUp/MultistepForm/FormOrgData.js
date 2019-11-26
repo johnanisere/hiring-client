@@ -55,10 +55,18 @@ function FormOrgData(props) {
               type="companyURL"
               value={values.companyURL}
               required
-              // validate={{
-              //   regexp: /^(ftp|http|https):\/\/[^ "]+$/,
-              //   message: 'Input must be valid website URL!'
-              // }}
+              validate={{
+                regexp: /^(ftp|http|https):\/\/[^ "]+$/,
+                message: 'Input must be valid website URL!'
+              }}
+              onChange={handleChange}
+            />
+            <Input
+              label="Industry"
+              name="industry"
+              type="industry"
+              value={values.industry}
+              required
               onChange={handleChange}
             />
 

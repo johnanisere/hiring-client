@@ -51,9 +51,9 @@ function LandingPage() {
         </Link>
 
         <Box className="mid-box">
+          {/* <Box className="mid-box-item"></Box>
           <Box className="mid-box-item"></Box>
-          <Box className="mid-box-item"></Box>
-          <Box className="mid-box-item"></Box>
+          <Box className="mid-box-item"></Box> */}
         </Box>
       </Box>
     </Box>

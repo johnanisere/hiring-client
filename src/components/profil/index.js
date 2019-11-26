@@ -1,9 +1,9 @@
-import React from 'react';
-import Summary from './Summary';
-import Portfolio from './Portfolio';
-import Employment from './Employment';
-import Skills from './Skills';
-import Action from './Action';
+import React from "react";
+import Summary from "./Summary";
+import Portfolio from "./Portfolio";
+import Employment from "./Employment";
+import Skills from "./Skills";
+import Action from "./Action";
 
 const App = props => (
   <>
