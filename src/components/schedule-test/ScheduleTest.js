@@ -1,54 +1,45 @@
 import React, { useState } from "react";
-import DateTimeDropButton from "../DateTime";
 import { Box, Form, FormField, TextArea, Text } from "grommet";
-import { useSelector, connect } from "react-redux";
+import { connect } from "react-redux";
 import request from "../../request";
-import FormError from "../formError";
-import FormButton from "../button/FormButton";
-import scheduleInterviewBoundActionCreator from "./scheduleInterview.action";
+import LongerFormsLayout from "../LongerFormsLayout";
+import DateTimeDropButton from "../DateTime";
 import { toNormalDate } from "../../helpers/utils";
 import SuccessNotification from "../toasters/SuccessNotification";
+import FormButton from "../button/FormButton";
+import FormError from "../formError/index";
+import scheduleTestBoundActionCreator from "./scheduleTest.action";
 
-import LongerFormsLayout from "../LongerFormsLayout";
-
-function ScheduleInterview(props) {
-
+function ScheduleTest(props) {
   const { email } = props.match.params;
+  const { loading, scheduleTest, user, error } = props;
   const [success, onSuccess] = useState("");
-
-  const { loading } = useSelector(({ interviewDetails }) => interviewDetails);
-  const { error } = useSelector(({ error }) => error);
+  const [dateValidation, setDateValidation] = useState("");
   const handleSuccess = val => {
     onSuccess(val);
   };
 
-  const { data } = useSelector(({ user }) => user);
-
   const [values, setValues] = useState({
-    title: "",
-    location: "",
+    duration: "",
     description: "",
+    decaDev: email,
+    hiringPartner: user.email,
+    nameOfOrg: user.nameOfOrg,
+    testUrl: "",
     startDate: undefined,
     startTime: "",
     endDate: undefined,
-    endTime: "",
-    decaDev: email,
-    timezone: "",
-    hiringPartner: data.email,
-    nameOfOrg: data.nameOfOrg
+    endTime: ""
   });
-
   const {
-    title,
-    location,
+    duration,
     description,
+    decaDev,
+    testUrl,
     startDate,
     startTime,
     endDate,
-    endTime,
-    decaDev,
-    hiringPartner,
-    nameOfOrg
+    endTime
   } = values;
 
   const setDateAndTime = data => {
@@ -62,27 +53,45 @@ function ScheduleInterview(props) {
 
   const handleSubmit = e => {
     e && e.preventDefault();
+    console.log({startDate});
     if (!startDate || !startTime || !endDate || !endTime) return;
+    if (startDate >= new Date()) {
+      setDateValidation("Please choose a future date");
+      return;
+    } else {
+      let payload;
+      if (values.testUrl === "") {
+        payload = {
+          duration,
+          startTime,
+          endTime,
+          startDate: toNormalDate(startDate),
+          endDate: toNormalDate(endDate),
+          description,
+          decaDev,
+          hiringPartner: values.hiringPartner,
+          nameOfOrg: values.nameOfOrg
+        };
+      } else {
+        payload = {
+          duration,
+          startTime,
+          endTime,
+          startDate: toNormalDate(startDate),
+          endDate: toNormalDate(endDate),
+          description,
+          decaDev,
+          hiringPartner: values.hiringPartner,
+          nameOfOrg: values.nameOfOrg,
+          testUrl
+        };
+      }
 
-    let payload = {
-      location,
-      description,
-      startTime,
-      endTime,
-      startDate: toNormalDate(startDate),
-      endDate: toNormalDate(endDate),
-      hiringPartner,
-      nameOfOrg,
-      decaDev
-    };
-    props.scheduleInterview(
-      payload,
-      request,
-      handleSuccess,
-    );
+      scheduleTest(payload, request, handleSuccess);
+    }
   };
-
   const closeToaster = () => onSuccess("");
+
   return (
     <>
       {success && (
@@ -100,7 +109,7 @@ function ScheduleInterview(props) {
                 fontSize: "25px"
               }}
             >
-              Schedule Interview
+              Schedule Test
             </Text>
           </Box>
 
@@ -108,23 +117,24 @@ function ScheduleInterview(props) {
 
           <Form onSubmit={handleSubmit}>
             <FormField
-              label="Add Title"
-              name="title"
-              value={title}
-              onChange={handleChange}
-              required
-            />
-            <FormField
-              label="Add Location"
-              name="location"
-              value={location}
-              onChange={handleChange}
-            />
-            <FormField
               label="Decadev"
               name="decadev"
               value={decaDev}
               disabled
+            />
+
+            <FormField
+              label="Add Duration"
+              name="duration"
+              value={duration}
+              onChange={handleChange}
+              required
+            />
+            <FormField
+              label="Test URL (optional)"
+              name="testUrl"
+              value={testUrl}
+              onChange={handleChange}
             />
             <FormField
               label="Add Description"
@@ -154,17 +164,15 @@ function ScheduleInterview(props) {
                 />
               </FormField>
             </Box>
+            <small style={{ color: "red" }}>{dateValidation}</small>
+
             <Box
               direction="row"
               justify="center"
               align="center"
               margin={{ top: "medium" }}
             >
-              <FormButton
-                loading={loading}
-                type="submit"
-                text="Save Interview"
-              />
+              <FormButton loading={loading} type="submit" text="Save Test" />
             </Box>
           </Form>
         </Box>
@@ -172,7 +180,18 @@ function ScheduleInterview(props) {
     </>
   );
 }
+
 const mapDispatchToProps = {
-  scheduleInterview: scheduleInterviewBoundActionCreator
+  scheduleTest: scheduleTestBoundActionCreator
 };
-export default connect(null, mapDispatchToProps)(React.memo(ScheduleInterview));
+
+const mapStateToProps = state => {
+  const { interviewDetails, user, error } = state;
+  return {
+    loading: interviewDetails.loading,
+    user: user.data,
+    error: error.error
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ScheduleTest);

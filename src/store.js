@@ -1,9 +1,9 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import rootReducer from './reducers';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { loadState, saveState } from './helpers/localStorage';
-import throttle from 'lodash.throttle';
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import rootReducer from "./reducers";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { loadState, saveState } from "./helpers/localStorage";
+import throttle from "lodash.throttle";
 
 const middleware = applyMiddleware(thunk);
 const enhancer = composeWithDevTools(middleware);
@@ -14,7 +14,9 @@ store.subscribe(
     saveState({
       user: store.getState().user,
       authentication: store.getState().authentication,
-      interviews: store.getState().interviews
+      interviews: store.getState().interviews,
+      shortlisted: store.getState().shortlisted,
+      decadevs: store.getState().decadevs
     });
   }, 1000)
 );

@@ -5,7 +5,7 @@ import decadevs from './components/dashboard/decadevs.reducer';
 import interviewDetails from './components/dashboard/scheduleInterview.reducer';
 
 import shortlisted from './components/selected/selected.reducer';
-import inactiveHirer from './components/activateHirer/activateHirer.reducer';
+import hirer from './components/activateHirer/activateHirer.reducer';
 import interviews from './components/interviewActivities/interviews.reducer';
 import error from './components/authentication/error.reducer';
 
@@ -16,6 +16,6 @@ export default combineReducers({
   shortlisted,
   authentication,
   interviewDetails,
-  inactiveHirer,
+  hirer,
   interviews
 });

@@ -1,22 +1,22 @@
-export const REGISTER_HIRER = 'REGISTER_HIRER';
+export const REGISTER_HIRER = "REGISTER_HIRER";
 const hirer = payload => ({
   type: REGISTER_HIRER,
   payload
 });
 
 export const setLoading = payload => ({
-  type: 'LOADING',
+  type: "LOADING",
   payload
 });
 export const onError = payload => ({
-  type: 'SET_ERROR',
+  type: "SET_ERROR",
   payload
 });
 
 const registerHirerBoundActionCreator = (data, request) => async dispatch => {
   try {
     dispatch(setLoading(true));
-    const response = await request.post('/hirer/signup', data);
+    const response = await request.post("/hirer/signup", data);
     dispatch(hirer(response.data));
     dispatch(setLoading(false));
 

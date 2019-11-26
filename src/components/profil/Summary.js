@@ -1,6 +1,6 @@
-import React from 'react';
-import Profile from './blocks';
-import PropTypes from 'prop-types';
+import React from "react";
+import Profile from "./blocks";
+import PropTypes from "prop-types";
 
 function App({ profilePhoto, name, currentRole, description, stack }) {
   return (
@@ -13,16 +13,20 @@ function App({ profilePhoto, name, currentRole, description, stack }) {
           </Profile.Text>
           <br />
           <Profile.Text size5 medium black>
-            {currentRole} &bull;
+            {currentRole ? currentRole : "Decadev"} &bull;
           </Profile.Text>
           <br />
           <Profile.Text size5 small grey l20>
-            {description}
+            {description ? description : "Empty field"}
           </Profile.Text>
           <Profile tags>
-            {stack.map((skill, key) => (
-              <Profile.Tag key={key}>{skill}</Profile.Tag>
-            ))}
+            {stack ? (
+              stack.map((skill, key) => (
+                <Profile.Tag key={key}>{skill}</Profile.Tag>
+              ))
+            ) : (
+              <Profile.Text>Empty field</Profile.Text>
+            )}
           </Profile>
         </Profile>
       </Profile>
@@ -31,11 +35,11 @@ function App({ profilePhoto, name, currentRole, description, stack }) {
 }
 
 App.propTypes = {
-  profilePhoto: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  currentRole: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  stack: PropTypes.array.isRequired
+  profilePhoto: PropTypes.string,
+  name: PropTypes.string,
+  currentRole: PropTypes.string,
+  description: PropTypes.string,
+  stack: PropTypes.array
 };
 
 export default React.memo(App);

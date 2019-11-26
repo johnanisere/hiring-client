@@ -1,19 +1,37 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import request from '../../request';
-import { getAllDecadevs } from './decadevs.action';
-import MoonLoader from 'react-spinners/MoonLoader';
-import Dropdown from '../Dropdown';
-import Next from './Next';
+import React from "react";
+import { connect } from "react-redux";
+import { deepMerge } from "grommet/utils";
+import { grommet } from "grommet/themes";
+import request from "../../request";
+import { getAllDecadevs } from "./decadevs.action";
+import MoonLoader from "react-spinners/MoonLoader";
+import Dropdown from "../Dropdown";
+import Next from "./Next";
 
-import Card from './Card';
+import Card from "./Card";
 
-import { Grommet, Box, Grid, ResponsiveContext } from 'grommet';
+import { Grommet, Box, Grid, ResponsiveContext, Text } from "grommet";
+
+const customBreakpoints = deepMerge(grommet, {
+  global: {
+    breakpoints: {
+      small: {
+        value: 600
+      },
+      medium: {
+        value: 1200
+      },
+      large: {
+        value: 2400
+      }
+    }
+  }
+});
 
 class Cards extends React.Component {
   state = {
     open: false,
-    pod: 'All',
+    pod: "All",
     fetching: false
   };
   componentDidMount() {
@@ -33,31 +51,35 @@ class Cards extends React.Component {
   };
 
   render() {
-    const { loading, decadevs } = this.props;
+    const { loading, decadevs, total } = this.props;
 
     return (
       <>
         <Dropdown handleChange={this.handleChange} />
-        <Grommet style={{ overflow: 'scroll', minHeight: '100%' }}>
+        <Grommet
+          style={{ overflow: "scroll", minHeight: "100%" }}
+          theme={customBreakpoints}
+        >
           {loading && (
             <Box fill width="medium" align="center" justify="center">
               <MoonLoader size={30} />
             </Box>
           )}
           <Box align="start" justify="start"></Box>
+          <Box pad="small">
+            <Text>{total} Developers</Text>
+          </Box>
           <ResponsiveContext.Consumer>
             {size => (
               <Grid
                 columns={
-                  size === 'small'
-                    ? ['1']
-                    : size === 'medium'
-                    ? ['1/4', '1/4', '1/4', '1/4']
-                    : size === 'large'
-                    ? ['1/4', '1/4', '1/4', '1/4']
-                    : size === 'xlarge'
-                    ? ['1/5', '1/5', '1/5', '1/5', '1/5']
-                    : ['1/6', '1/6', '1/6', '1/6', '1/6', '1/6']
+                  size === "small"
+                    ? ["1"]
+                    : size === "medium"
+                    ? ["1/2", "1/2"]
+                    : size === "large"
+                    ? ["1/4", "1/4", "1/4", "1/4"]
+                    : ["1/4", "1/4", "1/4", "1/4"]
                 }
               >
                 {!loading &&
@@ -75,7 +97,7 @@ class Cards extends React.Component {
           {!loading && (
             <Next
               handleNext={this.handleNext}
-              style={{ borderRadius: '5px' }}
+              style={{ borderRadius: "5px" }}
             />
           )}
         </Grommet>
@@ -86,14 +108,12 @@ class Cards extends React.Component {
 const mapStateToProps = state => {
   return {
     loading: state.decadevs.loading,
-    decadevs: state.decadevs.decadevs
+    decadevs: state.decadevs.decadevs,
+    total: state.decadevs.total
   };
 };
 const mapDispatchToProps = {
   getAllDecadevs
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(React.memo(Cards));
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Cards));
