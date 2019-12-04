@@ -39,10 +39,11 @@ function InviteForm(props) {
   }
   function getAsText(fileToRead) {
     var reader = new FileReader();
-
-    reader.readAsText(fileToRead);
-    reader.onload = loadHandler;
-    reader.onerror = errorHandler;
+    if(fileToRead){
+      reader.readAsText(fileToRead);
+      reader.onload = loadHandler;
+      reader.onerror = errorHandler;
+    }
   }
   function loadHandler(event) {
     var csv = event.target.result;

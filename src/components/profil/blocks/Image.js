@@ -7,6 +7,7 @@ const Image = styled.img`
   width: 100%;
   max-width: 240px;
   margin-right: 25px;
+  object-fit: cover;
   @media (max-width: 668px) {
     margin: 0 auto;
     margin-bottom: 10px;

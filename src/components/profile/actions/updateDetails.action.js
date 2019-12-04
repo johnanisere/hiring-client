@@ -1,16 +1,16 @@
-export const UPDATE_DEV = 'UPDATE_DEV';
+export const UPDATE_DEV = "UPDATE_DEV";
 
 const updateDev = payload => ({
-  type: 'UPDATE_DEV',
+  type: "UPDATE_DEV",
   payload
 });
 
 export const setLoading = payload => ({
-  type: 'LOADING',
+  type: "LOADING",
   payload
 });
 export const onError = payload => ({
-  type: 'SET_ERROR',
+  type: "SET_ERROR",
   payload
 });
 

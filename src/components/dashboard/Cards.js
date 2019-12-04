@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { deepMerge } from "grommet/utils";
 import { grommet } from "grommet/themes";
 import request from "../../request";
-import { getAllDecadevs } from "./decadevs.action";
+import getAllDecadevs from "./decadevs.action";
 import MoonLoader from "react-spinners/MoonLoader";
 import Dropdown from "../Dropdown";
 import Next from "./Next";
@@ -35,7 +35,7 @@ class Cards extends React.Component {
     fetching: false
   };
   componentDidMount() {
-    this.props.getAllDecadevs(request);
+    this.props.getAllDecadevs(request, this.state.pod);
   }
   handleChange = pod => {
     this.setState({ pod }, () => this.props.getAllDecadevs(request, pod));
@@ -51,7 +51,7 @@ class Cards extends React.Component {
   };
 
   render() {
-    const { loading, decadevs, total } = this.props;
+    const { loading, total } = this.props;
 
     return (
       <>
@@ -83,7 +83,7 @@ class Cards extends React.Component {
                 }
               >
                 {!loading &&
-                  decadevs.map((dev, key) => (
+                  this.props.decadevs.map((dev, key) => (
                     <Card
                       key={key}
                       dev={dev}

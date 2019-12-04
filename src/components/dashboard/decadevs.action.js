@@ -18,7 +18,7 @@ export const getTotal = payload => ({
   payload
 });
 
-export const getAllDecadevs = (request, pod) => async dispatch => {
+const getAllDecadevs = (request, pod) => async dispatch => {
   try {
     dispatch(setLoading(true));
 

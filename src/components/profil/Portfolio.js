@@ -2,7 +2,7 @@ import React from "react";
 import Profile from "./blocks";
 import PropTypes from "prop-types";
 
-function App({ portfolio, experience, skills }) {
+function App({ portfolio, education, skills }) {
   return (
     <>
       <Profile grid>
@@ -29,19 +29,23 @@ function App({ portfolio, experience, skills }) {
         </Profile>
         <Profile fill="true" bottom left right>
           <Profile.Text bold grey size3>
-            EXPERIENCE
+            EDUCATION
           </Profile.Text>
           <Profile.List nobullet>
-            {experience ? (
-              experience.map(({ title, years }, key) => (
-                <li key={key}>
-                  <Profile.Text bold black size3 l20>
-                    {title},<span className="small"> {years} years</span>
-                  </Profile.Text>
-                </li>
-              ))
+            {education ? (
+              education.map(
+                ({ qualification, placeOfEducation, duration }, key) => (
+                  <li key={key}>
+                    <Profile.Text bold black size3 l20>
+                      {qualification}
+                    </Profile.Text>
+                    {placeOfEducation}.{"   "}
+                    <span className="small"> {duration}</span>
+                  </li>
+                )
+              )
             ) : (
-              <Profile.Text>Empty fields</Profile.Text>
+              <Profile.Text>No Education yet</Profile.Text>
             )}
           </Profile.List>
         </Profile>
