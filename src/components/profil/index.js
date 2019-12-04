@@ -13,15 +13,20 @@ const App = props => (
       currentRole={props.dev.currentRole}
       description={props.dev.description}
       stack={props.dev.stack}
+      bio={props.dev.bio}
+      github={props.dev.github}
+      linkedIn={props.dev.linkedIn}
+      stackOverflow={props.dev.stackOverflow}
+      website={props.dev.website}
     />
     <Action dev={props.dev} selected={props.selected} />
     <Portfolio
       portfolio={props.dev.portfolio}
       skills={props.dev.skills}
-      experience={props.dev.experience}
+      education={props.dev.education}
     />
     <Employment employments={props.dev.employments} />
-    <Skills skills={props.dev.skills} />
+    <Skills publications={props.dev.publications} />
   </>
 );
 
