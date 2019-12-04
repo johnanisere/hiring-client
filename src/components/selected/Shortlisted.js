@@ -1,12 +1,29 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-
-import Card from "../dashboard/Card";
+import { deepMerge } from "grommet/utils";
+import { grommet } from "grommet/themes";
 
 import { Grommet, Grid, ResponsiveContext } from "grommet";
 
+import Card from "../dashboard/Card";
+
+const customBreakpoints = deepMerge(grommet, {
+  global: {
+    breakpoints: {
+      small: {
+        value: 600
+      },
+      medium: {
+        value: 1200
+      },
+      large: {
+        value: 2400
+      }
+    }
+  }
+});
+
 export default function Shortlisted(props) {
-  
   const { selectedDecadevs } = useSelector(({ shortlisted }) => shortlisted);
   const shortlistedDevs = Object.values(selectedDecadevs);
   const [state, setState] = useState({
@@ -20,7 +37,10 @@ export default function Shortlisted(props) {
 
   return (
     <>
-      <Grommet style={{ overflow: "scroll", minHeight: "100%" }}>
+      <Grommet
+        style={{ overflow: "scroll", minHeight: "100%" }}
+        theme={customBreakpoints}
+      >
         <ResponsiveContext.Consumer>
           {size => (
             <Grid
