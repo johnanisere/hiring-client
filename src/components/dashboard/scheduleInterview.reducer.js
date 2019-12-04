@@ -4,7 +4,8 @@ import { SIGN_OUT } from "../authentication/signout.action";
 export const initialState = {
   loading: false,
   interviewDetails: {},
-  testDetails: {}
+  testDetails: {},
+
 };
 
 export default function interviewDetails(state = initialState, action) {

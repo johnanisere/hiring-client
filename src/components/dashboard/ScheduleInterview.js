@@ -12,7 +12,6 @@ import SuccessNotification from "../toasters/SuccessNotification";
 import LongerFormsLayout from "../LongerFormsLayout";
 
 function ScheduleInterview(props) {
-
   const { email } = props.match.params;
   const [success, onSuccess] = useState("");
 
@@ -75,11 +74,7 @@ function ScheduleInterview(props) {
       nameOfOrg,
       decaDev
     };
-    props.scheduleInterview(
-      payload,
-      request,
-      handleSuccess,
-    );
+    props.scheduleInterview(payload, request, handleSuccess);
   };
 
   const closeToaster = () => onSuccess("");
