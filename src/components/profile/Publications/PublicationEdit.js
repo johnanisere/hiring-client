@@ -6,17 +6,16 @@ import { BeatLoader } from 'react-spinners';
 import updateUserDetailBoundActionCreator from '../actions/updateDetails.action';
 import request from '../../../request';
 
-import ProjectForm from './ProjectForm';
+import PublicationForm from './PublicationForm';
 
-function ProjectEdit(props) {
+function PublicationEdit(props) {
   const { loading } = useSelector(({ user }) => user);
   const { error } = useSelector(({ error }) => error);
-  const { setEditing, project, decadev } = props;
+  const { setEditing, publication, decadev } = props;
   const { token, email } = decadev;
-  const { title, languages, link } = project;
+  const { title, link } = publication;
   const [values, setValues] = useState({
     title: title || '',
-    languages: languages || '',
     link: link || ''
   });
 
@@ -33,22 +32,21 @@ function ProjectEdit(props) {
   }
 
   let paper = {
-    id: project._id,
+    id: publication._id,
     title: values.title,
-    languages: values.languages,
     link: values.link
   };
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const type = 'projectInfo';
+    const type = 'publicationInfo';
     props.onUpdateDetails(paper, email, request, token, type);
     handleSave();
   }
 
   async function handleDelete(e) {
     e.preventDefault();
-    const type = 'delete-project';
+    const type = 'delete-publication';
     props.onUpdateDetails(paper, email, request, token, type);
     handleSave();
   }
@@ -70,7 +68,7 @@ function ProjectEdit(props) {
           alignItems: 'center'
         }}
       >
-        <Heading level={5}>PROJECT</Heading>
+        <Heading level={5}>PUBLICATION</Heading>
 
         <div style={{ display: 'flex' }}>
           <div onClick={handleCancel} style={{ cursor: 'pointer' }}>
@@ -90,7 +88,7 @@ function ProjectEdit(props) {
           </div>
         </div>
       </div>
-      <ProjectForm values={values} handleChange={handleChange} error={error} />
+      <PublicationForm values={values} handleChange={handleChange} error={error} />
     </div>
   );
 }
@@ -101,4 +99,4 @@ const mapDispatchToProps = {
 export default connect(
   null,
   mapDispatchToProps
-)(ProjectEdit);
+)(PublicationEdit);
