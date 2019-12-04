@@ -20,7 +20,6 @@ function ScheduleTest(props) {
   };
 
   const [values, setValues] = useState({
-    duration: "",
     description: "",
     decaDev: email,
     hiringPartner: user.email,
@@ -32,7 +31,6 @@ function ScheduleTest(props) {
     endTime: ""
   });
   const {
-    duration,
     description,
     decaDev,
     testUrl,
@@ -53,16 +51,14 @@ function ScheduleTest(props) {
 
   const handleSubmit = e => {
     e && e.preventDefault();
-    console.log({startDate});
-    if (!startDate || !startTime || !endDate || !endTime) return;
-    if (startDate >= new Date()) {
-      setDateValidation("Please choose a future date");
+    console.log({ startDate });
+    if (!startDate || !startTime || !endDate || !endTime) {
+      setDateValidation("Please add start and end date and time");
       return;
     } else {
       let payload;
       if (values.testUrl === "") {
         payload = {
-          duration,
           startTime,
           endTime,
           startDate: toNormalDate(startDate),
@@ -74,7 +70,6 @@ function ScheduleTest(props) {
         };
       } else {
         payload = {
-          duration,
           startTime,
           endTime,
           startDate: toNormalDate(startDate),
@@ -90,6 +85,7 @@ function ScheduleTest(props) {
       scheduleTest(payload, request, handleSuccess);
     }
   };
+  console.log({dateValidation})
   const closeToaster = () => onSuccess("");
 
   return (
@@ -124,17 +120,14 @@ function ScheduleTest(props) {
             />
 
             <FormField
-              label="Add Duration"
-              name="duration"
-              value={duration}
-              onChange={handleChange}
-              required
-            />
-            <FormField
               label="Test URL (optional)"
               name="testUrl"
               value={testUrl}
               onChange={handleChange}
+              validate={{
+                regexp: /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/,
+                message: "must be a valid url"
+              }}
             />
             <FormField
               label="Add Description"
@@ -163,8 +156,8 @@ function ScheduleTest(props) {
                   time={endTime}
                 />
               </FormField>
-            </Box>
             <small style={{ color: "red" }}>{dateValidation}</small>
+            </Box>
 
             <Box
               direction="row"
