@@ -42,7 +42,7 @@ export default function Education(props) {
         >
           <AddNewEducation decadev={decadev} />
         </div>
-        {decadev.education.map((currentEducation, index) => (
+        {decadev.education && decadev.education.map((currentEducation, index) => (
           <EducationDetails
             education={currentEducation}
             decadev={decadev}
