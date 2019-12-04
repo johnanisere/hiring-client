@@ -33,16 +33,17 @@ const App = props => {
           style={{
             width: "100%",
             height: "auto",
-            borderRadius: "0"
+            borderRadius: "0",
+            objectFit: "cover"
           }}
           fit="cover"
           src={dev.profilePhoto}
         />
 
         <Text>{dev.name}</Text>
-        <Text size="small" style={{ color: "rgb(169, 169, 169)" }}>
+        {/* <Text size="small" style={{ color: "rgb(169, 169, 169)" }}>
           {dev.bio}
-        </Text>
+        </Text> */}
 
         <MoreInfo
           email={dev.email}
