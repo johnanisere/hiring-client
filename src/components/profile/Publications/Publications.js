@@ -7,7 +7,7 @@ import AddNewPublication from "./AddNewPublication";
 export default function Publications(props) {
   const { data } = props;
  
-  console.log({ data });
+
   const [hidden, setHidden] = useState(true);
   function handleVisibilityOfEdit() {
     setHidden(!hidden);

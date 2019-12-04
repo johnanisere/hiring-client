@@ -7,7 +7,7 @@ import Action from "./Action";
 
 const App = props => {
 
-  console.log({props})
+
 
   return (
     

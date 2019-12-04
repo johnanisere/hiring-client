@@ -51,7 +51,7 @@ function ScheduleTest(props) {
 
   const handleSubmit = e => {
     e && e.preventDefault();
-    console.log({ startDate });
+   
     if (!startDate || !startTime || !endDate || !endTime) {
       setDateValidation("Please add start and end date and time");
       return;
@@ -85,7 +85,7 @@ function ScheduleTest(props) {
       scheduleTest(payload, request, handleSuccess);
     }
   };
-  console.log({dateValidation})
+
   const closeToaster = () => onSuccess("");
 
   return (
