@@ -4,14 +4,11 @@ import SelectCheck from "../selected/SelectCheck";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-
 const App = ({ selected, dev }) => {
-  const { interviewDetails, testDetails  } = useSelector(
-    ({ interviewDetails}) => interviewDetails
+  const { interviewDetails, testDetails } = useSelector(
+    ({ interviewDetails }) => interviewDetails
   );
-
- 
-
+  const { data } = useSelector(({ user }) => user);
   return (
     <>
       <Profile
@@ -24,9 +21,11 @@ const App = ({ selected, dev }) => {
         }}
       >
         {(interviewDetails.scheduled || testDetails.scheduled) &&
-        interviewDetails.decaDev === dev.email ? (
-          <em style={{ fontWeight: "lighter" }}> 
-            Interview has been scheduled for {interviewDetails.scheduled || testDetails.scheduled}
+        interviewDetails.decaDev === dev.email &&
+        interviewDetails.hiringPartner === data.email ? (
+          <em style={{ fontWeight: "lighter" }}>
+            Interview has been scheduled for{" "}
+            {interviewDetails.scheduled || testDetails.scheduled}
           </em>
         ) : (
           <>
@@ -50,23 +49,23 @@ const App = ({ selected, dev }) => {
             <Profile.Text style={{ marginRight: "10px" }} bold size2>
               OR
             </Profile.Text>
-        {"   "}
-        <Profile.Text
-          bold
-          size6
-          style={{
-            position: "relative",
-            display: "flex",
-            alignItems: "center"
-          }}
-        >
-          <SelectCheck
-            decadevObject={dev}
-            selected={selected}
-            style={{ position: "initial", marginRight: "5px" }}
-          />
-          Save for later
-        </Profile.Text>
+            {"   "}
+            <Profile.Text
+              bold
+              size6
+              style={{
+                position: "relative",
+                display: "flex",
+                alignItems: "center"
+              }}
+            >
+              <SelectCheck
+                decadevObject={dev}
+                selected={selected}
+                style={{ position: "initial", marginRight: "5px" }}
+              />
+              Save for later
+            </Profile.Text>
           </>
         )}
       </Profile>

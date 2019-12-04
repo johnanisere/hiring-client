@@ -51,7 +51,7 @@ const Stack = props => {
           {checkboxes.map(item => (
             <CheckBox
               key={item}
-              checked={checks.includes(item)}
+              checked={checks && checks.includes(item)}
               label={item}
               onChange={onCheck(item)}
             />
