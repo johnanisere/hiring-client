@@ -1,14 +1,15 @@
-import React from 'react';
-import MoreInfo from './MoreInfo';
-import SelectCheck from '../selected/SelectCheck';
-import { useSelector } from 'react-redux';
+import React from "react";
+import MoreInfo from "./MoreInfo";
+import SelectCheck from "../selected/SelectCheck";
+import { useSelector } from "react-redux";
 
-import { Box, Text, Image } from 'grommet';
+import { Box, Text, Image } from "grommet";
 
 const App = props => {
   const { dev, onToggle, open } = props;
   const { selectedDecadevs } = useSelector(({ shortlisted }) => shortlisted);
   const selected = !!selectedDecadevs[dev.email];
+
   return (
     <>
       <Box
@@ -16,32 +17,34 @@ const App = props => {
         key={dev._id}
         align="center"
         background={{
-          color: 'light-2',
-          opacity: 'strong',
-          borderRadius: '0'
+          color: "light-2",
+          opacity: "strong",
+          borderRadius: "0"
         }}
         gap="small"
         margin="medium"
-        animation={['fadeIn']}
+        animation={["fadeIn"]}
         style={{
-          position: 'relative',
-          minHeight: '561px'
+          position: "relative",
+          minHeight: "561px"
         }}
       >
         <Image
           style={{
-            width: '100%',
-            height: 'auto',
-            borderRadius: '0'
+            width: "100%",
+            height: "auto",
+            borderRadius: "0",
+            objectFit: "cover"
           }}
           fit="cover"
           src={dev.profilePhoto}
         />
 
         <Text>{dev.name}</Text>
-        <Text size="small" style={{ color: 'rgb(169, 169, 169)' }}>
-          {dev.currentRole}
-        </Text>
+        {/* <Text size="small" style={{ color: "rgb(169, 169, 169)" }}>
+          {dev.bio}
+        </Text> */}
+
         <MoreInfo
           email={dev.email}
           profilePhoto={dev.profilePhoto}

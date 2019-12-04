@@ -1,5 +1,5 @@
-import differenceInCalendarMonths from 'date-fns/differenceInCalendarMonths';
-import differenceInCalendarYears from 'date-fns/differenceInCalendarYears';
+import differenceInCalendarMonths from "date-fns/differenceInCalendarMonths";
+import differenceInCalendarYears from "date-fns/differenceInCalendarYears";
 
 export const errorMessageExtrator = error => {
   if (
@@ -19,14 +19,14 @@ export function toNormalDate(date) {
 }
 
 export function monthDiff(laterDate, earlierDate) {
-  const splittedLaterDate = laterDate.split('-');
-  const splittedEarlierDate = earlierDate.split('-');
+  const splittedLaterDate = laterDate.split("-");
+  const splittedEarlierDate = earlierDate.split("-");
   let diff = differenceInCalendarMonths(
     new Date(splittedLaterDate[0], splittedLaterDate[1], 1),
     new Date(splittedEarlierDate[0], splittedEarlierDate[1], 1)
   );
   if (diff <= 0) {
-    return '(less than a month)';
+    return "(less than a month)";
   } else if (diff > 0 && diff < 12) {
     return `(${diff} months)`;
   } else {
@@ -35,8 +35,8 @@ export function monthDiff(laterDate, earlierDate) {
 }
 
 export function yearDiff(laterDate, earlierDate) {
-  const splittedLaterDate = laterDate.split('-');
-  const splittedEarlierDate = earlierDate.split('-');
+  const splittedLaterDate = laterDate.split("-");
+  const splittedEarlierDate = earlierDate.split("-");
   let diff = differenceInCalendarYears(
     new Date(splittedLaterDate[0], splittedLaterDate[1], 1),
     new Date(splittedEarlierDate[0], splittedEarlierDate[1], 1)
@@ -48,4 +48,11 @@ export function yearDiff(laterDate, earlierDate) {
   } else {
     return splittedLaterDate[0];
   }
+}
+
+export function checkMyDateWithinRange(myDate, startDate = new Date()) {
+  if (startDate <= myDate) {
+    return "Please choose a future date";
+  }
+  return myDate;
 }

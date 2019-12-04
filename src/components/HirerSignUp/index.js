@@ -1,23 +1,24 @@
-import React, { useState } from 'react';
-import FormBio from './MultistepForm/FormBio';
-import FormConfirm from './MultistepForm/FormConfirm';
-import FormOrgData from './MultistepForm/FormOrgData';
-import FormTalentsInfo from './MultistepForm/FormTalentsInfo';
-import FormPassword from './MultistepForm/FormPassword';
-import Success from './MultistepForm/Success';
+import React, { useState } from "react";
+import FormBio from "./MultistepForm/FormBio";
+import FormConfirm from "./MultistepForm/FormConfirm";
+import FormOrgData from "./MultistepForm/FormOrgData";
+import FormTalentsInfo from "./MultistepForm/FormTalentsInfo";
+import FormPassword from "./MultistepForm/FormPassword";
+import Success from "./MultistepForm/Success";
 
 function HirerSignUp() {
   const [values, setValues] = useState({
     step: 1,
-    email: '',
-    password: '',
-    name: '',
-    phone: '',
-    companyURL: '',
-    nameOfOrg: '',
-    designation: '',
-    numberOfTalentsRequired: '',
-    deadline: ''
+    email: "",
+    password: "",
+    name: "",
+    phone: "",
+    companyURL: "",
+    nameOfOrg: "",
+    designation: "",
+    numberOfTalentsRequired: "",
+    deadline: "",
+    industry: ""
   });
   const { step } = values;
 

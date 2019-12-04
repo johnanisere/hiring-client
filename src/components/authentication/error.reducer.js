@@ -1,11 +1,11 @@
-import { SIGN_OUT } from './signout.action';
+import { SIGN_OUT } from "./signout.action";
 export const initialState = {
   error: {}
 };
 
 export default function error(state = initialState, action) {
   switch (action.type) {
-    case 'SET_ERROR':
+    case "SET_ERROR":
       return {
         ...state,
         error: action.payload
@@ -15,6 +15,6 @@ export default function error(state = initialState, action) {
         ...initialState
       };
     default:
-      return state;
+      return initialState;
   }
 }

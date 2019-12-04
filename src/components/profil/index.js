@@ -1,9 +1,9 @@
-import React from 'react';
-import Summary from './Summary';
-import Portfolio from './Portfolio';
-import Employment from './Employment';
-import Skills from './Skills';
-import Action from './Action';
+import React from "react";
+import Summary from "./Summary";
+import Portfolio from "./Portfolio";
+import Employment from "./Employment";
+import Skills from "./Skills";
+import Action from "./Action";
 
 const App = props => (
   <>
@@ -13,15 +13,20 @@ const App = props => (
       currentRole={props.dev.currentRole}
       description={props.dev.description}
       stack={props.dev.stack}
+      bio={props.dev.bio}
+      github={props.dev.github}
+      linkedIn={props.dev.linkedIn}
+      stackOverflow={props.dev.stackOverflow}
+      website={props.dev.website}
     />
     <Action dev={props.dev} selected={props.selected} />
     <Portfolio
       portfolio={props.dev.portfolio}
       skills={props.dev.skills}
-      experience={props.dev.experience}
+      education={props.dev.education}
     />
     <Employment employments={props.dev.employments} />
-    <Skills skills={props.dev.skills} />
+    <Skills publications={props.dev.publications} />
   </>
 );
 
