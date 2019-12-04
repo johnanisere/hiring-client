@@ -20,7 +20,7 @@ function PhotoForm(props) {
   const { error } = useSelector(({ error }) => error);
   const { decadev, setIsEditing } = props;
   const { token, email } = decadev;
-  const [stack, setStack] = useState(decadev.stack);
+  const [stack, setStack] = useState(decadev.stack || []);
   function handleCancel() {
     return setIsEditing(false);
   }
