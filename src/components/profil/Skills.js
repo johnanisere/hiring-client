@@ -1,24 +1,25 @@
 import React from "react";
 import Profile from "./blocks";
 import PropTypes from "prop-types";
+import { Link } from "grommet-icons";
 
-function App({ skills }) {
+function App({ publications }) {
   return (
     <>
       <Profile bottom style={{ width: "100%" }}>
         <Profile.Text bold grey size3 defined spacingsonLG>
-          SKILLS
+          PUBLICATIONS
         </Profile.Text>
         <Profile fill="true" noPad>
           <Profile.List nobullet nomargin>
-            {skills ? (
-              skills.map(({ type, description }, key) => (
+            {publications ? (
+              publications.map(({ title, link }, key) => (
                 <li key={key}>
                   <Profile.Text bold blue size3>
-                    {type}
-                  </Profile.Text>
-                  <Profile.Text small grey size6 mtb1 l20>
-                    {description}
+                    {title}
+                    <a href={link}>
+                      <Link size="15px" style={{ cursor: "pointer" }} />
+                    </a>
                   </Profile.Text>
                 </li>
               ))
