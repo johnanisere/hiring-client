@@ -16,7 +16,8 @@ store.subscribe(
       authentication: store.getState().authentication,
       interviews: store.getState().interviews,
       shortlisted: store.getState().shortlisted,
-      decadevs: store.getState().decadevs
+      decadevs: store.getState().decadevs,
+      interviewDetails: store.getState().interviewDetails
     });
   }, 1000)
 );
