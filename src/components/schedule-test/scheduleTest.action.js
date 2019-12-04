@@ -22,10 +22,10 @@ export const scheduleTestBoundActionCreator = (
   onSuccess
 ) => async dispatch => {
   try {
-    console.log({ data });
+  
     dispatch(setLoading(true));
     const res = await request.post("/tests/invite", data);
-    console.log({ res });
+  
     onSuccess(res.data.message);
     dispatch(scheduleTest(res.data.testData));
     dispatch(setLoading(false));

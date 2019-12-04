@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import {  ResponsiveContext } from 'grommet';
-import { Article } from 'grommet-icons';
+import React, { useState } from "react";
+import { ResponsiveContext } from "grommet";
+import { Article } from "grommet-icons";
 
-import PublicationEdit from './PublicationEdit';
+import PublicationEdit from "./PublicationEdit";
 
-function ProjectDetails(props) {
+function PublicationDetails(props) {
   const [editing, setEditing] = useState(false);
   const { index, publication, hidden, decadev } = props;
 
@@ -19,28 +19,28 @@ function ProjectDetails(props) {
           {editing && !hidden ? (
             <PublicationEdit
               setEditing={setEditing}
-              project={publication}
+              publication={publication}
               decadev={decadev}
             />
           ) : (
             <>
-              <div key={`a${index}`} style={{ padding: '20px' }}>
-                <div style={{ display: 'flex' }}>
-                  {size === 'small' ? (
+              <div key={`a${index}`} style={{ padding: "20px" }}>
+                <div style={{ display: "flex" }}>
+                  {size === "small" ? (
                     hidden
                   ) : (
-                    <div style={{ flex: '1 1 10%', marginRight: '40px' }}>
+                    <div style={{ flex: "1 1 10%", marginRight: "40px" }}>
                       <div
                         style={{
-                          height: 'auto',
-                          width: '100%'
+                          height: "auto",
+                          width: "100%"
                         }}
                       >
                         <Article
                           size="large"
                           color="#d0d2d3"
                           style={{
-                            margin: '0 auto'
+                            margin: "0 auto"
                           }}
                         />
                       </div>
@@ -49,28 +49,28 @@ function ProjectDetails(props) {
 
                   <div
                     style={{
-                      flex: '1 1 90%',
-                      paddingLeft: '10px',
-                      color: '#666'
+                      flex: "1 1 90%",
+                      paddingLeft: "10px",
+                      color: "#666"
                     }}
                   >
-                    <div style={{ fontSize: '15px', fontWeight: 'bold' }}>
+                    <div style={{ fontSize: "15px", fontWeight: "bold" }}>
                       {publication.title}
                     </div>
-                   
+
                     <a href={publication.link} style={{}}>
-                      <div style={{ fontSize: '14px ' }}>Publication Link</div>
+                      <div style={{ fontSize: "14px " }}>Publication Link</div>
                     </a>
                   </div>
                   <div
                     style={{
-                      fontSize: '11px',
-                      padding: '6px 8px',
-                      backgroundColor: '#dde2e7',
-                      height: '10%',
-                      borderRadius: '3px',
-                      cursor: 'pointer',
-                      visibility: hidden ? 'hidden' : 'visible'
+                      fontSize: "11px",
+                      padding: "6px 8px",
+                      backgroundColor: "#dde2e7",
+                      height: "10%",
+                      borderRadius: "3px",
+                      cursor: "pointer",
+                      visibility: hidden ? "hidden" : "visible"
                     }}
                   >
                     <span onClick={handleEdit}>Edit</span>
@@ -85,4 +85,4 @@ function ProjectDetails(props) {
   );
 }
 
-export default React.memo(ProjectDetails);
+export default React.memo(PublicationDetails);
