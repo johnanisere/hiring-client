@@ -1,21 +1,21 @@
-export const GET_ALL_DECADEVS = "GET_ALL_DECADEVS";
+export const GET_ALL_DECADEVS = 'GET_ALL_DECADEVS';
 
 export const getDevs = payload => ({
   type: GET_ALL_DECADEVS,
-  payload
+  payload,
 });
 export const setLoading = payload => ({
-  type: "GET_ALL_DECADEVS_LOADING",
-  payload
+  type: 'GET_ALL_DECADEVS_LOADING',
+  payload,
 });
 
 export const onError = payload => ({
-  type: "SET_ERROR",
-  payload
+  type: 'SET_ERROR',
+  payload,
 });
 export const getTotal = payload => ({
-  type: "GET_TOTAL",
-  payload
+  type: 'GET_TOTAL',
+  payload,
 });
 
 const getAllDecadevs = (request, pod) => async dispatch => {
@@ -23,7 +23,7 @@ const getAllDecadevs = (request, pod) => async dispatch => {
     dispatch(setLoading(true));
 
     const response = await request.get(
-      `/users/decadevs/${pod ? "?pod=" + pod : ""}`
+      `/users/decadevs/${pod ? '?pod=' + pod : ''}`,
     );
 
     dispatch(getDevs(response.data.allDecadevs));
