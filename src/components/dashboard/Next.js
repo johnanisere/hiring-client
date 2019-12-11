@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { grommet, Box, Button, Grommet } from "grommet";
+import { grommet, Box, Button, Grommet } from 'grommet';
 
 export default function Next(props) {
   return (
@@ -12,6 +12,7 @@ export default function Next(props) {
           onClick={props.handleNext}
           {...props}
           color="dark-1"
+          disabled={props.isDisabled}
         />
       </Box>
     </Grommet>
