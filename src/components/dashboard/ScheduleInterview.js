@@ -21,6 +21,12 @@ function ScheduleInterview(props) {
     onSuccess(val);
   };
 
+  const handleAllowNext = () => {
+    dispatch({
+      type: INCREMENT_NEXT_COUNT,
+    });
+  };
+
   const { data } = useSelector(({ user }) => user);
 
   const [values, setValues] = useState({
