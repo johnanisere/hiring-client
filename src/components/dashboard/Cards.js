@@ -37,7 +37,6 @@ class Cards extends React.Component {
   };
   componentDidMount() {
     this.props.getAllDecadevs(request, this.state.pod);
-    console.log(this.props.allownext);
   }
   handleChange = pod => {
     this.setState({ pod }, () => this.props.getAllDecadevs(request, pod));
