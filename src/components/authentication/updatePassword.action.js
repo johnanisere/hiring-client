@@ -1,24 +1,28 @@
+export const onError = payload => ({
+  type: "SET_ERROR",
+  payload
+});
+
 const updatePasswordBoundActionCreator = (
   data,
   request,
   token,
   activityIndicator,
-  handleError,
   onSuccess
-) => async () => {
+) => async dispatch => {
   try {
     activityIndicator(true);
-    const response = await request.put('/users/update-password', data, {
+    const response = await request.put("/users/update-password", data, {
       headers: {
         authorization: `Bearer ${token}`
       }
     });
     onSuccess(response.data);
     activityIndicator(false);
-
+    window.location.href = "/login";
     return response.data;
   } catch (err) {
-    handleError(err);
+    dispatch(onError(err));
     activityIndicator(false);
   }
 };

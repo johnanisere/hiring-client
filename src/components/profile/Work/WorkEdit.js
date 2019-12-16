@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Heading } from 'grommet/components/Heading';
 import { connect, useSelector } from 'react-redux';
 import { BeatLoader } from 'react-spinners';
+import {
+	FormClose,
+	Save,
+	FormTrash
+} from 'grommet-icons';
 
 import { monthDiff, yearDiff } from '../../../helpers/utils';
 import updateUserDetailBoundActionCreator from '../actions/updateDetails.action';
@@ -10,7 +15,8 @@ import request from '../../../request';
 import WorkForm from './WorkForm';
 
 function WorkEdit(props) {
-  const { error, loading } = useSelector(({ user }) => user);
+  const { loading } = useSelector(({ user }) => user);
+  const { error } = useSelector(({ error }) => error);
   const { setEditing, employment, decadev } = props;
   const { token, email } = decadev;
   const [values, setValues] = useState({
@@ -45,15 +51,15 @@ function WorkEdit(props) {
   async function handleSubmit(e) {
     e.preventDefault();
     const type = 'employmentInfo';
-    props.onUpdateDetails(paper, email, request, token, type);
-    handleSave();
+    await props.onUpdateDetails(paper, email, request, token, type, handleSave)
+    
   }
 
   async function handleDelete(e) {
     e.preventDefault();
     const type = 'delete-employment';
-    props.onUpdateDetails(paper, email, request, token, type);
-    handleSave();
+    await props.onUpdateDetails(paper, email, request, token, type, handleSave);
+    
   }
 
   useEffect(() => {
@@ -83,19 +89,19 @@ function WorkEdit(props) {
 
         <div style={{ display: 'flex' }}>
           <div onClick={handleCancel} style={{ cursor: 'pointer' }}>
-            Cancel
+          <FormClose />
           </div>
           <div
             onClick={handleSubmit}
             style={{ marginLeft: '10px', cursor: 'pointer' }}
           >
-            {loading ? <BeatLoader size={5} color="black" /> : 'Save'}
+            {loading ? <BeatLoader size={5} color="black" /> : <Save />}
           </div>
           <div
             onClick={handleDelete}
             style={{ marginLeft: '10px', cursor: 'pointer' }}
           >
-            {loading ? <BeatLoader size={5} color="black" /> : 'Delete'}
+            {loading ? <BeatLoader size={5} color="black" /> : <FormTrash />}
           </div>
         </div>
       </div>

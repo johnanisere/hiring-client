@@ -7,7 +7,7 @@ const App = ({ message, onClose }) => (
   <Layer
     position="top"
     modal={false}
-    margin={{ vertical: 'medium', horizontal: 'small' }}
+    margin={{ vertical: 'small', horizontal: 'small' }}
     onEsc={onClose}
     responsive={false}
     plain

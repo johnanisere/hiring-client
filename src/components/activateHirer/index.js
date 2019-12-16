@@ -13,9 +13,10 @@ import request from '../../request';
 import { connect, useSelector } from 'react-redux';
 import { grommet } from 'grommet/themes';
 import getAllInactive from './activateHirer.action';
+import {toNormalDate} from '../../helpers/utils';
 
 const ActivateHirer = props => {
-  const { hirer } = useSelector(({ inactiveHirer }) => inactiveHirer);
+  const { inactiveHirers } = useSelector(({ hirer }) => hirer);
   // eslint-disable-next-line
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -39,14 +40,14 @@ const ActivateHirer = props => {
   return (
     <Grommet theme={grommet}>
       <Box
-        style={{ borderBottom: '1px solid black' }}
+        style={{ borderBottom: '1px solid black', overflow: "scroll" }}
         justify="center"
         align="center"
       >
         <Heading level={2}>Unactivated Potential Hiring Partners</Heading>
       </Box>
-      {hirer ? (
-        hirer.map(item => (
+      {inactiveHirers ? (
+        inactiveHirers.map(item => (
           <Box {...rest} key={item._id}>
             <Accordion animate={animate} multiple={multiple}>
               <AccordionPanel label={item.nameOfOrg}>
@@ -61,7 +62,7 @@ const ActivateHirer = props => {
                       Number of Talents: {item.numberOfTalentsRequired}
                     </Text>
                     <Text>Timeframe: {item.deadline}</Text>
-                    <Text>Joined: {item.createdAt}</Text>
+                    <Text>Joined: {toNormalDate(item.createdAt)}</Text>
                     <Text>
                       Verified: {item.verified === true ? 'Yes' : 'No'}
                     </Text>
@@ -72,7 +73,7 @@ const ActivateHirer = props => {
                             margin: ' 0 auto'
                           }}
                           primary
-                          color="#111111"
+                          color="#111111" 
                           label={
                             loading ? (
                               <BeatLoader size={5} color="#fff" />

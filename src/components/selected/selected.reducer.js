@@ -1,4 +1,5 @@
-import { ADD_TO_SELECTED, REMOVE_FROM_SELECTED } from './selected.action';
+import { ADD_TO_SELECTED, REMOVE_FROM_SELECTED } from "./selected.action";
+import { SIGN_OUT } from "../authentication/signout.action";
 
 const initialState = {
   selectedDecadevs: {},
@@ -27,6 +28,10 @@ export default function selectedReducer(state = initialState, action) {
           ...oldshorlisted
         },
         total: state.total--
+      };
+    case SIGN_OUT:
+      return {
+        ...initialState
       };
     default:
       return state;

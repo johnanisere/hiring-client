@@ -37,16 +37,36 @@ const DropContent = props => {
             mask={[
               {
                 length: [1, 2],
-                options: Array.from({ length: 24 }, (_, i) => 0 + i * 1),
-                regexp: /^[1-2][0-2,0-9]$|^0?[1-9]$|^0$/,
-                placeholder: 'HH'
+                options: [
+                  '1',
+                  '2',
+                  '3',
+                  '4',
+                  '5',
+                  '6',
+                  '7',
+                  '8',
+                  '9',
+                  '10',
+                  '11',
+                  '12'
+                ],
+                regexp: /^1[1-2]$|^[0-9]$/,
+                placeholder: 'hh'
               },
-              { fixed: ' : ' },
+              { fixed: ':' },
               {
-                length: [1, 2],
-                options: ['0', ...Array.from({ length: 59 }, (v, k) => k + 1)],
+                length: 2,
+                options: ['00', '15', '30', '45'],
                 regexp: /^[0-5][0-9]$|^[0-9]$/,
-                placeholder: 'MM'
+                placeholder: 'mm'
+              },
+              { fixed: ' ' },
+              {
+                length: 2,
+                options: ['am', 'pm'],
+                regexp: /^[ap]m$|^[AP]M$|^[aApP]$/,
+                placeholder: 'ap'
               }
             ]}
             value={time || initialTime}

@@ -11,7 +11,8 @@ import SuccessNotify from '../toasters/SuccessNotification';
 import Formlayout from '../FormLayout';
 
 function SignUp(props) {
-  let { error, loading, data } = useSelector(({ user }) => user);
+  let { loading, data } = useSelector(({ user }) => user);
+  let { error } = useSelector(({ error }) => error);
 
   const [values, setValues] = useState({
     name: '',

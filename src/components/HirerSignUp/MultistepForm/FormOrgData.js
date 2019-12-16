@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Button, Form, Text } from 'grommet';
+import { Box, Form, Text } from 'grommet';
 import Input from '../../input/index';
 import Formlayout from '../../FormLayout';
+import SignupButton from '../SignupButton';
 
 function FormOrgData(props) {
   const continueToNext = e => {
@@ -55,28 +56,28 @@ function FormOrgData(props) {
               type="companyURL"
               value={values.companyURL}
               required
-              // validate={{
-              //   regexp: /^(ftp|http|https):\/\/[^ "]+$/,
-              //   message: 'Input must be valid website URL!'
-              // }}
+              validate={{
+                regexp: /^(ftp|http|https):\/\/[^ "]+$/,
+                message: 'Input must be valid website URL!'
+              }}
+              onChange={handleChange}
+            />
+            <Input
+              label="Industry"
+              name="industry"
+              type="industry"
+              value={values.industry}
+              required
               onChange={handleChange}
             />
 
             <Box direction="row" justify="between" margin={{ top: 'medium' }}>
-              <Button
-                primary
-                color="dark-1"
+              <SignupButton
                 label={'Back'}
-                style={{ width: '100%', margin: '20px 5px' }}
                 onClick={back}
               />
-              <Button
-                primary
-                color="dark-1"
+              <SignupButton
                 label={'Continue'}
-                style={{ width: '100%', margin: '20px 5px' }}
-                // onClick={continueToNext}
-                type="submit"
               />
             </Box>
           </Form>

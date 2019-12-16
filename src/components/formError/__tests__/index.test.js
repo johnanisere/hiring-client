@@ -1,4 +1,3 @@
-// import { errorMessageExtrator } from '../../../helpers/utils';
 import React from 'react';
 import { configure, mount, shallow } from 'enzyme';
 import FormError from '../index';

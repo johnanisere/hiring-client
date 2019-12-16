@@ -5,22 +5,23 @@ import Loading from './components/Loading';
 const Dashboard = lazy(() => import('./compositions/dashboard'));
 const Authentication = lazy(() => import('./compositions/authentication'));
 const Profile = lazy(() => import('./components/profile/'));
-const ScheduleInterview = lazy(() =>
-  import('./components/dashboard/ScheduleInterview')
-);
+
 const DecadevModal = lazy(() => import('./components/decadevModal/index'));
+const WhyDecline = lazy(() =>
+  import('./components/interviewActivities/WhyDecline'),
+);
+
+const CvTest = lazy(() => import('./components/profil/Pdf/CV'));
 
 const App = () => (
   <BrowserRouter>
     <Suspense fallback={<Loading />}>
       <Switch>
+        <Route exact path="/decline" component={WhyDecline} />
         <Route exact path="/profile" component={Profile} />
         <Route path="/dashboard" component={Dashboard} />
+        <Route path="/cvtest" component={CvTest}></Route>
         <Route exact path="/viewprofile" component={DecadevModal} />
-        <Route
-          path="/schedule-interview/:email"
-          component={ScheduleInterview}
-        />
 
         <Route path="/" component={Authentication} />
       </Switch>

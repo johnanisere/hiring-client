@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, connect } from 'react-redux';
-import { Box, Button, Text } from 'grommet';
+import { Box,  Text } from 'grommet';
 import BeatLoader from 'react-spinners/BeatLoader';
 import FormError from '../../formError';
 import registerHirerBoundActionCreator from '../hirerSignup.action';
 import request from '../../../request';
 import Formlayout from '../../FormLayout';
+import SignupButton from '../SignupButton'
 
 function Confirm(props) {
-  const { error, loading } = useSelector(({ hirer }) => hirer);
+  const { loading } = useSelector(({ user }) => user);
+  const { error } = useSelector(({ error }) => error);
+
   const {
     values: {
       email,
@@ -19,8 +22,9 @@ function Confirm(props) {
       designation,
       numberOfTalentsRequired,
       deadline,
-      password
-    }
+      password,
+      industry, 
+    }, interestLanguage
   } = props;
   const continueToNext = e => {
     e.preventDefault();
@@ -34,15 +38,14 @@ function Confirm(props) {
         designation,
         numberOfTalentsRequired,
         deadline,
-        password
+        password,
+        industry,interestLanguage
       },
       request
     );
     props.nextStep();
   };
-  useEffect(() => {
-    console.log({ loading });
-  }, [loading]);
+
   const back = e => {
     e.preventDefault();
     props.prevStep();
@@ -63,16 +66,12 @@ function Confirm(props) {
           <Text>How soon do you wish to onboard?: {deadline}</Text>
         </Box>
         <Box direction="row" justify="between" margin={{ top: 'medium' }}>
-          <Button
-            primary
-            color="dark-1"
-            label={'Back'}
-            style={{ width: 'auto', margin: '20px' }}
+          <SignupButton
+            label='Back'
             onClick={back}
           />
-          <Button
-            primary
-            color="dark-1"
+          <SignupButton
+           
             label={
               loading ? (
                 <BeatLoader size={5} color="#fff" />
@@ -80,8 +79,8 @@ function Confirm(props) {
                 'Confirm & Continue'
               )
             }
-            style={{ width: '100%', margin: '20px 5px' }}
-            onClick={continueToNext}
+            
+            onClick={loading ? null : continueToNext}
           />
         </Box>
       </Box>

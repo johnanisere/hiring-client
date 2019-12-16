@@ -8,45 +8,46 @@ const theme = deepMerge(grommet, {
   global: {
     control: {
       border: {
-        radius: '2px'
-      }
+        radius: '2px',
+      },
     },
     input: {
-      weight: 400
+      weight: 400,
     },
     font: {
-      size: '12px'
-    }
+      size: '12px',
+    },
   },
   text: {
-    medium: '13px'
+    medium: '13px',
   },
   textInput: {
-    extend: 'padding: 0 12px;'
+    extend: 'padding: 0 12px;',
   },
   select: {
     control: {
       extend: 'padding: 3px 6px;',
       open: {
         background: '#ece0fa',
-        border: '1px solid #7D4CDB'
-      }
-    }
-  }
+        border: '1px solid #7D4CDB',
+      },
+    },
+  },
 });
 
 function Dropdown(props) {
   const [values, setValues] = useState({
-    options: ['All', 'Male', 'Female'],
-    value: ''
+    options: ['Java', 'C#', 'Android', 'NodeJS', 'Python'],
+    value: 'Java',
   });
 
-  const { options, value } = values;
+	const { options, value } = values;
 
-  const handleChange = ({ option }) => {
-    setValues({ ...values, value: option });
-    props.handleChange(option);
-  };
+	const handleChange = ({ option }) => {
+		
+		setValues({ ...values, value: option });
+		props.handleChange(option);
+	};
 
   return (
     <Grommet theme={theme || grommet}>
@@ -54,14 +55,14 @@ function Dropdown(props) {
         style={{
           display: 'flex',
           justifyContent: 'space-between',
-          margin: '10px 20px'
+          margin: '10px 20px',
         }}
       >
         <Finalize />
         <Select
           id="select"
           name="select"
-          placeholder="Select Gender"
+          placeholder="Select Stack"
           value={value}
           options={options}
           onChange={handleChange}
@@ -72,6 +73,6 @@ function Dropdown(props) {
 }
 
 Dropdown.propTypes = {
-  handleChange: PropTypes.func.isRequired
+  handleChange: PropTypes.func.isRequired,
 };
 export default Dropdown;

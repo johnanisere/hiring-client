@@ -10,7 +10,8 @@ import inviteHirerBoundActionCreator from '../InviteHirer/inviteHirer.action';
 import request from '../../request';
 
 function InviteHirer(props) {
-  const { error, loading } = useSelector(({ hirer }) => hirer);
+  const { loading } = useSelector(({ user }) => user);
+  const { error } = useSelector(({ error }) => error);
   const [values, setValues] = useState({
     email: '',
     password: '',

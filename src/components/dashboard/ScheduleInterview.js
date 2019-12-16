@@ -1,21 +1,37 @@
 import React, { useState } from 'react';
 import DateTimeDropButton from '../DateTime';
 import { Box, Form, FormField, TextArea, Text } from 'grommet';
-import { useSelector, connect } from 'react-redux';
+import { useSelector, connect, useDispatch } from 'react-redux';
 import request from '../../request';
 import FormError from '../formError';
 import FormButton from '../button/FormButton';
 import scheduleInterviewBoundActionCreator from './scheduleInterview.action';
 import { toNormalDate } from '../../helpers/utils';
+import SuccessNotification from '../toasters/SuccessNotification';
 
-import FormLayout from '../FormLayout';
+import LongerFormsLayout from '../LongerFormsLayout';
+import { INCREMENT_NEXT_COUNT } from '../AllowNext/allowNext.action';
 
 function ScheduleInterview(props) {
   const { email } = props.match.params;
-  const { error, loading } = useSelector(
-    ({ interviewDetails }) => interviewDetails
-  );
-  const { hirer } = useSelector(({ hirer }) => hirer);
+  const [success, onSuccess] = useState('');
+
+  const { loading } = useSelector(({ interviewDetails }) => interviewDetails);
+  const { error } = useSelector(({ error }) => error);
+
+  const dispatch = useDispatch();
+
+  const handleSuccess = val => {
+    onSuccess(val);
+  };
+
+  const handleAllowNext = () => {
+    dispatch({
+      type: INCREMENT_NEXT_COUNT,
+    });
+  };
+
+  const { data } = useSelector(({ user }) => user);
 
   const [values, setValues] = useState({
     title: '',
@@ -27,8 +43,8 @@ function ScheduleInterview(props) {
     endTime: '',
     decaDev: email,
     timezone: '',
-    hiringPartner: hirer.email,
-    nameOfOrg: hirer.nameOfOrg
+    hiringPartner: data.email,
+    nameOfOrg: data.nameOfOrg,
   });
 
   const {
@@ -41,7 +57,7 @@ function ScheduleInterview(props) {
     endTime,
     decaDev,
     hiringPartner,
-    nameOfOrg
+    nameOfOrg,
   } = values;
 
   const setDateAndTime = data => {
@@ -66,86 +82,103 @@ function ScheduleInterview(props) {
       endDate: toNormalDate(endDate),
       hiringPartner,
       nameOfOrg,
-      decaDev
+      decaDev,
     };
-    props.scheduleInterview(payload, request);
+    props.scheduleInterview(payload, request, handleSuccess);
   };
 
+  const closeToaster = () => onSuccess('');
   return (
-    <FormLayout>
-      <Box width="medium">
-        <Box margin="small" pad="small">
-          <Text
-            width="auto"
-            size="large"
-            margin="small"
-            style={{
-              fontWeight: 'bold',
-              fontSize: '25px'
-            }}
-          >
-            Schedule Interview
-          </Text>
-        </Box>
-        <FormError error={error} />
-        <Form onSubmit={handleSubmit}>
-          <FormField
-            label="Add Title"
-            name="title"
-            value={title}
-            onChange={handleChange}
-            required
-          />
-          <FormField
-            label="Add Location"
-            name="location"
-            value={location}
-            onChange={handleChange}
-          />
-          <FormField label="Decadev" name="decadev" value={decaDev} disabled />
-          <FormField
-            label="Add Description"
-            name="description"
-            value={description}
-            onChange={handleChange}
-            component={TextArea}
-            required
-          />
-          <FormField>
-            <DateTimeDropButton
-              label="Start time"
-              name="start"
-              setDateAndTime={setDateAndTime}
-              date={startDate}
-              time={startTime}
-            />
-          </FormField>
-          <FormField>
-            <DateTimeDropButton
-              label="End time"
-              name="end"
-              setDateAndTime={setDateAndTime}
-              date={endDate}
-              time={endTime}
-            />
-          </FormField>
-          <Box
-            direction="row"
-            justify="center"
-            align="center"
-            margin={{ top: 'medium' }}
-          >
-            <FormButton loading={loading} type="submit" text="Save Interview" />
+    <>
+      {success && (
+        <SuccessNotification message={success} onClose={closeToaster} />
+      )}
+      <LongerFormsLayout>
+        <Box fill width="medium">
+          <Box margin="small" pad="small" align="center">
+            <Text
+              width="auto"
+              size="large"
+              margin="small"
+              style={{
+                fontWeight: 'bold',
+                fontSize: '25px',
+              }}
+            >
+              Schedule Interview
+            </Text>
           </Box>
-        </Form>
-      </Box>
-    </FormLayout>
+
+          <FormError error={error} />
+
+          <Form onSubmit={handleSubmit}>
+            <FormField
+              label="Add Title"
+              name="title"
+              value={title}
+              onChange={handleChange}
+              required
+            />
+            <FormField
+              label="Add Location"
+              name="location"
+              value={location}
+              onChange={handleChange}
+            />
+            <FormField
+              label="Decadev"
+              name="decadev"
+              value={decaDev}
+              disabled
+            />
+            <FormField
+              label="Add Description"
+              name="description"
+              value={description}
+              onChange={handleChange}
+              component={TextArea}
+              required
+            />
+            <Box direction="row" align="center" style={{ marginTop: '20px' }}>
+              <FormField>
+                <DateTimeDropButton
+                  label="Start time"
+                  name="start"
+                  setDateAndTime={setDateAndTime}
+                  date={startDate}
+                  time={startTime}
+                />
+              </FormField>
+              <FormField>
+                <DateTimeDropButton
+                  label="End time"
+                  name="end"
+                  setDateAndTime={setDateAndTime}
+                  date={endDate}
+                  time={endTime}
+                />
+              </FormField>
+            </Box>
+            <Box
+              direction="row"
+              justify="center"
+              align="center"
+              margin={{ top: 'medium' }}
+            >
+              <FormButton
+                loading={loading}
+                type="submit"
+                text="Save Interview"
+                onClick={handleAllowNext}
+              />
+            </Box>
+          </Form>
+        </Box>
+      </LongerFormsLayout>
+    </>
   );
 }
 const mapDispatchToProps = {
-  scheduleInterview: scheduleInterviewBoundActionCreator
+  scheduleInterview: scheduleInterviewBoundActionCreator,
 };
-export default connect(
-  null,
-  mapDispatchToProps
-)(React.memo(ScheduleInterview));
+export default connect(null, mapDispatchToProps)(React.memo(ScheduleInterview));

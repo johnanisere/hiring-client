@@ -3,7 +3,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-const App = props => {
+const ProtectedRoute = props => {
   const { token } = useSelector(({ authentication }) => authentication);
 
   return (
@@ -14,4 +14,4 @@ const App = props => {
   );
 };
 
-export default App;
+export default ProtectedRoute;
