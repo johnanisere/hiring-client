@@ -1,6 +1,6 @@
-import React from "react";
-import Profile from "./blocks";
-import PropTypes from "prop-types";
+import React from 'react';
+import Profile from './blocks';
+import PropTypes from 'prop-types';
 
 function App({ portfolio, education, skills }) {
   return (
@@ -39,10 +39,10 @@ function App({ portfolio, education, skills }) {
                     <Profile.Text bold black size3 l20>
                       {qualification}
                     </Profile.Text>
-                    {placeOfEducation}.{"   "}
+                    {placeOfEducation}.{'   '}
                     <span className="small"> {duration}</span>
                   </li>
-                )
+                ),
               )
             ) : (
               <Profile.Text>No Education yet</Profile.Text>
@@ -78,7 +78,7 @@ function App({ portfolio, education, skills }) {
 App.propTypes = {
   portfolio: PropTypes.array,
   skills: PropTypes.array,
-  experience: PropTypes.array
+  experience: PropTypes.array,
 };
 
 export default React.memo(App);

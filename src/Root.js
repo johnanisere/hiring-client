@@ -8,8 +8,10 @@ const Profile = lazy(() => import('./components/profile/'));
 
 const DecadevModal = lazy(() => import('./components/decadevModal/index'));
 const WhyDecline = lazy(() =>
-  import('./components/interviewActivities/WhyDecline')
+  import('./components/interviewActivities/WhyDecline'),
 );
+
+const CvTest = lazy(() => import('./components/profil/Pdf/CV'));
 
 const App = () => (
   <BrowserRouter>
@@ -18,6 +20,7 @@ const App = () => (
         <Route exact path="/decline" component={WhyDecline} />
         <Route exact path="/profile" component={Profile} />
         <Route path="/dashboard" component={Dashboard} />
+        <Route path="/cvtest" component={CvTest}></Route>
         <Route exact path="/viewprofile" component={DecadevModal} />
 
         <Route path="/" component={Authentication} />
