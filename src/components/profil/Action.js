@@ -20,12 +20,12 @@ const App = ({ selected, dev }) => {
           backgroundColor: "rgba(0, 0, 0, .09)"
         }}
       >
-        {(interviewDetails.scheduled || testDetails.scheduled) &&
+        {interviewDetails && (interviewDetails.scheduled || testDetails.scheduled) &&
         interviewDetails.decaDev === dev.email &&
         interviewDetails.hiringPartner === data.email ? (
           <em style={{ fontWeight: "lighter" }}>
             Interview has been scheduled for{" "}
-            {interviewDetails.scheduled || testDetails.scheduled}
+            { interviewDetails && (interviewDetails.scheduled || testDetails.scheduled)}
           </em>
         ) : (
           <>
