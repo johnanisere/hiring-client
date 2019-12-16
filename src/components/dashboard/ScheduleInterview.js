@@ -1,40 +1,50 @@
-import React, { useState } from "react";
-import DateTimeDropButton from "../DateTime";
-import { Box, Form, FormField, TextArea, Text } from "grommet";
-import { useSelector, connect } from "react-redux";
-import request from "../../request";
-import FormError from "../formError";
-import FormButton from "../button/FormButton";
-import scheduleInterviewBoundActionCreator from "./scheduleInterview.action";
-import { toNormalDate } from "../../helpers/utils";
-import SuccessNotification from "../toasters/SuccessNotification";
+import React, { useState } from 'react';
+import DateTimeDropButton from '../DateTime';
+import { Box, Form, FormField, TextArea, Text } from 'grommet';
+import { useSelector, connect, useDispatch } from 'react-redux';
+import request from '../../request';
+import FormError from '../formError';
+import FormButton from '../button/FormButton';
+import scheduleInterviewBoundActionCreator from './scheduleInterview.action';
+import { toNormalDate } from '../../helpers/utils';
+import SuccessNotification from '../toasters/SuccessNotification';
 
-import LongerFormsLayout from "../LongerFormsLayout";
+import LongerFormsLayout from '../LongerFormsLayout';
+import { INCREMENT_NEXT_COUNT } from '../AllowNext/allowNext.action';
 
 function ScheduleInterview(props) {
   const { email } = props.match.params;
-  const [success, onSuccess] = useState("");
+  const [success, onSuccess] = useState('');
 
   const { loading } = useSelector(({ interviewDetails }) => interviewDetails);
   const { error } = useSelector(({ error }) => error);
+
+  const dispatch = useDispatch();
+
   const handleSuccess = val => {
     onSuccess(val);
+  };
+
+  const handleAllowNext = () => {
+    dispatch({
+      type: INCREMENT_NEXT_COUNT,
+    });
   };
 
   const { data } = useSelector(({ user }) => user);
 
   const [values, setValues] = useState({
-    title: "",
-    location: "",
-    description: "",
+    title: '',
+    location: '',
+    description: '',
     startDate: undefined,
-    startTime: "",
+    startTime: '',
     endDate: undefined,
-    endTime: "",
+    endTime: '',
     decaDev: email,
-    timezone: "",
+    timezone: '',
     hiringPartner: data.email,
-    nameOfOrg: data.nameOfOrg
+    nameOfOrg: data.nameOfOrg,
   });
 
   const {
@@ -47,7 +57,7 @@ function ScheduleInterview(props) {
     endTime,
     decaDev,
     hiringPartner,
-    nameOfOrg
+    nameOfOrg,
   } = values;
 
   const setDateAndTime = data => {
@@ -72,12 +82,12 @@ function ScheduleInterview(props) {
       endDate: toNormalDate(endDate),
       hiringPartner,
       nameOfOrg,
-      decaDev
+      decaDev,
     };
     props.scheduleInterview(payload, request, handleSuccess);
   };
 
-  const closeToaster = () => onSuccess("");
+  const closeToaster = () => onSuccess('');
   return (
     <>
       {success && (
@@ -91,8 +101,8 @@ function ScheduleInterview(props) {
               size="large"
               margin="small"
               style={{
-                fontWeight: "bold",
-                fontSize: "25px"
+                fontWeight: 'bold',
+                fontSize: '25px',
               }}
             >
               Schedule Interview
@@ -129,7 +139,7 @@ function ScheduleInterview(props) {
               component={TextArea}
               required
             />
-            <Box direction="row" align="center" style={{ marginTop: "20px" }}>
+            <Box direction="row" align="center" style={{ marginTop: '20px' }}>
               <FormField>
                 <DateTimeDropButton
                   label="Start time"
@@ -153,12 +163,13 @@ function ScheduleInterview(props) {
               direction="row"
               justify="center"
               align="center"
-              margin={{ top: "medium" }}
+              margin={{ top: 'medium' }}
             >
               <FormButton
                 loading={loading}
                 type="submit"
                 text="Save Interview"
+                onClick={handleAllowNext}
               />
             </Box>
           </Form>
@@ -168,6 +179,6 @@ function ScheduleInterview(props) {
   );
 }
 const mapDispatchToProps = {
-  scheduleInterview: scheduleInterviewBoundActionCreator
+  scheduleInterview: scheduleInterviewBoundActionCreator,
 };
 export default connect(null, mapDispatchToProps)(React.memo(ScheduleInterview));

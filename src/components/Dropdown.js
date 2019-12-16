@@ -5,48 +5,41 @@ import PropTypes from 'prop-types';
 import { deepMerge } from 'grommet/utils';
 import Finalize from './selected/Finalize';
 const theme = deepMerge(grommet, {
-	global: {
-		control: {
-			border: {
-				radius: '2px'
-			}
-		},
-		input: {
-			weight: 400
-		},
-		font: {
-			size: '12px'
-		}
-	},
-	text: {
-		medium: '13px'
-	},
-	textInput: {
-		extend: 'padding: 0 12px;'
-	},
-	select: {
-		control: {
-			extend: 'padding: 3px 6px;',
-			open: {
-				background: '#ece0fa',
-				border: '1px solid #7D4CDB'
-			}
-		}
-	}
+  global: {
+    control: {
+      border: {
+        radius: '2px',
+      },
+    },
+    input: {
+      weight: 400,
+    },
+    font: {
+      size: '12px',
+    },
+  },
+  text: {
+    medium: '13px',
+  },
+  textInput: {
+    extend: 'padding: 0 12px;',
+  },
+  select: {
+    control: {
+      extend: 'padding: 3px 6px;',
+      open: {
+        background: '#ece0fa',
+        border: '1px solid #7D4CDB',
+      },
+    },
+  },
 });
 
 function Dropdown(props) {
-	const [values, setValues] = useState({
-		options: [
-			'All',
-			'Java',
-			'C#',
-			'Android',
-			'NodeJS',
-			'Python'
-		],
-		value: ''
-	});
+  const [values, setValues] = useState({
+    options: ['Java', 'C#', 'Android', 'NodeJS', 'Python'],
+    value: 'Java',
+  });
 
 	const { options, value } = values;
 
@@ -56,30 +49,30 @@ function Dropdown(props) {
 		props.handleChange(option);
 	};
 
-	return (
-		<Grommet theme={theme || grommet}>
-			<div
-				style={{
-					display: 'flex',
-					justifyContent: 'space-between',
-					margin: '10px 20px'
-				}}
-			>
-				<Finalize />
-				<Select
-					id="select"
-					name="select"
-					placeholder="Select Stack"
-					value={value}
-					options={options}
-					onChange={handleChange}
-				/>
-			</div>
-		</Grommet>
-	);
+  return (
+    <Grommet theme={theme || grommet}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          margin: '10px 20px',
+        }}
+      >
+        <Finalize />
+        <Select
+          id="select"
+          name="select"
+          placeholder="Select Stack"
+          value={value}
+          options={options}
+          onChange={handleChange}
+        />
+      </div>
+    </Grommet>
+  );
 }
 
 Dropdown.propTypes = {
-	handleChange: PropTypes.func.isRequired
+  handleChange: PropTypes.func.isRequired,
 };
 export default Dropdown;
