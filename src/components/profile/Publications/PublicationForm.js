@@ -58,6 +58,7 @@ function PublicationForm(props) {
           placeholder="type here"
           value={link}
           onChange={handleChange}
+          required
         />
       </div>
     </Form>

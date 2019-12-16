@@ -32,6 +32,7 @@ function ProjectForm(props) {
           placeholder="type here"
           value={title}
           onChange={handleChange}
+          required
         />
       </div>
       <div style={{ margin: '10px' }}>
@@ -54,6 +55,7 @@ function ProjectForm(props) {
           placeholder="type here"
           value={languages}
           onChange={handleChange}
+          required
         />
       </div>
       <div style={{ margin: '10px' }}>
@@ -70,12 +72,13 @@ function ProjectForm(props) {
         </label>
 
         <TextInput
-          style={{ flex: '1 1 80%' }}
+          style={{ flex: '1 1 80%'}}
           size="small"
           name="link"
           placeholder="type here"
           value={link}
           onChange={handleChange}
+          required
         />
       </div>
     </Form>

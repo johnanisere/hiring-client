@@ -7,7 +7,7 @@ const boxStyle = {
   fontWeight: "lighter",
   display: "flex"
 };
-const titleBoxBackground = { color: "neutral-1" };
+
 const checkBoxStyle = { fontSize: "12px" };
 const titleBoxStyle = { position: "sticky", top: 0, marginBottom: "20%" };
 
