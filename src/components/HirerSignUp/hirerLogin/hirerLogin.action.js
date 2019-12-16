@@ -23,9 +23,11 @@ const hirerLoginBoundActionCreator = (
   request,
   navigateToDashboard
 ) => async dispatch => {
+  
   try {
     dispatch(setLoading(true));
     const response = await request.post('/hirer/login', data);
+  
     dispatch(hirerLogin(response.data));
     dispatch(setToken(response.data.token));
     dispatch(setLoading(false));
