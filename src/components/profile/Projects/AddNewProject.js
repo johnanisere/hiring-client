@@ -4,6 +4,10 @@ import { Anchor } from 'grommet/components/Anchor';
 import { Heading } from 'grommet/components/Heading';
 import { connect, useSelector } from 'react-redux';
 import { BeatLoader } from 'react-spinners';
+import {
+	FormClose,
+	Save
+} from 'grommet-icons';
 
 import updateUserDetailBoundActionCreator from '../actions/updateDetails.action';
 import request from '../../../request';
@@ -45,8 +49,7 @@ function AddNewProject(props) {
   const type = 'new-project';
   async function handleSubmit(e) {
     e.preventDefault();
-    props.onUpdateDetails(paper, email, request, token, type);
-    handleSave();
+    props.onUpdateDetails(paper, email, request, token, type, handleSave);
   }
 
   return (
@@ -72,13 +75,13 @@ function AddNewProject(props) {
 
             <div style={{ display: 'flex' }}>
               <div onClick={handleCancel} style={{ cursor: 'pointer' }}>
-                Cancel
+              <FormClose />
               </div>
               <div
                 onClick={handleSubmit}
                 style={{ marginLeft: '10px', cursor: 'pointer' }}
               >
-                {loading ? <BeatLoader size={5} color="black" /> : 'Save'}
+                {loading ? <BeatLoader size={5} color="black" /> : <Save />}
               </div>
             </div>
           </div>

@@ -100,14 +100,6 @@ function InviteForm(props) {
             Invite Devs
           </Heading>
           <input type="file" onChange={handleImageChange} name="csvFile" />
-          {/* <Select
-            id="select"
-            name="select"
-            placeholder="Select Squad"
-            value={value}
-            options={options}
-            onChange={({ option }) => setState({ ...state, value: option })}
-          /> */}
           <Button loading={loading} text="Send Invite" type="submit" />
         </Form>
       </div>

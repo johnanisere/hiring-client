@@ -41,9 +41,9 @@ const App = props => {
         />
 
         <Text>{dev.name}</Text>
-        {/* <Text size="small" style={{ color: "rgb(169, 169, 169)" }}>
-          {dev.bio}
-        </Text> */}
+        <Text size="small" style={{ color: "rgb(169, 169, 169)" }}>
+          {dev.pod.toUpperCase()}
+        </Text>
 
         <MoreInfo
           email={dev.email}

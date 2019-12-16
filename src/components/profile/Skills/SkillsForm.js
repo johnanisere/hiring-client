@@ -32,6 +32,7 @@ function SkillsForm(props) {
           placeholder="type here"
           value={type}
           onChange={handleChange}
+          required
         />
       </div>
       <div style={{ margin: '10px' }}>
@@ -54,6 +55,7 @@ function SkillsForm(props) {
           placeholder="type here"
           value={description}
           onChange={handleChange}
+          required
         />
       </div>
     </Form>

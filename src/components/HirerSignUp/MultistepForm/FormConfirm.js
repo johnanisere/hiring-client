@@ -1,11 +1,12 @@
 import React from 'react';
 import { useSelector, connect } from 'react-redux';
-import { Box, Button, Text } from 'grommet';
+import { Box,  Text } from 'grommet';
 import BeatLoader from 'react-spinners/BeatLoader';
 import FormError from '../../formError';
 import registerHirerBoundActionCreator from '../hirerSignup.action';
 import request from '../../../request';
 import Formlayout from '../../FormLayout';
+import SignupButton from '../SignupButton'
 
 function Confirm(props) {
   const { loading } = useSelector(({ user }) => user);
@@ -22,8 +23,8 @@ function Confirm(props) {
       numberOfTalentsRequired,
       deadline,
       password,
-      industry
-    }
+      industry, 
+    }, interestLanguage
   } = props;
   const continueToNext = e => {
     e.preventDefault();
@@ -38,7 +39,7 @@ function Confirm(props) {
         numberOfTalentsRequired,
         deadline,
         password,
-        industry
+        industry,interestLanguage
       },
       request
     );
@@ -65,16 +66,12 @@ function Confirm(props) {
           <Text>How soon do you wish to onboard?: {deadline}</Text>
         </Box>
         <Box direction="row" justify="between" margin={{ top: 'medium' }}>
-          <Button
-            primary
-            color="dark-1"
-            label={'Back'}
-            style={{ width: 'auto', margin: '20px' }}
+          <SignupButton
+            label='Back'
             onClick={back}
           />
-          <Button
-            primary
-            color="dark-1"
+          <SignupButton
+           
             label={
               loading ? (
                 <BeatLoader size={5} color="#fff" />
@@ -82,7 +79,7 @@ function Confirm(props) {
                 'Confirm & Continue'
               )
             }
-            style={{ width: '100%', margin: '20px 5px' }}
+            
             onClick={loading ? null : continueToNext}
           />
         </Box>
