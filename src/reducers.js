@@ -8,14 +8,16 @@ import shortlisted from './components/selected/selected.reducer';
 import hirer from './components/activateHirer/activateHirer.reducer';
 import interviews from './components/interviewActivities/interviews.reducer';
 import error from './components/authentication/error.reducer';
+import hired from './components/hired/hired.reducer';
 
 export default combineReducers({
-  user,
-  error,
-  decadevs,
-  shortlisted,
-  authentication,
-  interviewDetails,
-  hirer,
-  interviews
+	user,
+	error,
+	decadevs,
+	shortlisted,
+	authentication,
+	interviewDetails,
+	hirer,
+	interviews,
+	hired
 });

@@ -11,7 +11,7 @@ const ViewDeclineReason = props => {
     >
       <Box pad="medium" gap="small" width="medium">
         <Heading level={3} margin="none">
-          Reason for Decline
+          Reason for Reschedule
         </Heading>
         <Text> {props.declineReason}</Text>
         <Text> {props.decaDev}</Text>

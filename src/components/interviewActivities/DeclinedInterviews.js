@@ -30,7 +30,7 @@ function DeclinedInterviewsTable() {
         justify="center"
         align="center"
       >
-        <Heading level={3}>Declined Interviews</Heading>
+        <Heading level={3}>Rescheduled Interviews</Heading>
       </Box>
 
       {interviews.length !== 0 ? (
@@ -79,7 +79,7 @@ function DeclinedInterviewsTable() {
                       {interview.accepted
                         ? 'Accepted'
                         : interview.declined
-                        ? 'Declined'
+                        ? 'Rescheduled'
                         : 'Pending'}
                     </TableCell>
                   </TableRow>
