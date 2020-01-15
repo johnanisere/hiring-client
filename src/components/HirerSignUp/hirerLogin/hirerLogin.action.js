@@ -1,33 +1,32 @@
 export const HIRER_LOGIN = 'HIRER_LOGIN';
 const hirerLogin = payload => ({
   type: HIRER_LOGIN,
-  payload
+  payload,
 });
 
 const setToken = payload => ({
   type: 'SET_TOKEN',
-  payload
+  payload,
 });
 
 export const setLoading = payload => ({
   type: 'LOADING',
-  payload
+  payload,
 });
 export const onError = payload => ({
   type: 'SET_ERROR',
-  payload
+  payload,
 });
 
 const hirerLoginBoundActionCreator = (
   data,
   request,
-  navigateToDashboard
+  navigateToDashboard,
 ) => async dispatch => {
-  
   try {
     dispatch(setLoading(true));
     const response = await request.post('/hirer/login', data);
-  
+
     dispatch(hirerLogin(response.data));
     dispatch(setToken(response.data.token));
     dispatch(setLoading(false));
