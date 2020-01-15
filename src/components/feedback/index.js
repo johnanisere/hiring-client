@@ -49,12 +49,6 @@ function FeedBack() {
 					<Table>
 						<TableHeader>
 							<TableRow>
-								{/* <TableCell
-									scope="col"
-									border="bottom"
-								>
-									Hirer
-								</TableCell> */}
 								<TableCell
 									scope="col"
 									border="bottom"
@@ -92,11 +86,6 @@ function FeedBack() {
 												onOpen(index)
 											}
 										>
-											{/* <TableCell scope="row">
-												<strong>
-													{interview.nameOfOrg}
-												</strong>
-											</TableCell> */}
 											<TableCell>
 												{interview.decaDev}
 											</TableCell>
@@ -143,7 +132,7 @@ function FeedBack() {
 				</Box>
 			) : (
 				<p style={{ textAlign: 'center' }}>
-					<em>No Declined Interviews</em>
+					<em>No Interview Reschedules</em>
 				</p>
 			)}
 		</Grommet>
