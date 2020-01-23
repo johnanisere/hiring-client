@@ -64,7 +64,9 @@ function Cards(props) {
 
       let currentPod = normalizePod(state.pod);
 
-      let nextDisabled = inviteCounts.filter(count => count.pod === currentPod);
+      let nextDisabled = inviteCounts
+        ? inviteCounts.filter(count => count.pod === currentPod)
+        : [];
 
       if (nextDisabled.length && nextDisabled[0].next >= 1) {
         setState({ ...state, nextFromTheBack: nextDisabled[0].next });
