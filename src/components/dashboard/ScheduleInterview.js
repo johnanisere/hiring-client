@@ -57,7 +57,7 @@ function ScheduleInterview(props) {
 
     dispatch({
       type: INCREMENT_NEXT_COUNT,
-      payload: userPod,
+      payload: userPod
     });
 
     dispatch({ type: GET_HIRER, payload });
@@ -76,7 +76,7 @@ function ScheduleInterview(props) {
     decaDev: email,
     timezone: '',
     hiringPartner: data.email,
-    nameOfOrg: data.nameOfOrg,
+    nameOfOrg: data.nameOfOrg
   });
 
   const {
@@ -89,7 +89,7 @@ function ScheduleInterview(props) {
     endTime,
     decaDev,
     hiringPartner,
-    nameOfOrg,
+    nameOfOrg
   } = values;
 
   const setDateAndTime = data => {
@@ -114,9 +114,9 @@ function ScheduleInterview(props) {
       endDate: toNormalDate(endDate),
       hiringPartner,
       nameOfOrg,
-      decaDev,
+      decaDev
     };
-    // console.log(payload);
+
     props.scheduleInterview(payload, request, handleSuccess);
   };
 
@@ -135,7 +135,7 @@ function ScheduleInterview(props) {
               margin="small"
               style={{
                 fontWeight: 'bold',
-                fontSize: '25px',
+                fontSize: '25px'
               }}
             >
               Schedule Interview
@@ -214,6 +214,6 @@ function ScheduleInterview(props) {
   );
 }
 const mapDispatchToProps = {
-  scheduleInterview: scheduleInterviewBoundActionCreator,
+  scheduleInterview: scheduleInterviewBoundActionCreator
 };
 export default connect(null, mapDispatchToProps)(React.memo(ScheduleInterview));

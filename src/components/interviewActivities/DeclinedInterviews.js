@@ -97,7 +97,7 @@ function DeclinedInterviewsTable() {
         </Box>
       ) : (
         <p style={{ textAlign: 'center' }}>
-          <em>No Declined Interviews</em>
+          <em>No Rescheduled Interviews</em>
         </p>
       )}
     </Grommet>
