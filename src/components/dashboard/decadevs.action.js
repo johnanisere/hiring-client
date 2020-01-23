@@ -18,13 +18,18 @@ export const getTotal = payload => ({
   payload,
 });
 
-const getAllDecadevs = (request, pod) => async dispatch => {
+const getAllDecadevs = (request, pod, isNext = false) => async dispatch => {
   try {
     dispatch(setLoading(true));
 
-    const response = await request.get(
-      `/users/decadevs/${pod ? '?pod=' + pod : ''}`,
-    );
+    let url =
+      isNext !== true
+        ? `/users/decadevs/${pod ? '?pod=' + pod : ''}`
+        : `/users/decadevs/${pod ? '?pod=' + pod : ''}&${
+            isNext ? 'isNext=' + isNext : ''
+          }`;
+
+    const response = await request.get(url);
 
     dispatch(getDevs(response.data.allDecadevs));
     dispatch(getTotal(response.data.total));

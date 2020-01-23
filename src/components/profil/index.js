@@ -27,7 +27,7 @@ const App = props => {
           })
           .then(res => {
             const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
-            saveAs(pdfBlob, 'file.pdf');
+            saveAs(pdfBlob, `${body.name}.pdf`);
           }),
       );
   };

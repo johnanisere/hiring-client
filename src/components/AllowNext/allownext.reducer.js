@@ -1,15 +1,25 @@
 import { INCREMENT_NEXT_COUNT, RESET_NEXT_COUNT } from './allowNext.action';
 
-const initialNextState = { count: 0, disable: true };
+const initialNextState = { Java: { count: 0, disable: true } };
 
 export default function AllowNextReducers(state = initialNextState, action) {
+  let pod = action.payload;
   switch (action.type) {
     case INCREMENT_NEXT_COUNT:
-      return state.count >= 1
-        ? { count: 0, disable: false }
-        : { ...state, count: state.count + 1 };
+      if (!state[pod]) {
+        state[pod] = { count: 0, disable: true };
+      } else {
+        if (state[pod].count > 0) {
+          state[pod] = { count: 0, disable: false };
+        } else {
+          ++state[pod].count;
+          state[pod].disable = true;
+        }
+      }
+      return state;
     case RESET_NEXT_COUNT:
-      return { count: 0, disable: true };
+      state[pod] = { count: 0, disable: true };
+      return state;
     default:
       return state;
   }
