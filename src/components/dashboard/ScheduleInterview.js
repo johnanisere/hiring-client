@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DateTimeDropButton from '../DateTime';
 import { Box, Form, FormField, TextArea, Text } from 'grommet';
 import { useSelector, connect, useDispatch } from 'react-redux';
@@ -11,6 +11,7 @@ import SuccessNotification from '../toasters/SuccessNotification';
 
 import LongerFormsLayout from '../LongerFormsLayout';
 import { INCREMENT_NEXT_COUNT } from '../AllowNext/allowNext.action';
+import { GET_HIRER } from './hirer.action';
 
 function ScheduleInterview(props) {
   const { email } = props.match.params;
@@ -18,6 +19,11 @@ function ScheduleInterview(props) {
 
   const { loading } = useSelector(({ interviewDetails }) => interviewDetails);
   const { error } = useSelector(({ error }) => error);
+  const { pod } = useSelector(({ pod }) => {
+    return pod;
+  });
+
+  const { data: userData } = useSelector(({ user }) => user);
 
   const dispatch = useDispatch();
 
@@ -25,10 +31,36 @@ function ScheduleInterview(props) {
     onSuccess(val);
   };
 
-  const handleAllowNext = () => {
+  useEffect(() => {
+    if (!pod) {
+      props.history.push('/dashboard');
+    }
+  });
+
+  const handleAllowNext = userPod => {
+    let currentInviteCount = userData.currentInviteCount;
+
+    let currentPod =
+      pod === 'C#' ? pod.split('')[0].toLowerCase() : pod.toLowerCase();
+
+    currentInviteCount.forEach(count => {
+      if (count.pod === currentPod) {
+        if (count.count >= 1) {
+          count.next = false;
+        } else {
+          ++count.count;
+        }
+      }
+    });
+
+    const payload = { partner: { ...userData, currentInviteCount } };
+
     dispatch({
       type: INCREMENT_NEXT_COUNT,
+      payload: userPod
     });
+
+    dispatch({ type: GET_HIRER, payload });
   };
 
   const { data } = useSelector(({ user }) => user);
@@ -44,7 +76,7 @@ function ScheduleInterview(props) {
     decaDev: email,
     timezone: '',
     hiringPartner: data.email,
-    nameOfOrg: data.nameOfOrg,
+    nameOfOrg: data.nameOfOrg
   });
 
   const {
@@ -57,7 +89,7 @@ function ScheduleInterview(props) {
     endTime,
     decaDev,
     hiringPartner,
-    nameOfOrg,
+    nameOfOrg
   } = values;
 
   const setDateAndTime = data => {
@@ -82,8 +114,9 @@ function ScheduleInterview(props) {
       endDate: toNormalDate(endDate),
       hiringPartner,
       nameOfOrg,
-      decaDev,
+      decaDev
     };
+
     props.scheduleInterview(payload, request, handleSuccess);
   };
 
@@ -102,7 +135,7 @@ function ScheduleInterview(props) {
               margin="small"
               style={{
                 fontWeight: 'bold',
-                fontSize: '25px',
+                fontSize: '25px'
               }}
             >
               Schedule Interview
@@ -169,7 +202,9 @@ function ScheduleInterview(props) {
                 loading={loading}
                 type="submit"
                 text="Save Interview"
-                onClick={handleAllowNext}
+                onClick={() => {
+                  handleAllowNext(pod);
+                }}
               />
             </Box>
           </Form>
@@ -179,6 +214,6 @@ function ScheduleInterview(props) {
   );
 }
 const mapDispatchToProps = {
-  scheduleInterview: scheduleInterviewBoundActionCreator,
+  scheduleInterview: scheduleInterviewBoundActionCreator
 };
 export default connect(null, mapDispatchToProps)(React.memo(ScheduleInterview));

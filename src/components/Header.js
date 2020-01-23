@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 const Header = props => {
   const handleSignout = e => {
     e.preventDefault();
+    localStorage.clear();
     props.signOut();
   };
 
@@ -31,7 +32,7 @@ const Header = props => {
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
-          cursor: 'pointer'
+          cursor: 'pointer',
         }}
       >
         <img
@@ -49,9 +50,6 @@ const Header = props => {
   );
 };
 const mapDispatchToProps = {
-  signOut: signOut
+  signOut: signOut,
 };
-export default connect(
-  null,
-  mapDispatchToProps
-)(Header);
+export default connect(null, mapDispatchToProps)(Header);

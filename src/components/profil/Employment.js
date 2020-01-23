@@ -1,9 +1,8 @@
-import React from "react";
-import Profile from "./blocks";
-import PropTypes from "prop-types";
+import React from 'react';
+import Profile from './blocks';
+import PropTypes from 'prop-types';
 
 function App({ employments }) {
-  // const { employments } = dev;
   return (
     <>
       <Profile bottom>
@@ -11,7 +10,7 @@ function App({ employments }) {
           EMPLOYMENT
         </Profile.Text>
         <Profile fill="true" noPad>
-          {employments ? (
+          {employments.length !== 0 ? (
             employments.map((employment, key) => (
               <Profile fill="true" noPad key={key}>
                 <Profile noPad spacebetween>
@@ -26,13 +25,15 @@ function App({ employments }) {
                   {employment.location}
                 </Profile.Text>
                 <Profile.List>
-                  {employment.achievements.map((achievement, key) => (
-                    <li key={key}>
-                      <Profile.Text small grey l20>
-                        {achievement}
-                      </Profile.Text>
-                    </li>
-                  ))}
+                  {employments.length > 0
+                    ? employment.achievements.map((achievement, key) => (
+                        <li key={key}>
+                          <Profile.Text small grey l20>
+                            {achievement}
+                          </Profile.Text>
+                        </li>
+                      ))
+                    : null}
                 </Profile.List>
               </Profile>
             ))

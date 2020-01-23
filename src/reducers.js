@@ -9,7 +9,10 @@ import hirer from './components/activateHirer/activateHirer.reducer';
 import interviews from './components/interviewActivities/interviews.reducer';
 import error from './components/authentication/error.reducer';
 import allowNext from './components/AllowNext/allownext.reducer';
-import hired from './components/hired/hired.reducer'
+import hired from './components/hired/hired.reducer';
+import setPod from './components/SetPod/setPod.reducer';
+
+import getHirer from './components/dashboard/hirer.reducer';
 
 export default combineReducers({
   user,
@@ -21,5 +24,7 @@ export default combineReducers({
   hirer,
   interviews,
   allowNext,
-  hired
+  hired,
+  pod: setPod,
+  getHirer
 });
