@@ -58,7 +58,6 @@ function ScheduleTest(props) {
       setDateValidation('Please add start and end date and time or duration');
       return;
     } else {
-      console.log(values);
       let payload;
       if (values.duration === '' && values.testUrl === '') {
         payload = {
@@ -118,7 +117,6 @@ function ScheduleTest(props) {
           testUrl
         };
       }
-      console.log(payload);
       scheduleTest(payload, request, handleSuccess);
     }
   };
