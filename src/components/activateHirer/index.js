@@ -13,7 +13,7 @@ import request from '../../request';
 import { connect, useSelector } from 'react-redux';
 import { grommet } from 'grommet/themes';
 import getAllInactive from './activateHirer.action';
-import {toNormalDate} from '../../helpers/utils';
+import { toNormalDate } from '../../helpers/utils';
 
 const ActivateHirer = props => {
   const { inactiveHirers } = useSelector(({ hirer }) => hirer);
@@ -40,7 +40,7 @@ const ActivateHirer = props => {
   return (
     <Grommet theme={grommet}>
       <Box
-        style={{ borderBottom: '1px solid black', overflow: "scroll" }}
+        style={{ borderBottom: '1px solid black', overflow: 'scroll' }}
         justify="center"
         align="center"
       >
@@ -51,7 +51,11 @@ const ActivateHirer = props => {
           <Box {...rest} key={item._id}>
             <Accordion animate={animate} multiple={multiple}>
               <AccordionPanel label={item.nameOfOrg}>
-                <Box background="light-2" height="medium">
+                <Box
+                  background="light-2"
+                  height="medium"
+                  style={{ overflow: 'scroll' }}
+                >
                   <Box height="large" flex={false} pad="small">
                     <Text>Contact Peron: {item.name}</Text>
                     <Text>Email: {item.email}</Text>
@@ -73,7 +77,7 @@ const ActivateHirer = props => {
                             margin: ' 0 auto'
                           }}
                           primary
-                          color="#111111" 
+                          color="#111111"
                           label={
                             loading ? (
                               <BeatLoader size={5} color="#fff" />
@@ -105,7 +109,4 @@ const mapDispatchToProps = {
   inactiveHirer: getAllInactive
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(React.memo(ActivateHirer));
+export default connect(null, mapDispatchToProps)(React.memo(ActivateHirer));
