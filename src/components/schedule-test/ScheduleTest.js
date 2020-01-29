@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-import {
-	Box,
-	Form,
-	FormField,
-	TextArea,
-	Text
-} from 'grommet';
+import { Box, Form, FormField, TextArea, Text } from 'grommet';
 import { connect } from 'react-redux';
 import request from '../../request';
 import LongerFormsLayout from '../LongerFormsLayout';
@@ -17,257 +11,219 @@ import FormError from '../formError/index';
 import scheduleTestBoundActionCreator from './scheduleTest.action';
 
 function ScheduleTest(props) {
-	const { email } = props.match.params;
-	const {
-		loading,
-		scheduleTest,
-		user,
-		error
-	} = props;
-	const [success, onSuccess] = useState('');
-	const [
-		dateValidation,
-		setDateValidation
-	] = useState('');
-	const handleSuccess = val => {
-		onSuccess(val);
-	};
+  const { email } = props.match.params;
+  const { loading, scheduleTest, user, error } = props;
+  const [success, onSuccess] = useState('');
+  const [dateValidation, setDateValidation] = useState('');
+  const handleSuccess = val => {
+    onSuccess(val);
+  };
 
-	const [values, setValues] = useState({
-		description: '',
-		decaDev: email,
-		hiringPartner: user.email,
-		nameOfOrg: user.nameOfOrg,
-		testUrl: '',
-		duration: '',
-		startDate: undefined,
-		startTime: '',
-		endDate: undefined,
-		endTime: ''
-	});
-	const {
-		description,
-		decaDev,
-		testUrl,
-		duration,
-		startDate,
-		startTime,
-		endDate,
-		endTime
-	} = values;
+  const [values, setValues] = useState({
+    description: '',
+    decaDev: email,
+    hiringPartner: user.email,
+    nameOfOrg: user.nameOfOrg,
+    testUrl: '',
+    duration: '',
+    startDate: undefined,
+    startTime: '',
+    endDate: undefined,
+    endTime: ''
+  });
+  const {
+    description,
+    decaDev,
+    testUrl,
+    duration,
+    startDate,
+    startTime,
+    endDate,
+    endTime
+  } = values;
 
-	const setDateAndTime = data => {
-		setValues({ ...values, ...data });
-	};
+  const setDateAndTime = data => {
+    setValues({ ...values, ...data });
+  };
 
-	const handleChange = e => {
-		const { name, value } = e.target;
-		setValues({ ...values, [name]: value });
-	};
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
+  };
 
-	const handleSubmit = e => {
-		e && e.preventDefault();
+  const handleSubmit = e => {
+    e && e.preventDefault();
 
-		if (
-			(!startDate ||
-			!startTime ||
-			!endDate ||
-			!endTime) && duration === ""
-		) {
-			setDateValidation(
-				'Please add start and end date and time or duration'
-			);
-			return;
-		} else {
-			let payload;
-			if (values.testUrl === '') {
-				payload = {
-					startTime,
-					endTime,
-					startDate: toNormalDate(startDate),
-					endDate: toNormalDate(endDate),
-					description,
-					duration,
-					decaDev,
-					hiringPartner: values.hiringPartner,
-					nameOfOrg: values.nameOfOrg
-				};
-			} else if (values.duration === '') {
-				payload = {
-					startTime,
-					endTime,
-					startDate: toNormalDate(startDate),
-					endDate: toNormalDate(endDate),
-					description,
-					testUrl,
-					decaDev,
-					hiringPartner: values.hiringPartner,
-					nameOfOrg: values.nameOfOrg
-				};
-			}else if(!startDate ||
-        startTime ===""||
-        !endDate ||
-        endTime === ""){
-          payload = {
-            description,
-            duration,
-            decaDev,
-            hiringPartner: values.hiringPartner,
-            nameOfOrg: values.nameOfOrg,
-            testUrl
-          };
-
+    if ((!startDate || !startTime || !endDate || !endTime) && duration === '') {
+      setDateValidation('Please add start and end date and time or duration');
+      return;
+    } else {
+      let payload;
+      if (values.duration === '' && values.testUrl === '') {
+        payload = {
+          startTime,
+          endTime,
+          startDate: toNormalDate(startDate),
+          endDate: toNormalDate(endDate),
+          description,
+          decaDev,
+          hiringPartner: values.hiringPartner,
+          nameOfOrg: values.nameOfOrg
+        };
+      } else if (values.testUrl === '') {
+        payload = {
+          startTime,
+          endTime,
+          startDate: toNormalDate(startDate),
+          endDate: toNormalDate(endDate),
+          description,
+          duration,
+          decaDev,
+          hiringPartner: values.hiringPartner,
+          nameOfOrg: values.nameOfOrg
+        };
+      } else if (values.duration === '') {
+        payload = {
+          startTime,
+          endTime,
+          startDate: toNormalDate(startDate),
+          endDate: toNormalDate(endDate),
+          description,
+          testUrl,
+          decaDev,
+          hiringPartner: values.hiringPartner,
+          nameOfOrg: values.nameOfOrg
+        };
+      } else if (!startDate || startTime === '' || !endDate || endTime === '') {
+        payload = {
+          description,
+          duration,
+          decaDev,
+          hiringPartner: values.hiringPartner,
+          nameOfOrg: values.nameOfOrg,
+          testUrl
+        };
       } else {
-				payload = {
-					startTime,
-					endTime,
-					startDate: toNormalDate(startDate),
-					endDate: toNormalDate(endDate),
-					description,
-					duration,
-					decaDev,
-					hiringPartner: values.hiringPartner,
-					nameOfOrg: values.nameOfOrg,
-					testUrl
-				};
-			}
+        payload = {
+          startTime,
+          endTime,
+          startDate: toNormalDate(startDate),
+          endDate: toNormalDate(endDate),
+          description,
+          duration,
+          decaDev,
+          hiringPartner: values.hiringPartner,
+          nameOfOrg: values.nameOfOrg,
+          testUrl
+        };
+      }
+      scheduleTest(payload, request, handleSuccess);
+    }
+  };
 
-			scheduleTest(
-				payload,
-				request,
-				handleSuccess
-			);
-		}
-	};
+  const closeToaster = () => onSuccess('');
 
-	const closeToaster = () => onSuccess('');
+  return (
+    <>
+      {success && (
+        <SuccessNotification message={success} onClose={closeToaster} />
+      )}
+      <LongerFormsLayout>
+        <Box fill width="medium">
+          <Box margin="small" pad="small" align="center">
+            <Text
+              width="auto"
+              size="large"
+              margin="small"
+              style={{
+                fontWeight: 'bold',
+                fontSize: '25px'
+              }}
+            >
+              Schedule Test
+            </Text>
+          </Box>
 
-	return (
-		<>
-			{success && (
-				<SuccessNotification
-					message={success}
-					onClose={closeToaster}
-				/>
-			)}
-			<LongerFormsLayout>
-				<Box fill width="medium">
-					<Box
-						margin="small"
-						pad="small"
-						align="center"
-					>
-						<Text
-							width="auto"
-							size="large"
-							margin="small"
-							style={{
-								fontWeight: 'bold',
-								fontSize: '25px'
-							}}
-						>
-							Schedule Test
-						</Text>
-					</Box>
+          <FormError error={error} />
 
-					<FormError error={error} />
+          <Form onSubmit={handleSubmit}>
+            <FormField
+              label="Decadev"
+              name="decadev"
+              value={decaDev}
+              disabled
+            />
 
-					<Form onSubmit={handleSubmit}>
-						<FormField
-							label="Decadev"
-							name="decadev"
-							value={decaDev}
-							disabled
-						/>
+            <FormField
+              label="Test URL (optional)"
+              name="testUrl"
+              value={testUrl}
+              onChange={handleChange}
+            />
+            <FormField
+              label="Add Description"
+              name="description"
+              value={description}
+              onChange={handleChange}
+              component={TextArea}
+              required
+            />
 
-						<FormField
-							label="Test URL (optional)"
-							name="testUrl"
-							value={testUrl}
-							onChange={handleChange}
-							validate={{
-								// eslint-disable-next-line
-								regexp: /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/,
-								message: 'must be a valid url'
-							}}
-						/>
-						<FormField
-							label="Add Description"
-							name="description"
-							value={description}
-							onChange={handleChange}
-							component={TextArea}
-							required
-						/>
+            <FormField
+              label="Duration (optional)"
+              name="duration"
+              value={duration}
+              onChange={handleChange}
+            />
 
-						<FormField
-							label="Duration (optional)"
-							name="duration"
-							value={duration}
-							onChange={handleChange}
-						/>
+            <Box direction="row" align="center" style={{ marginTop: '20px' }}>
+              <FormField>
+                <DateTimeDropButton
+                  label="Start time"
+                  name="start"
+                  setDateAndTime={setDateAndTime}
+                  date={startDate}
+                  time={startTime}
+                />
+              </FormField>
+              <FormField>
+                <DateTimeDropButton
+                  label="End time"
+                  name="end"
+                  setDateAndTime={setDateAndTime}
+                  date={endDate}
+                  time={endTime}
+                />
+              </FormField>
+              <small style={{ color: 'red' }}>{dateValidation}</small>
+            </Box>
 
-						<Box
-							direction="row"
-							align="center"
-							style={{ marginTop: '20px' }}
-						>
-							<FormField>
-								<DateTimeDropButton
-									label="Start time"
-									name="start"
-									setDateAndTime={setDateAndTime}
-									date={startDate}
-									time={startTime}
-								/>
-							</FormField>
-							<FormField>
-								<DateTimeDropButton
-									label="End time"
-									name="end"
-									setDateAndTime={setDateAndTime}
-									date={endDate}
-									time={endTime}
-								/>
-							</FormField>
-							<small style={{ color: 'red' }}>
-								{dateValidation}
-							</small>
-						</Box>
-
-						<Box
-							direction="row"
-							justify="center"
-							align="center"
-							margin={{ top: 'medium' }}
-						>
-							<FormButton
-								loading={loading}
-								type="submit"
-								text="Save Test"
-							/>
-						</Box>
-					</Form>
-				</Box>
-			</LongerFormsLayout>
-		</>
-	);
+            <Box
+              direction="row"
+              justify="center"
+              align="center"
+              margin={{ top: 'medium' }}
+            >
+              <FormButton loading={loading} type="submit" text="Save Test" />
+            </Box>
+          </Form>
+        </Box>
+      </LongerFormsLayout>
+    </>
+  );
 }
 
 const mapDispatchToProps = {
-	scheduleTest: scheduleTestBoundActionCreator
+  scheduleTest: scheduleTestBoundActionCreator
 };
 
 const mapStateToProps = state => {
-	const { interviewDetails, user, error } = state;
-	return {
-		loading: interviewDetails.loading,
-		user: user.data,
-		error: error.error
-	};
+  const { interviewDetails, user, error } = state;
+  return {
+    loading: interviewDetails.loading,
+    user: user.data,
+    error: error.error
+  };
 };
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(ScheduleTest);
+export default connect(mapStateToProps, mapDispatchToProps)(ScheduleTest);

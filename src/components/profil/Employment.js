@@ -10,36 +10,34 @@ function App({ employments }) {
           EMPLOYMENT
         </Profile.Text>
         <Profile fill="true" noPad>
-          {employments.length !== 0 ? (
-            employments.map((employment, key) => (
-              <Profile fill="true" noPad key={key}>
-                <Profile noPad spacebetween>
-                  <Profile.Text medium blue size2>
-                    {employment.title}
+          {employments.length !== 0
+            ? employments.map((employment, key) => (
+                <Profile fill="true" noPad key={key}>
+                  <Profile noPad spacebetween>
+                    <Profile.Text medium blue size2>
+                      {employment.title}
+                    </Profile.Text>
+                    <Profile.Text small grey size4 spacingsonSM>
+                      {employment.duration}
+                    </Profile.Text>
+                  </Profile>
+                  <Profile.Text small black size2 mt5>
+                    {employment.location}
                   </Profile.Text>
-                  <Profile.Text small grey size4 spacingsonSM>
-                    {employment.duration}
-                  </Profile.Text>
+                  <Profile.List>
+                    {employments.length > 0
+                      ? employment.achievements.map((achievement, key) => (
+                          <li key={key}>
+                            <Profile.Text small grey l20>
+                              {achievement}
+                            </Profile.Text>
+                          </li>
+                        ))
+                      : null}
+                  </Profile.List>
                 </Profile>
-                <Profile.Text small black size2 mt5>
-                  {employment.location}
-                </Profile.Text>
-                <Profile.List>
-                  {employments.length > 0
-                    ? employment.achievements.map((achievement, key) => (
-                        <li key={key}>
-                          <Profile.Text small grey l20>
-                            {achievement}
-                          </Profile.Text>
-                        </li>
-                      ))
-                    : null}
-                </Profile.List>
-              </Profile>
-            ))
-          ) : (
-            <Profile.Text>Empty Field</Profile.Text>
-          )}
+              ))
+            : null}
         </Profile>
       </Profile>
     </>
